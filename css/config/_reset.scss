@@ -1,0 +1,72 @@
+*,
+::before,
+::after {
+	box-sizing: inherit;
+	margin: 0;
+	padding: 0;
+}
+html {
+	box-sizing: border-box;
+	font-family: sans-serif;
+	font-size: 20px;
+}
+body {
+	background-image: url("../images/bg-spots.jpg");
+}
+header {
+	background: $tan;
+	box-shadow: 0 -0.5rem 1rem .5rem #3e3c39;
+	padding: .5rem 1rem;
+	h1 {
+		display: inline;
+		font-size: 1rem;
+		font-weight: normal;
+		margin: 0 1rem 0 0;
+		text-transform: uppercase;
+	}
+}
+section {
+	margin: 1rem;
+	padding: 0;
+	h2 {
+		color: $tan;
+		font-size: .8rem;
+		font-weight: normal;
+		text-transform: uppercase;
+	}
+}
+label {
+	color: $beige;
+	cursor: pointer;
+	font-size: .5rem;
+	text-transform: uppercase;
+}
+button {
+	outline: none;
+}
+.author {
+	display: inline-block;
+	font-size: 0.8rem;
+	font-weight: normal;
+	position: relative;
+	text-transform: uppercase;
+	top: -1px;
+}
+a {
+	text-decoration: none;
+}
+a:link {
+	color: blanchedalmond;
+}
+a:visited {
+	color: linen;
+}
+a:hover {
+	color: #fff;
+}
+a:active {
+	color: #fdfdfd;
+}
+.title-only {
+	display: none;
+}

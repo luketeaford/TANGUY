@@ -1,0 +1,24 @@
+%wheel-wrapper {
+	background: #827c7a;
+	border: 1px solid $beige;
+	float: left;
+	font-size: 0.7rem;
+	height: 13.1rem;
+	text-align: center;
+	width: 4rem;
+	label {
+		color: #000;
+	}
+}
+%wheel {
+	-webkit-appearance: slider-vertical;
+	height: 10rem;
+	margin: 1rem auto 0;
+	width: 4rem;
+}
+#pitch-bend {
+	@extend %wheel;
+}
+#mod-amount {
+	@extend %wheel;
+}

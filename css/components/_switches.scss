@@ -1,0 +1,71 @@
+%multi-switch {
+	background: #9e9c99 linear-gradient(#6c6956, #887);
+	border: 1px solid #3c3926;
+	border-radius: .2rem;
+	display: inline-block;
+	label {
+		color: #000;
+		text-align: center;
+		&:hover {
+			background: #696663;
+		}
+		&.selected {
+			background: #9e9c99 linear-gradient(#53515f, #363432);
+			box-shadow: inset 0 -1px 2px 1px #424140, 0 2px 4px -2px #543230;
+			color: #cfc6c3;
+			text-shadow: -2px 0 1px #7f7673, 2px 0 1px #7f7673;
+		}
+		input {
+			display: none;
+		}
+	}
+}
+//HORIZONTAL MULTI SWITCH
+.horizontal-multi-switch {
+	@extend %multi-switch;
+	label {
+		display: table-cell;
+		height: 1.4rem;
+		vertical-align: middle;
+		width: 4rem;
+		&:hover {
+			box-shadow: inset 1px 0 #3e3c39, 1px 0 #3e3c39;
+		}
+		&.selected:hover {
+			box-shadow: none;
+		}
+		&:first-child {
+			border-right: none;
+			border-radius: .2rem 0 0 .2rem;
+			&:hover {
+				box-shadow: inset 0 0 #3e3c39, 1px 0 #3e3c39;
+			}
+		}
+		&:last-child {
+			border-left: none;
+			border-radius: 0 .2rem .2rem 0;
+		}
+	}
+}
+//VERTICAL MULTI SWITCH
+.vertical-multi-switch {
+	@extend %multi-switch;
+	vertical-align: top;
+	width: 3rem;
+	label {
+		display: block;
+		padding: 0.5rem 0;
+		&:hover {
+			box-shadow: inset 0 1px #3e3c39, 0 1px #3e3c39;
+		}
+		&:first-child {
+			border-radius: .2rem .2rem 0 0;
+			&:hover {
+				box-shadow: inset 0 0 #3e3c39, 0 1px #3e3c39;
+			}
+		}
+		&:last-child {
+			border-radius: 0 0 .2rem .2rem;
+		}
+	}
+}
