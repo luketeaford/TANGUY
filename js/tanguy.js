@@ -10,6 +10,7 @@ var TANGUY = {
     octave_shift: 0,
     osc1_pitch: 440,
     osc2_pitch: 443.1192,
+    key_down: false,
 
     program: {
         name: "INITIALIZE",
@@ -25,7 +26,7 @@ var TANGUY = {
         osc2: {
             kbd: true,
             coarse: 1,
-            waveform: "sine",
+            waveform: "sawtooth",
             detune: 0,
             fine: 0,
             shape_amt: 0,
@@ -36,20 +37,20 @@ var TANGUY = {
         },
         lfo: {
             shape: "sine",
-            rate: 2.2,
+            rate: 0.1,
             pitch_amt: 0,
             filter_amt: 0,
             amp_amt: 0
         },
         mixer: {
             osc1: 1,
-            osc2: 1,
+            osc2: 0,
             noise: 0
         },
         filter: {
             mode: "lp",
-            frequency: 22050,
-            resonance: 0.00009999999747378752,
+            frequency: 18000,
+            resonance: 0.0001,
             env_amt: 0,
             kbd: 0,
             attack: 0,
@@ -72,12 +73,6 @@ var TANGUY = {
             amt: 0,
             direction: 1
         }
-    },
-
-    //FUNCTIONALITY
-    help: function () {
-        console.log('Don\'t use filter in HP mode.');
-        console.log('BUGGY: VCA gain if you turn it up after playing a note until retriggering keyboard');
     },
 
     shift_octave: function (direction) {
@@ -117,8 +112,7 @@ var TANGUY = {
         shift_octave_lights(TANGUY.octave_shift);
     },
 
-    multi_switch: function (gizmo) {//TRY "this"
-        console.log('VALUE OF THIS SWITCH IS ' + $(gizmo).val());
+    multi_switch: function (gizmo) {
         $(gizmo).parent().addClass('selected');
         $(gizmo).parent().siblings().removeClass('selected');
     },
@@ -129,19 +123,33 @@ var TANGUY = {
         TANGUY.osc1_pitch = note;
         TANGUY.osc2_pitch = osc2_note;
         //FILTER KEYBOARD TRACKING
-        if (TANGUY.program.filter.kbd > 0) {
-            var kbd = parseFloat(note * TANGUY.program.filter.kbd) + 4500;
-            TANGUY.lp_filter1.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime),
-            TANGUY.lp_filter2.detune.setValueAtTime(parseFloat(kbd / 2), TANGUY.voice1.currentTime),
-            TANGUY.bp_filter1.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime),
-            TANGUY.bp_filter2.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime),
-            TANGUY.bp_filter3.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime),
-            TANGUY.hp_filter1.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime),
-            TANGUY.hp_filter2.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime),
-            TANGUY.hp_filter3.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime),
-            TANGUY.notch1.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime),
-            TANGUY.notch2.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime),
-            TANGUY.notch3.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime);
+        switch (TANGUY.program.filter.mode) {
+            case "lp":
+                var kbd = parseFloat((4800 - note) * TANGUY.program.filter.kbd);
+                TANGUY.lp_filter1.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime),
+                TANGUY.lp_filter2.detune.setValueAtTime(parseFloat(kbd / 2), TANGUY.voice1.currentTime);
+                break;
+            case "bp":
+                var kbd = parseFloat((4800 - note) * TANGUY.program.filter.kbd);
+                TANGUY.bp_filter1.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime),
+                TANGUY.bp_filter2.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime),
+                TANGUY.bp_filter3.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime);
+                break;
+            case "hp":
+                var kbd = parseFloat((4800 - note) * TANGUY.program.filter.kbd);
+                TANGUY.hp_filter1.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime),
+                TANGUY.hp_filter2.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime),
+                TANGUY.hp_filter3.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime);
+                break;
+            case "notch":
+                var kbd = parseFloat((4800 - note) * TANGUY.program.filter.kbd);
+                TANGUY.notch1.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime),
+                TANGUY.notch2.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime),
+                TANGUY.notch3.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime);
+                break;
+            case "off":
+                console.log('No filter keyboard tracking to apply');
+            break;
         }
         if (TANGUY.program.osc1.kbd == true && TANGUY.program.osc2.kbd == true) {
             //SET BOTH OSCILLATORS
@@ -423,8 +431,8 @@ TANGUY.osc1_tri.frequency.value = TANGUY.osc1_pitch || 440;
 TANGUY.osc1_sin.frequency.value = TANGUY.osc1_pitch || 440;
 TANGUY.osc1_saw.start(0);
 TANGUY.osc1_sqr.start(0);
-TANGUY.osc1_tri.start(0.13);
-TANGUY.osc1_sin.start(0.02);
+TANGUY.osc1_tri.start(0);
+TANGUY.osc1_sin.start(0);
 TANGUY.osc1_saw.connect(TANGUY.osc1_saw_vca);
 TANGUY.osc1_sqr.connect(TANGUY.osc1_sqr_vca);
 TANGUY.osc1_tri.connect(TANGUY.osc1_tri_vca);
@@ -518,7 +526,6 @@ var pink_noise_data = TANGUY.pink_noise_buffer.getChannelData(0);
             pink_noise_data[i] = Math.abs(pink_noise_repeat) * 0.5;
         };
     };
-//OTHER TYPES OF NOISE GUESS WORK HERE
 var red_noise_data = TANGUY.red_noise_buffer.getChannelData(0);
     for (var i = 0; i < 44100; ++i) {
         red_noise_data[i] = (-1 * Math.random() + 2);
@@ -585,7 +592,7 @@ $('#osc1-coarse input').change(function () {
     TANGUY.osc1_tri.frequency.setValueAtTime(440 * this.value, TANGUY.voice1.currentTime),
     TANGUY.osc1_sin.frequency.setValueAtTime(440 * this.value, TANGUY.voice1.currentTime);
 });
-$('#osc1-saw').mousedown(function () {//PROTECTED
+$('#osc1-saw').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.osc1.saw_amt = parseFloat(this.value);
         TANGUY.osc1_saw_vca.gain.setValueAtTime(this.value, TANGUY.voice1.currentTime);
@@ -593,7 +600,7 @@ $('#osc1-saw').mousedown(function () {//PROTECTED
 }).mouseup(function () {
     $(this).unbind('mousemove');
 });
-$('#osc1-sqr').mousedown(function () {//PROTECTED
+$('#osc1-sqr').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.osc1.sqr_amt = parseFloat(this.value);
         TANGUY.osc1_sqr_vca.gain.setValueAtTime(-1 * (this.value), TANGUY.voice1.currentTime);
@@ -601,7 +608,7 @@ $('#osc1-sqr').mousedown(function () {//PROTECTED
 }).mouseup(function () {
     $(this).unbind('mousemove');
 });
-$('#osc1-tri').mousedown(function () {//PROTECTED
+$('#osc1-tri').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.osc1.tri_amt = parseFloat(this.value);
         TANGUY.osc1_tri_vca.gain.setValueAtTime(this.value, TANGUY.voice1.currentTime);
@@ -609,7 +616,7 @@ $('#osc1-tri').mousedown(function () {//PROTECTED
 }).mouseup(function () {
     $(this).unbind('mousemove');
 });
-$('#osc1-sin').mousedown(function () {//PROTECTED
+$('#osc1-sin').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.osc1.sin_amt = parseFloat(this.value);
         TANGUY.osc1_sin_vca.gain.setValueAtTime(this.value, TANGUY.voice1.currentTime);
@@ -617,10 +624,10 @@ $('#osc1-sin').mousedown(function () {//PROTECTED
 }).mouseup(function () {
     $(this).unbind('mousemove');
 });
-$('#osc1-fm').mousedown(function () {//PROTECTED
+$('#osc1-fm').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.osc1.fm_amt = parseFloat(this.value);
-        TANGUY.osc1_fm_vca.gain.setValueAtTime(((this.value * this.value) * 22050), TANGUY.voice1.currentTime);
+        TANGUY.osc1_fm_vca.gain.setValueAtTime(((this.value * this.value) * 24000), TANGUY.voice1.currentTime);
     });
 }).mouseup(function () {
     $(this).unbind('mousemove');
@@ -634,7 +641,7 @@ $('#osc2-coarse input').change(function () {
     TANGUY.program.osc2.coarse = parseFloat(this.value);
     TANGUY.osc2.frequency.setValueAtTime(440 * this.value, TANGUY.voice1.currentTime);
 });
-$('#osc2-detune').mousedown(function () {//PROTECTED
+$('#osc2-detune').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.osc2.detune = parseFloat(this.value);
         TANGUY.osc2.detune.setValueAtTime(parseFloat(TANGUY.osc2_pitch + (TANGUY.program.osc2.detune)), TANGUY.voice1.currentTime);
@@ -642,7 +649,7 @@ $('#osc2-detune').mousedown(function () {//PROTECTED
 }).mouseup(function () {
     $(this).unbind('mousemove');
 });
-$('#osc2-fine').mousedown(function () {//PROTECTED
+$('#osc2-fine').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.osc2.fine = parseFloat(this.value);        
         TANGUY.osc2.frequency.setValueAtTime(((440 * TANGUY.program.osc2.coarse) + TANGUY.program.osc2.fine), TANGUY.voice1.currentTime);
@@ -654,29 +661,26 @@ $('#osc2-saw, #osc2-sqr, #osc2-tri, #osc2-pls').change(function () {
     TANGUY.program.osc2.waveform = this.value;
     TANGUY.osc2.type = this.value;
 });
-$('#osc2-waveshape').mousedown(function () {//PROTECTED
+$('#osc2-waveshape').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.osc2.shape_amt = parseFloat(this.value);
         if (parseFloat(this.value) > 0) {
             TANGUY.waveshaper.curve = new Float32Array([parseFloat(this.value * 1.6), parseFloat(this.value * -2.5), parseFloat(this.value * -1.2), parseFloat(this.value * -2.4), parseFloat(this.value * -1.6), parseFloat(this.value * -3.2), parseFloat(this.value * 6.4), parseFloat(this.value * -3.2)]);
-            console.log('Waveshaping applied');
         } else {
             TANGUY.waveshaper.curve = null;
-            console.log('Waveshaper reset to null');
         }
     });
 }).mouseup(function () {
     $(this).unbind('mousemove');
 });
-$('#osc2-fm').mousedown(function () {//PROTECTED
+$('#osc2-fm').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.osc2.fm_amt = parseFloat(this.value);
-        TANGUY.osc2_fm_vca.gain.setValueAtTime(((this.value * this.value) * 22050), TANGUY.voice1.currentTime);//220.5
+        TANGUY.osc2_fm_vca.gain.setValueAtTime(((this.value * this.value) * 24000), TANGUY.voice1.currentTime);//220.5
     });
 }).mouseup(function () {
     $(this).unbind('mousemove');
 });
-
 
 //NOISE CONTROLS
 $('#white-noise, #pink-noise, #red-noise, #blue-noise, #purple-noise').change(function () {
@@ -720,7 +724,6 @@ $('#white-noise, #pink-noise, #red-noise, #blue-noise, #purple-noise').change(fu
     };
 });
 
-
 //LFO CONTROLS
 $('#lfo-sin, #lfo-tri, #lfo-rmp, #lfo-saw, #lfo-sqr').change(function () {
     switch (this.value) {
@@ -755,10 +758,10 @@ $('#lfo-sin, #lfo-tri, #lfo-rmp, #lfo-saw, #lfo-sqr').change(function () {
             break;
     };
 });
-$('#lfo-rate').mousedown(function () {//PROTECTED
+$('#lfo-rate').mousedown(function () {
     $(this).mousemove(function () {
-        TANGUY.program.lfo.rate = parseFloat(this.value);
-        TANGUY.lfo.frequency.value = parseFloat(this.value);
+        TANGUY.program.lfo.rate = (parseFloat(this.value) * (this.value)) * 200;
+        TANGUY.lfo.frequency.value = (parseFloat(this.value) * parseFloat(this.value)) * 200;
     });
 }).mouseup(function () {
     $(this).unbind('mousemove');
@@ -793,7 +796,6 @@ $('#external-mix').change(function () {
     TANGUY.ext_in_vca.gain.value = parseFloat(this.value);
     TANGUY.program.mixer.external = parseFloat(this.value);
 });
-
 
 //FILTER CONTROLS
 $('#filter-lp, #filter-bp, #filter-hp, #filter-notch, #filter-off').change(function () {
@@ -837,25 +839,25 @@ $('#filter-lp, #filter-bp, #filter-hp, #filter-notch, #filter-off').change(funct
             break;
     };
 });
-$('#cutoff').mousedown(function () {//PROTECTED
+$('#cutoff').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.filter.frequency = parseFloat(this.value);
-        TANGUY.lp_filter1.frequency.setTargetAtTime((parseFloat(this.value / 22014) * parseFloat(this.value)), TANGUY.voice1.currentTime, 0.08);
-        TANGUY.lp_filter2.frequency.setTargetAtTime(((parseFloat(this.value / 22014) * parseFloat(this.value)) / 2), TANGUY.voice1.currentTime, 0.08);
-        TANGUY.bp_filter1.frequency.setTargetAtTime(((parseFloat(this.value) / 22014) * parseFloat(this.value)), TANGUY.voice1.currentTime, 0.08);
+        TANGUY.lp_filter1.frequency.setTargetAtTime((parseFloat(this.value / 17990) * parseFloat(this.value)), TANGUY.voice1.currentTime, 0.08);
+        TANGUY.lp_filter2.frequency.setTargetAtTime(((parseFloat(this.value / 17990) * parseFloat(this.value)) / 2), TANGUY.voice1.currentTime, 0.08);
+        TANGUY.bp_filter1.frequency.setTargetAtTime(((parseFloat(this.value) / 17990) * parseFloat(this.value)), TANGUY.voice1.currentTime, 0.08);
         TANGUY.bp_filter2.frequency.setTargetAtTime((parseFloat(this.value) - (parseFloat(this.value) / 11)), TANGUY.voice1.currentTime, 0.08);
         TANGUY.bp_filter3.frequency.setTargetAtTime((parseFloat(this.value) + (parseFloat(this.value) / 11)), TANGUY.voice1.currentTime, 0.08);
-        TANGUY.hp_filter1.frequency.setTargetAtTime((parseFloat(this.value / 22014) * parseFloat(this.value)), TANGUY.voice1.currentTime, 0.08);
-        TANGUY.hp_filter2.frequency.setTargetAtTime((parseFloat(this.value / 22014) * parseFloat(this.value)), TANGUY.voice1.currentTime, 0.08);
-        TANGUY.hp_filter3.frequency.setTargetAtTime((parseFloat(this.value / 22014) * parseFloat(this.value)), TANGUY.voice1.currentTime, 0.08);
-        TANGUY.notch1.frequency.setTargetAtTime((parseFloat(this.value / 22014) * parseFloat(this.value)), TANGUY.voice1.currentTime, 0.08);
+        TANGUY.hp_filter1.frequency.setTargetAtTime((parseFloat(this.value / 17990) * parseFloat(this.value)), TANGUY.voice1.currentTime, 0.08);
+        TANGUY.hp_filter2.frequency.setTargetAtTime((parseFloat(this.value / 17990) * parseFloat(this.value)), TANGUY.voice1.currentTime, 0.08);
+        TANGUY.hp_filter3.frequency.setTargetAtTime((parseFloat(this.value / 17990) * parseFloat(this.value)), TANGUY.voice1.currentTime, 0.08);
+        TANGUY.notch1.frequency.setTargetAtTime((parseFloat(this.value / 17990) * parseFloat(this.value)), TANGUY.voice1.currentTime, 0.08);
         TANGUY.notch2.frequency.setTargetAtTime((parseFloat(this.value) - (parseFloat(this.value) / 9)), TANGUY.voice1.currentTime, 0.08);
         TANGUY.notch3.frequency.setTargetAtTime((parseFloat(this.value) + (parseFloat(this.value) / 9)), TANGUY.voice1.currentTime, 0.08);
     });
 }).mouseup(function () {
     $(this).unbind('mousemove');
 });
-$('#resonance').mousedown(function () {//PROTECTED
+$('#resonance').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.filter.resonance = parseFloat(this.value);
         TANGUY.lp_filter1.Q.setTargetAtTime(parseFloat((TANGUY.program.filter.resonance / 17) * 0.4348), TANGUY.voice1.currentTime, 0.01);
@@ -902,7 +904,7 @@ $('#vca-sustain').change(function () {
 $('#vca-release').change(function () {
     TANGUY.program.vca.release = parseFloat(this.value);
 });
-$('#vca-gain').mousedown(function () {//PROTECTED
+$('#vca-gain').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.vca.gain = parseFloat(this.value);
         TANGUY.vca.gain.value = parseFloat(this.value) * parseFloat(this.value);
@@ -933,20 +935,10 @@ $('#portamento-amount').change(function () {
 });
 $('#portamento-off, #portamento-linear, #portamento-exponential').change(function () {
     TANGUY.program.portamento.mode = this.value;
-    console.log('PORTAMENTO MODE IS ' + this.value);
-});
-$(document).keypress(function (key) {
-    if (key.which === 49) {
-        TANGUY.program.portamento.mode = "off";
-    } else if (key.which === 50) {
-        TANGUY.program.portamento.mode = "linear";
-    } else if (key.which == 51) {
-        TANGUY.program.portamento.mode = "exponential";
-    }
 });
 
 //PITCH WHEEL
-$('#pitch-bend').mousedown(function () {//PROTECTED
+$('#pitch-bend').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.osc1_saw.detune.setTargetAtTime(parseFloat(TANGUY.osc1_pitch + ((this.value) * 100)), TANGUY.voice1.currentTime, 0.2),
         TANGUY.osc1_sqr.detune.setTargetAtTime(parseFloat(TANGUY.osc1_pitch + ((this.value) * 100)), TANGUY.voice1.currentTime, 0.2),
@@ -964,7 +956,7 @@ $('#pitch-bend').mousedown(function () {//PROTECTED
 });
 
 //MOD WHEEL
-$('#mod-amount').mousedown(function () {//PROTECTED
+$('#mod-amount').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.mod.amt = parseFloat(this.value);
         TANGUY.lfo_pitch_vca.gain.value = parseFloat(TANGUY.program.lfo.pitch_amt * this.value);
@@ -984,69 +976,73 @@ $('.horizontal-multi-switch label input, .vertical-multi-switch label input').cl
 $('#keyboard button').mousedown(TANGUY.gate_on).mouseup(TANGUY.gate_off);
 
 $(document).keydown(function (key) {
-    switch (key.which) {
-        case 65:
-            $('#c1').trigger('mousedown');
-            break;
-        case 83:
-            $('#d1').trigger('mousedown');
-            break;
-        case 68:
-            $('#e1').trigger('mousedown');
-            break;
-        case 70:
-            $('#f1').trigger('mousedown');
-            break;
-        case 71:
-            $('#g1').trigger('mousedown');
-            break;
-        case 72:
-            $('#a1').trigger('mousedown');
-            break;
-        case 74:
-            $('#b1').trigger('mousedown');
-            break;
-        case 75:
-            $('#c2').trigger('mousedown');
-            break;
-        case 76:
-            $('#d2').trigger('mousedown');
-            break;
-        case 186:
-            $('#e2').trigger('mousedown');
-            break;
-        case 222:
-            $('#f2').trigger('mousedown');
-            break;
-        case 87:
-            $('#cs1').trigger('mousedown');
-            break;
-        case 69:
-            $('#ds1').trigger('mousedown');
-            break;
-        case 84:
-            $('#fs1').trigger('mousedown');
-            break;
-        case 89:
-            $('#gs1').trigger('mousedown');
-            break;
-        case 85:
-            $('#as1').trigger('mousedown');
-            break;
-        case 79:
-            $('#cs2').trigger('mousedown');
-            break;
-        case 80:
-            $('#ds2').trigger('mousedown');
-            break;
-        case 219:
-            $('#fs2').trigger('mousedown');
-            break;
-        case 221:
-            $('#gs2').trigger('mousedown');
-            break;
+    if (TANGUY.key_down == false) {
+        TANGUY.key_down = true;
+        switch (key.which) {
+            case 65:
+                $('#c1').trigger('mousedown');
+                break;
+            case 83:
+                $('#d1').trigger('mousedown');
+                break;
+            case 68:
+                $('#e1').trigger('mousedown');
+                break;
+            case 70:
+                $('#f1').trigger('mousedown');
+                break;
+            case 71:
+                $('#g1').trigger('mousedown');
+                break;
+            case 72:
+                $('#a1').trigger('mousedown');
+                break;
+            case 74:
+                $('#b1').trigger('mousedown');
+                break;
+            case 75:
+                $('#c2').trigger('mousedown');
+                break;
+            case 76:
+                $('#d2').trigger('mousedown');
+                break;
+            case 186:
+                $('#e2').trigger('mousedown');
+                break;
+            case 222:
+                $('#f2').trigger('mousedown');
+                break;
+            case 87:
+                $('#cs1').trigger('mousedown');
+                break;
+            case 69:
+                $('#ds1').trigger('mousedown');
+                break;
+            case 84:
+                $('#fs1').trigger('mousedown');
+                break;
+            case 89:
+                $('#gs1').trigger('mousedown');
+                break;
+            case 85:
+                $('#as1').trigger('mousedown');
+                break;
+            case 79:
+                $('#cs2').trigger('mousedown');
+                break;
+            case 80:
+                $('#ds2').trigger('mousedown');
+                break;
+            case 219:
+                $('#fs2').trigger('mousedown');
+                break;
+            case 221:
+                $('#gs2').trigger('mousedown');
+                break;
+        };
     };
 }).keyup(function (key) {
+    TANGUY.key_down = false;
     switch (key.which) {
         case 65:
             $('#c1').trigger('mouseup');
