@@ -1084,11 +1084,8 @@ $(document).keydown(function (key) {
             case 80:
                 $('#ds2').trigger('mousedown');
                 break;
-            case 219:
-                $('#fs2').trigger('mousedown');
-                break;
             case 221:
-                $('#gs2').trigger('mousedown');
+                $('#fs2').trigger('mousedown');
                 break;
         };
     };
@@ -1149,11 +1146,8 @@ $(document).keydown(function (key) {
         case 80:
             $('#ds2').trigger('mouseup');
             break;
-        case 219:
-            $('#fs2').trigger('mouseup');
-            break;
         case 221:
-            $('#gs2').trigger('mouseup');
+            $('#fs2').trigger('mouseup');
             break;
     };
 });
