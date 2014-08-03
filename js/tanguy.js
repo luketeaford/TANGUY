@@ -49,7 +49,7 @@ var TANGUY = {
         },
         filter: {
             mode: "lp",
-            frequency: 18000,
+            frequency: 22050,
             resonance: 0.0001,
             env_amt: 0,
             kbd: 0,
@@ -73,6 +73,11 @@ var TANGUY = {
             amt: 0,
             direction: 1
         }
+    },
+
+    debug: function () {
+        console.log('TANGUY DEBUG MODE');
+        console.log(TANGUY.program);
     },
 
     shift_octave: function (direction) {
@@ -125,24 +130,23 @@ var TANGUY = {
         //FILTER KEYBOARD TRACKING
         switch (TANGUY.program.filter.mode) {
             case "lp":
-                var kbd = parseFloat((4800 - note) * TANGUY.program.filter.kbd);
+                var kbd = parseFloat((4800 - note) * TANGUY.program.filter.kbd);//CLEAN UP
                 TANGUY.lp_filter1.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime),
                 TANGUY.lp_filter2.detune.setValueAtTime(parseFloat(kbd / 2), TANGUY.voice1.currentTime);
                 break;
             case "bp":
-                var kbd = parseFloat((4800 - note) * TANGUY.program.filter.kbd);
+                var kbd = parseFloat((4800 - note) * TANGUY.program.filter.kbd);//CLEAN UP
                 TANGUY.bp_filter1.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime),
                 TANGUY.bp_filter2.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime),
                 TANGUY.bp_filter3.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime);
                 break;
             case "hp":
-                var kbd = parseFloat((4800 - note) * TANGUY.program.filter.kbd);
+                var kbd = parseFloat((4800 - note) * TANGUY.program.filter.kbd);//CLEAN UP
                 TANGUY.hp_filter1.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime),
-                TANGUY.hp_filter2.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime),
-                TANGUY.hp_filter3.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime);
+                TANGUY.hp_filter2.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime);
                 break;
             case "notch":
-                var kbd = parseFloat((4800 - note) * TANGUY.program.filter.kbd);
+                var kbd = parseFloat((4800 - note) * TANGUY.program.filter.kbd);//CLEAN UP
                 TANGUY.notch1.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime),
                 TANGUY.notch2.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime),
                 TANGUY.notch3.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime);
@@ -217,96 +221,128 @@ var TANGUY = {
     },
 
     gate_on: function () {
-        var pos = parseInt(this.getAttribute('data-keyboard-position')),
-        note_value = parseInt(this.getAttribute('data-note-value'));
-        TANGUY.calculate_pitch(pos, note_value);
+        TANGUY.calculate_pitch(parseInt(this.getAttribute('data-keyboard-position')), parseInt(this.getAttribute('data-note-value')));
 
         (function attack() {
             var filter_eg = parseFloat(TANGUY.program.filter.env_amt + TANGUY.program.filter.frequency),
             filter_end_of_attack = parseFloat(TANGUY.voice1.currentTime + TANGUY.program.filter.attack),
             vca_end_of_attack = parseFloat(TANGUY.voice1.currentTime + TANGUY.program.vca.attack);
 
-            TANGUY.lp_filter1.frequency.setValueAtTime(parseFloat(TANGUY.program.filter.frequency), TANGUY.voice1.currentTime),
-            TANGUY.lp_filter2.frequency.setValueAtTime(parseFloat((TANGUY.program.filter.frequency) / 2), TANGUY.voice1.currentTime),
-            TANGUY.lp_filter1.frequency.linearRampToValueAtTime(filter_eg, parseFloat(TANGUY.voice1.currentTime + TANGUY.program.filter.attack)),
-            TANGUY.lp_filter2.frequency.linearRampToValueAtTime((filter_eg / 2), parseFloat(TANGUY.voice1.currentTime + TANGUY.program.filter.attack)),
-
-            TANGUY.bp_filter1.frequency.setValueAtTime(parseFloat(TANGUY.program.filter.frequency), TANGUY.voice1.currentTime),
-            TANGUY.bp_filter2.frequency.setValueAtTime(parseFloat(TANGUY.program.filter.frequency), TANGUY.voice1.currentTime),
-            TANGUY.bp_filter3.frequency.setValueAtTime(parseFloat(TANGUY.program.filter.frequency), TANGUY.voice1.currentTime),
-            TANGUY.bp_filter1.frequency.linearRampToValueAtTime(filter_eg, parseFloat(TANGUY.voice1.currentTime + TANGUY.program.filter.attack)),
-            TANGUY.bp_filter2.frequency.linearRampToValueAtTime(filter_eg, parseFloat(TANGUY.voice1.currentTime + TANGUY.program.filter.attack)),
-            TANGUY.bp_filter3.frequency.linearRampToValueAtTime(filter_eg, parseFloat(TANGUY.voice1.currentTime + TANGUY.program.filter.attack)),
-
-            TANGUY.hp_filter1.frequency.setValueAtTime(parseFloat(TANGUY.program.filter.frequency), TANGUY.voice1.currentTime),
-            TANGUY.hp_filter2.frequency.setValueAtTime(parseFloat(TANGUY.program.filter.frequency), TANGUY.voice1.currentTime),
-            TANGUY.hp_filter3.frequency.setValueAtTime(parseFloat(TANGUY.program.filter.frequency), TANGUY.voice1.currentTime),
-            TANGUY.hp_filter1.frequency.linearRampToValueAtTime(filter_eg, parseFloat(TANGUY.voice1.currentTime + TANGUY.program.filter.attack)),
-            TANGUY.hp_filter2.frequency.linearRampToValueAtTime(filter_eg, parseFloat(TANGUY.voice1.currentTime + TANGUY.program.filter.attack)),
-            TANGUY.hp_filter3.frequency.linearRampToValueAtTime(filter_eg, parseFloat(TANGUY.voice1.currentTime + TANGUY.program.filter.attack)),
-
-            TANGUY.notch1.frequency.setValueAtTime(parseFloat(TANGUY.program.filter.frequency), TANGUY.voice1.currentTime),
-            TANGUY.notch2.frequency.setValueAtTime(parseFloat(TANGUY.program.filter.frequency), TANGUY.voice1.currentTime),
-            TANGUY.notch3.frequency.setValueAtTime(parseFloat(TANGUY.program.filter.frequency), TANGUY.voice1.currentTime),
-            TANGUY.notch1.frequency.linearRampToValueAtTime(filter_eg, parseFloat(TANGUY.voice1.currentTime + TANGUY.program.filter.attack)),
-            TANGUY.notch2.frequency.linearRampToValueAtTime(filter_eg, parseFloat(TANGUY.voice1.currentTime + TANGUY.program.filter.attack)),
-            TANGUY.notch3.frequency.linearRampToValueAtTime(filter_eg, parseFloat(TANGUY.voice1.currentTime + TANGUY.program.filter.attack)),
+            switch (TANGUY.program.filter.mode) {
+                case "lp"://WOULD THIS WORK WITHOUT THE PARSEFLOATS?
+                    TANGUY.lp_filter1.frequency.setValueAtTime(parseFloat(TANGUY.program.filter.frequency), TANGUY.voice1.currentTime),
+                    TANGUY.lp_filter2.frequency.setValueAtTime(parseFloat((TANGUY.program.filter.frequency) / 2), TANGUY.voice1.currentTime),
+                    TANGUY.lp_filter1.frequency.linearRampToValueAtTime(filter_eg, parseFloat(TANGUY.voice1.currentTime + TANGUY.program.filter.attack)),
+                    TANGUY.lp_filter2.frequency.linearRampToValueAtTime((filter_eg / 2), parseFloat(TANGUY.voice1.currentTime + TANGUY.program.filter.attack));
+                    break;
+                case "bp":
+                    TANGUY.bp_filter1.frequency.setValueAtTime(parseFloat(TANGUY.program.filter.frequency), TANGUY.voice1.currentTime),
+                    TANGUY.bp_filter2.frequency.setValueAtTime(parseFloat(TANGUY.program.filter.frequency), TANGUY.voice1.currentTime),
+                    TANGUY.bp_filter3.frequency.setValueAtTime(parseFloat(TANGUY.program.filter.frequency), TANGUY.voice1.currentTime),
+                    TANGUY.bp_filter1.frequency.linearRampToValueAtTime(filter_eg, parseFloat(TANGUY.voice1.currentTime + TANGUY.program.filter.attack)),
+                    TANGUY.bp_filter2.frequency.linearRampToValueAtTime(filter_eg, parseFloat(TANGUY.voice1.currentTime + TANGUY.program.filter.attack)),
+                    TANGUY.bp_filter3.frequency.linearRampToValueAtTime(filter_eg, parseFloat(TANGUY.voice1.currentTime + TANGUY.program.filter.attack));
+                    break;
+                case "hp":
+                    TANGUY.hp_filter1.frequency.setValueAtTime(parseFloat(TANGUY.program.filter.frequency), TANGUY.voice1.currentTime),
+                    TANGUY.hp_filter2.frequency.setValueAtTime(parseFloat(TANGUY.program.filter.frequency), TANGUY.voice1.currentTime),
+                    TANGUY.hp_filter1.frequency.linearRampToValueAtTime(filter_eg, parseFloat(TANGUY.voice1.currentTime + TANGUY.program.filter.attack)),
+                    TANGUY.hp_filter2.frequency.linearRampToValueAtTime(filter_eg, parseFloat(TANGUY.voice1.currentTime + TANGUY.program.filter.attack));
+                    break;
+                case "notch":
+                    TANGUY.notch1.frequency.setValueAtTime(parseFloat(TANGUY.program.filter.frequency), TANGUY.voice1.currentTime),
+                    TANGUY.notch2.frequency.setValueAtTime(parseFloat(TANGUY.program.filter.frequency), TANGUY.voice1.currentTime),
+                    TANGUY.notch3.frequency.setValueAtTime(parseFloat(TANGUY.program.filter.frequency), TANGUY.voice1.currentTime),
+                    TANGUY.notch1.frequency.linearRampToValueAtTime(filter_eg, parseFloat(TANGUY.voice1.currentTime + TANGUY.program.filter.attack)),
+                    TANGUY.notch2.frequency.linearRampToValueAtTime(filter_eg, parseFloat(TANGUY.voice1.currentTime + TANGUY.program.filter.attack)),
+                    TANGUY.notch3.frequency.linearRampToValueAtTime(filter_eg, parseFloat(TANGUY.voice1.currentTime + TANGUY.program.filter.attack));
+                    break;
+            };
 
             TANGUY.vca.gain.setValueAtTime((0 + TANGUY.program.vca.gain), TANGUY.voice1.currentTime),
-            TANGUY.vca.gain.linearRampToValueAtTime(1, parseFloat(TANGUY.voice1.currentTime + TANGUY.program.vca.attack)),
+            TANGUY.vca.gain.linearRampToValueAtTime(1, parseFloat(TANGUY.voice1.currentTime + TANGUY.program.vca.attack));
 
             //DECAY
-            TANGUY.lp_filter1.frequency.setTargetAtTime(parseFloat(TANGUY.program.filter.frequency) + (TANGUY.program.filter.env_amt * TANGUY.program.filter.sustain), filter_end_of_attack, TANGUY.program.filter.decay),
-            TANGUY.lp_filter2.frequency.setTargetAtTime((parseFloat(TANGUY.program.filter.frequency) + (TANGUY.program.filter.env_amt * TANGUY.program.filter.sustain) / 2), filter_end_of_attack, TANGUY.program.filter.decay),
+            switch (TANGUY.program.filter.mode) {
+                case "lp":
+                    TANGUY.lp_filter1.frequency.setTargetAtTime(parseFloat(TANGUY.program.filter.frequency) + (TANGUY.program.filter.env_amt * TANGUY.program.filter.sustain), filter_end_of_attack, TANGUY.program.filter.decay),
+                    TANGUY.lp_filter2.frequency.setTargetAtTime((parseFloat(TANGUY.program.filter.frequency) + (TANGUY.program.filter.env_amt * TANGUY.program.filter.sustain) / 2), filter_end_of_attack, TANGUY.program.filter.decay);
+                    break;
+                case "bp":
+                    TANGUY.bp_filter1.frequency.setTargetAtTime(parseFloat(TANGUY.program.filter.frequency) + (TANGUY.program.filter.env_amt * TANGUY.program.filter.sustain), filter_end_of_attack, TANGUY.program.filter.decay),
+                    TANGUY.bp_filter2.frequency.setTargetAtTime(parseFloat(TANGUY.program.filter.frequency) + (TANGUY.program.filter.env_amt * TANGUY.program.filter.sustain), filter_end_of_attack, TANGUY.program.filter.decay),
+                    TANGUY.bp_filter3.frequency.setTargetAtTime(parseFloat(TANGUY.program.filter.frequency) + (TANGUY.program.filter.env_amt * TANGUY.program.filter.sustain), filter_end_of_attack, TANGUY.program.filter.decay);
+                    break;
+                case "hp":
+                    TANGUY.hp_filter1.frequency.setTargetAtTime(parseFloat(TANGUY.program.filter.frequency) + (TANGUY.program.filter.env_amt * TANGUY.program.filter.sustain), filter_end_of_attack, TANGUY.program.filter.decay),
+                    TANGUY.hp_filter2.frequency.setTargetAtTime(parseFloat(TANGUY.program.filter.frequency) + (TANGUY.program.filter.env_amt * TANGUY.program.filter.sustain), filter_end_of_attack, TANGUY.program.filter.decay);
+                    break;
+                case "notch":
+                    TANGUY.notch1.frequency.setTargetAtTime(parseFloat(TANGUY.program.filter.frequency) + (TANGUY.program.filter.env_amt * TANGUY.program.filter.sustain), filter_end_of_attack, TANGUY.program.filter.decay),
+                    TANGUY.notch2.frequency.setTargetAtTime(parseFloat(TANGUY.program.filter.frequency) + (TANGUY.program.filter.env_amt * TANGUY.program.filter.sustain), filter_end_of_attack, TANGUY.program.filter.decay),
+                    TANGUY.notch3.frequency.setTargetAtTime(parseFloat(TANGUY.program.filter.frequency) + (TANGUY.program.filter.env_amt * TANGUY.program.filter.sustain), filter_end_of_attack, TANGUY.program.filter.decay);
+                    break;
+            };
+
             TANGUY.vca.gain.setTargetAtTime((TANGUY.program.vca.sustain + TANGUY.program.vca.gain), vca_end_of_attack, TANGUY.program.vca.decay);
+
         })();
     },
 
     gate_off: function () {
-        var filter_release_peak = TANGUY.lp_filter1.frequency.value,
-        vca_release_peak = TANGUY.vca.gain.value;
+        var vca_release_peak = TANGUY.vca.gain.value;
 
         (function release() {
-            TANGUY.lp_filter1.frequency.cancelScheduledValues(TANGUY.voice1.currentTime),
-            TANGUY.lp_filter2.frequency.cancelScheduledValues(TANGUY.voice1.currentTime),
-            TANGUY.lp_filter1.frequency.setValueAtTime(filter_release_peak, TANGUY.voice1.currentTime),
-            TANGUY.lp_filter2.frequency.setValueAtTime((filter_release_peak / 2), TANGUY.voice1.currentTime),
-            TANGUY.lp_filter1.frequency.setTargetAtTime(TANGUY.program.filter.frequency, TANGUY.voice1.currentTime, TANGUY.program.filter.release),
-            TANGUY.lp_filter2.frequency.setTargetAtTime((TANGUY.program.filter.frequency / 2), TANGUY.voice1.currentTime, TANGUY.program.filter.release),
-
-            TANGUY.bp_filter1.frequency.cancelScheduledValues(TANGUY.voice1.currentTime),
-            TANGUY.bp_filter2.frequency.cancelScheduledValues(TANGUY.voice1.currentTime),
-            TANGUY.bp_filter3.frequency.cancelScheduledValues(TANGUY.voice1.currentTime),
-            TANGUY.bp_filter1.frequency.setValueAtTime(filter_release_peak, TANGUY.voice1.currentTime),
-            TANGUY.bp_filter2.frequency.setValueAtTime(filter_release_peak, TANGUY.voice1.currentTime),
-            TANGUY.bp_filter3.frequency.setValueAtTime(filter_release_peak, TANGUY.voice1.currentTime),
-            TANGUY.bp_filter1.frequency.setTargetAtTime(TANGUY.program.filter.frequency, TANGUY.voice1.currentTime, TANGUY.program.filter.release),
-            TANGUY.bp_filter2.frequency.setTargetAtTime(TANGUY.program.filter.frequency, TANGUY.voice1.currentTime, TANGUY.program.filter.release),
-            TANGUY.bp_filter3.frequency.setTargetAtTime(TANGUY.program.filter.frequency, TANGUY.voice1.currentTime, TANGUY.program.filter.release),
-
-            TANGUY.hp_filter1.frequency.cancelScheduledValues(TANGUY.voice1.currentTime),
-            TANGUY.hp_filter2.frequency.cancelScheduledValues(TANGUY.voice1.currentTime),
-            TANGUY.hp_filter3.frequency.cancelScheduledValues(TANGUY.voice1.currentTime),
-            TANGUY.hp_filter1.frequency.setValueAtTime(filter_release_peak, TANGUY.voice1.currentTime),
-            TANGUY.hp_filter2.frequency.setValueAtTime(filter_release_peak, TANGUY.voice1.currentTime),
-            TANGUY.hp_filter3.frequency.setValueAtTime(filter_release_peak, TANGUY.voice1.currentTime),
-            TANGUY.hp_filter1.frequency.setTargetAtTime(TANGUY.program.filter.frequency, TANGUY.voice1.currentTime, TANGUY.program.filter.release),
-            TANGUY.hp_filter2.frequency.setTargetAtTime(TANGUY.program.filter.frequency, TANGUY.voice1.currentTime, TANGUY.program.filter.release),
-            TANGUY.hp_filter3.frequency.setTargetAtTime(TANGUY.program.filter.frequency, TANGUY.voice1.currentTime, TANGUY.program.filter.release),
-
-            TANGUY.notch1.frequency.cancelScheduledValues(TANGUY.voice1.currentTime),
-            TANGUY.notch2.frequency.cancelScheduledValues(TANGUY.voice1.currentTime),
-            TANGUY.notch3.frequency.cancelScheduledValues(TANGUY.voice1.currentTime),
-            TANGUY.notch1.frequency.setValueAtTime(filter_release_peak, TANGUY.voice1.currentTime),
-            TANGUY.notch2.frequency.setValueAtTime(filter_release_peak, TANGUY.voice1.currentTime),
-            TANGUY.notch3.frequency.setValueAtTime(filter_release_peak, TANGUY.voice1.currentTime),
-            TANGUY.notch1.frequency.setTargetAtTime(TANGUY.program.filter.frequency, TANGUY.voice1.currentTime, TANGUY.program.filter.release),
-            TANGUY.notch2.frequency.setTargetAtTime(TANGUY.program.filter.frequency, TANGUY.voice1.currentTime, TANGUY.program.filter.release),
-            TANGUY.notch3.frequency.setTargetAtTime(TANGUY.program.filter.frequency, TANGUY.voice1.currentTime, TANGUY.program.filter.release),
-
+            switch (TANGUY.program.filter.mode) {
+                case "lp":
+                    var filter_release_peak = TANGUY.lp_filter1.frequency.value;
+                    TANGUY.lp_filter1.frequency.cancelScheduledValues(TANGUY.voice1.currentTime),
+                    TANGUY.lp_filter2.frequency.cancelScheduledValues(TANGUY.voice1.currentTime),
+                    TANGUY.lp_filter1.frequency.setValueAtTime(filter_release_peak, TANGUY.voice1.currentTime),
+                    TANGUY.lp_filter2.frequency.setValueAtTime((filter_release_peak / 2), TANGUY.voice1.currentTime),
+                    TANGUY.lp_filter1.frequency.setTargetAtTime(TANGUY.program.filter.frequency, TANGUY.voice1.currentTime, TANGUY.program.filter.release),
+                    TANGUY.lp_filter2.frequency.setTargetAtTime((TANGUY.program.filter.frequency / 2), TANGUY.voice1.currentTime, TANGUY.program.filter.release);
+                    break;
+                case "bp":
+                    var filter_release_peak = TANGUY.bp_filter1.frequency.value;
+                    TANGUY.bp_filter1.frequency.cancelScheduledValues(TANGUY.voice1.currentTime),
+                    TANGUY.bp_filter2.frequency.cancelScheduledValues(TANGUY.voice1.currentTime),
+                    TANGUY.bp_filter3.frequency.cancelScheduledValues(TANGUY.voice1.currentTime),
+                    TANGUY.bp_filter1.frequency.setValueAtTime(filter_release_peak, TANGUY.voice1.currentTime),
+                    TANGUY.bp_filter2.frequency.setValueAtTime(filter_release_peak * 0.9, TANGUY.voice1.currentTime),
+                    TANGUY.bp_filter3.frequency.setValueAtTime(filter_release_peak * 1.1, TANGUY.voice1.currentTime),
+                    TANGUY.bp_filter1.frequency.setTargetAtTime(TANGUY.program.filter.frequency, TANGUY.voice1.currentTime, TANGUY.program.filter.release),
+                    TANGUY.bp_filter2.frequency.setTargetAtTime(TANGUY.program.filter.frequency * 0.9, TANGUY.voice1.currentTime, TANGUY.program.filter.release),
+                    TANGUY.bp_filter3.frequency.setTargetAtTime(TANGUY.program.filter.frequency * 1.1, TANGUY.voice1.currentTime, TANGUY.program.filter.release);
+                    break;
+                case "hp":
+                    var filter_release_peak = TANGUY.hp_filter1.frequency.value;
+                    TANGUY.hp_filter1.frequency.cancelScheduledValues(TANGUY.voice1.currentTime),
+                    TANGUY.hp_filter2.frequency.cancelScheduledValues(TANGUY.voice1.currentTime),
+                    TANGUY.hp_filter1.frequency.setValueAtTime(filter_release_peak, TANGUY.voice1.currentTime),
+                    TANGUY.hp_filter2.frequency.setValueAtTime(filter_release_peak, TANGUY.voice1.currentTime),
+                    TANGUY.hp_filter1.frequency.setTargetAtTime(TANGUY.program.filter.frequency, TANGUY.voice1.currentTime, TANGUY.program.filter.release),
+                    TANGUY.hp_filter2.frequency.setTargetAtTime(TANGUY.program.filter.frequency, TANGUY.voice1.currentTime, TANGUY.program.filter.release);
+                    break;
+                case "notch":
+                    var filter_release_peak = TANGUY.notch1.frequency.value;
+                    TANGUY.notch1.frequency.cancelScheduledValues(TANGUY.voice1.currentTime),
+                    TANGUY.notch2.frequency.cancelScheduledValues(TANGUY.voice1.currentTime),
+                    TANGUY.notch3.frequency.cancelScheduledValues(TANGUY.voice1.currentTime),
+                    TANGUY.notch1.frequency.setValueAtTime(filter_release_peak, TANGUY.voice1.currentTime),
+                    TANGUY.notch2.frequency.setValueAtTime(filter_release_peak * 0.9, TANGUY.voice1.currentTime),
+                    TANGUY.notch3.frequency.setValueAtTime(filter_release_peak * 1.1, TANGUY.voice1.currentTime);
+                    TANGUY.notch1.frequency.setTargetAtTime(TANGUY.program.filter.frequency, TANGUY.voice1.currentTime, TANGUY.program.filter.release),
+                    TANGUY.notch2.frequency.setTargetAtTime(TANGUY.program.filter.frequency * 0.9, TANGUY.voice1.currentTime, TANGUY.program.filter.release),
+                    TANGUY.notch3.frequency.setTargetAtTime(TANGUY.program.filter.frequency * 1.1, TANGUY.voice1.currentTime, TANGUY.program.filter.release);
+                    break;
+            };
             TANGUY.vca.gain.cancelScheduledValues(TANGUY.voice1.currentTime),
             TANGUY.vca.gain.setValueAtTime(vca_release_peak, TANGUY.voice1.currentTime),
             TANGUY.vca.gain.setTargetAtTime(TANGUY.program.vca.gain, TANGUY.voice1.currentTime, TANGUY.program.vca.release);
+            console.log('VCA PEAK ' + vca_release_peak);
+            console.log('TANGUY PROGRAM VCA GAIN ' + TANGUY.program.vca.gain);
+            console.log('VCA RELEASE ' + TANGUY.program.vca.release);
         })();
     },
 
@@ -322,10 +358,10 @@ TANGUY.lp_filter1 = TANGUY.voice1.createBiquadFilter();
 TANGUY.lp_filter2 = TANGUY.voice1.createBiquadFilter();
 TANGUY.lp_filter1.type = "lowpass";
 TANGUY.lp_filter2.type = "lowpass";
-TANGUY.lp_filter1.frequency.value = parseFloat(TANGUY.program.filter.frequency);
-TANGUY.lp_filter2.frequency.value = parseFloat(TANGUY.program.filter.frequency / 2);
-TANGUY.lp_filter1.Q.value = parseFloat((TANGUY.program.filter.resonance / 17) * 0.8692);
-TANGUY.lp_filter2.Q.value = parseFloat((TANGUY.program.filter.resonance / 35) * 0.8692);
+TANGUY.lp_filter1.frequency.value = TANGUY.program.filter.frequency;
+TANGUY.lp_filter2.frequency.value = TANGUY.program.filter.frequency;
+TANGUY.lp_filter1.Q.value = TANGUY.program.resonance / 82;
+TANGUY.lp_filter2.Q.value = TANGUY.program.resonance / 123;
 TANGUY.lp_filter1.connect(TANGUY.lp_filter2);
 TANGUY.lp_filter2.connect(TANGUY.vca);
 
@@ -336,14 +372,14 @@ TANGUY.bp_filter3 = TANGUY.voice1.createBiquadFilter();
 TANGUY.bp_filter1.type = "bandpass";
 TANGUY.bp_filter2.type = "peaking";
 TANGUY.bp_filter3.type = "peaking";
-TANGUY.bp_filter1.frequency.value = parseFloat(TANGUY.program.filter.frequency);
-TANGUY.bp_filter2.frequency.value = parseFloat((TANGUY.program.filter.frequency - (TANGUY.program.filter.frequency / 11)));
-TANGUY.bp_filter3.frequency.value = parseFloat((TANGUY.program.filter.frequency + (TANGUY.program.filter.frequency / 11)));
+TANGUY.bp_filter1.frequency.value = TANGUY.program.filter.frequency;
+TANGUY.bp_filter2.frequency.value = TANGUY.program.filter.frequency * 0.9;
+TANGUY.bp_filter3.frequency.value = TANGUY.program.filter.frequency * 1.1;
 TANGUY.bp_filter1.Q.value = 2;
 TANGUY.bp_filter2.Q.value = 3;
 TANGUY.bp_filter3.Q.value = 3;
-TANGUY.bp_filter2.gain.value = parseFloat(TANGUY.program.filter.resonance / 166);
-TANGUY.bp_filter3.gain.value = parseFloat(TANGUY.program.filter.resonance / 166);
+TANGUY.bp_filter2.gain.value = TANGUY.program.filter.resonance / 82;
+TANGUY.bp_filter3.gain.value = TANGUY.program.filter.resonance / 82;
 TANGUY.bp_filter1.connect(TANGUY.bp_filter2);
 TANGUY.bp_filter2.connect(TANGUY.bp_filter3);
 TANGUY.bp_filter3.connect(TANGUY.vca);
@@ -351,20 +387,14 @@ TANGUY.bp_filter3.connect(TANGUY.vca);
 //HP FILTER
 TANGUY.hp_filter1 = TANGUY.voice1.createBiquadFilter();
 TANGUY.hp_filter2 = TANGUY.voice1.createBiquadFilter();
-TANGUY.hp_filter3 = TANGUY.voice1.createBiquadFilter();
 TANGUY.hp_filter1.type = "highpass";
 TANGUY.hp_filter2.type = "highpass";
-TANGUY.hp_filter3.type = "peaking";
 TANGUY.hp_filter1.frequency.value = parseFloat(TANGUY.program.filter.frequency);
 TANGUY.hp_filter2.frequency.value = parseFloat(TANGUY.program.filter.frequency);
-TANGUY.hp_filter3.frequency.value = parseFloat(TANGUY.program.filter.frequency);
-TANGUY.hp_filter1.Q.value = parseFloat(TANGUY.program.filter.resonance);
-TANGUY.hp_filter2.Q.value = parseFloat(TANGUY.program.filter.resonance);
-TANGUY.hp_filter3.Q.value = parseFloat(TANGUY.program.filter.resonance / 200);
-TANGUY.hp_filter3.gain.value = 12;
+TANGUY.hp_filter1.Q.value = TANGUY.program.filter.resonance / 82;
+TANGUY.hp_filter2.Q.value = TANGUY.program.filter.resonance / 123;
 TANGUY.hp_filter1.connect(TANGUY.hp_filter2);
-TANGUY.hp_filter2.connect(TANGUY.hp_filter3);
-TANGUY.hp_filter3.connect(TANGUY.vca);
+TANGUY.hp_filter2.connect(TANGUY.vca);
 
 //NOTCH FILTER
 TANGUY.notch1 = TANGUY.voice1.createBiquadFilter();
@@ -374,13 +404,13 @@ TANGUY.notch1.type = "notch";
 TANGUY.notch2.type = "peaking";
 TANGUY.notch3.type = "peaking";
 TANGUY.notch1.frequency.value = parseFloat(TANGUY.program.filter.frequency);
-TANGUY.notch2.frequency.value = parseFloat(TANGUY.program.filter.frequency - (TANGUY.program.filter.frequency / 6));
-TANGUY.notch3.frequency.value = parseFloat(TANGUY.program.filter.frequency + (TANGUY.program.filter.frequency / 6));
+TANGUY.notch2.frequency.value = TANGUY.program.filter.frequency * 0.9;
+TANGUY.notch3.frequency.value = TANGUY.program.filter.frequency * 1.1;
 TANGUY.notch1.Q.value = 2;
 TANGUY.notch2.Q.value = 3;
 TANGUY.notch3.Q.value = 3;
-TANGUY.notch2.gain.value = parseFloat(TANGUY.program.filter.resonance / 166);
-TANGUY.notch3.gain.value = parseFloat(TANGUY.program.filter.resonance / 166);
+TANGUY.notch2.gain.value = -10 * (TANGUY.program.filter.resonance);//FIX
+TANGUY.notch3.gain.value = -10 * (TANGUY.program.filter.resonance);//FIX
 TANGUY.notch1.connect(TANGUY.notch2);
 TANGUY.notch2.connect(TANGUY.notch3);
 TANGUY.notch3.connect(TANGUY.vca);
@@ -657,7 +687,7 @@ $('#osc2-fine').mousedown(function () {
 }).mouseup(function () {
     $(this).unbind('mousemove');
 });
-$('#osc2-saw, #osc2-sqr, #osc2-tri, #osc2-pls').change(function () {
+$('#osc2-saw, #osc2-sqr, #osc2-tri, #osc2-sin').change(function () {
     TANGUY.program.osc2.waveform = this.value;
     TANGUY.osc2.type = this.value;
 });
@@ -676,7 +706,7 @@ $('#osc2-waveshape').mousedown(function () {
 $('#osc2-fm').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.osc2.fm_amt = parseFloat(this.value);
-        TANGUY.osc2_fm_vca.gain.setValueAtTime(((this.value * this.value) * 24000), TANGUY.voice1.currentTime);//220.5
+        TANGUY.osc2_fm_vca.gain.setValueAtTime(((this.value * this.value) * 24000), TANGUY.voice1.currentTime);
     });
 }).mouseup(function () {
     $(this).unbind('mousemove');
@@ -822,7 +852,6 @@ $('#filter-lp, #filter-bp, #filter-hp, #filter-notch, #filter-off').change(funct
             TANGUY.lfo_filter_vca.disconnect();
             TANGUY.lfo_filter_vca.connect(TANGUY.hp_filter1.frequency);
             TANGUY.lfo_filter_vca.connect(TANGUY.hp_filter2.frequency);
-            TANGUY.lfo_filter_vca.connect(TANGUY.hp_filter3.frequency);
             break;
         case "notch":
             TANGUY.mixer.disconnect();
@@ -841,33 +870,52 @@ $('#filter-lp, #filter-bp, #filter-hp, #filter-notch, #filter-off').change(funct
 });
 $('#cutoff').mousedown(function () {
     $(this).mousemove(function () {
-        TANGUY.program.filter.frequency = parseFloat(this.value);
-        TANGUY.lp_filter1.frequency.setTargetAtTime((parseFloat(this.value / 17990) * parseFloat(this.value)), TANGUY.voice1.currentTime, 0.08);
-        TANGUY.lp_filter2.frequency.setTargetAtTime(((parseFloat(this.value / 17990) * parseFloat(this.value)) / 2), TANGUY.voice1.currentTime, 0.08);
-        TANGUY.bp_filter1.frequency.setTargetAtTime(((parseFloat(this.value) / 17990) * parseFloat(this.value)), TANGUY.voice1.currentTime, 0.08);
-        TANGUY.bp_filter2.frequency.setTargetAtTime((parseFloat(this.value) - (parseFloat(this.value) / 11)), TANGUY.voice1.currentTime, 0.08);
-        TANGUY.bp_filter3.frequency.setTargetAtTime((parseFloat(this.value) + (parseFloat(this.value) / 11)), TANGUY.voice1.currentTime, 0.08);
-        TANGUY.hp_filter1.frequency.setTargetAtTime((parseFloat(this.value / 17990) * parseFloat(this.value)), TANGUY.voice1.currentTime, 0.08);
-        TANGUY.hp_filter2.frequency.setTargetAtTime((parseFloat(this.value / 17990) * parseFloat(this.value)), TANGUY.voice1.currentTime, 0.08);
-        TANGUY.hp_filter3.frequency.setTargetAtTime((parseFloat(this.value / 17990) * parseFloat(this.value)), TANGUY.voice1.currentTime, 0.08);
-        TANGUY.notch1.frequency.setTargetAtTime((parseFloat(this.value / 17990) * parseFloat(this.value)), TANGUY.voice1.currentTime, 0.08);
-        TANGUY.notch2.frequency.setTargetAtTime((parseFloat(this.value) - (parseFloat(this.value) / 9)), TANGUY.voice1.currentTime, 0.08);
-        TANGUY.notch3.frequency.setTargetAtTime((parseFloat(this.value) + (parseFloat(this.value) / 9)), TANGUY.voice1.currentTime, 0.08);
+        TANGUY.program.filter.frequency = ((this.value * this.value) * 22030) + 20;
+        switch (TANGUY.program.filter.mode) {
+            case "lp":
+                TANGUY.lp_filter1.frequency.setTargetAtTime(TANGUY.program.filter.frequency, TANGUY.voice1.currentTime, 0.08);
+                TANGUY.lp_filter2.frequency.setTargetAtTime((TANGUY.program.filter.frequency / 2), TANGUY.voice1.currentTime, 0.08);
+                break;
+            case "bp":
+                TANGUY.bp_filter1.frequency.setTargetAtTime(TANGUY.program.filter.frequency, TANGUY.voice1.currentTime, 0.08);
+                TANGUY.bp_filter2.frequency.setTargetAtTime(TANGUY.program.filter.frequency * 0.9, TANGUY.voice1.currentTime, 0.08);
+                TANGUY.bp_filter3.frequency.setTargetAtTime(TANGUY.program.filter.frequency * 1.1, TANGUY.voice1.currentTime, 0.08);
+                break;
+            case "hp":
+                TANGUY.hp_filter1.frequency.setTargetAtTime(TANGUY.program.filter.frequency, TANGUY.voice1.currentTime, 0.08);
+                TANGUY.hp_filter2.frequency.setTargetAtTime(TANGUY.program.filter.frequency, TANGUY.voice1.currentTime, 0.08);
+                break;
+            case "notch":
+                TANGUY.notch1.frequency.setTargetAtTime(TANGUY.program.filter.frequency, TANGUY.voice1.currentTime, 0.08);
+                TANGUY.notch2.frequency.setTargetAtTime(TANGUY.program.filter.frequency * 0.9, TANGUY.voice1.currentTime, 0.08);
+                TANGUY.notch3.frequency.setTargetAtTime(TANGUY.program.filter.frequency * 1.1, TANGUY.voice1.currentTime, 0.08);
+                break;
+        };
     });
 }).mouseup(function () {
     $(this).unbind('mousemove');
 });
 $('#resonance').mousedown(function () {
     $(this).mousemove(function () {
-        TANGUY.program.filter.resonance = parseFloat(this.value);
-        TANGUY.lp_filter1.Q.setTargetAtTime(parseFloat((TANGUY.program.filter.resonance / 17) * 0.4348), TANGUY.voice1.currentTime, 0.01);
-        TANGUY.lp_filter2.Q.setTargetAtTime(parseFloat((TANGUY.program.filter.resonance / 35) * 0.8692), TANGUY.voice1.currentTime, 0.01);
-        TANGUY.bp_filter2.gain.setTargetAtTime(parseFloat(TANGUY.program.filter.resonance / 166), TANGUY.voice1.currentTime, 0.08);
-        TANGUY.bp_filter3.gain.setTargetAtTime(parseFloat(TANGUY.program.filter.resonance / 166), TANGUY.voice1.currentTime, 0.08);
-        TANGUY.hp_filter1.Q.setTargetAtTime(10, TANGUY.voice1.currentTime, 0.01);
-        TANGUY.hp_filter2.Q.setTargetAtTime(10, TANGUY.voice1.currentTime, 0.01);
-        TANGUY.notch2.gain.setTargetAtTime(parseFloat(TANGUY.program.filter.resonance / -166), TANGUY.voice1.currentTime, 0.08);
-        TANGUY.notch3.gain.setTargetAtTime(parseFloat(TANGUY.program.filter.resonance / -166), TANGUY.voice1.currentTime, 0.08);
+        TANGUY.program.filter.resonance = (this.value * this.value) * 1000;
+        switch (TANGUY.program.filter.mode) {
+            case "lp":
+                TANGUY.lp_filter1.Q.setTargetAtTime(TANGUY.program.filter.resonance / 82, TANGUY.voice1.currentTime, 0.01);
+                TANGUY.lp_filter2.Q.setTargetAtTime(TANGUY.program.filter.resonance / 123, TANGUY.voice1.currentTime, 0.01);
+                break;
+            case "bp":
+                TANGUY.bp_filter2.gain.setTargetAtTime(TANGUY.program.filter.resonance / 82, TANGUY.voice1.currentTime, 0.01);
+                TANGUY.bp_filter3.gain.setTargetAtTime(TANGUY.program.filter.resonance / 82, TANGUY.voice1.currentTime, 0.01);
+                break;
+            case "hp":
+                TANGUY.hp_filter1.Q.setTargetAtTime(TANGUY.program.filter.resonance / 82, TANGUY.voice1.currentTime, 0.01);
+                TANGUY.hp_filter2.Q.setTargetAtTime(TANGUY.program.filter.resonance / 123, TANGUY.voice1.currentTime, 0.01);
+                break;
+            case "notch":
+                TANGUY.notch2.gain.setTargetAtTime(TANGUY.program.filter.resonance / -21, TANGUY.voice1.currentTime, 0.01);
+                TANGUY.notch3.gain.setTargetAtTime(TANGUY.program.filter.resonance / -21, TANGUY.voice1.currentTime, 0.01);
+                break;
+        };
     });
 }).mouseup(function () {
     $(this).unbind('mousemove');
@@ -906,8 +954,8 @@ $('#vca-release').change(function () {
 });
 $('#vca-gain').mousedown(function () {
     $(this).mousemove(function () {
-        TANGUY.program.vca.gain = parseFloat(this.value);
-        TANGUY.vca.gain.value = parseFloat(this.value) * parseFloat(this.value);
+        TANGUY.program.vca.gain = this.value * this.value;
+        TANGUY.vca.gain.setTargetAtTime(TANGUY.program.vca.gain, TANGUY.voice1.currentTime, 0.01);
     });
 }).mouseup(function () {
     $(this).unbind('mousemove');
@@ -925,7 +973,9 @@ $(document).keypress(function (key) {
         TANGUY.shift_octave(-1);
     } else if (key.which === 61) {
         TANGUY.shift_octave(1);
-    }
+    } else if (key.which === 42) {
+        TANGUY.debug();
+    };
     console.log(key.which + ' PRESSED');
 });
 
