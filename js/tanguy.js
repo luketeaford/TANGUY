@@ -44,7 +44,7 @@ var TANGUY = {
         },
         mixer: {
             osc1: 1,
-            osc2: 0,
+            osc2: 1,
             noise: 0
         },
         filter: {
@@ -53,17 +53,17 @@ var TANGUY = {
             resonance: 0.0001,
             env_amt: 0,
             kbd: 0,
-            attack: 0,
-            decay: 0,
+            attack: 0.008,
+            decay: 0.008,
             sustain: 0,
-            release: 0
+            release: 0.008
         },
         vca: {
             gain: 0,
-            attack: 0,
-            decay: 0,
+            attack: 0.0001,
+            decay: 0.0001,
             sustain: 1,
-            release: 0
+            release: 0.0001
         },
         portamento: {
             mode: "off",
@@ -788,41 +788,60 @@ $('#lfo-sin, #lfo-tri, #lfo-rmp, #lfo-saw, #lfo-sqr').change(function () {
 });
 $('#lfo-rate').mousedown(function () {
     $(this).mousemove(function () {
-        TANGUY.program.lfo.rate = (parseFloat(this.value) * (this.value)) * 200;
-        TANGUY.lfo.frequency.value = (parseFloat(this.value) * parseFloat(this.value)) * 200;
+        TANGUY.program.lfo.rate = (parseFloat(this.value) * (this.value)) * 100;
+        TANGUY.lfo.frequency.value = (parseFloat(this.value) * parseFloat(this.value)) * 100;
     });
 }).mouseup(function () {
     $(this).unbind('mousemove');
 });
-$('#lfo-pitch').change(function () {
-    TANGUY.program.lfo.pitch_amt = parseFloat(this.value);
-    TANGUY.lfo_pitch_vca.gain.value = parseFloat(this.value * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
+$('#lfo-pitch').mousedown(function () {
+    $(this).mousemove(function () {
+        TANGUY.program.lfo.pitch_amt = parseFloat(this.value);
+        TANGUY.lfo_pitch_vca.gain.value = parseFloat(this.value * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
+    });
+}).mouseup(function () {
+    $(this).unbind('mousemove');
 });
-$('#lfo-filter').change(function () {
-    TANGUY.program.lfo.filter_amt = parseFloat(this.value);
-    TANGUY.lfo_filter_vca.gain.value = parseFloat(this.value * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
+$('#lfo-filter').mousedown(function () {
+    $(this).mousemove(function () {
+        TANGUY.program.lfo.filter_amt = parseFloat(this.value);
+        TANGUY.lfo_filter_vca.gain.value = parseFloat(this.value * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
+    });
+}).mouseup(function () {
+    $(this).unbind('mousemove');
 });
-$('#lfo-amp').change(function () {
-    TANGUY.program.lfo.amp_amt = parseFloat(this.value);
-    TANGUY.lfo_amp_vca.gain.value = parseFloat(this.value * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
+$('#lfo-amp').mousedown(function () {
+    $(this).mousemove(function () {
+        TANGUY.program.lfo.amp_amt = parseFloat(this.value);
+        TANGUY.lfo_amp_vca.gain.value = parseFloat(this.value * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
+    });
+}).mouseup(function () {
+    $(this).unbind('mousemove');
 });
-
 //MIXER CONTROLS
-$('#osc1-mix').change(function () {
-    TANGUY.osc1_vca.gain.value = parseFloat(this.value);
-    TANGUY.program.mixer.osc1 = parseFloat(this.value);
+$('#osc1-mix').mousedown(function () {
+    $(this).mousemove(function () {
+        TANGUY.osc1_vca.gain.value = parseFloat(this.value);
+        TANGUY.program.mixer.osc1 = parseFloat(this.value);
+    });
+}).mouseup(function () {
+    $(this).unbind('mousemove');
 });
-$('#osc2-mix').change(function () {
-    TANGUY.osc2_vca.gain.value = parseFloat(this.value);
-    TANGUY.program.mixer.osc2 = parseFloat(this.value);
+$('#osc2-mix').mousedown(function () {
+    $(this).mousemove(function () {
+        TANGUY.osc2_vca.gain.value = parseFloat(this.value);
+        TANGUY.program.mixer.osc2 = parseFloat(this.value);
+    });
+}).mouseup(function () {
+    $(this).unbind('mousemove');
 });
-$('#noise-mix').change(function () {
-    TANGUY.noise_vca.gain.value = parseFloat(this.value);
-    TANGUY.program.mixer.noise = parseFloat(this.value);
-});
-$('#external-mix').change(function () {
-    TANGUY.ext_in_vca.gain.value = parseFloat(this.value);
-    TANGUY.program.mixer.external = parseFloat(this.value);
+$('#noise-mix').mousedown(function () {
+    $(this).mousemove(function () {
+        TANGUY.noise_vca.gain.value = parseFloat(this.value);
+        TANGUY.program.mixer.noise = parseFloat(this.value);
+    });
+}).mouseup(function () {
+    $(this).unbind('mousemove');
 });
 
 //FILTER CONTROLS
