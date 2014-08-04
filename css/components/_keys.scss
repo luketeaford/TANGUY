@@ -17,6 +17,9 @@
 		background: linear-gradient(#fff, #f0f0f0 2px, #e8e8e8 10rem, #a2a2a0);
 		box-shadow: inset 0 -1px 2px 1px #a2a1a0, 0 4px 3px -3px #100b0a;
 	}
+	&.playing {
+		background: #bebcb9 !important;
+	}
 }
 %black-key {
 	@extend %key;
@@ -30,6 +33,9 @@
 	position: relative;
 	z-index: 1;	
 	&:hover {
+	}
+	&.playing {
+		background: #3e3c39 !important;
 	}
 }
 .c,

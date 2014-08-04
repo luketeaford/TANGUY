@@ -125,28 +125,26 @@ var TANGUY = {
     calculate_pitch: function (pos, note_value) {
         var note = ((TANGUY.octave_shift + pos) * 1200) + note_value,
         osc2_note = ((TANGUY.octave_shift + pos) * 1200) + (note_value + TANGUY.program.osc2.detune);
+        kbd = parseFloat((4800 - note) * TANGUY.program.filter.kbd);
         TANGUY.osc1_pitch = note;
         TANGUY.osc2_pitch = osc2_note;
+
         //FILTER KEYBOARD TRACKING
         switch (TANGUY.program.filter.mode) {
             case "lp":
-                var kbd = parseFloat((4800 - note) * TANGUY.program.filter.kbd);//CLEAN UP
                 TANGUY.lp_filter1.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime),
                 TANGUY.lp_filter2.detune.setValueAtTime(parseFloat(kbd / 2), TANGUY.voice1.currentTime);
                 break;
             case "bp":
-                var kbd = parseFloat((4800 - note) * TANGUY.program.filter.kbd);//CLEAN UP
                 TANGUY.bp_filter1.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime),
                 TANGUY.bp_filter2.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime),
                 TANGUY.bp_filter3.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime);
                 break;
             case "hp":
-                var kbd = parseFloat((4800 - note) * TANGUY.program.filter.kbd);//CLEAN UP
                 TANGUY.hp_filter1.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime),
                 TANGUY.hp_filter2.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime);
                 break;
             case "notch":
-                var kbd = parseFloat((4800 - note) * TANGUY.program.filter.kbd);//CLEAN UP
                 TANGUY.notch1.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime),
                 TANGUY.notch2.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime),
                 TANGUY.notch3.detune.setValueAtTime(parseFloat(kbd), TANGUY.voice1.currentTime);
@@ -211,7 +209,7 @@ var TANGUY = {
             case "linear":
               TANGUY.osc2.detune.linearRampToValueAtTime(osc2_note, (TANGUY.voice1.currentTime + parseFloat(TANGUY.program.portamento.amt)));
               break;
-            case "exponential": 
+            case "exponential":
               TANGUY.osc2.detune.setTargetAtTime(osc2_note, TANGUY.voice1.currentTime, (TANGUY.program.portamento.amt / 5));
               break;
             }
@@ -229,7 +227,7 @@ var TANGUY = {
             vca_end_of_attack = parseFloat(TANGUY.voice1.currentTime + TANGUY.program.vca.attack);
 
             switch (TANGUY.program.filter.mode) {
-                case "lp"://WOULD THIS WORK WITHOUT THE PARSEFLOATS?
+                case "lp":
                     TANGUY.lp_filter1.frequency.setValueAtTime(parseFloat(TANGUY.program.filter.frequency), TANGUY.voice1.currentTime),
                     TANGUY.lp_filter2.frequency.setValueAtTime(parseFloat((TANGUY.program.filter.frequency) / 2), TANGUY.voice1.currentTime),
                     TANGUY.lp_filter1.frequency.linearRampToValueAtTime(filter_eg, parseFloat(TANGUY.voice1.currentTime + TANGUY.program.filter.attack)),
@@ -291,7 +289,6 @@ var TANGUY = {
 
     gate_off: function () {
         var vca_release_peak = TANGUY.vca.gain.value;
-        console.log('NEW FILTER ENVELOPES');
 
         (function release() {
             switch (TANGUY.program.filter.mode) {
@@ -410,8 +407,8 @@ TANGUY.notch3.frequency.value = TANGUY.program.filter.frequency * 1.1;
 TANGUY.notch1.Q.value = 2;
 TANGUY.notch2.Q.value = 3;
 TANGUY.notch3.Q.value = 3;
-TANGUY.notch2.gain.value = -10 * (TANGUY.program.filter.resonance);//FIX
-TANGUY.notch3.gain.value = -10 * (TANGUY.program.filter.resonance);//FIX
+TANGUY.notch2.gain.value = TANGUY.program.filter.resonance / -21;
+TANGUY.notch3.gain.value = TANGUY.program.filter.resonance / -21;
 TANGUY.notch1.connect(TANGUY.notch2);
 TANGUY.notch2.connect(TANGUY.notch3);
 TANGUY.notch3.connect(TANGUY.vca);
@@ -1031,61 +1028,61 @@ $(document).keydown(function (key) {
         TANGUY.key_down = true;
         switch (key.which) {
             case 65:
-                $('#c1').trigger('mousedown');
+                $('#c1').trigger('mousedown').addClass('playing');
                 break;
             case 83:
-                $('#d1').trigger('mousedown');
+                $('#d1').trigger('mousedown').addClass('playing');
                 break;
             case 68:
-                $('#e1').trigger('mousedown');
+                $('#e1').trigger('mousedown').addClass('playing');
                 break;
             case 70:
-                $('#f1').trigger('mousedown');
+                $('#f1').trigger('mousedown').addClass('playing');
                 break;
             case 71:
-                $('#g1').trigger('mousedown');
+                $('#g1').trigger('mousedown').addClass('playing');
                 break;
             case 72:
-                $('#a1').trigger('mousedown');
+                $('#a1').trigger('mousedown').addClass('playing');
                 break;
             case 74:
-                $('#b1').trigger('mousedown');
+                $('#b1').trigger('mousedown').addClass('playing');
                 break;
             case 75:
-                $('#c2').trigger('mousedown');
+                $('#c2').trigger('mousedown').addClass('playing');
                 break;
             case 76:
-                $('#d2').trigger('mousedown');
+                $('#d2').trigger('mousedown').addClass('playing');
                 break;
             case 186:
-                $('#e2').trigger('mousedown');
+                $('#e2').trigger('mousedown').addClass('playing');
                 break;
             case 222:
-                $('#f2').trigger('mousedown');
+                $('#f2').trigger('mousedown').addClass('playing');
                 break;
             case 87:
-                $('#cs1').trigger('mousedown');
+                $('#cs1').trigger('mousedown').addClass('playing');
                 break;
             case 69:
-                $('#ds1').trigger('mousedown');
+                $('#ds1').trigger('mousedown').addClass('playing');
                 break;
             case 84:
-                $('#fs1').trigger('mousedown');
+                $('#fs1').trigger('mousedown').addClass('playing');
                 break;
             case 89:
-                $('#gs1').trigger('mousedown');
+                $('#gs1').trigger('mousedown').addClass('playing');
                 break;
             case 85:
-                $('#as1').trigger('mousedown');
+                $('#as1').trigger('mousedown').addClass('playing');
                 break;
             case 79:
-                $('#cs2').trigger('mousedown');
+                $('#cs2').trigger('mousedown').addClass('playing');
                 break;
             case 80:
-                $('#ds2').trigger('mousedown');
+                $('#ds2').trigger('mousedown').addClass('playing');
                 break;
             case 221:
-                $('#fs2').trigger('mousedown');
+                $('#fs2').trigger('mousedown').addClass('playing');
                 break;
         };
     };
@@ -1093,61 +1090,61 @@ $(document).keydown(function (key) {
     TANGUY.key_down = false;
     switch (key.which) {
         case 65:
-            $('#c1').trigger('mouseup');
+            $('#c1').trigger('mouseup').removeClass('playing');
             break;
         case 83:
-            $('#d1').trigger('mouseup');
+            $('#d1').trigger('mouseup').removeClass('playing');
             break;
         case 68:
-            $('#e1').trigger('mouseup');
+            $('#e1').trigger('mouseup').removeClass('playing');
             break;
         case 70:
-            $('#f1').trigger('mouseup');
+            $('#f1').trigger('mouseup').removeClass('playing');
             break;
         case 71:
-            $('#g1').trigger('mouseup');
+            $('#g1').trigger('mouseup').removeClass('playing');
             break;
         case 72:
-            $('#a1').trigger('mouseup');
+            $('#a1').trigger('mouseup').removeClass('playing');
             break;
         case 74:
-            $('#b1').trigger('mouseup');
+            $('#b1').trigger('mouseup').removeClass('playing');
             break;
         case 75:
-            $('#c2').trigger('mouseup');
+            $('#c2').trigger('mouseup').removeClass('playing');
             break;
         case 76:
-            $('#d2').trigger('mouseup');
+            $('#d2').trigger('mouseup').removeClass('playing');
             break;
         case 186:
-            $('#e2').trigger('mouseup');
+            $('#e2').trigger('mouseup').removeClass('playing');
             break;
         case 222:
-            $('#f2').trigger('mouseup');
+            $('#f2').trigger('mouseup').removeClass('playing');
             break;
         case 87:
-            $('#cs1').trigger('mouseup');
+            $('#cs1').trigger('mouseup').removeClass('playing');
             break;
         case 69:
-            $('#ds1').trigger('mouseup');
+            $('#ds1').trigger('mouseup').removeClass('playing');
             break;
         case 84:
-            $('#fs1').trigger('mouseup');
+            $('#fs1').trigger('mouseup').removeClass('playing');
             break;
         case 89:
-            $('#gs1').trigger('mouseup');
+            $('#gs1').trigger('mouseup').removeClass('playing');
             break;
         case 85:
-            $('#as1').trigger('mouseup');
+            $('#as1').trigger('mouseup').removeClass('playing');
             break;
         case 79:
-            $('#cs2').trigger('mouseup');
+            $('#cs2').trigger('mouseup').removeClass('playing');
             break;
         case 80:
-            $('#ds2').trigger('mouseup');
+            $('#ds2').trigger('mouseup').removeClass('playing');
             break;
         case 221:
-            $('#fs2').trigger('mouseup');
+            $('#fs2').trigger('mouseup').removeClass('playing');
             break;
     };
 });

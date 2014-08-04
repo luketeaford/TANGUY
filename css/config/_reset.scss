@@ -70,3 +70,10 @@ a:active {
 .title-only {
 	display: none;
 }
+:focus {
+	outline: none;
+}
+
+.dumb {
+	background: linear-gradient(#f60, #fff);
+}
