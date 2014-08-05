@@ -985,16 +985,6 @@ $('.octave-shift-down').click(function () {
 $('.octave-shift-up').click(function () {
     TANGUY.shift_octave(1);
 });
-$(document).keypress(function (key) {
-    if (key.which === 45) {
-        TANGUY.shift_octave(-1);
-    } else if (key.which === 61) {
-        TANGUY.shift_octave(1);
-    } else if (key.which === 42) {
-        TANGUY.debug();
-    };
-    console.log(key.which + ' PRESSED');
-});
 
 //PORTAMENTO CONTROLS
 $('#portamento-amount').change(function () {
@@ -1042,7 +1032,16 @@ $('.horizontal-multi-switch label input, .vertical-multi-switch label input').cl
 //TARGET KEYBOARD CLICKS
 $('#keyboard button').mousedown(TANGUY.gate_on).mouseup(TANGUY.gate_off);
 
-$(document).keydown(function (key) {
+$(document).keypress(function (key) {
+    switch (key.which) {
+        case 45:
+            TANGUY.shift_octave(-1);
+            break;
+        case 61:
+            TANGUY.shift_octave(1);
+            break;
+    };
+}).keydown(function (key) {
     if (TANGUY.key_down == false) {
         TANGUY.key_down = true;
         switch (key.which) {
