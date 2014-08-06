@@ -80,6 +80,46 @@ var TANGUY = {
         console.log(TANGUY.program);
     },
 
+    save_program: function () {
+        console.log('SAVE PROGRAM CALLED');
+        console.log(JSON.stringify(TANGUY.program));
+    },
+
+    load_program: function (program) {
+        console.log('LOAD PROGRAM CALLED');
+        switch (program) {
+            case "initialize":
+                $.getJSON('programs/initialize.json', function(json) {
+                    TANGUY.program = json;
+                });
+                break;
+            case "softsine":
+                $.getJSON('programs/softsine.json', function(json) {
+                    TANGUY.program = json;
+                });
+                break;
+            case "squarewavebass":
+                $.getJSON('programs/squarewavebass.json', function(json) {
+                    TANGUY.program = json;
+                });
+                break;
+        };
+        //SET OSC 1 TO PROGRAM
+        TANGUY.program.osc1.kbd ? $('#osc1-kbd').attr('checked') : $('#osc1-kbd').removeAttr('checked');
+
+        //SET LFO TO PROGRAM
+        TANGUY.lfo.type = TANGUY.program.lfo.shape;
+        TANGUY.lfo.frequency.value = TANGUY.program.lfo.rate;
+        TANGUY.lfo_pitch_vca.gain.value = TANGUY.program.lfo.pitch_amt;
+        TANGUY.lfo_filter_vca.gain.value = TANGUY.program.lfo.filter_amt;
+        TANGUY.lfo_amp_vca.gain.value = TANGUY.program.lfo.amp_amt;
+        //SET MIXER TO PROGRAM
+        TANGUY.osc1_vca.gain.value = TANGUY.program.mixer.osc1;
+        TANGUY.osc2_vca.gain.value = TANGUY.program.mixer.osc2;
+        TANGUY.noise_vca.gain.value = TANGUY.program.mixer.noise;
+        //SET FILTER TO PROGRAM
+    },
+
     shift_octave: function (direction) {
         var shift_octave_lights = function (octave_shift) {
             console.log('OCTAVE SHIFT IS ' + octave_shift);
@@ -1039,6 +1079,18 @@ $(document).keypress(function (key) {
             break;
         case 61:
             TANGUY.shift_octave(1);
+            break;
+        case 42:
+            TANGUY.save_program();
+            break;
+        case 122:
+            TANGUY.load_program("initialize");
+            break;
+        case 120:
+            TANGUY.load_program("softsine");
+            break;
+        case 99:
+            TANGUY.load_program("squarewavebass");
             break;
     };
 }).keydown(function (key) {
