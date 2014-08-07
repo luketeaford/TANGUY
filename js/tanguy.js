@@ -85,39 +85,15 @@ var TANGUY = {
         console.log(JSON.stringify(TANGUY.program));
     },
 
-    load_program: function (program) {
-        console.log('LOAD PROGRAM CALLED');
-        switch (program) {
-            case "initialize":
-                $.getJSON('programs/initialize.json', function(json) {
-                    TANGUY.program = json;
-                });
-                break;
-            case "softsine":
-                $.getJSON('programs/softsine.json', function(json) {
-                    TANGUY.program = json;
-                });
-                break;
-            case "squarewavebass":
-                $.getJSON('programs/squarewavebass.json', function(json) {
-                    TANGUY.program = json;
-                });
-                break;
-        };
-        //SET OSC 1 TO PROGRAM
-        TANGUY.program.osc1.kbd ? $('#osc1-kbd').attr('checked') : $('#osc1-kbd').removeAttr('checked');
-
-        //SET LFO TO PROGRAM
-        TANGUY.lfo.type = TANGUY.program.lfo.shape;
-        TANGUY.lfo.frequency.value = TANGUY.program.lfo.rate;
-        TANGUY.lfo_pitch_vca.gain.value = TANGUY.program.lfo.pitch_amt;
-        TANGUY.lfo_filter_vca.gain.value = TANGUY.program.lfo.filter_amt;
-        TANGUY.lfo_amp_vca.gain.value = TANGUY.program.lfo.amp_amt;
-        //SET MIXER TO PROGRAM
-        TANGUY.osc1_vca.gain.value = TANGUY.program.mixer.osc1;
-        TANGUY.osc2_vca.gain.value = TANGUY.program.mixer.osc2;
-        TANGUY.noise_vca.gain.value = TANGUY.program.mixer.noise;
-        //SET FILTER TO PROGRAM
+    load_program: function (patch) {
+        console.log('LOADING PROGRAM: ' + patch);
+        var patch_url = encodeURI('programs/') + patch + '.json'
+        $.getJSON(decodeURI(patch_url), function (loaded) {
+            TANGUY.program = loaded;
+            console.log('TANGUY PATCH = ' + TANGUY.program.name);
+            //HERE I MUST RESET ALL OF TANGUY'S PARAMETERS...
+            TANGUY.program.osc1.kbd ? $('#osc1-kbd').attr('checked') : $('#osc1-kbd').removeAttr('checked');//PARTIALLY WORKING
+        });
     },
 
     shift_octave: function (direction) {
