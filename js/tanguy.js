@@ -92,8 +92,203 @@ var TANGUY = {
             TANGUY.program = loaded;
             console.log('TANGUY PATCH = ' + TANGUY.program.name);
             //HERE I MUST RESET ALL OF TANGUY'S PARAMETERS...
-            TANGUY.program.osc1.kbd ? $('#osc1-kbd').attr('checked') : $('#osc1-kbd').removeAttr('checked');//PARTIALLY WORKING
-        });
+            //OSCILLATOR 1 KBD TRACKING
+            TANGUY.program.osc1.kbd ? $('#osc1-kbd').prop('checked', true) : $('#osc1-kbd').prop('checked', false);
+
+            //OSCILLATOR 1 COARSE
+            switch (TANGUY.program.osc1.coarse) {
+                case 0.5:
+                    $('#osc1-32').parent().addClass('selected');
+                    $('#osc1-32').parent().siblings().removeClass('selected');
+                    break;
+                case 1:
+                    $('#osc1-16').parent().addClass('selected');
+                    $('#osc1-16').parent().siblings().removeClass('selected');
+                    break;
+                case 2:
+                    $('#osc1-8').parent().addClass('selected');
+                    $('#osc1-8').parent().siblings().removeClass('selected');
+                    break;
+                case 4:
+                    $('#osc1-4').parent().addClass('selected');
+                    $('#osc1-4').parent().siblings().removeClass('selected');
+                    break;
+            };
+            TANGUY.osc1_saw.frequency.setValueAtTime(parseFloat(TANGUY.osc1_pitch * TANGUY.program.osc1.coarse), TANGUY.voice1.currentTime);
+            TANGUY.osc1_sqr.frequency.setValueAtTime(parseFloat(TANGUY.osc1_pitch * TANGUY.program.osc1.coarse), TANGUY.voice1.currentTime);
+            TANGUY.osc1_tri.frequency.setValueAtTime(parseFloat(TANGUY.osc1_pitch * TANGUY.program.osc1.coarse), TANGUY.voice1.currentTime);
+            TANGUY.osc1_sin.frequency.setValueAtTime(parseFloat(TANGUY.osc1_pitch * TANGUY.program.osc1.coarse), TANGUY.voice1.currentTime);
+
+            //OSCILLATOR 1 WAVEFORM MIXER
+            $('#osc1-saw').val(TANGUY.program.osc1.saw_amt);
+            $('#osc1-sqr').val(TANGUY.program.osc1.sqr_amt);
+            $('#osc1-tri').val(TANGUY.program.osc1.tri_amt);
+            $('#osc1-sin').val(TANGUY.program.osc1.sin_amt);
+            $('#osc1-fm').val(TANGUY.program.osc1.fm_amt);
+            TANGUY.osc1_saw_vca.gain.setValueAtTime(TANGUY.program.osc1.saw_amt, TANGUY.voice1.currentTime);
+            TANGUY.osc1_sqr_vca.gain.setValueAtTime(TANGUY.program.osc1.sqr_amt, TANGUY.voice1.currentTime);
+            TANGUY.osc1_tri_vca.gain.setValueAtTime(TANGUY.program.osc1.tri_amt, TANGUY.voice1.currentTime);
+            TANGUY.osc1_sin_vca.gain.setValueAtTime(TANGUY.program.osc1.sin_amt, TANGUY.voice1.currentTime);
+            TANGUY.osc1_fm_vca.gain.setValueAtTime(((TANGUY.program.osc1.fm_amt * TANGUY.program.osc1.fm_amt) * 24000), TANGUY.voice1.currentTime);
+
+            //OSCILLATOR 2 KEYBOARD TRACKING
+            TANGUY.program.osc2.kbd ? $('#osc2-kbd').prop('checked', true) : $('#osc2-kbd').prop('checked', false);
+
+            //OSCILLATOR 2 COARSE
+            switch (TANGUY.program.osc2.coarse) {
+                case 0.5:
+                    $('#osc2-32').parent().addClass('selected');
+                    $('#osc2-32').parent().siblings().removeClass('selected');
+                    break;
+                case 1:
+                    $('#osc2-16').parent().addClass('selected');
+                    $('#osc2-16').parent().siblings().removeClass('selected');
+                    break;
+                case 2:
+                    $('#osc2-8').parent().addClass('selected');
+                    $('#osc2-8').parent().siblings().removeClass('selected');
+                    break;
+                case 4:
+                    $('#osc2-4').parent().addClass('selected');
+                    $('#osc2-4').parent().siblings().removeClass('selected');
+                    break;
+            };
+            TANGUY.osc2.frequency.setValueAtTime(parseFloat(TANGUY.osc2_pitch * TANGUY.program.osc2.coarse), TANGUY.voice1.currentTime);
+
+            //OSCILLATOR 2 WAVEFORM SELECTOR
+            switch (TANGUY.program.osc2.waveform) {
+                case "sawtooth":
+                    $('#osc2-saw').parent().addClass('selected');
+                    $('#osc2-saw').parent().siblings().removeClass('selected');
+                    break;
+                case "square":
+                    $('#osc2-sqr').parent().addClass('selected');
+                    $('#osc2-sqr').parent().siblings().removeClass('selected');
+                    break;
+                case "triangle":
+                    $('#osc2-tri').parent().addClass('selected');
+                    $('#osc2-tri').parent().siblings().removeClass('selected');
+                    break;
+                case "sine":
+                    $('#osc2-sin').parent().addClass('selected');
+                    $('#osc2-sin').parent().siblings().removeClass('selected');
+                    break;
+            };
+            TANGUY.osc2.type = TANGUY.program.osc2.waveform;
+
+            //OSCILLATOR 2 SLIDERS
+            $('#osc2-detune').val(TANGUY.program.osc2.detune);
+            $('#osc2-fine').val(TANGUY.program.osc2.fine);
+            $('#osc2-waveshape').val(TANGUY.program.osc2.shape_amt);
+            $('#osc2-fm').val(TANGUY.program.osc2.fm_amt);
+            TANGUY.osc2.detune.setValueAtTime(parseFloat(TANGUY.osc2_pitch + (TANGUY.program.osc2.detune)), TANGUY.voice1.currentTime);
+            TANGUY.osc2.frequency.setValueAtTime(((TANGUY.osc2_pitch * TANGUY.program.osc2.coarse) + TANGUY.program.osc2.fine), TANGUY.voice1.currentTime);
+            TANGUY.osc2.shape_amt ? TANGUY.waveshaper.curve = new Float32Array([parseFloat(this.value * 1.6), parseFloat(this.value * -2.5), parseFloat(this.value * -1.2), parseFloat(this.value * -2.4), parseFloat(this.value * -1.6), parseFloat(this.value * -3.2), parseFloat(this.value * 6.4), parseFloat(this.value * -3.2)]) : null;
+            TANGUY.osc2_fm_vca.gain.setValueAtTime(((TANGUY.program.osc2.fm_amt * TANGUY.program.osc2.fm_amt) * 24000), TANGUY.voice1.currentTime);
+
+            //NOISE
+            switch (TANGUY.program.noise.color) {
+                case "white":
+                    TANGUY.white_noise.buffer = TANGUY.white_noise_buffer;
+                    TANGUY.pink_noise.buffer = TANGUY.empty_pink_noise_buffer;
+                    TANGUY.red_noise.buffer = TANGUY.empty_red_noise_buffer;
+                    TANGUY.blue_noise.buffer = TANGUY.empty_blue_noise_buffer;
+                    TANGUY.purple_noise.buffer = TANGUY.empty_purple_noise_buffer;
+                    break;
+                case "pink":
+                    TANGUY.pink_noise.buffer = TANGUY.pink_noise_buffer;
+                    TANGUY.white_noise.buffer = TANGUY.empty_white_noise_buffer;
+                    TANGUY.red_noise.buffer = TANGUY.empty_red_noise_buffer;
+                    TANGUY.blue_noise.buffer = TANGUY.empty_blue_noise_buffer;
+                    TANGUY.purple_noise.buffer = TANGUY.empty_purple_noise_buffer;
+                    break;
+                case "red":
+                    TANGUY.red_noise.buffer = TANGUY.red_noise_buffer;
+                    TANGUY.white_noise.buffer = TANGUY.empty_white_noise_buffer;
+                    TANGUY.pink_noise.buffer = TANGUY.empty_pink_noise_buffer;
+                    TANGUY.blue_noise.buffer = TANGUY.empty_blue_noise_buffer;
+                    TANGUY.purple_noise.buffer = TANGUY.empty_purple_noise_buffer;
+                    break;
+                case "blue":
+                    TANGUY.blue_noise.buffer = TANGUY.blue_noise_buffer;
+                    TANGUY.white_noise.buffer = TANGUY.empty_white_noise_buffer;
+                    TANGUY.pink_noise.buffer = TANGUY.empty_pink_noise_buffer;
+                    TANGUY.red_noise.buffer = TANGUY.empty_red_noise_buffer;
+                    TANGUY.purple_noise.buffer = TANGUY.empty_purple_noise_buffer;
+                    break;
+                case "purple":
+                    TANGUY.purple_noise.buffer = TANGUY.purple_noise_buffer;
+                    TANGUY.white_noise.buffer = TANGUY.empty_white_noise_buffer;
+                    TANGUY.pink_noise.buffer = TANGUY.empty_pink_noise_buffer;
+                    TANGUY.red_noise.buffer = TANGUY.empty_red_noise_buffer;
+                    TANGUY.blue_noise.buffer = TANGUY.empty_blue_noise_buffer;
+                    break;
+            };
+
+            //MIXER CONTROLS
+            $('#osc1-mix').val(TANGUY.program.mixer.osc1);
+            $('#osc2-mix').val(TANGUY.program.mixer.osc2);
+            $('#noise-mix').val(TANGUY.program.mixer.noise);
+            TANGUY.osc1_vca.gain.setValueAtTime(parseFloat(TANGUY.program.mixer.osc1), TANGUY.voice1.currentTime);
+            TANGUY.osc2_vca.gain.setValueAtTime(parseFloat(TANGUY.program.mixer.osc2), TANGUY.voice1.currentTime);
+            TANGUY.noise_vca.gain.setValueAtTime(parseFloat(TANGUY.program.mixer.noise), TANGUY.voice1.currentTime);
+
+            //FILTER CONTROLS
+
+
+
+
+
+
+
+
+
+            //FILTER EG CONTROLS
+
+
+
+
+
+
+
+
+            //VCA EG CONTROLS
+
+
+
+
+
+            //LFO CONTROLS
+
+
+
+
+
+
+            //PORTAMENTO CONTROLS
+
+
+
+
+
+
+
+
+
+            //PITCH CONTROL
+
+
+
+
+
+
+            //MODWHEEL CONTROL
+
+
+
+
+
+        });//END OF LOAD PROGRAM
     },
 
     shift_octave: function (direction) {
@@ -834,6 +1029,7 @@ $('#lfo-amp').mousedown(function () {
 }).mouseup(function () {
     $(this).unbind('mousemove');
 });
+
 //MIXER CONTROLS
 $('#osc1-mix').mousedown(function () {
     $(this).mousemove(function () {
@@ -1068,7 +1264,29 @@ $(document).keypress(function (key) {
         case 99:
             TANGUY.load_program("squarewavebass");
             break;
+        case 118:
+            TANGUY.load_program("slapbass");
+            break;
+        case 98:
+            TANGUY.load_program("chhchhchhchh");
+            break;
+        case 110:
+            TANGUY.load_program("brassy");
+            break;
+        case 109:
+            TANGUY.load_program("coolwire");
+            break;
+        case 44:
+            TANGUY.load_program("synthking");
+            break;
+        case 46:
+            TANGUY.load_program("bacongrease");
+            break;
+        case 47:
+            TANGUY.load_program("synthstrings");
+            break;
     };
+    console.log('YOU PRESSED ' + key.which);
 }).keydown(function (key) {
     if (TANGUY.key_down == false) {
         TANGUY.key_active = key.which;
