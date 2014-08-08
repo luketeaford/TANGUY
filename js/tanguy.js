@@ -91,7 +91,6 @@ var TANGUY = {
         $.getJSON(decodeURI(patch_url), function (loaded) {
             TANGUY.program = loaded;
             console.log('TANGUY PATCH = ' + TANGUY.program.name);
-            //HERE I MUST RESET ALL OF TANGUY'S PARAMETERS...
             //OSCILLATOR 1 KBD TRACKING
             TANGUY.program.osc1.kbd ? $('#osc1-kbd').prop('checked', true) : $('#osc1-kbd').prop('checked', false);
 
@@ -189,6 +188,8 @@ var TANGUY = {
             //NOISE
             switch (TANGUY.program.noise.color) {
                 case "white":
+                    $('#white-noise').parent().addClass('selected');
+                    $('#white-noise').parent().siblings().removeClass('selected');
                     TANGUY.white_noise.buffer = TANGUY.white_noise_buffer;
                     TANGUY.pink_noise.buffer = TANGUY.empty_pink_noise_buffer;
                     TANGUY.red_noise.buffer = TANGUY.empty_red_noise_buffer;
@@ -196,6 +197,8 @@ var TANGUY = {
                     TANGUY.purple_noise.buffer = TANGUY.empty_purple_noise_buffer;
                     break;
                 case "pink":
+                    $('#pink-noise').parent().addClass('selected');
+                    $('#pink-noise').parent().siblings().removeClass('selected');
                     TANGUY.pink_noise.buffer = TANGUY.pink_noise_buffer;
                     TANGUY.white_noise.buffer = TANGUY.empty_white_noise_buffer;
                     TANGUY.red_noise.buffer = TANGUY.empty_red_noise_buffer;
@@ -203,6 +206,8 @@ var TANGUY = {
                     TANGUY.purple_noise.buffer = TANGUY.empty_purple_noise_buffer;
                     break;
                 case "red":
+                    $('#red-noise').parent().addClass('selected');
+                    $('#red-noise').parent().siblings().removeClass('selected');
                     TANGUY.red_noise.buffer = TANGUY.red_noise_buffer;
                     TANGUY.white_noise.buffer = TANGUY.empty_white_noise_buffer;
                     TANGUY.pink_noise.buffer = TANGUY.empty_pink_noise_buffer;
@@ -210,6 +215,8 @@ var TANGUY = {
                     TANGUY.purple_noise.buffer = TANGUY.empty_purple_noise_buffer;
                     break;
                 case "blue":
+                    $('#blue-noise').parent().addClass('selected');
+                    $('#blue-noise').parent().siblings().removeClass('selected');
                     TANGUY.blue_noise.buffer = TANGUY.blue_noise_buffer;
                     TANGUY.white_noise.buffer = TANGUY.empty_white_noise_buffer;
                     TANGUY.pink_noise.buffer = TANGUY.empty_pink_noise_buffer;
@@ -217,6 +224,8 @@ var TANGUY = {
                     TANGUY.purple_noise.buffer = TANGUY.empty_purple_noise_buffer;
                     break;
                 case "purple":
+                    $('#purple-noise').parent().addClass('selected');
+                    $('#purple-noise').parent().siblings().removeClass('selected');
                     TANGUY.purple_noise.buffer = TANGUY.purple_noise_buffer;
                     TANGUY.white_noise.buffer = TANGUY.empty_white_noise_buffer;
                     TANGUY.pink_noise.buffer = TANGUY.empty_pink_noise_buffer;
@@ -234,61 +243,161 @@ var TANGUY = {
             TANGUY.noise_vca.gain.setValueAtTime(parseFloat(TANGUY.program.mixer.noise), TANGUY.voice1.currentTime);
 
             //FILTER CONTROLS
+            switch (TANGUY.program.filter.mode) {
+                case "lp":
+                    $('#filter-lp').parent().addClass('selected');
+                    $('#filter-lp').parent().siblings().removeClass('selected');
+                    TANGUY.mixer.disconnect();
+                    TANGUY.mixer.connect(TANGUY.lp_filter1);
+                    TANGUY.lp_filter1.frequency.setValueAtTime(TANGUY.program.filter.frequency, TANGUY.voice1.currentTime);
+                    TANGUY.lp_filter2.frequency.setValueAtTime((TANGUY.program.filter.frequency / 2), TANGUY.voice1.currentTime);
+                    TANGUY.lp_filter1.Q.setValueAtTime(TANGUY.program.filter.resonance / 82, TANGUY.voice1.currentTime);
+                    TANGUY.lp_filter2.Q.setValueAtTime(TANGUY.program.filter.resonance / 123, TANGUY.voice1.currentTime);
+                    TANGUY.lfo_filter_vca.disconnect();
+                    TANGUY.lfo_filter_vca.connect(TANGUY.lp_filter1.frequency);
+                    TANGUY.lfo_filter_vca.connect(TANGUY.lp_filter2.frequency);
+                    break;
+                case "bp":
+                    $('#filter-bp').parent().addClass('selected');
+                    $('#filter-bp').parent().siblings().removeClass('selected');
+                    TANGUY.mixer.disconnect();
+                    TANGUY.mixer.connect(TANGUY.bp_filter1);
+                    TANGUY.bp_filter1.frequency.setValueAtTime(TANGUY.program.filter.frequency, TANGUY.voice1.currentTime);
+                    TANGUY.bp_filter2.frequency.setValueAtTime(TANGUY.program.filter.frequency * 0.9, TANGUY.voice1.currentTime);
+                    TANGUY.bp_filter3.frequency.setValueAtTime(TANGUY.program.filter.frequency * 1.1, TANGUY.voice1.currentTime);
+                    TANGUY.bp_filter2.gain.setValueAtTime(TANGUY.program.filter.resonance / 82, TANGUY.voice1.currentTime);
+                    TANGUY.bp_filter3.gain.setValueAtTime(TANGUY.program.filter.resonance / 82, TANGUY.voice1.currentTime);
+                    TANGUY.lfo_filter_vca.disconnect();
+                    TANGUY.lfo_filter_vca.connect(TANGUY.bp_filter1.frequency);
+                    TANGUY.lfo_filter_vca.connect(TANGUY.bp_filter2.frequency);
+                    TANGUY.lfo_filter_vca.connect(TANGUY.bp_filter3.frequency);
+                    break;
+                case "hp":
+                    $('#filter-hp').parent().addClass('selected');
+                    $('#filter-hp').parent().siblings().removeClass('selected');
+                    TANGUY.mixer.disconnect();
+                    TANGUY.mixer.connect(TANGUY.hp_filter1);
+                    TANGUY.hp_filter1.frequency.setValueAtTime(TANGUY.program.filter.frequency, TANGUY.voice1.currentTime);
+                    TANGUY.hp_filter2.frequency.setValueAtTime(TANGUY.program.filter.frequency, TANGUY.voice1.currentTime);
+                    TANGUY.hp_filter1.Q.setValueAtTime(TANGUY.program.filter.resonance / 82, TANGUY.voice1.currentTime);
+                    TANGUY.hp_filter2.Q.setValueAtTime(TANGUY.program.filter.resonance / 123, TANGUY.voice1.currentTime);
+                    TANGUY.lfo_filter_vca.disconnect();
+                    TANGUY.lfo_filter_vca.connect(TANGUY.hp_filter1.frequency);
+                    TANGUY.lfo_filter_vca.connect(TANGUY.hp_filter2.frequency);
+                    break;
+                case "notch":
+                    $('#notch').parent().addClass('selected');
+                    $('#notch').parent().siblings().removeClass('selected');
+                    TANGUY.mixer.disconnect();
+                    TANGUY.mixer.connect(TANGUY.notch1);
+                    TANGUY.notch1.frequency.setValueAtTime(TANGUY.program.filter.frequency, TANGUY.voice1.currentTime);
+                    TANGUY.notch2.frequency.setValueAtTime(TANGUY.program.filter.frequency * 0.9, TANGUY.voice1.currentTime);
+                    TANGUY.notch3.frequency.setValueAtTime(TANGUY.program.filter.frequency * 1.1, TANGUY.voice1.currentTime);
+                    TANGUY.notch2.gain.setValueAtTime(TANGUY.program.filter.resonance / -21, TANGUY.voice1.currentTime, 0.01);
+                    TANGUY.notch3.gain.setValueAtTime(TANGUY.program.filter.resonance / -21, TANGUY.voice1.currentTime, 0.01);
+                    TANGUY.lfo_filter_vca.disconnect();
+                    TANGUY.lfo_filter_vca.connect(TANGUY.notch1.frequency);
+                    TANGUY.lfo_filter_vca.connect(TANGUY.notch2.frequency);
+                    TANGUY.lfo_filter_vca.connect(TANGUY.notch3.frequency);
+                    break;
+                case "off":
+                    $('#filter-off').parent().addClass('selected');
+                    $('#filter-off').parent().siblings().removeClass('selected');
+                    TANGUY.mixer.disconnect();        
+                    TANGUY.mixer.connect(TANGUY.vca);
+                    TANGUY.lfo_filter_vca.disconnect();
+                    break;
+            };
+            $('#filter-envelope-amount').val(TANGUY.program.filter.env_amt);
+            $('#filter-keyboard-tracking').val(TANGUY.program.filter.kbd);
+            $('#filter-attack').val(TANGUY.program.filter.attack);
+            $('#filter-decay').val(TANGUY.program.filter.decay);
+            $('#filter-sustain').val(TANGUY.program.filter.sustain);
+            $('#filter-release').val(TANGUY.program.filter.release);
 
+            //VCA ENVELOPE
+            $('#vca-attack').val(TANGUY.program.vca.attack);
+            $('#vca-decay').val(TANGUY.program.vca.decay);
+            $('#vca-sustain').val(TANGUY.program.vca.sustain);
+            $('#vca-release').val(TANGUY.program.vca.release);
+            $('#vca-gain').val(TANGUY.program.vca.gain);
+            TANGUY.vca.gain.setValueAtTime(TANGUY.program.vca.gain, TANGUY.voice1.currentTime);
 
-
-
-
-
-
-
-
-            //FILTER EG CONTROLS
-
-
-
-
-
-
-
-
-            //VCA EG CONTROLS
-
-
-
-
-
-            //LFO CONTROLS
-
-
-
-
-
-
-            //PORTAMENTO CONTROLS
-
-
-
-
-
-
-
-
-
-            //PITCH CONTROL
-
-
-
-
-
+            //LFO SHAPE
+            switch (TANGUY.program.lfo.shape) {
+                case "sine":
+                    $('#lfo-sin').parent().addClass('selected');
+                    $('#lfo-sin').parent().siblings().removeClass('selected');
+                    TANGUY.lfo.type = "sine";
+                    break;
+                case "triangle":
+                    $('#lfo-tri').parent().addClass('selected');
+                    $('#lfo-tri').parent().siblings().removeClass('selected');
+                    TANGUY.lfo.type = "triangle";
+                    break;
+                case "ramp":
+                    $('#lfo-rmp').parent().addClass('selected');
+                    $('#lfo-rmp').parent().siblings().removeClass('selected');
+                    TANGUY.lfo.type = "sawtooth";
+                    TANGUY.program.mod.direction = 1;
+                    TANGUY.lfo_pitch_vca.gain.value = parseFloat(TANGUY.program.lfo.pitch_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
+                    TANGUY.lfo_filter_vca.gain.value = parseFloat(TANGUY.program.lfo.filter_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
+                    TANGUY.lfo_amp_vca.gain.value = parseFloat(TANGUY.program.lfo.amp_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
+                    break;
+                case "sawtooth":
+                    $('#lfo-saw').parent().addClass('selected');
+                    $('#lfo-saw').parent().siblings().removeClass('selected');
+                    TANGUY.lfo.type = "sawtooth";
+                    TANGUY.program.mod.direction = -1;
+                    TANGUY.lfo_pitch_vca.gain.value = parseFloat(TANGUY.program.lfo.pitch_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
+                    TANGUY.lfo_filter_vca.gain.value = parseFloat(TANGUY.program.lfo.filter_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
+                    TANGUY.lfo_amp_vca.gain.value = parseFloat(TANGUY.program.lfo.amp_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
+                    break;
+                case "square":
+                    $('#lfo-sqr').parent().addClass('selected');
+                    $('#lfo-sqr').parent().siblings().removeClass('selected');
+                    TANGUY.lfo.type = "square";
+                    break;
+            };
 
             //MODWHEEL CONTROL
+            $('#mod-amount').val(TANGUY.program.mod.amt);
+            TANGUY.lfo_pitch_vca.gain.value = parseFloat(TANGUY.program.lfo.pitch_amt * TANGUY.program.mod.amt);
+            TANGUY.lfo_filter_vca.gain.value = parseFloat(TANGUY.program.lfo.filter_amt * TANGUY.program.mod.amt);
+            TANGUY.lfo_amp_vca.gain.value = parseFloat(TANGUY.program.lfo.amp_amt * TANGUY.program.mod.amt);
 
+            //LFO RATE
+            $('#lfo-rate').val(TANGUY.program.lfo.rate);
+            TANGUY.lfo.frequency.value = TANGUY.program.lfo.rate;
 
+            //LFO DESTINATIONS
+            $('#lfo-pitch').val(TANGUY.program.lfo.pitch_amt);
+            $('#lfo-filter').val(TANGUY.program.lfo.filter_amt);
+            $('#lfo-amp').val(TANGUY.program.lfo.amp_amt);
+            TANGUY.lfo_pitch_vca.gain.value = parseFloat(TANGUY.program.lfo.pitch_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
+            TANGUY.lfo_filter_vca.gain.value = parseFloat(TANGUY.program.lfo.filter_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
+            TANGUY.lfo_amp_vca.gain.value = parseFloat(TANGUY.program.lfo.amp_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
 
+            //PORTAMENTO CONTROLS
+            $('#portamento-amount').val(TANGUY.program.portamento.amt);
+            switch (TANGUY.program.portamento.mode) {
+                case "off":
+                    $('#portamento-off').parent().addClass('selected');
+                    $('#portamento-off').parent().siblings().removeClass('selected');
+                    break;
 
+                case "linear":
+                    $('#portamento-linear').parent().addClass('selected');
+                    $('#portamento-linear').parent().siblings().removeClass('selected');
+                    break;
 
-        });//END OF LOAD PROGRAM
+                case "exponential":
+                    $('#portamento-exponential').parent().addClass('selected');
+                    $('#portamento-exponential').parent().siblings().removeClass('selected');
+                    break;
+            };
+
+        });
     },
 
     shift_octave: function (direction) {
@@ -981,7 +1090,6 @@ $('#lfo-sin, #lfo-tri, #lfo-rmp, #lfo-saw, #lfo-sqr').change(function () {
             TANGUY.lfo_filter_vca.gain.value = parseFloat(TANGUY.program.lfo.filter_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
             TANGUY.lfo_amp_vca.gain.value = parseFloat(TANGUY.program.lfo.amp_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
             TANGUY.lfo.type = this.value;
-            console.log('just making sure ramp got hit');
             break;
         case "sawtooth":
             TANGUY.program.lfo.shape = "sawtooth";
