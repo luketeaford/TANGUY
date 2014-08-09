@@ -7,7 +7,7 @@
 }
 html {
 	box-sizing: border-box;
-	font-family: sans-serif;
+	font-family: arial, helvetica, sans-serif;
 	font-size: 20px;
 }
 body {
@@ -19,6 +19,7 @@ header {
 	padding: .5rem 1rem;
 	h1 {
 		display: inline;
+		font-family: "brandon-grotesque", sans-serif;
 		font-size: 1rem;
 		font-weight: normal;
 		margin: 0 1rem 0 0;
@@ -29,9 +30,10 @@ section {
 	margin: 1rem;
 	padding: 0;
 	h2 {
-		color: $tan;
+		color: #a3a394;
+		font-family: "brandon-grotesque", sans-serif;
 		font-size: .8rem;
-		font-weight: normal;
+		font-style: italic;
 		text-transform: uppercase;
 	}
 }
@@ -46,11 +48,9 @@ button {
 }
 .author {
 	display: inline-block;
-	font-size: 0.8rem;
+	font-size: 0.6rem;
 	font-weight: normal;
-	position: relative;
 	text-transform: uppercase;
-	top: -1px;
 }
 a {
 	text-decoration: none;

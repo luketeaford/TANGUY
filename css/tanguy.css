@@ -7,7 +7,7 @@
 
 html {
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: arial, helvetica, sans-serif;
   font-size: 20px; }
 
 body {
@@ -19,6 +19,7 @@ header {
   padding: .5rem 1rem; }
   header h1 {
     display: inline;
+    font-family: "brandon-grotesque", sans-serif;
     font-size: 1rem;
     font-weight: normal;
     margin: 0 1rem 0 0;
@@ -28,9 +29,10 @@ section {
   margin: 1rem;
   padding: 0; }
   section h2 {
-    color: tan;
+    color: #a3a394;
+    font-family: "brandon-grotesque", sans-serif;
     font-size: .8rem;
-    font-weight: normal;
+    font-style: italic;
     text-transform: uppercase; }
 
 label {
@@ -44,11 +46,9 @@ button {
 
 .author {
   display: inline-block;
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   font-weight: normal;
-  position: relative;
-  text-transform: uppercase;
-  top: -1px; }
+  text-transform: uppercase; }
 
 a {
   text-decoration: none; }
@@ -168,7 +168,7 @@ a:active {
   text-transform: uppercase; }
 
 .octave-minus-2, .octave-minus-1, .octave-plus-0, .octave-plus-1, .octave-plus-2 {
-  border: 1px solid #1c1906;
+  border: 1px solid #2e2a0e;
   border-radius: 50%;
   box-sizing: content-box;
   color: #fff6f3;

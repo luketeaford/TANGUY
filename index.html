@@ -3,14 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-  <title>TANGUY v0.8 by Luke Teaford</title>
+  <title>TANGUY Web Audio Synthesizer by Luke Teaford</title>
   <link href="css/tanguy.css" rel="stylesheet">
+  <script type="text/javascript" src="//use.typekit.net/oje5bad.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 </head>
 <body>
 
   <header>
     <h1>Tanguy</h1>
-    <!--<section id="program">
+    <h2 class="author">Web Audio Synthesizer by <a href="http://luketeaford.com/" title="Luke Teaford, creator of the TANGUY Web Audio Synthesizer">Luke Teaford</a></h2>
+
+    <section id="program">
       <h2 class="title-only">Program</h2>
       <label for="program-selector">Program</label>
       <select id="program-selector">
@@ -29,8 +33,8 @@
         <option>27th Topping</option>
         <option>Fronting Bean</option>
       </select>
-    </section>-->
-    <h2 class="author">A Web Audio Synthesizer by <a href="http://luketeaford.com/" title="Luke Teaford, creator of the TANGUY Web Audio Synthesizer">Luke Teaford</a></h2>
+    </section>
+
   </header>
 
   <section id="osc1">
@@ -134,8 +138,6 @@
     </div>
   </section>
 
-  <br>
-
   <section id="filter">
     <h2>Filter</h2>
     <div class="vertical-multi-switch" id="filter-mode">
@@ -206,8 +208,6 @@
       <label class="slider-label" for="vca-gain"><abbr title="Voltage Controlled Amplifier Gain">VCA Gain</abbr></label>
     </div>
   </section>
-
-  <br>
 
   <section id="lfo">
     <h2><abbr title="Low Frequency Oscillator">LFO</abbr></h2>

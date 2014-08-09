@@ -5,7 +5,7 @@ var TANGUY = {
     //SENSIBLE DEFAULTS
     octave_shift: 0,
     osc1_master_pitch: 440,
-    osc2_master_pitch: 444.18,//443.1192
+    osc2_master_pitch: 444.18,
     key_down: false,
 
     program: {
@@ -71,14 +71,8 @@ var TANGUY = {
         }
     },
 
-    debug: function () {
-        console.log('TANGUY DEBUG MODE');
-        console.log(TANGUY.program);
-    },
-
     save_program: function () {
-        console.log('SAVE PROGRAM CALLED');
-        console.log(JSON.stringify(TANGUY.program));
+        console.log('SAVE PROGRAM ' + JSON.stringify(TANGUY.program));
     },
 
     load_program: function (patch) {
@@ -654,9 +648,6 @@ var TANGUY = {
             TANGUY.vca.gain.cancelScheduledValues(TANGUY.voice1.currentTime),
             TANGUY.vca.gain.setValueAtTime(vca_release_peak, TANGUY.voice1.currentTime),
             TANGUY.vca.gain.setTargetAtTime(TANGUY.program.vca.gain, TANGUY.voice1.currentTime, TANGUY.program.vca.release);
-            console.log('VCA PEAK ' + vca_release_peak);
-            console.log('TANGUY PROGRAM VCA GAIN ' + TANGUY.program.vca.gain);
-            console.log('VCA RELEASE ' + TANGUY.program.vca.release);
         })();
     },
 
@@ -1391,7 +1382,6 @@ $(document).keypress(function (key) {
             TANGUY.load_program("synthstrings");
             break;
     };
-    console.log('YOU PRESSED ' + key.which);
 }).keydown(function (key) {
     if (TANGUY.key_down == false) {
         TANGUY.key_active = key.which;
