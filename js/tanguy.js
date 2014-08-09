@@ -1,15 +1,11 @@
-//VENDOR PREFIXING
-window.AudioContext = window.AudioContext || window.webkitAudioContext;
-
-//THE ONE GLOBAL VARIABLE
 var TANGUY = {
 
     voice1: new AudioContext(),
 
     //SENSIBLE DEFAULTS
     octave_shift: 0,
-    osc1_pitch: 440,
-    osc2_pitch: 443.1192,
+    osc1_master_pitch: 440,
+    osc2_master_pitch: 443.1192,
     key_down: false,
 
     program: {
@@ -113,10 +109,10 @@ var TANGUY = {
                     $('#osc1-4').parent().siblings().removeClass('selected');
                     break;
             };
-            TANGUY.osc1_saw.frequency.setValueAtTime(parseFloat(TANGUY.osc1_pitch * TANGUY.program.osc1.coarse), TANGUY.voice1.currentTime);
-            TANGUY.osc1_sqr.frequency.setValueAtTime(parseFloat(TANGUY.osc1_pitch * TANGUY.program.osc1.coarse), TANGUY.voice1.currentTime);
-            TANGUY.osc1_tri.frequency.setValueAtTime(parseFloat(TANGUY.osc1_pitch * TANGUY.program.osc1.coarse), TANGUY.voice1.currentTime);
-            TANGUY.osc1_sin.frequency.setValueAtTime(parseFloat(TANGUY.osc1_pitch * TANGUY.program.osc1.coarse), TANGUY.voice1.currentTime);
+            TANGUY.osc1_saw.frequency.setValueAtTime(parseFloat(TANGUY.osc1_master_pitch * TANGUY.program.osc1.coarse), TANGUY.voice1.currentTime);
+            TANGUY.osc1_sqr.frequency.setValueAtTime(parseFloat(TANGUY.osc1_master_pitch * TANGUY.program.osc1.coarse), TANGUY.voice1.currentTime);
+            TANGUY.osc1_tri.frequency.setValueAtTime(parseFloat(TANGUY.osc1_master_pitch * TANGUY.program.osc1.coarse), TANGUY.voice1.currentTime);
+            TANGUY.osc1_sin.frequency.setValueAtTime(parseFloat(TANGUY.osc1_master_pitch * TANGUY.program.osc1.coarse), TANGUY.voice1.currentTime);
 
             //OSCILLATOR 1 WAVEFORM MIXER
             $('#osc1-saw').val(TANGUY.program.osc1.saw_amt);
@@ -152,7 +148,7 @@ var TANGUY = {
                     $('#osc2-4').parent().siblings().removeClass('selected');
                     break;
             };
-            TANGUY.osc2.frequency.setValueAtTime(parseFloat(TANGUY.osc2_pitch * TANGUY.program.osc2.coarse), TANGUY.voice1.currentTime);
+            TANGUY.osc2.frequency.setValueAtTime(parseFloat((TANGUY.osc2_master_pitch * TANGUY.program.osc2.coarse) + TANGUY.program.osc2.fine), TANGUY.voice1.currentTime);
 
             //OSCILLATOR 2 WAVEFORM SELECTOR
             switch (TANGUY.program.osc2.waveform) {
@@ -180,8 +176,8 @@ var TANGUY = {
             $('#osc2-fine').val(TANGUY.program.osc2.fine);
             $('#osc2-waveshape').val(TANGUY.program.osc2.shape_amt);
             $('#osc2-fm').val(TANGUY.program.osc2.fm_amt);
-            TANGUY.osc2.detune.setValueAtTime(parseFloat(TANGUY.osc2_pitch + (TANGUY.program.osc2.detune)), TANGUY.voice1.currentTime);
-            TANGUY.osc2.frequency.setValueAtTime(((TANGUY.osc2_pitch * TANGUY.program.osc2.coarse) + TANGUY.program.osc2.fine), TANGUY.voice1.currentTime);
+            TANGUY.osc2.detune.setValueAtTime(parseFloat(TANGUY.osc2_master_pitch + (TANGUY.program.osc2.detune)), TANGUY.voice1.currentTime);
+            TANGUY.osc2.frequency.setValueAtTime(((TANGUY.osc2_master_pitch * TANGUY.program.osc2.coarse) + TANGUY.program.osc2.fine), TANGUY.voice1.currentTime);
             TANGUY.osc2.shape_amt ? TANGUY.waveshaper.curve = new Float32Array([parseFloat(this.value * 1.6), parseFloat(this.value * -2.5), parseFloat(this.value * -1.2), parseFloat(this.value * -2.4), parseFloat(this.value * -1.6), parseFloat(this.value * -3.2), parseFloat(this.value * 6.4), parseFloat(this.value * -3.2)]) : null;
             TANGUY.osc2_fm_vca.gain.setValueAtTime(((TANGUY.program.osc2.fm_amt * TANGUY.program.osc2.fm_amt) * 24000), TANGUY.voice1.currentTime);
 
@@ -238,9 +234,9 @@ var TANGUY = {
             $('#osc1-mix').val(TANGUY.program.mixer.osc1);
             $('#osc2-mix').val(TANGUY.program.mixer.osc2);
             $('#noise-mix').val(TANGUY.program.mixer.noise);
-            TANGUY.osc1_vca.gain.setValueAtTime(parseFloat(TANGUY.program.mixer.osc1), TANGUY.voice1.currentTime);
-            TANGUY.osc2_vca.gain.setValueAtTime(parseFloat(TANGUY.program.mixer.osc2), TANGUY.voice1.currentTime);
-            TANGUY.noise_vca.gain.setValueAtTime(parseFloat(TANGUY.program.mixer.noise), TANGUY.voice1.currentTime);
+            TANGUY.osc1_vca.gain.value = TANGUY.program.mixer.osc1;
+            TANGUY.osc2_vca.gain.value = TANGUY.program.mixer.osc2;
+            TANGUY.noise_vca.gain.value = TANGUY.program.mixer.noise;
 
             //FILTER CONTROLS
             switch (TANGUY.program.filter.mode) {
@@ -773,10 +769,10 @@ TANGUY.osc1_saw.type = "sawtooth";
 TANGUY.osc1_sqr.type = "square";
 TANGUY.osc1_tri.type = "triangle";
 TANGUY.osc1_sin.type = "sine";
-TANGUY.osc1_saw.frequency.value = TANGUY.osc1_pitch || 440;
-TANGUY.osc1_sqr.frequency.value = TANGUY.osc1_pitch || 440;
-TANGUY.osc1_tri.frequency.value = TANGUY.osc1_pitch || 440;
-TANGUY.osc1_sin.frequency.value = TANGUY.osc1_pitch || 440;
+TANGUY.osc1_saw.frequency.value = TANGUY.osc1_master_pitch;
+TANGUY.osc1_sqr.frequency.value = TANGUY.osc1_master_pitch;
+TANGUY.osc1_tri.frequency.value = TANGUY.osc1_master_pitch;
+TANGUY.osc1_sin.frequency.value = TANGUY.osc1_master_pitch;
 TANGUY.osc1_saw.start(0);
 TANGUY.osc1_sqr.start(0);
 TANGUY.osc1_tri.start(0);
@@ -802,7 +798,7 @@ TANGUY.waveshaper.connect(TANGUY.osc2_vca);
 //OSC 2
 TANGUY.osc2 = TANGUY.voice1.createOscillator();
 TANGUY.osc2.type = TANGUY.program.osc2.waveform;
-TANGUY.osc2.frequency.value = parseFloat((TANGUY.osc2_pitch + TANGUY.program.osc2.fine) * TANGUY.program.osc2.coarse);
+TANGUY.osc2.frequency.value = parseFloat((TANGUY.osc2_master_pitch * TANGUY.program.osc2.coarse) + TANGUY.program.osc2.fine);
 TANGUY.osc2.start(0);
 TANGUY.osc2.connect(TANGUY.osc1_fm_vca);
 TANGUY.osc2.connect(TANGUY.waveshaper);
@@ -987,11 +983,12 @@ $('#osc2-kbd').change(function () {
 });
 $('#osc2-coarse input').change(function () {
     TANGUY.program.osc2.coarse = parseFloat(this.value);
-    TANGUY.osc2.frequency.setValueAtTime(440 * this.value, TANGUY.voice1.currentTime);
+    TANGUY.osc2.frequency.setValueAtTime(TANGUY.osc2_master_pitch * this.value, TANGUY.voice1.currentTime);
 });
 $('#osc2-detune').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.osc2.detune = parseFloat(this.value);
+        TANGUY.osc2_pitch ? TANGUY.osc2_pitch : TANGUY.osc2_pitch = TANGUY.osc2_master_pitch;
         TANGUY.osc2.detune.setValueAtTime(parseFloat(TANGUY.osc2_pitch + (TANGUY.program.osc2.detune)), TANGUY.voice1.currentTime);
     });
 }).mouseup(function () {
@@ -1000,7 +997,7 @@ $('#osc2-detune').mousedown(function () {
 $('#osc2-fine').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.osc2.fine = parseFloat(this.value);        
-        TANGUY.osc2.frequency.setValueAtTime(((440 * TANGUY.program.osc2.coarse) + TANGUY.program.osc2.fine), TANGUY.voice1.currentTime);
+        TANGUY.osc2.frequency.setValueAtTime(((TANGUY.osc2_master_pitch * TANGUY.program.osc2.coarse) + TANGUY.program.osc2.fine), TANGUY.voice1.currentTime);
     });
 }).mouseup(function () {
     $(this).unbind('mousemove');
@@ -1141,24 +1138,24 @@ $('#lfo-amp').mousedown(function () {
 //MIXER CONTROLS
 $('#osc1-mix').mousedown(function () {
     $(this).mousemove(function () {
-        TANGUY.osc1_vca.gain.value = parseFloat(this.value);
         TANGUY.program.mixer.osc1 = parseFloat(this.value);
+        TANGUY.osc1_vca.gain.value = TANGUY.program.mixer.osc1;
     });
 }).mouseup(function () {
     $(this).unbind('mousemove');
 });
 $('#osc2-mix').mousedown(function () {
     $(this).mousemove(function () {
-        TANGUY.osc2_vca.gain.value = parseFloat(this.value);
         TANGUY.program.mixer.osc2 = parseFloat(this.value);
+        TANGUY.osc2_vca.gain.value = TANGUY.program.mixer.osc2;
     });
 }).mouseup(function () {
     $(this).unbind('mousemove');
 });
 $('#noise-mix').mousedown(function () {
     $(this).mousemove(function () {
-        TANGUY.noise_vca.gain.value = parseFloat(this.value);
         TANGUY.program.mixer.noise = parseFloat(this.value);
+        TANGUY.noise_vca.gain.value = TANGUY.program.mixer.noise;
     });
 }).mouseup(function () {
     $(this).unbind('mousemove');
