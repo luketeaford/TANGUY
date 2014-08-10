@@ -233,6 +233,8 @@ var TANGUY = {
             TANGUY.noise_vca.gain.value = TANGUY.program.mixer.noise;
 
             //FILTER CONTROLS
+            $('#cutoff').val(TANGUY.program.filter.frequency);
+            $('#resonance').val(TANGUY.program.filter.resonance);
             switch (TANGUY.program.filter.mode) {
                 case "lp":
                     $('#filter-lp').parent().addClass('selected');
@@ -293,7 +295,7 @@ var TANGUY = {
                 case "off":
                     $('#filter-off').parent().addClass('selected');
                     $('#filter-off').parent().siblings().removeClass('selected');
-                    TANGUY.mixer.disconnect();        
+                    TANGUY.mixer.disconnect();
                     TANGUY.mixer.connect(TANGUY.vca);
                     TANGUY.lfo_filter_vca.disconnect();
                     break;
@@ -1337,6 +1339,12 @@ $('.horizontal-multi-switch label input, .vertical-multi-switch label input').cl
     TANGUY.multi_switch(this);  
 });
 
+//LOAD PROGRAMS FROM SELECT BOX
+$('#program-selector').change(function () {
+    TANGUY.load_program(this.value);
+    $(this).blur();
+});
+
 //TARGET KEYBOARD CLICKS
 $('#keyboard button').mousedown(TANGUY.gate_on).mouseup(TANGUY.gate_off);
 
@@ -1350,36 +1358,6 @@ $(document).keypress(function (key) {
             break;
         case 42:
             TANGUY.save_program();
-            break;
-        case 122:
-            TANGUY.load_program("initialize");
-            break;
-        case 120:
-            TANGUY.load_program("softsine");
-            break;
-        case 99:
-            TANGUY.load_program("squarewavebass");
-            break;
-        case 118:
-            TANGUY.load_program("slapbass");
-            break;
-        case 98:
-            TANGUY.load_program("chhchhchhchh");
-            break;
-        case 110:
-            TANGUY.load_program("brassy");
-            break;
-        case 109:
-            TANGUY.load_program("coolwire");
-            break;
-        case 44:
-            TANGUY.load_program("synthking");
-            break;
-        case 46:
-            TANGUY.load_program("bacongrease");
-            break;
-        case 47:
-            TANGUY.load_program("synthstrings");
             break;
     };
 }).keydown(function (key) {
