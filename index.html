@@ -28,6 +28,10 @@
         <option value="coolwire">Cool Wire</option>
         <option value="synthking">Synth King</option>
         <option value="chhchhchhchh">ChhChhChhChh</option>
+        <option value="halfway">Half Way</option>
+        <option value="halfwayresonance">Half Way Resonance</option>
+        <option value="evenvca">Even VCA</option>
+        <option value="fmtest">FM Test</option>
         <option value="bacongrease">Bacon Grease</option>
       </select>
     </section>
@@ -49,23 +53,23 @@
     </div>
     <br>
     <div class="slider-wrapper">
-      <input class="vertical-slider" id="osc1-saw" max="1" min="0" step="0.0001" type="range" value="1">
+      <input class="vertical-slider" id="osc1-saw" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
       <label class="slider-label" for="osc1-saw">Saw</label>
     </div>
     <div class="slider-wrapper">
-      <input class="vertical-slider" id="osc1-sqr" max="1" min="0" step="0.0001" type="range" value="0">
+      <input class="vertical-slider" id="osc1-sqr" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
       <label class="slider-label" for="osc1-sqr">Square</label>
     </div>
     <div class="slider-wrapper">
-      <input class="vertical-slider" id="osc1-tri" max="1" min="0" step="0.0001" type="range" value="0">
+      <input class="vertical-slider" id="osc1-tri" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
       <label class="slider-label" for="osc1-tri">Triangle</label>
     </div>
     <div class="slider-wrapper">
-      <input class="vertical-slider" id="osc1-sin" max="1" min="0" step="0.0001" type="range" value="0">
+      <input class="vertical-slider" id="osc1-sin" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
       <label class="slider-label" for="osc1-sin">Sine</label>
     </div>
     <div class="slider-wrapper">
-      <input class="vertical-slider" id="osc1-fm" max="1" min="0" step="0.0001" type="range" value="0">
+      <input class="vertical-slider" id="osc1-fm" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
       <label class="slider-label" for="osc1-fm"><abbr title="Oscillator 1 Frequency Modulation Amount">FM Amt.</abbr></label>
     </div>
   </section>
@@ -91,19 +95,19 @@
       <label><input id="osc2-sin" name="osc2-wave" type="radio" value="sine">Sine</label>
     </div>
     <div class="slider-wrapper">
-      <input class="vertical-slider" id="osc2-detune" max="1200" min="-1200" step="100" type="range" value="0">
+      <input class="vertical-slider" id="osc2-detune" max="1200" min="-1200" orient="vertical" step="100" type="range" value="0">
       <label class="slider-label" for="osc2-detune">Detune</label>
     </div>
     <div class="slider-wrapper">
-      <input class="vertical-slider" id="osc2-fine" max="100" min="-100" step="0.0001" type="range" value="0">
+      <input class="vertical-slider" id="osc2-fine" max="100" min="-100" orient="vertical" step="0.0001" type="range" value="0">
       <label class="slider-label" for="osc2-fine">Fine</label>
     </div>
     <div class="slider-wrapper">
-      <input class="vertical-slider" id="osc2-waveshape" max="1" min="0" step="0.0001" type="range" value="0">
+      <input class="vertical-slider" id="osc2-waveshape" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
       <label class="slider-label" for="osc2-waveshape">Shaping</label>
     </div>
     <div class="slider-wrapper">
-      <input class="vertical-slider" id="osc2-fm" max="1" min="0" step="0.0001" type="range" value="0">
+      <input class="vertical-slider" id="osc2-fm" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
       <label class="slider-label" for="osc2-fm"><abbr title="Oscillator 2 Frequency Modulation Amount">FM Amt.</abbr></label>
     </div>
   </section>
@@ -122,15 +126,15 @@
   <section id="mixer">
     <h2>Mixer</h2>
     <div class="slider-wrapper">
-      <input class="vertical-slider" id="osc1-mix" max="1" min="0" step="0.0001" type="range" value="1">
+      <input class="vertical-slider" id="osc1-mix" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
       <label class="slider-label" for="osc1-mix"><abbr title="Oscillator One">Osc. 1</abbr></label>
     </div>
     <div class="slider-wrapper">
-      <input class="vertical-slider" id="osc2-mix" max="1" min="0" step="0.0001" type="range" value="1">
+      <input class="vertical-slider" id="osc2-mix" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
       <label class="slider-label" for="osc2-mix"><abbr title="Oscillator Two">Osc. 2</abbr></label>
     </div>
     <div class="slider-wrapper">
-      <input class="vertical-slider" id="noise-mix" max="1" min="0" step="0.0001" type="range" value="0">
+      <input class="vertical-slider" id="noise-mix" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
       <label class="slider-label" for="noise-mix">Noise</label>
     </div>
   </section>
@@ -145,19 +149,19 @@
       <label><input id="filter-off" name="filter-type" type="radio" value="off">Off</label>
     </div>
     <div class="slider-wrapper">
-      <input class="vertical-slider" id="cutoff" max="1" min="0" step="0.0001" type="range" value="1">
+      <input class="vertical-slider" id="cutoff" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
       <label class="slider-label" for="cutoff">Cutoff</label>
     </div>
     <div class="slider-wrapper">
-      <input class="vertical-slider" id="resonance" max="1" min="0.0001" step="0.0001" type="range" value="0.0001">
+      <input class="vertical-slider" id="resonance" max="1" min="0.0001" orient="vertical" step="0.0001" type="range" value="0.0001">
       <label class="slider-label" for="resonance"><abbr title="Resonance">Res.</abbr></label>
     </div>
     <div class="slider-wrapper">
-      <input class="vertical-slider" id="filter-envelope-amount" max="22040" min="-22040" step="0.0001" type="range" value="0">
+      <input class="vertical-slider" id="filter-envelope-amount" max="22040" min="-22040" orient="vertical" step="0.0001" type="range" value="0">
       <label class="slider-label" for="filter-envelope-amount"><abbr title="Envelope Amount">Env. Amt.</abbr></label>
     </div>
     <div class="slider-wrapper">
-      <input class="vertical-slider" id="filter-keyboard-tracking" max="1" min="0" step="0.0001" type="range" value="0">
+      <input class="vertical-slider" id="filter-keyboard-tracking" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
       <label class="slider-label" for="filter-keyboard-tracking"><abbr title="Keyboard Tracking">Kbd.</abbr></label>
     </div>
   </section>
@@ -165,19 +169,19 @@
   <section id="filter-eg">
     <h2>Filter Envelope Generator</h2>
     <div class="slider-wrapper">
-      <input class="vertical-slider" id="filter-attack" max="1" min="0.0008" step="0.0001" type="range" value="0.0008">
+      <input class="vertical-slider" id="filter-attack" max="1" min="0.0008" orient="vertical" step="0.0001" type="range" value="0.0008">
       <label class="slider-label" for="filter-attack">Attack</label>
     </div>
     <div class="slider-wrapper">
-      <input class="vertical-slider" id="filter-decay" max="1" min="0.0008" step="0.0001" type="range" value="0.0008">
+      <input class="vertical-slider" id="filter-decay" max="1" min="0.0008" orient="vertical" step="0.0001" type="range" value="0.0008">
       <label class="slider-label" for="filter-decay">Decay</label>
     </div>
     <div class="slider-wrapper">
-      <input class="vertical-slider" id="filter-sustain" max="1" min="0" step="0.0001" type="range" value="0">
+      <input class="vertical-slider" id="filter-sustain" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
       <label class="slider-label" for="filter-sustain">Sustain</label>
     </div>
     <div class="slider-wrapper">
-      <input class="vertical-slider" id="filter-release" max="1" min="0.0008" step="0.0001" type="range" value="0.0008">
+      <input class="vertical-slider" id="filter-release" max="1" min="0.0008" orient="vertical" step="0.0001" type="range" value="0.0008">
       <label class="slider-label" for="filter-release">Release</label>
     </div>
   </section>
@@ -185,23 +189,23 @@
   <section id="vca-eg">
     <h2><abbr title="Voltage Controlled Amplifier">VCA</abbr> Envelope Generator</h2>
     <div class="slider-wrapper">
-      <input class="vertical-slider" id="vca-attack" max="1" min="0.0008" step="0.0001" type="range" value="0.0008">
+      <input class="vertical-slider" id="vca-attack" max="1" min="0.0008" orient="vertical" step="0.0001" type="range" value="0.0008">
       <label class="slider-label" for="vca-attack">Attack</label>
     </div>
     <div class="slider-wrapper">
-      <input class="vertical-slider" id="vca-decay" max="1" min="0.0008" step="0.0001" type="range" value="0.0008">
+      <input class="vertical-slider" id="vca-decay" max="1" min="0.0008" orient="vertical" step="0.0001" type="range" value="0.0008">
       <label class="slider-label" for="vca-decay">Decay</label>
     </div>
     <div class="slider-wrapper">
-      <input class="vertical-slider" id="vca-sustain" max="1" min="0" step="0.0001" type="range" value="1">
+      <input class="vertical-slider" id="vca-sustain" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
       <label class="slider-label" for="vca-sustain">Sustain</label>
     </div>
     <div class="slider-wrapper">
-      <input class="vertical-slider" id="vca-release" max="1" min="0.0008" step="0.0001" type="range" value="0.0008">
+      <input class="vertical-slider" id="vca-release" max="1" min="0.0008" orient="vertical" step="0.0001" type="range" value="0.0008">
       <label class="slider-label" for="vca-release">Release</label>
     </div>
     <div class="slider-wrapper">
-      <input class="vertical-slider" id="vca-gain" max="1" min="0" step="0.0001" type="range" value="0">
+      <input class="vertical-slider" id="vca-gain" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
       <label class="slider-label" for="vca-gain"><abbr title="Voltage Controlled Amplifier Gain">VCA Gain</abbr></label>
     </div>
   </section>
@@ -216,19 +220,19 @@
       <label><input id="lfo-sqr" name="lfo-shape" type="radio" value="square">Square</label>
     </div>
     <div class="slider-wrapper">
-      <input class="vertical-slider" id="lfo-rate" max="1" min="0.0001" step="0.0001" type="range" value="0.0001">
+      <input class="vertical-slider" id="lfo-rate" max="1" min="0.0001" orient="vertical" step="0.0001" type="range" value="0.0001">
       <label class="slider-label" for="lfo-rate">Rate</label>
     </div>
     <div class="slider-wrapper">
-      <input class="vertical-slider" id="lfo-pitch" max="50" min="0" step="0.0001" type="range" value="0">
+      <input class="vertical-slider" id="lfo-pitch" max="50" min="0" orient="vertical" step="0.0001" type="range" value="0">
       <label class="slider-label" for="lfo-pitch"><abbr title="Pitch Amount">Pitch</abbr></label>
     </div>
     <div class="slider-wrapper">
-      <input class="vertical-slider" id="lfo-filter" max="10000" min="0" step="0.0001" type="range" value="0">
+      <input class="vertical-slider" id="lfo-filter" max="10000" min="0" orient="vertical" step="0.0001" type="range" value="0">
       <label class="slider-label" for="lfo-filter"><abbr title="Filter Amount">Filter</abbr></label>
     </div>
     <div class="slider-wrapper">
-      <input class="vertical-slider" id="lfo-amp" max="1" min="0" step="0.0001" type="range" value="0">
+      <input class="vertical-slider" id="lfo-amp" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
       <label class="slider-label" for="lfo-amp"><abbr title="Amplitude Amount">Amp.</abbr></label>
     </div>
   </section>
@@ -267,11 +271,11 @@
     <h2 class="title-only">Keyboard</h2>
     <div id="pitch-wheel">
       <label for="pitch-bend">Pitch</label>
-      <input id="pitch-bend" max="12" min="-12" step="0.0001" type="range" value="0">
+      <input id="pitch-bend" max="12" min="-12" orient="vertical" step="0.0001" type="range" value="0">
     </div>
     <div id="mod-wheel">
       <label for="mod-amount"><abbr title="Modulation">Mod.</abbr></label>
-      <input id="mod-amount" max="1" min="0" step="0.0001" type="range" value="0">
+      <input id="mod-amount" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
     </div>
     <button class="c" data-keyboard-position="-1" data-note-value="-900" id="c1"></button>
     <button class="c-sharp" data-keyboard-position="-1" data-note-value="-800" id="cs1"></button>

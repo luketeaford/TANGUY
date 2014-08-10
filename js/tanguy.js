@@ -72,7 +72,7 @@ var TANGUY = {
     },
 
     save_program: function () {
-        console.log('SAVE PROGRAM ' + JSON.stringify(TANGUY.program));
+        console.log('SAVE PROGRAM: ' + JSON.stringify(TANGUY.program));
     },
 
     load_program: function (patch) {
@@ -233,8 +233,8 @@ var TANGUY = {
             TANGUY.noise_vca.gain.value = TANGUY.program.mixer.noise;
 
             //FILTER CONTROLS
-            $('#cutoff').val(TANGUY.program.filter.frequency);
-            $('#resonance').val(TANGUY.program.filter.resonance);
+            $('#cutoff').val(Math.sqrt((TANGUY.program.filter.frequency - 20) / 22030));
+            $('#resonance').val(Math.sqrt(TANGUY.program.filter.resonance / 1000));
             switch (TANGUY.program.filter.mode) {
                 case "lp":
                     $('#filter-lp').parent().addClass('selected');
@@ -312,7 +312,7 @@ var TANGUY = {
             $('#vca-decay').val(TANGUY.program.vca.decay);
             $('#vca-sustain').val(TANGUY.program.vca.sustain);
             $('#vca-release').val(TANGUY.program.vca.release);
-            $('#vca-gain').val(TANGUY.program.vca.gain);
+            $('#vca-gain').val(Math.sqrt(TANGUY.program.vca.gain));
             TANGUY.vca.gain.setValueAtTime(TANGUY.program.vca.gain, TANGUY.voice1.currentTime);
 
             //LFO SHAPE
@@ -320,18 +320,20 @@ var TANGUY = {
                 case "sine":
                     $('#lfo-sin').parent().addClass('selected');
                     $('#lfo-sin').parent().siblings().removeClass('selected');
+                    TANGUY.program.mod.direction = 1;
                     TANGUY.lfo.type = "sine";
                     break;
                 case "triangle":
                     $('#lfo-tri').parent().addClass('selected');
                     $('#lfo-tri').parent().siblings().removeClass('selected');
+                    TANGUY.program.mod.direction = 1;
                     TANGUY.lfo.type = "triangle";
                     break;
                 case "ramp":
                     $('#lfo-rmp').parent().addClass('selected');
                     $('#lfo-rmp').parent().siblings().removeClass('selected');
-                    TANGUY.lfo.type = "sawtooth";
                     TANGUY.program.mod.direction = 1;
+                    TANGUY.lfo.type = "sawtooth";
                     TANGUY.lfo_pitch_vca.gain.value = parseFloat(TANGUY.program.lfo.pitch_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
                     TANGUY.lfo_filter_vca.gain.value = parseFloat(TANGUY.program.lfo.filter_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
                     TANGUY.lfo_amp_vca.gain.value = parseFloat(TANGUY.program.lfo.amp_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
@@ -339,8 +341,8 @@ var TANGUY = {
                 case "sawtooth":
                     $('#lfo-saw').parent().addClass('selected');
                     $('#lfo-saw').parent().siblings().removeClass('selected');
-                    TANGUY.lfo.type = "sawtooth";
                     TANGUY.program.mod.direction = -1;
+                    TANGUY.lfo.type = "sawtooth";
                     TANGUY.lfo_pitch_vca.gain.value = parseFloat(TANGUY.program.lfo.pitch_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
                     TANGUY.lfo_filter_vca.gain.value = parseFloat(TANGUY.program.lfo.filter_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
                     TANGUY.lfo_amp_vca.gain.value = parseFloat(TANGUY.program.lfo.amp_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
@@ -348,6 +350,7 @@ var TANGUY = {
                 case "square":
                     $('#lfo-sqr').parent().addClass('selected');
                     $('#lfo-sqr').parent().siblings().removeClass('selected');
+                    TANGUY.program.mod.direction = 1;
                     TANGUY.lfo.type = "square";
                     break;
             };
@@ -359,7 +362,7 @@ var TANGUY = {
             TANGUY.lfo_amp_vca.gain.value = parseFloat(TANGUY.program.lfo.amp_amt * TANGUY.program.mod.amt);
 
             //LFO RATE
-            $('#lfo-rate').val(TANGUY.program.lfo.rate);
+            $('#lfo-rate').val(Math.sqrt(TANGUY.program.lfo.rate / 100));
             TANGUY.lfo.frequency.value = TANGUY.program.lfo.rate;
 
             //LFO DESTINATIONS
@@ -1067,10 +1070,12 @@ $('#lfo-sin, #lfo-tri, #lfo-rmp, #lfo-saw, #lfo-sqr').change(function () {
     switch (this.value) {
         case "sine":
             TANGUY.program.lfo.shape = this.value;
+            TANGUY.program.mod.direction = 1;
             TANGUY.lfo.type = this.value;
             break;
         case "triangle":
             TANGUY.program.lfo.shape = this.value;
+            TANGUY.program.mod.direction = 1;
             TANGUY.lfo.type = this.value;
             break;
         case "ramp": 
@@ -1091,6 +1096,7 @@ $('#lfo-sin, #lfo-tri, #lfo-rmp, #lfo-saw, #lfo-sqr').change(function () {
             break;
         case "square":
             TANGUY.program.lfo.shape = this.value;
+            TANGUY.program.mod.direction = 1;
             TANGUY.lfo.type = this.value;
             break;
     };
