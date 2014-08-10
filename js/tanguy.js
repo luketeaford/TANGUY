@@ -72,6 +72,8 @@ var TANGUY = {
     },
 
     save_program: function () {
+        var patch_name = prompt('PATCH NAME');
+        TANGUY.program.name = patch_name;
         console.log('SAVE PROGRAM: ' + JSON.stringify(TANGUY.program));
     },
 
@@ -670,8 +672,8 @@ TANGUY.lp_filter1.type = "lowpass";
 TANGUY.lp_filter2.type = "lowpass";
 TANGUY.lp_filter1.frequency.value = TANGUY.program.filter.frequency;
 TANGUY.lp_filter2.frequency.value = TANGUY.program.filter.frequency;
-TANGUY.lp_filter1.Q.value = TANGUY.program.resonance / 82;
-TANGUY.lp_filter2.Q.value = TANGUY.program.resonance / 123;
+TANGUY.lp_filter1.Q.value = parseFloat(TANGUY.program.resonance / 82) || 0;
+TANGUY.lp_filter2.Q.value = parseFloat(TANGUY.program.resonance / 123) || 0;
 TANGUY.lp_filter1.connect(TANGUY.lp_filter2);
 TANGUY.lp_filter2.connect(TANGUY.vca);
 
@@ -1332,9 +1334,9 @@ $('#pitch-bend').mousedown(function () {
 $('#mod-amount').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.mod.amt = parseFloat(this.value);
-        TANGUY.lfo_pitch_vca.gain.value = parseFloat(TANGUY.program.lfo.pitch_amt * this.value);
-        TANGUY.lfo_filter_vca.gain.value = parseFloat(TANGUY.program.lfo.filter_amt * this.value);
-        TANGUY.lfo_amp_vca.gain.value = parseFloat(TANGUY.program.lfo.amp_amt * this.value);
+        TANGUY.lfo_pitch_vca.gain.value = parseFloat(TANGUY.program.lfo.pitch_amt * this.value * TANGUY.program.mod.direction);
+        TANGUY.lfo_filter_vca.gain.value = parseFloat(TANGUY.program.lfo.filter_amt * this.value * TANGUY.program.mod.direction);
+        TANGUY.lfo_amp_vca.gain.value = parseFloat(TANGUY.program.lfo.amp_amt * this.value * TANGUY.program.mod.direction);
     });
 }).mouseup(function () {
     $(this).unbind('mousemove');
@@ -1359,10 +1361,11 @@ $(document).keypress(function (key) {
         case 45:
             TANGUY.shift_octave(-1);
             break;
+        case 43:
         case 61:
             TANGUY.shift_octave(1);
             break;
-        case 42:
+        case 42:            
             TANGUY.save_program();
             break;
     };
