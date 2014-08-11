@@ -11,325 +11,354 @@
 <body>
 
   <header>
-    <h1>Tanguy</h1>
-    <h2 class="author">Web Audio Synthesizer by <a href="http://luketeaford.com/" title="Luke Teaford, creator of the TANGUY Web Audio Synthesizer">Luke Teaford</a></h2>
+    <div class="wrapper">
+      <h1>Tanguy</h1>
+      <h2 class="author">Web Audio Synthesizer by <a href="http://luketeaford.com/" title="Luke Teaford, creator of the TANGUY Web Audio Synthesizer">Luke Teaford</a></h2>
 
-    <section id="program">
-      <h2 class="title-only">Program</h2>
-      <label for="program-selector">Program</label>
-      <select id="program-selector">
-        <option value="initialize">INITIALIZE</option>
-        <option value="squarewavebass">Square Wave Bass</option>
-        <option value="gogohorn">Go-Go Horn</option>
-        <option value="coolwire">Cool Wire</option>
-        <option value="formermarine">Former Marine</option>
-        <option value="architecture">Architecture</option>
-        <option value="galacticyawn">Galactic Yawn</option>
-        <option value="jetlag">Jet Lag</option>
-        <option value="ragamuffin">Ragamuffin</option>
-        <option value="abominablebassman">Abominable Bassman</option>
-        <option value="sciencefictionbrains">Science Fiction Brains</option>
-        <option value="shanty">Shanty</option>
-        <option value="slapbass">Slap Bass</option>
-        <option value="hum">Hum</option>
-        <option value="snarlybass">Snarly Bass</option>
-        <option value="ozone">Ozone</option>
-        <option value="synthstrings">Synth Strings</option>
-        <option value="wahwah">Wah-Wah</option>
-        <option value="eveninggardening">Evening Gardening</option>
-        <option value="weedyrectangle">Weedy Rectangle</option>
-        <option value="wistfulpipes">Wistful Pipes</option>
-        <option value="synthking">Synth King</option>
-        <option value="roundkick">Round Kick</option>
-        <option value="cheapsnare">Cheap Snare</option>
-        <option value="chhchhchhchh">ChhChhChhChh</option>
-        <option value="thelastvoice">The Last Voice</option>
-        <option value="bacongrease">Bacon Grease</option>
-      </select>
-    </section>
-
+      <section id="program">
+        <h2 class="title-only">Program</h2>
+        <label for="program-selector">Program</label>
+        <select id="program-selector">
+          <option value="initialize">INITIALIZE</option>
+          <option value="squarewavebass">Square Wave Bass</option>
+          <option value="gogohorn">Go-Go Horn</option>
+          <option value="coolwire">Cool Wire</option>
+          <option value="formermarine">Former Marine</option>
+          <option value="architecture">Architecture</option>
+          <option value="galacticyawn">Galactic Yawn</option>
+          <option value="jetlag">Jet Lag</option>
+          <option value="ragamuffin">Ragamuffin</option>
+          <option value="abominablebassman">Abominable Bassman</option>
+          <option value="sciencefictionbrains">Science Fiction Brains</option>
+          <option value="shanty">Shanty</option>
+          <option value="slapbass">Slap Bass</option>
+          <option value="hum">Hum</option>
+          <option value="snarlybass">Snarly Bass</option>
+          <option value="ozone">Ozone</option>
+          <option value="synthstrings">Synth Strings</option>
+          <option value="wahwah">Wah-Wah</option>
+          <option value="eveninggardening">Evening Gardening</option>
+          <option value="weedyrectangle">Weedy Rectangle</option>
+          <option value="wistfulpipes">Wistful Pipes</option>
+          <option value="synthking">Synth King</option>
+          <option value="roundkick">Round Kick</option>
+          <option value="cheapsnare">Cheap Snare</option>
+          <option value="chhchhchhchh">ChhChhChhChh</option>
+          <option value="thelastvoice">The Last Voice</option>
+          <option value="bacongrease">Bacon Grease</option>
+        </select>
+      </section>
+    </div>
   </header>
 
-  <section id="osc1">
-    <h2 class="osc-title">Oscillator One</h2>
-    <div class="osc-tracking">
-      <label for="osc1-kbd">Track Keyboard</label>
-      <input checked id="osc1-kbd" type="checkbox" value="1">
-    </div>
-    <br>
-    <div class="horizontal-multi-switch" id="osc1-coarse">
-      <label><input id="osc1-32" name="osc1-coarse-tune" type="radio" value="0.5">32'</label>
-      <label class="selected"><input id="osc1-16" name="osc1-coarse-tune" type="radio" value="1">16'</label>
-      <label><input id="osc1-8" name="osc1-coarse-tune" type="radio" value="2">8'</label>
-      <label><input id="osc1-4" name="osc1-coarse-tune" type="radio" value="4">4'</label>
-    </div>
-    <br>
-    <div class="slider-wrapper">
-      <input class="vertical-slider" id="osc1-saw" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
-      <label class="slider-label" for="osc1-saw">Saw</label>
-    </div>
-    <div class="slider-wrapper">
-      <input class="vertical-slider" id="osc1-sqr" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-      <label class="slider-label" for="osc1-sqr">Square</label>
-    </div>
-    <div class="slider-wrapper">
-      <input class="vertical-slider" id="osc1-tri" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-      <label class="slider-label" for="osc1-tri">Triangle</label>
-    </div>
-    <div class="slider-wrapper">
-      <input class="vertical-slider" id="osc1-sin" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-      <label class="slider-label" for="osc1-sin">Sine</label>
-    </div>
-    <div class="slider-wrapper">
-      <input class="vertical-slider" id="osc1-fm" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-      <label class="slider-label" for="osc1-fm"><abbr title="Oscillator 1 Frequency Modulation Amount">FM Amt.</abbr></label>
-    </div>
-  </section>
+  <div class="wrapper">
 
-  <section id="osc2">
-    <h2 class="osc-title">Oscillator Two</h2>
-    <div class="osc-tracking">
-      <label for="osc2-kbd">Track Keyboard</label>
-      <input checked id="osc2-kbd" type="checkbox" value="1">
-    </div>
-    <br>
-    <div class="horizontal-multi-switch" id="osc2-coarse">
-      <label><input id="osc2-32" name="osc2-coarse-tune" type="radio" value="0.5">32'</label>
-      <label class="selected"><input id="osc2-16" name="osc2-coarse-tune" type="radio" value="1">16'</label>
-      <label><input id="osc2-8" name="osc2-coarse-tune" type="radio" value="2">8'</label>
-      <label><input id="osc2-4" name="osc2-coarse-tune" type="radio" value="4">4'</label>
-    </div>
-    <br>
-    <div class="vertical-multi-switch" id="osc2-waveform">
-      <label class="selected"><input id="osc2-saw" name="osc2-wave" type="radio" value="sawtooth">Saw</label>
-      <label><input id="osc2-sqr" name="osc2-wave" type="radio" value="square">Square</label>
-      <label><input id="osc2-tri" name="osc2-wave" type="radio" value="triangle"><abbr title="Triangle">Tri.</abbr></label>
-      <label><input id="osc2-sin" name="osc2-wave" type="radio" value="sine">Sine</label>
-    </div>
-    <div class="slider-wrapper">
-      <input class="vertical-slider" id="osc2-detune" max="1200" min="-1200" orient="vertical" step="100" type="range" value="0">
-      <label class="slider-label" for="osc2-detune">Detune</label>
-    </div>
-    <div class="slider-wrapper">
-      <input class="vertical-slider" id="osc2-fine" max="100" min="-100" orient="vertical" step="0.0001" type="range" value="0">
-      <label class="slider-label" for="osc2-fine">Fine</label>
-    </div>
-    <div class="slider-wrapper">
-      <input class="vertical-slider" id="osc2-waveshape" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-      <label class="slider-label" for="osc2-waveshape">Shaping</label>
-    </div>
-    <div class="slider-wrapper">
-      <input class="vertical-slider" id="osc2-fm" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-      <label class="slider-label" for="osc2-fm"><abbr title="Oscillator 2 Frequency Modulation Amount">FM Amt.</abbr></label>
-    </div>
-  </section>
-
-  <section id="noise">
-    <h2>Noise</h2>
-    <div class="vertical-multi-switch" id="noise-color">
-      <label class="selected"><input id="white-noise" name="noise-color" type="radio" value="white">White</label>
-      <label><input id="pink-noise" name="noise-color" type="radio" value="pink">Pink</label>
-      <label><input id="red-noise" name="noise-color" type="radio" value="red">Red</label>
-      <label><input id="blue-noise" name="noise-color" type="radio" value="blue">Blue</label>
-      <label><input id="purple-noise" name="noise-color" type="radio" value="purple">Purple</label>
-    </div>
-  </section>
-
-  <section id="mixer">
-    <h2>Mixer</h2>
-    <div class="slider-wrapper">
-      <input class="vertical-slider" id="osc1-mix" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
-      <label class="slider-label" for="osc1-mix"><abbr title="Oscillator One">Osc. 1</abbr></label>
-    </div>
-    <div class="slider-wrapper">
-      <input class="vertical-slider" id="osc2-mix" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
-      <label class="slider-label" for="osc2-mix"><abbr title="Oscillator Two">Osc. 2</abbr></label>
-    </div>
-    <div class="slider-wrapper">
-      <input class="vertical-slider" id="noise-mix" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-      <label class="slider-label" for="noise-mix">Noise</label>
-    </div>
-  </section>
-
-  <section id="filter">
-    <h2>Filter</h2>
-    <div class="vertical-multi-switch" id="filter-mode">
-      <label class="selected"><input id="filter-lp" name="filter-type" type="radio" value="lp"><abbr title="Low Pass">LP</abbr></label>
-      <label><input id="filter-bp" name="filter-type" type="radio" value="bp"><abbr title="Band Pass">BP</abbr></label>
-      <label><input id="filter-hp" name="filter-type" type="radio" value="hp"><abbr title="High Pass">HP</abbr></label>
-      <label><input id="filter-notch" name="filter-type" type="radio" value="notch">Notch</label>
-      <label><input id="filter-off" name="filter-type" type="radio" value="off">Off</label>
-    </div>
-    <div class="slider-wrapper">
-      <input class="vertical-slider" id="cutoff" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
-      <label class="slider-label" for="cutoff">Cutoff</label>
-    </div>
-    <div class="slider-wrapper">
-      <input class="vertical-slider" id="resonance" max="1" min="0.0001" orient="vertical" step="0.0001" type="range" value="0.0001">
-      <label class="slider-label" for="resonance"><abbr title="Resonance">Res.</abbr></label>
-    </div>
-    <div class="slider-wrapper">
-      <input class="vertical-slider" id="filter-envelope-amount" max="22030" min="-22030" orient="vertical" step="0.0001" type="range" value="0">
-      <label class="slider-label" for="filter-envelope-amount"><abbr title="Envelope Amount">Env. Amt.</abbr></label>
-    </div>
-    <div class="slider-wrapper">
-      <input class="vertical-slider" id="filter-keyboard-tracking" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-      <label class="slider-label" for="filter-keyboard-tracking"><abbr title="Keyboard Tracking">Kbd.</abbr></label>
-    </div>
-  </section>
-
-  <section id="filter-eg">
-    <h2>Filter Envelope Generator</h2>
-    <div class="slider-wrapper">
-      <input class="vertical-slider" id="filter-attack" max="1" min="0.0008" orient="vertical" step="0.0001" type="range" value="0.0008">
-      <label class="slider-label" for="filter-attack">Attack</label>
-    </div>
-    <div class="slider-wrapper">
-      <input class="vertical-slider" id="filter-decay" max="1" min="0.0008" orient="vertical" step="0.0001" type="range" value="0.0008">
-      <label class="slider-label" for="filter-decay">Decay</label>
-    </div>
-    <div class="slider-wrapper">
-      <input class="vertical-slider" id="filter-sustain" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-      <label class="slider-label" for="filter-sustain">Sustain</label>
-    </div>
-    <div class="slider-wrapper">
-      <input class="vertical-slider" id="filter-release" max="1" min="0.0008" orient="vertical" step="0.0001" type="range" value="0.0008">
-      <label class="slider-label" for="filter-release">Release</label>
-    </div>
-  </section>
-
-  <section id="vca-eg">
-    <h2><abbr title="Voltage Controlled Amplifier">VCA</abbr> Envelope Generator</h2>
-    <div class="slider-wrapper">
-      <input class="vertical-slider" id="vca-attack" max="1" min="0.0008" orient="vertical" step="0.0001" type="range" value="0.0008">
-      <label class="slider-label" for="vca-attack">Attack</label>
-    </div>
-    <div class="slider-wrapper">
-      <input class="vertical-slider" id="vca-decay" max="1" min="0.0008" orient="vertical" step="0.0001" type="range" value="0.0008">
-      <label class="slider-label" for="vca-decay">Decay</label>
-    </div>
-    <div class="slider-wrapper">
-      <input class="vertical-slider" id="vca-sustain" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
-      <label class="slider-label" for="vca-sustain">Sustain</label>
-    </div>
-    <div class="slider-wrapper">
-      <input class="vertical-slider" id="vca-release" max="1" min="0.0008" orient="vertical" step="0.0001" type="range" value="0.0008">
-      <label class="slider-label" for="vca-release">Release</label>
-    </div>
-    <div class="slider-wrapper">
-      <input class="vertical-slider" id="vca-gain" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-      <label class="slider-label" for="vca-gain"><abbr title="Voltage Controlled Amplifier Gain">VCA Gain</abbr></label>
-    </div>
-  </section>
-
-  <section id="lfo">
-    <h2><abbr title="Low Frequency Oscillator">LFO</abbr></h2>
-    <div class="vertical-multi-switch">
-      <label class="selected"><input id="lfo-sin" name="lfo-shape" type="radio" value="sine">Sine</label>
-      <label><input id="lfo-tri" name="lfo-shape" type="radio" value="triangle"><abbr title="Triangle">Tri.</abbr></label>
-      <label><input id="lfo-rmp" name="lfo-shape" type="radio" value="ramp">Ramp</label>
-      <label><input id="lfo-saw" name="lfo-shape" type="radio" value="sawtooth">Saw</label>
-      <label><input id="lfo-sqr" name="lfo-shape" type="radio" value="square">Square</label>
-    </div>
-    <div class="slider-wrapper">
-      <input class="vertical-slider" id="lfo-rate" max="1" min="0.0001" orient="vertical" step="0.0001" type="range" value="0.0001">
-      <label class="slider-label" for="lfo-rate">Rate</label>
-    </div>
-    <div class="slider-wrapper">
-      <input class="vertical-slider" id="lfo-pitch" max="50" min="0" orient="vertical" step="0.0001" type="range" value="0">
-      <label class="slider-label" for="lfo-pitch"><abbr title="Pitch Amount">Pitch</abbr></label>
-    </div>
-    <div class="slider-wrapper">
-      <input class="vertical-slider" id="lfo-filter" max="10000" min="0" orient="vertical" step="0.0001" type="range" value="0">
-      <label class="slider-label" for="lfo-filter"><abbr title="Filter Amount">Filter</abbr></label>
-    </div>
-    <div class="slider-wrapper">
-      <input class="vertical-slider" id="lfo-amp" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-      <label class="slider-label" for="lfo-amp"><abbr title="Amplitude Amount">Amp.</abbr></label>
-    </div>
-  </section>
-
-  <br>
-
-  <section id="keyboard-controls">
-    <h2>Octave Shift</h2>
-    <div class="octave-shift">
-      <div class="octave-lights">
-        <span class="octave-minus-2">-2</span>
-        <span class="octave-minus-1">-1</span>
-        <span class="octave-plus-0 lit">0</span>
-        <span class="octave-plus-1">+1</span>
-        <span class="octave-plus-2">+2</span>
+    <section id="osc1">
+      <h2 class="osc-title">Oscillator One</h2>
+      <div class="osc-tracking">
+        <label for="osc1-kbd">Track Keyboard</label>
+        <input checked id="osc1-kbd" type="checkbox" value="1">
       </div>
-      <button class="octave-shift-down">-1</button>
-      <button class="octave-shift-up">+1</button>
-    </div>
-  </section>
+      <br>
+      <div class="horizontal-multi-switch" id="osc1-coarse">
+        <label><input id="osc1-32" name="osc1-coarse-tune" type="radio" value="0.5">32'</label>
+        <label class="selected"><input id="osc1-16" name="osc1-coarse-tune" type="radio" value="1">16'</label>
+        <label><input id="osc1-8" name="osc1-coarse-tune" type="radio" value="2">8'</label>
+        <label><input id="osc1-4" name="osc1-coarse-tune" type="radio" value="4">4'</label>
+      </div>
+      <br>
+      <div class="slider-wrapper">
+        <input class="vertical-slider" id="osc1-saw" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
+        <label class="slider-label" for="osc1-saw">Saw</label>
+      </div>
+      <div class="slider-wrapper">
+        <input class="vertical-slider" id="osc1-sqr" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        <label class="slider-label" for="osc1-sqr">Square</label>
+      </div>
+      <div class="slider-wrapper">
+        <input class="vertical-slider" id="osc1-tri" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        <label class="slider-label" for="osc1-tri">Triangle</label>
+      </div>
+      <div class="slider-wrapper">
+        <input class="vertical-slider" id="osc1-sin" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        <label class="slider-label" for="osc1-sin">Sine</label>
+      </div>
+      <div class="slider-wrapper">
+        <input class="vertical-slider" id="osc1-fm" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        <label class="slider-label" for="osc1-fm"><abbr title="Oscillator 1 Frequency Modulation Amount">FM Amt.</abbr></label>
+      </div>
+    </section>
 
-  <section id="portamento">
-    <h2>Portamento</h2>
-    <div class="horizontal-slider-wrapper">
-      <label for="portamento-amount">Amount</label>
-      <input class="horizontal-slider" id="portamento-amount" max="1" min="0.01" step="0.01" type="range" value="0.01">
-    </div>
-    <div class="horizontal-multi-switch" id="portamento-mode">
-      <label class="selected"><input id="portamento-off" name="portamento" type="radio" value="off">Off</label>
-      <label><input id="portamento-linear" name="portamento" type="radio" value="linear"><abbr title="Linear">Lin.</abbr></label>
-      <label><input id="portamento-exponential" name="portamento" type="radio" value="exponential"><abbr title="Exponential">Exp.</abbr></label>
-    </div>
-  </section>
+    <section id="osc2">
+      <h2 class="osc-title">Oscillator Two</h2>
+      <div class="osc-tracking">
+        <label for="osc2-kbd">Track Keyboard</label>
+        <input checked id="osc2-kbd" type="checkbox" value="1">
+      </div>
+      <br>
+      <div class="horizontal-multi-switch" id="osc2-coarse">
+        <label><input id="osc2-32" name="osc2-coarse-tune" type="radio" value="0.5">32'</label>
+        <label class="selected"><input id="osc2-16" name="osc2-coarse-tune" type="radio" value="1">16'</label>
+        <label><input id="osc2-8" name="osc2-coarse-tune" type="radio" value="2">8'</label>
+        <label><input id="osc2-4" name="osc2-coarse-tune" type="radio" value="4">4'</label>
+      </div>
+      <br>
+      <div class="vertical-multi-switch" id="osc2-waveform">
+        <label class="selected"><input id="osc2-saw" name="osc2-wave" type="radio" value="sawtooth">Saw</label>
+        <label><input id="osc2-sqr" name="osc2-wave" type="radio" value="square">Square</label>
+        <label><input id="osc2-tri" name="osc2-wave" type="radio" value="triangle"><abbr title="Triangle">Tri.</abbr></label>
+        <label><input id="osc2-sin" name="osc2-wave" type="radio" value="sine">Sine</label>
+      </div>
+      <div class="slider-wrapper">
+        <input class="vertical-slider" id="osc2-detune" max="1200" min="-1200" orient="vertical" step="100" type="range" value="0">
+        <label class="slider-label" for="osc2-detune">Detune</label>
+      </div>
+      <div class="slider-wrapper">
+        <input class="vertical-slider" id="osc2-fine" max="100" min="-100" orient="vertical" step="0.0001" type="range" value="0">
+        <label class="slider-label" for="osc2-fine">Fine</label>
+      </div>
+      <div class="slider-wrapper">
+        <input class="vertical-slider" id="osc2-waveshape" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        <label class="slider-label" for="osc2-waveshape">Shaping</label>
+      </div>
+      <div class="slider-wrapper">
+        <input class="vertical-slider" id="osc2-fm" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        <label class="slider-label" for="osc2-fm"><abbr title="Oscillator 2 Frequency Modulation Amount">FM Amt.</abbr></label>
+      </div>
+    </section>
 
-  <section id="keyboard">
-    <h2 class="title-only">Keyboard</h2>
-    <div id="pitch-wheel">
-      <label for="pitch-bend">Pitch</label>
-      <input id="pitch-bend" max="12" min="-12" orient="vertical" step="0.0001" type="range" value="0">
-    </div>
-    <div id="mod-wheel">
-      <label for="mod-amount"><abbr title="Modulation">Mod.</abbr></label>
-      <input id="mod-amount" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-    </div>
-    <button class="c" data-keyboard-position="-1" data-note-value="-900" id="c1"></button>
-    <button class="c-sharp" data-keyboard-position="-1" data-note-value="-800" id="cs1"></button>
-    <button class="d" data-keyboard-position="-1" data-note-value="-700" id="d1"></button>
-    <button class="d-sharp" data-keyboard-position="-1" data-note-value="-600" id="ds1"></button>
-    <button class="e" data-keyboard-position="-1" data-note-value="-500" id="e1"></button>
-    <button class="f" data-keyboard-position="-1" data-note-value="-400" id="f1"></button>
-    <button class="f-sharp" data-keyboard-position="-1" data-note-value="-300" id="fs1"></button>
-    <button class="g" data-keyboard-position="-1" data-note-value="-200" id="g1"></button>
-    <button class="g-sharp" data-keyboard-position="-1" data-note-value="-100" id="gs1"></button>
-    <button class="a" data-keyboard-position="-1" data-note-value="0" id="a1"></button>
-    <button class="a-sharp" data-keyboard-position="-1" data-note-value="100" id="as1"></button>
-    <button class="b" data-keyboard-position="-1" data-note-value="200" id="b1"></button>
-    <button class="c" data-keyboard-position="0" data-note-value="-900" id="c2"></button>
-    <button class="c-sharp" data-keyboard-position="0" data-note-value="-800" id="cs2"></button>
-    <button class="d" data-keyboard-position="0" data-note-value="-700" id="d2"></button>
-    <button class="d-sharp" data-keyboard-position="0" data-note-value="-600" id="ds2"></button>
-    <button class="e" data-keyboard-position="0" data-note-value="-500" id="e2"></button>
-    <button class="f" data-keyboard-position="0" data-note-value="-400" id="f2"></button>
-    <button class="f-sharp" data-keyboard-position="0" data-note-value="-300" id="fs2"></button>
-    <button class="g" data-keyboard-position="0" data-note-value="-200"></button>
-    <button class="g-sharp" data-keyboard-position="0" data-note-value="-100"></button>
-    <button class="a" data-keyboard-position="0" data-note-value="0"></button>
-    <button class="a-sharp" data-keyboard-position="0" data-note-value="100"></button>
-    <button class="b" data-keyboard-position="0" data-note-value="200"></button>
-    <button class="c" data-keyboard-position="1" data-note-value="-900"></button>
-    <button class="c-sharp" data-keyboard-position="1" data-note-value="-800"></button>
-    <button class="d" data-keyboard-position="1" data-note-value="-700"></button>
-    <button class="d-sharp" data-keyboard-position="1" data-note-value="-600"></button>
-    <button class="e" data-keyboard-position="1" data-note-value="-500"></button>
-    <button class="f" data-keyboard-position="1" data-note-value="-400"></button>
-    <button class="f-sharp" data-keyboard-position="1" data-note-value="-300"></button>
-    <button class="g" data-keyboard-position="1" data-note-value="-200"></button>
-    <button class="g-sharp" data-keyboard-position="1" data-note-value="-100"></button>
-    <button class="a" data-keyboard-position="1" data-note-value="0"></button>
-    <button class="a-sharp" data-keyboard-position="1" data-note-value="100"></button>
-    <button class="b" data-keyboard-position="1" data-note-value="200"></button>
-    <button class="c" data-keyboard-position="2" data-note-value="-900"></button>
-  </section>
+    <section id="noise">
+      <h2>Noise</h2>
+      <div class="vertical-multi-switch" id="noise-color">
+        <label class="selected"><input id="white-noise" name="noise-color" type="radio" value="white">White</label>
+        <label><input id="pink-noise" name="noise-color" type="radio" value="pink">Pink</label>
+        <label><input id="red-noise" name="noise-color" type="radio" value="red">Red</label>
+        <label><input id="blue-noise" name="noise-color" type="radio" value="blue">Blue</label>
+        <label><input id="purple-noise" name="noise-color" type="radio" value="purple">Purple</label>
+      </div>
+    </section>
 
-  <script src="js/jquery-1.11.1.min.js"></script>
+    <section id="mixer">
+      <h2>Mixer</h2>
+      <div class="slider-wrapper">
+        <input class="vertical-slider" id="osc1-mix" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
+        <label class="slider-label" for="osc1-mix"><abbr title="Oscillator One">Osc. 1</abbr></label>
+      </div>
+      <div class="slider-wrapper">
+        <input class="vertical-slider" id="osc2-mix" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
+        <label class="slider-label" for="osc2-mix"><abbr title="Oscillator Two">Osc. 2</abbr></label>
+      </div>
+      <div class="slider-wrapper">
+        <input class="vertical-slider" id="noise-mix" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        <label class="slider-label" for="noise-mix">Noise</label>
+      </div>
+    </section>
+
+    <br>
+
+    <section id="filter">
+      <h2>Filter</h2>
+      <div class="vertical-multi-switch" id="filter-mode">
+        <label class="selected"><input id="filter-lp" name="filter-type" type="radio" value="lp"><abbr title="Low Pass">LP</abbr></label>
+        <label><input id="filter-bp" name="filter-type" type="radio" value="bp"><abbr title="Band Pass">BP</abbr></label>
+        <label><input id="filter-hp" name="filter-type" type="radio" value="hp"><abbr title="High Pass">HP</abbr></label>
+        <label><input id="filter-notch" name="filter-type" type="radio" value="notch">Notch</label>
+        <label><input id="filter-off" name="filter-type" type="radio" value="off">Off</label>
+      </div>
+      <div class="slider-wrapper">
+        <input class="vertical-slider" id="cutoff" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
+        <label class="slider-label" for="cutoff">Cutoff</label>
+      </div>
+      <div class="slider-wrapper">
+        <input class="vertical-slider" id="resonance" max="1" min="0.0001" orient="vertical" step="0.0001" type="range" value="0.0001">
+        <label class="slider-label" for="resonance"><abbr title="Resonance">Res.</abbr></label>
+      </div>
+      <div class="slider-wrapper">
+        <input class="vertical-slider" id="filter-envelope-amount" max="22030" min="-22030" orient="vertical" step="0.0001" type="range" value="0">
+        <label class="slider-label" for="filter-envelope-amount"><abbr title="Envelope Amount">Env. Amt.</abbr></label>
+      </div>
+      <div class="slider-wrapper">
+        <input class="vertical-slider" id="filter-keyboard-tracking" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        <label class="slider-label" for="filter-keyboard-tracking"><abbr title="Keyboard Tracking">Kbd.</abbr></label>
+      </div>
+    </section>
+
+    <section id="filter-eg">
+      <h2>Filter Envelope Generator</h2>
+      <div class="slider-wrapper">
+        <input class="vertical-slider" id="filter-attack" max="1" min="0.0008" orient="vertical" step="0.0001" type="range" value="0.0008">
+        <label class="slider-label" for="filter-attack">Attack</label>
+      </div>
+      <div class="slider-wrapper">
+        <input class="vertical-slider" id="filter-decay" max="1" min="0.0008" orient="vertical" step="0.0001" type="range" value="0.0008">
+        <label class="slider-label" for="filter-decay">Decay</label>
+      </div>
+      <div class="slider-wrapper">
+        <input class="vertical-slider" id="filter-sustain" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        <label class="slider-label" for="filter-sustain">Sustain</label>
+      </div>
+      <div class="slider-wrapper">
+        <input class="vertical-slider" id="filter-release" max="1" min="0.0008" orient="vertical" step="0.0001" type="range" value="0.0008">
+        <label class="slider-label" for="filter-release">Release</label>
+      </div>
+    </section>
+
+    <section id="vca-eg">
+      <h2><abbr title="Voltage Controlled Amplifier">VCA</abbr> Envelope Generator</h2>
+      <div class="slider-wrapper">
+        <input class="vertical-slider" id="vca-attack" max="1" min="0.0008" orient="vertical" step="0.0001" type="range" value="0.0008">
+        <label class="slider-label" for="vca-attack">Attack</label>
+      </div>
+      <div class="slider-wrapper">
+        <input class="vertical-slider" id="vca-decay" max="1" min="0.0008" orient="vertical" step="0.0001" type="range" value="0.0008">
+        <label class="slider-label" for="vca-decay">Decay</label>
+      </div>
+      <div class="slider-wrapper">
+        <input class="vertical-slider" id="vca-sustain" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
+        <label class="slider-label" for="vca-sustain">Sustain</label>
+      </div>
+      <div class="slider-wrapper">
+        <input class="vertical-slider" id="vca-release" max="1" min="0.0008" orient="vertical" step="0.0001" type="range" value="0.0008">
+        <label class="slider-label" for="vca-release">Release</label>
+      </div>
+      <div class="slider-wrapper">
+        <input class="vertical-slider" id="vca-gain" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        <label class="slider-label" for="vca-gain"><abbr title="Voltage Controlled Amplifier Gain">VCA Gain</abbr></label>
+      </div>
+    </section>
+
+    <br>
+
+    <section id="lfo">
+      <h2><abbr title="Low Frequency Oscillator">LFO</abbr></h2>
+      <div class="vertical-multi-switch">
+        <label class="selected"><input id="lfo-sin" name="lfo-shape" type="radio" value="sine">Sine</label>
+        <label><input id="lfo-tri" name="lfo-shape" type="radio" value="triangle"><abbr title="Triangle">Tri.</abbr></label>
+        <label><input id="lfo-rmp" name="lfo-shape" type="radio" value="ramp">Ramp</label>
+        <label><input id="lfo-saw" name="lfo-shape" type="radio" value="sawtooth">Saw</label>
+        <label><input id="lfo-sqr" name="lfo-shape" type="radio" value="square">Square</label>
+      </div>
+      <div class="slider-wrapper">
+        <input class="vertical-slider" id="lfo-rate" max="1" min="0.0001" orient="vertical" step="0.0001" type="range" value="0.0001">
+        <label class="slider-label" for="lfo-rate">Rate</label>
+      </div>
+      <div class="slider-wrapper">
+        <input class="vertical-slider" id="lfo-pitch" max="50" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        <label class="slider-label" for="lfo-pitch"><abbr title="Pitch Amount">Pitch</abbr></label>
+      </div>
+      <div class="slider-wrapper">
+        <input class="vertical-slider" id="lfo-filter" max="10000" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        <label class="slider-label" for="lfo-filter"><abbr title="Filter Amount">Filter</abbr></label>
+      </div>
+      <div class="slider-wrapper">
+        <input class="vertical-slider" id="lfo-amp" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        <label class="slider-label" for="lfo-amp"><abbr title="Amplitude Amount">Amp.</abbr></label>
+      </div>
+    </section>
+
+    <br>
+
+    <section id="keyboard-controls">
+      <h2>Octave Shift</h2>
+      <div class="octave-shift">
+        <div class="octave-lights">
+          <span class="octave-minus-2">-2</span>
+          <span class="octave-minus-1">-1</span>
+          <span class="octave-plus-0 lit">0</span>
+          <span class="octave-plus-1">+1</span>
+          <span class="octave-plus-2">+2</span>
+        </div>
+        <button class="octave-shift-down">-1</button>
+        <button class="octave-shift-up">+1</button>
+      </div>
+    </section>
+
+    <section id="portamento">
+      <h2>Portamento</h2>
+      <div class="horizontal-slider-wrapper">
+        <label for="portamento-amount">Amount</label>
+        <input class="horizontal-slider" id="portamento-amount" max="1" min="0.01" step="0.01" type="range" value="0.01">
+      </div>
+      <div class="horizontal-multi-switch" id="portamento-mode">
+        <label class="selected"><input id="portamento-off" name="portamento" type="radio" value="off">Off</label>
+        <label><input id="portamento-linear" name="portamento" type="radio" value="linear"><abbr title="Linear">Lin.</abbr></label>
+        <label><input id="portamento-exponential" name="portamento" type="radio" value="exponential"><abbr title="Exponential">Exp.</abbr></label>
+      </div>
+    </section>
+
+    <section id="paypal">
+      <h3>I'm saving for an expensive synth</h3>
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="4R54MFFBURZGS">
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" class="donate">
+        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+      </form>
+      <span class="promo-text">Don't miss the art, comedy, and moral guidance on my website: <a href="http://luketeaford.com" title="Luke Teaford, artist and writer">Luke Teaford.com</a><br>
+      <span class="promo-text">Please enjoy <a href="http://luketeaford.com/blog" title="Luke Teaford's Choose Your Own Adventure Blog">Luke Teaford's Choose Your Own Adventure Blog</a></span>
+    </section>
+
+    <section id="keyboard">
+      <h2 class="title-only">Keyboard</h2>
+      <div id="pitch-wheel">
+        <label for="pitch-bend">Pitch</label>
+        <input id="pitch-bend" max="12" min="-12" orient="vertical" step="0.0001" type="range" value="0">
+      </div>
+      <div id="mod-wheel">
+        <label for="mod-amount"><abbr title="Modulation">Mod.</abbr></label>
+        <input id="mod-amount" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+      </div>
+      <button class="c" data-keyboard-position="-1" data-note-value="-900" id="c1"></button>
+      <button class="c-sharp" data-keyboard-position="-1" data-note-value="-800" id="cs1"></button>
+      <button class="d" data-keyboard-position="-1" data-note-value="-700" id="d1"></button>
+      <button class="d-sharp" data-keyboard-position="-1" data-note-value="-600" id="ds1"></button>
+      <button class="e" data-keyboard-position="-1" data-note-value="-500" id="e1"></button>
+      <button class="f" data-keyboard-position="-1" data-note-value="-400" id="f1"></button>
+      <button class="f-sharp" data-keyboard-position="-1" data-note-value="-300" id="fs1"></button>
+      <button class="g" data-keyboard-position="-1" data-note-value="-200" id="g1"></button>
+      <button class="g-sharp" data-keyboard-position="-1" data-note-value="-100" id="gs1"></button>
+      <button class="a" data-keyboard-position="-1" data-note-value="0" id="a1"></button>
+      <button class="a-sharp" data-keyboard-position="-1" data-note-value="100" id="as1"></button>
+      <button class="b" data-keyboard-position="-1" data-note-value="200" id="b1"></button>
+      <button class="c" data-keyboard-position="0" data-note-value="-900" id="c2"></button>
+      <button class="c-sharp" data-keyboard-position="0" data-note-value="-800" id="cs2"></button>
+      <button class="d" data-keyboard-position="0" data-note-value="-700" id="d2"></button>
+      <button class="d-sharp" data-keyboard-position="0" data-note-value="-600" id="ds2"></button>
+      <button class="e" data-keyboard-position="0" data-note-value="-500" id="e2"></button>
+      <button class="f" data-keyboard-position="0" data-note-value="-400" id="f2"></button>
+      <button class="f-sharp" data-keyboard-position="0" data-note-value="-300" id="fs2"></button>
+      <button class="g" data-keyboard-position="0" data-note-value="-200"></button>
+      <button class="g-sharp" data-keyboard-position="0" data-note-value="-100"></button>
+      <button class="a" data-keyboard-position="0" data-note-value="0"></button>
+      <button class="a-sharp" data-keyboard-position="0" data-note-value="100"></button>
+      <button class="b" data-keyboard-position="0" data-note-value="200"></button>
+      <button class="c" data-keyboard-position="1" data-note-value="-900"></button>
+      <button class="c-sharp" data-keyboard-position="1" data-note-value="-800"></button>
+      <button class="d" data-keyboard-position="1" data-note-value="-700"></button>
+      <button class="d-sharp" data-keyboard-position="1" data-note-value="-600"></button>
+      <button class="e" data-keyboard-position="1" data-note-value="-500"></button>
+      <button class="f" data-keyboard-position="1" data-note-value="-400"></button>
+      <button class="f-sharp" data-keyboard-position="1" data-note-value="-300"></button>
+      <button class="g" data-keyboard-position="1" data-note-value="-200"></button>
+      <button class="g-sharp" data-keyboard-position="1" data-note-value="-100"></button>
+      <button class="a" data-keyboard-position="1" data-note-value="0"></button>
+      <button class="a-sharp" data-keyboard-position="1" data-note-value="100"></button>
+      <button class="b" data-keyboard-position="1" data-note-value="200"></button>
+      <button class="c" data-keyboard-position="2" data-note-value="-900"></button>
+    </section>
+  </div>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="js/tanguy.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
+    ga('create', 'UA-8807199-10', 'auto');
+    ga('send', 'pageview');
+
+  </script>
 </body>
 </html>

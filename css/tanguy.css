@@ -13,10 +13,16 @@ html {
 body {
   background-image: url("../images/bg-spots.jpg"); }
 
+.wrapper {
+  margin: 0 auto;
+  max-width: 1200px; }
+
 header {
   background: tan;
   box-shadow: 0 -0.5rem 1rem .5rem #3e3c39;
   padding: .5rem 1rem; }
+  header .wrapper {
+    padding-left: 1rem; }
   header h1 {
     display: inline;
     font-family: "brandon-grotesque", sans-serif;
@@ -33,6 +39,11 @@ section {
     font-family: "brandon-grotesque", sans-serif;
     font-size: .8rem;
     font-style: italic;
+    text-transform: uppercase; }
+  section h3 {
+    color: #a3a394;
+    font-family: "brandon-grotesque", sans-serif;
+    font-size: .7rem;
     text-transform: uppercase; }
 
 label {
@@ -71,8 +82,13 @@ a:active {
 :focus {
   outline: none; }
 
-.dumb {
-  background: linear-gradient(#ff6600, white); }
+.promo-text {
+  color: #a3a394;
+  display: inline;
+  font-size: 0.7rem; }
+
+.donate {
+  margin: 0.5rem 0; }
 
 .horizontal-multi-switch, .vertical-multi-switch {
   background: #9e9c99 linear-gradient(#6c6956, #888877);
@@ -356,7 +372,8 @@ a:active {
 #mixer,
 #filter,
 #filter-eg,
-#vca-eg {
+#vca-eg,
+#paypal {
   display: inline-block;
   margin: 1rem 0 1rem 1rem;
   vertical-align: top; }
