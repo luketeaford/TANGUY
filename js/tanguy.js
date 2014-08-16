@@ -431,10 +431,21 @@ var TANGUY = {
         $(gizmo).parent().siblings().removeClass('selected');
     },
 
-    calculate_lfo: function () {
-        TANGUY.lfo_pitch_vca.gain.value = parseFloat(TANGUY.program.lfo.pitch_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
-        TANGUY.lfo_filter_vca.gain.value = parseFloat(TANGUY.program.lfo.filter_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
-        TANGUY.lfo_amp_vca.gain.value = parseFloat(TANGUY.program.lfo.amp_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
+    calculate_lfo: function (pitch, filter, amp) {
+        for (var i = 0; i < arguments.length; i++) {
+            if (arguments[i] === 'pitch') {
+                TANGUY.lfo_pitch_vca.gain.value = parseFloat(TANGUY.program.lfo.pitch_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
+            }
+            if (arguments[i] === 'filter') {
+                TANGUY.lfo_filter_vca.gain.value = parseFloat(TANGUY.program.lfo.filter_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
+            }
+            if (arguments[i] === 'amp') {
+                TANGUY.lfo_amp_vca.gain.value = parseFloat(TANGUY.program.lfo.amp_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
+            }
+        }
+        if (arguments.length === 0) {
+            TANGUY.calculate_lfo('pitch', 'filter', 'amp');
+        }
     },
 
     calculate_pitch: function (pos, note_value) {
@@ -1097,7 +1108,7 @@ $('#lfo-rate').mousedown(function () {
 $('#lfo-pitch').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.lfo.pitch_amt = parseFloat(this.value);
-        TANGUY.calculate_lfo();
+        TANGUY.calculate_lfo('pitch');
     });
 }).mouseup(function () {
     $(this).unbind('mousemove');
@@ -1105,7 +1116,7 @@ $('#lfo-pitch').mousedown(function () {
 $('#lfo-filter').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.lfo.filter_amt = parseFloat(this.value);
-        TANGUY.calculate_lfo();
+        TANGUY.calculate_lfo('filter');
     });
 }).mouseup(function () {
     $(this).unbind('mousemove');
@@ -1113,7 +1124,7 @@ $('#lfo-filter').mousedown(function () {
 $('#lfo-amp').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.lfo.amp_amt = parseFloat(this.value);
-        TANGUY.calculate_lfo();
+        TANGUY.calculate_lfo('amp');
     });
 }).mouseup(function () {
     $(this).unbind('mousemove');
