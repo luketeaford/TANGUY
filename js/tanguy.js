@@ -336,18 +336,14 @@ var TANGUY = {
                     $('#lfo-rmp').parent().siblings().removeClass('selected');
                     TANGUY.program.mod.direction = 1;
                     TANGUY.lfo.type = "sawtooth";
-                    TANGUY.lfo_pitch_vca.gain.value = parseFloat(TANGUY.program.lfo.pitch_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
-                    TANGUY.lfo_filter_vca.gain.value = parseFloat(TANGUY.program.lfo.filter_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
-                    TANGUY.lfo_amp_vca.gain.value = parseFloat(TANGUY.program.lfo.amp_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
+                    TANGUY.calculate_lfo();
                     break;
                 case "sawtooth":
                     $('#lfo-saw').parent().addClass('selected');
                     $('#lfo-saw').parent().siblings().removeClass('selected');
                     TANGUY.program.mod.direction = -1;
                     TANGUY.lfo.type = "sawtooth";
-                    TANGUY.lfo_pitch_vca.gain.value = parseFloat(TANGUY.program.lfo.pitch_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
-                    TANGUY.lfo_filter_vca.gain.value = parseFloat(TANGUY.program.lfo.filter_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
-                    TANGUY.lfo_amp_vca.gain.value = parseFloat(TANGUY.program.lfo.amp_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
+                    TANGUY.calculate_lfo();
                     break;
                 case "square":
                     $('#lfo-sqr').parent().addClass('selected');
@@ -359,9 +355,7 @@ var TANGUY = {
 
             //MODWHEEL CONTROL
             $('#mod-amount').val(TANGUY.program.mod.amt);
-            TANGUY.lfo_pitch_vca.gain.value = parseFloat(TANGUY.program.lfo.pitch_amt * TANGUY.program.mod.amt);
-            TANGUY.lfo_filter_vca.gain.value = parseFloat(TANGUY.program.lfo.filter_amt * TANGUY.program.mod.amt);
-            TANGUY.lfo_amp_vca.gain.value = parseFloat(TANGUY.program.lfo.amp_amt * TANGUY.program.mod.amt);
+            TANGUY.calculate_lfo();
 
             //LFO RATE
             $('#lfo-rate').val(Math.sqrt(TANGUY.program.lfo.rate / 100));
@@ -371,9 +365,7 @@ var TANGUY = {
             $('#lfo-pitch').val(TANGUY.program.lfo.pitch_amt);
             $('#lfo-filter').val(TANGUY.program.lfo.filter_amt);
             $('#lfo-amp').val(TANGUY.program.lfo.amp_amt);
-            TANGUY.lfo_pitch_vca.gain.value = parseFloat(TANGUY.program.lfo.pitch_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
-            TANGUY.lfo_filter_vca.gain.value = parseFloat(TANGUY.program.lfo.filter_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
-            TANGUY.lfo_amp_vca.gain.value = parseFloat(TANGUY.program.lfo.amp_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
+            TANGUY.calculate_lfo();
 
             //PORTAMENTO CONTROLS
             $('#portamento-amount').val(TANGUY.program.portamento.amt);
@@ -437,6 +429,12 @@ var TANGUY = {
     multi_switch: function (gizmo) {
         $(gizmo).parent().addClass('selected');
         $(gizmo).parent().siblings().removeClass('selected');
+    },
+
+    calculate_lfo: function () {
+        TANGUY.lfo_pitch_vca.gain.value = parseFloat(TANGUY.program.lfo.pitch_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
+        TANGUY.lfo_filter_vca.gain.value = parseFloat(TANGUY.program.lfo.filter_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
+        TANGUY.lfo_amp_vca.gain.value = parseFloat(TANGUY.program.lfo.amp_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
     },
 
     calculate_pitch: function (pos, note_value) {
@@ -812,8 +810,8 @@ TANGUY.pink_noise_filter1 = TANGUY.voice1.createBiquadFilter();
 TANGUY.pink_noise_filter2 = TANGUY.voice1.createBiquadFilter();
 TANGUY.pink_noise_filter1.type = "lowpass";
 TANGUY.pink_noise_filter2.type = "lowpass";
-TANGUY.pink_noise_filter1.frequency.value = 8000; 
-TANGUY.pink_noise_filter2.frequency.value = 4000; 
+TANGUY.pink_noise_filter1.frequency.value = 8000;
+TANGUY.pink_noise_filter2.frequency.value = 4000;
 TANGUY.pink_noise_filter1.Q.value = 1;
 TANGUY.pink_noise_filter2.Q.value = 1;
 TANGUY.pink_noise_filter1.connect(TANGUY.pink_noise_filter2);
@@ -903,9 +901,9 @@ var purple_noise_data = TANGUY.purple_noise_buffer.getChannelData(0);
 TANGUY.lfo_pitch_vca = TANGUY.voice1.createGain();
 TANGUY.lfo_filter_vca = TANGUY.voice1.createGain();
 TANGUY.lfo_amp_vca = TANGUY.voice1.createGain();
-TANGUY.lfo_pitch_vca.gain.value = parseFloat(TANGUY.program.lfo.pitch_amt * TANGUY.program.mod.amt);
-TANGUY.lfo_filter_vca.gain.value = parseFloat(TANGUY.program.lfo.filter_amt * TANGUY.program.mod.amt);
-TANGUY.lfo_amp_vca.gain.value = parseFloat(TANGUY.program.lfo.amp_amt * TANGUY.program.mod.amt);
+TANGUY.lfo_pitch_vca.gain.value = parseFloat(TANGUY.program.lfo.pitch_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
+TANGUY.lfo_filter_vca.gain.value = parseFloat(TANGUY.program.lfo.filter_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
+TANGUY.lfo_amp_vca.gain.value = parseFloat(TANGUY.program.lfo.amp_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
 TANGUY.lfo_pitch_vca.connect(TANGUY.osc1_saw.frequency);
 TANGUY.lfo_pitch_vca.connect(TANGUY.osc1_sqr.frequency);
 TANGUY.lfo_pitch_vca.connect(TANGUY.osc1_tri.frequency);
@@ -994,7 +992,7 @@ $('#osc2-detune').mousedown(function () {
 });
 $('#osc2-fine').mousedown(function () {
     $(this).mousemove(function () {
-        TANGUY.program.osc2.fine = parseFloat(this.value);        
+        TANGUY.program.osc2.fine = parseFloat(this.value);
         TANGUY.osc2.frequency.setValueAtTime(((TANGUY.osc2_master_pitch * TANGUY.program.osc2.coarse) + TANGUY.program.osc2.fine), TANGUY.voice1.currentTime);
     });
 }).mouseup(function () {
@@ -1070,38 +1068,23 @@ $('#white-noise, #pink-noise, #red-noise, #blue-noise, #purple-noise').change(fu
 //LFO CONTROLS
 $('#lfo-sin, #lfo-tri, #lfo-rmp, #lfo-saw, #lfo-sqr').change(function () {
     switch (this.value) {
-        case "sine":
-            TANGUY.program.lfo.shape = this.value;
-            TANGUY.program.mod.direction = 1;
-            TANGUY.lfo.type = this.value;
-            break;
-        case "triangle":
-            TANGUY.program.lfo.shape = this.value;
-            TANGUY.program.mod.direction = 1;
-            TANGUY.lfo.type = this.value;
-            break;
-        case "ramp": 
-            TANGUY.program.lfo.shape = "sawtooth";
-            TANGUY.program.mod.direction = 1;
-            TANGUY.lfo_pitch_vca.gain.value = parseFloat(TANGUY.program.lfo.pitch_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
-            TANGUY.lfo_filter_vca.gain.value = parseFloat(TANGUY.program.lfo.filter_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
-            TANGUY.lfo_amp_vca.gain.value = parseFloat(TANGUY.program.lfo.amp_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
-            TANGUY.lfo.type = this.value;
-            break;
         case "sawtooth":
             TANGUY.program.lfo.shape = "sawtooth";
             TANGUY.program.mod.direction = -1;
-            TANGUY.lfo_pitch_vca.gain.value = parseFloat(TANGUY.program.lfo.pitch_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
-            TANGUY.lfo_filter_vca.gain.value = parseFloat(TANGUY.program.lfo.filter_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
-            TANGUY.lfo_amp_vca.gain.value = parseFloat(TANGUY.program.lfo.amp_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
-            TANGUY.lfo.type = this.value;
             break;
+        case "ramp":
+            TANGUY.program.lfo.shape = "sawtooth";
+            TANGUY.program.mod.direction = 1;
+            break;
+        case "sine":
+        case "triangle":
         case "square":
             TANGUY.program.lfo.shape = this.value;
             TANGUY.program.mod.direction = 1;
-            TANGUY.lfo.type = this.value;
             break;
     };
+    TANGUY.lfo.type = TANGUY.program.lfo.shape;
+    TANGUY.calculate_lfo();
 });
 $('#lfo-rate').mousedown(function () {
     $(this).mousemove(function () {
@@ -1114,7 +1097,7 @@ $('#lfo-rate').mousedown(function () {
 $('#lfo-pitch').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.lfo.pitch_amt = parseFloat(this.value);
-        TANGUY.lfo_pitch_vca.gain.value = parseFloat(this.value * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
+        TANGUY.calculate_lfo();
     });
 }).mouseup(function () {
     $(this).unbind('mousemove');
@@ -1122,7 +1105,7 @@ $('#lfo-pitch').mousedown(function () {
 $('#lfo-filter').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.lfo.filter_amt = parseFloat(this.value);
-        TANGUY.lfo_filter_vca.gain.value = parseFloat(this.value * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
+        TANGUY.calculate_lfo();
     });
 }).mouseup(function () {
     $(this).unbind('mousemove');
@@ -1130,7 +1113,7 @@ $('#lfo-filter').mousedown(function () {
 $('#lfo-amp').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.lfo.amp_amt = parseFloat(this.value);
-        TANGUY.lfo_amp_vca.gain.value = parseFloat(this.value * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
+        TANGUY.calculate_lfo();
     });
 }).mouseup(function () {
     $(this).unbind('mousemove');
@@ -1197,7 +1180,7 @@ $('#filter-lp, #filter-bp, #filter-hp, #filter-notch, #filter-off').change(funct
             TANGUY.lfo_filter_vca.connect(TANGUY.notch3.frequency);
             break;
         case "off":
-            TANGUY.mixer.disconnect();        
+            TANGUY.mixer.disconnect();
             TANGUY.mixer.connect(TANGUY.vca);
             TANGUY.lfo_filter_vca.disconnect();
             break;
@@ -1334,17 +1317,15 @@ $('#pitch-bend').mousedown(function () {
 $('#mod-amount').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.mod.amt = parseFloat(this.value);
-        TANGUY.lfo_pitch_vca.gain.value = parseFloat(TANGUY.program.lfo.pitch_amt * this.value * TANGUY.program.mod.direction);
-        TANGUY.lfo_filter_vca.gain.value = parseFloat(TANGUY.program.lfo.filter_amt * this.value * TANGUY.program.mod.direction);
-        TANGUY.lfo_amp_vca.gain.value = parseFloat(TANGUY.program.lfo.amp_amt * this.value * TANGUY.program.mod.direction);
+        TANGUY.calculate_lfo();
     });
 }).mouseup(function () {
     $(this).unbind('mousemove');
 });
 
 //MULTI-SWITCHES
-$('.horizontal-multi-switch label input, .vertical-multi-switch label input').click(function() {
-    TANGUY.multi_switch(this);  
+$('.horizontal-multi-switch label input, .vertical-multi-switch label input').click(function () {
+    TANGUY.multi_switch(this);
 });
 
 //LOAD PROGRAMS FROM SELECT BOX
@@ -1365,7 +1346,7 @@ $(document).keypress(function (key) {
         case 61:
             TANGUY.shift_octave(1);
             break;
-        case 42:            
+        case 42:
             TANGUY.save_program();
             break;
     };
