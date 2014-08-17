@@ -49,10 +49,10 @@ var TANGUY = {
             resonance: 0.0001,
             env_amt: 0,
             kbd: 0,
-            attack: 0.008,
-            decay: 0.008,
+            attack: 0.0008,
+            decay: 0.0008,
             sustain: 0,
-            release: 0.008
+            release: 0.0008
         },
         vca: {
             gain: 0,
@@ -374,12 +374,10 @@ var TANGUY = {
                     $('#portamento-off').parent().addClass('selected');
                     $('#portamento-off').parent().siblings().removeClass('selected');
                     break;
-
                 case "linear":
                     $('#portamento-linear').parent().addClass('selected');
                     $('#portamento-linear').parent().siblings().removeClass('selected');
                     break;
-
                 case "exponential":
                     $('#portamento-exponential').parent().addClass('selected');
                     $('#portamento-exponential').parent().siblings().removeClass('selected');
@@ -669,268 +667,235 @@ var TANGUY = {
 
 }
 
-//VCA
-TANGUY.vca = TANGUY.voice1.createGain();
-TANGUY.vca.gain.value = parseFloat(TANGUY.program.vca.gain);
-TANGUY.vca.connect(TANGUY.voice1.destination);
+TANGUY.build_synth = function () {
+    //VCA
+    TANGUY.vca = TANGUY.voice1.createGain();
+    TANGUY.vca.gain.value = 0;
+    TANGUY.vca.connect(TANGUY.voice1.destination);
 
-//LP FILTER
-TANGUY.lp_filter1 = TANGUY.voice1.createBiquadFilter();
-TANGUY.lp_filter2 = TANGUY.voice1.createBiquadFilter();
-TANGUY.lp_filter1.type = "lowpass";
-TANGUY.lp_filter2.type = "lowpass";
-TANGUY.lp_filter1.frequency.value = TANGUY.program.filter.frequency;
-TANGUY.lp_filter2.frequency.value = TANGUY.program.filter.frequency;
-TANGUY.lp_filter1.Q.value = parseFloat(TANGUY.program.resonance / 82) || 0;
-TANGUY.lp_filter2.Q.value = parseFloat(TANGUY.program.resonance / 123) || 0;
-TANGUY.lp_filter1.connect(TANGUY.lp_filter2);
-TANGUY.lp_filter2.connect(TANGUY.vca);
+    //LP FILTER
+    TANGUY.lp_filter1 = TANGUY.voice1.createBiquadFilter();
+    TANGUY.lp_filter2 = TANGUY.voice1.createBiquadFilter();
+    TANGUY.lp_filter1.type = "lowpass";
+    TANGUY.lp_filter2.type = "lowpass";
+    TANGUY.lp_filter1.connect(TANGUY.lp_filter2);
+    TANGUY.lp_filter2.connect(TANGUY.vca);
 
-//BP FILTER
-TANGUY.bp_filter1 = TANGUY.voice1.createBiquadFilter();
-TANGUY.bp_filter2 = TANGUY.voice1.createBiquadFilter();
-TANGUY.bp_filter3 = TANGUY.voice1.createBiquadFilter();
-TANGUY.bp_filter1.type = "bandpass";
-TANGUY.bp_filter2.type = "peaking";
-TANGUY.bp_filter3.type = "peaking";
-TANGUY.bp_filter1.frequency.value = TANGUY.program.filter.frequency;
-TANGUY.bp_filter2.frequency.value = TANGUY.program.filter.frequency * 0.9;
-TANGUY.bp_filter3.frequency.value = TANGUY.program.filter.frequency * 1.1;
-TANGUY.bp_filter1.Q.value = 2;
-TANGUY.bp_filter2.Q.value = 3;
-TANGUY.bp_filter3.Q.value = 3;
-TANGUY.bp_filter2.gain.value = TANGUY.program.filter.resonance / 82;
-TANGUY.bp_filter3.gain.value = TANGUY.program.filter.resonance / 82;
-TANGUY.bp_filter1.connect(TANGUY.bp_filter2);
-TANGUY.bp_filter2.connect(TANGUY.bp_filter3);
-TANGUY.bp_filter3.connect(TANGUY.vca);
+    //BP FILTER
+    TANGUY.bp_filter1 = TANGUY.voice1.createBiquadFilter();
+    TANGUY.bp_filter2 = TANGUY.voice1.createBiquadFilter();
+    TANGUY.bp_filter3 = TANGUY.voice1.createBiquadFilter();
+    TANGUY.bp_filter1.type = "bandpass";
+    TANGUY.bp_filter2.type = "peaking";
+    TANGUY.bp_filter3.type = "peaking";
+    TANGUY.bp_filter1.Q.value = 2;
+    TANGUY.bp_filter2.Q.value = 3;
+    TANGUY.bp_filter3.Q.value = 3;
+    TANGUY.bp_filter1.connect(TANGUY.bp_filter2);
+    TANGUY.bp_filter2.connect(TANGUY.bp_filter3);
+    TANGUY.bp_filter3.connect(TANGUY.vca);
 
-//HP FILTER
-TANGUY.hp_filter1 = TANGUY.voice1.createBiquadFilter();
-TANGUY.hp_filter2 = TANGUY.voice1.createBiquadFilter();
-TANGUY.hp_filter1.type = "highpass";
-TANGUY.hp_filter2.type = "highpass";
-TANGUY.hp_filter1.frequency.value = parseFloat(TANGUY.program.filter.frequency);
-TANGUY.hp_filter2.frequency.value = parseFloat(TANGUY.program.filter.frequency);
-TANGUY.hp_filter1.Q.value = TANGUY.program.filter.resonance / 82;
-TANGUY.hp_filter2.Q.value = TANGUY.program.filter.resonance / 123;
-TANGUY.hp_filter1.connect(TANGUY.hp_filter2);
-TANGUY.hp_filter2.connect(TANGUY.vca);
+    //HP FILTER
+    TANGUY.hp_filter1 = TANGUY.voice1.createBiquadFilter();
+    TANGUY.hp_filter2 = TANGUY.voice1.createBiquadFilter();
+    TANGUY.hp_filter1.type = "highpass";
+    TANGUY.hp_filter2.type = "highpass";
+    TANGUY.hp_filter1.connect(TANGUY.hp_filter2);
+    TANGUY.hp_filter2.connect(TANGUY.vca);
 
-//NOTCH FILTER
-TANGUY.notch1 = TANGUY.voice1.createBiquadFilter();
-TANGUY.notch2 = TANGUY.voice1.createBiquadFilter();
-TANGUY.notch3 = TANGUY.voice1.createBiquadFilter();
-TANGUY.notch1.type = "notch";
-TANGUY.notch2.type = "peaking";
-TANGUY.notch3.type = "peaking";
-TANGUY.notch1.frequency.value = parseFloat(TANGUY.program.filter.frequency);
-TANGUY.notch2.frequency.value = TANGUY.program.filter.frequency * 0.9;
-TANGUY.notch3.frequency.value = TANGUY.program.filter.frequency * 1.1;
-TANGUY.notch1.Q.value = 2;
-TANGUY.notch2.Q.value = 3;
-TANGUY.notch3.Q.value = 3;
-TANGUY.notch2.gain.value = TANGUY.program.filter.resonance / -21;
-TANGUY.notch3.gain.value = TANGUY.program.filter.resonance / -21;
-TANGUY.notch1.connect(TANGUY.notch2);
-TANGUY.notch2.connect(TANGUY.notch3);
-TANGUY.notch3.connect(TANGUY.vca);
+    //NOTCH FILTER
+    TANGUY.notch1 = TANGUY.voice1.createBiquadFilter();
+    TANGUY.notch2 = TANGUY.voice1.createBiquadFilter();
+    TANGUY.notch3 = TANGUY.voice1.createBiquadFilter();
+    TANGUY.notch1.type = "notch";
+    TANGUY.notch2.type = "peaking";
+    TANGUY.notch3.type = "peaking";
+    TANGUY.notch1.Q.value = 2;
+    TANGUY.notch2.Q.value = 3;
+    TANGUY.notch3.Q.value = 3;
+    TANGUY.notch1.connect(TANGUY.notch2);
+    TANGUY.notch2.connect(TANGUY.notch3);
+    TANGUY.notch3.connect(TANGUY.vca);
 
-//MIXER SECTION
-TANGUY.mixer = TANGUY.voice1.createGain();
-TANGUY.osc1_vca = TANGUY.voice1.createGain();
-TANGUY.osc2_vca = TANGUY.voice1.createGain();
-TANGUY.noise_vca = TANGUY.voice1.createGain();
-TANGUY.ext_in_vca = TANGUY.voice1.createGain();
-TANGUY.mixer.gain.value = 1;
-TANGUY.osc1_vca.gain.value = TANGUY.program.mixer.osc1;
-TANGUY.osc2_vca.gain.value = TANGUY.program.mixer.osc2;
-TANGUY.noise_vca.gain.value = TANGUY.program.mixer.noise;
-TANGUY.ext_in_vca.gain.value = 0;
-TANGUY.mixer.connect(TANGUY.lp_filter1);
-TANGUY.osc1_vca.connect(TANGUY.mixer);
-TANGUY.osc2_vca.connect(TANGUY.mixer);
-TANGUY.noise_vca.connect(TANGUY.mixer);
-TANGUY.ext_in_vca.connect(TANGUY.mixer);
+    //MIXER SECTION
+    TANGUY.mixer = TANGUY.voice1.createGain();
+    TANGUY.osc1_vca = TANGUY.voice1.createGain();
+    TANGUY.osc2_vca = TANGUY.voice1.createGain();
+    TANGUY.noise_vca = TANGUY.voice1.createGain();
+    TANGUY.ext_in_vca = TANGUY.voice1.createGain();
+    TANGUY.mixer.gain.value = 1;
+    TANGUY.mixer.connect(TANGUY.lp_filter1);
+    TANGUY.osc1_vca.connect(TANGUY.mixer);
+    TANGUY.osc2_vca.connect(TANGUY.mixer);
+    TANGUY.noise_vca.connect(TANGUY.mixer);
+    TANGUY.ext_in_vca.connect(TANGUY.mixer);
 
-//OSC 1 VCAS
-TANGUY.osc1_saw_vca = TANGUY.voice1.createGain();
-TANGUY.osc1_sqr_vca = TANGUY.voice1.createGain();
-TANGUY.osc1_tri_vca = TANGUY.voice1.createGain();
-TANGUY.osc1_sin_vca = TANGUY.voice1.createGain();
-TANGUY.osc1_saw_vca.gain.value = 1;
-TANGUY.osc1_sqr_vca.gain.value = 0;
-TANGUY.osc1_tri_vca.gain.value = 0;
-TANGUY.osc1_sin_vca.gain.value = 0;
-TANGUY.osc1_saw_vca.connect(TANGUY.osc1_vca);
-TANGUY.osc1_sqr_vca.connect(TANGUY.osc1_vca);
-TANGUY.osc1_tri_vca.connect(TANGUY.osc1_vca);
-TANGUY.osc1_sin_vca.connect(TANGUY.osc1_vca);
+    //OSC 1 VCAS
+    TANGUY.osc1_saw_vca = TANGUY.voice1.createGain();
+    TANGUY.osc1_sqr_vca = TANGUY.voice1.createGain();
+    TANGUY.osc1_tri_vca = TANGUY.voice1.createGain();
+    TANGUY.osc1_sin_vca = TANGUY.voice1.createGain();
+    TANGUY.osc1_saw_vca.connect(TANGUY.osc1_vca);
+    TANGUY.osc1_sqr_vca.connect(TANGUY.osc1_vca);
+    TANGUY.osc1_tri_vca.connect(TANGUY.osc1_vca);
+    TANGUY.osc1_sin_vca.connect(TANGUY.osc1_vca);
 
-//OSC 1 WAVEFORMS
-TANGUY.osc1_saw = TANGUY.voice1.createOscillator();
-TANGUY.osc1_sqr = TANGUY.voice1.createOscillator();
-TANGUY.osc1_tri = TANGUY.voice1.createOscillator();
-TANGUY.osc1_sin = TANGUY.voice1.createOscillator();
-TANGUY.osc1_saw.type = "sawtooth";
-TANGUY.osc1_sqr.type = "square";
-TANGUY.osc1_tri.type = "triangle";
-TANGUY.osc1_sin.type = "sine";
-TANGUY.osc1_saw.frequency.value = TANGUY.osc1_master_pitch;
-TANGUY.osc1_sqr.frequency.value = TANGUY.osc1_master_pitch;
-TANGUY.osc1_tri.frequency.value = TANGUY.osc1_master_pitch;
-TANGUY.osc1_sin.frequency.value = TANGUY.osc1_master_pitch;
-TANGUY.osc1_saw.start(0);
-TANGUY.osc1_sqr.start(0);
-TANGUY.osc1_tri.start(0);
-TANGUY.osc1_sin.start(0);
-TANGUY.osc1_saw.connect(TANGUY.osc1_saw_vca);
-TANGUY.osc1_sqr.connect(TANGUY.osc1_sqr_vca);
-TANGUY.osc1_tri.connect(TANGUY.osc1_tri_vca);
-TANGUY.osc1_sin.connect(TANGUY.osc1_sin_vca);
+    //OSC 1 WAVEFORMS
+    TANGUY.osc1_saw = TANGUY.voice1.createOscillator();
+    TANGUY.osc1_sqr = TANGUY.voice1.createOscillator();
+    TANGUY.osc1_tri = TANGUY.voice1.createOscillator();
+    TANGUY.osc1_sin = TANGUY.voice1.createOscillator();
+    TANGUY.osc1_saw.type = "sawtooth";
+    TANGUY.osc1_sqr.type = "square";
+    TANGUY.osc1_tri.type = "triangle";
+    TANGUY.osc1_sin.type = "sine";
+    TANGUY.osc1_saw.start(0);
+    TANGUY.osc1_sqr.start(0);
+    TANGUY.osc1_tri.start(0);
+    TANGUY.osc1_sin.start(0);
+    TANGUY.osc1_saw.connect(TANGUY.osc1_saw_vca);
+    TANGUY.osc1_sqr.connect(TANGUY.osc1_sqr_vca);
+    TANGUY.osc1_tri.connect(TANGUY.osc1_tri_vca);
+    TANGUY.osc1_sin.connect(TANGUY.osc1_sin_vca);
 
-//FM OSCILLATOR 1
-TANGUY.osc1_fm_vca = TANGUY.voice1.createGain();
-TANGUY.osc1_fm_vca.gain.value = parseFloat(TANGUY.program.osc1.fm_amt * 24000);
-TANGUY.osc1_fm_vca.connect(TANGUY.osc1_saw.frequency);
-TANGUY.osc1_fm_vca.connect(TANGUY.osc1_sqr.frequency);
-TANGUY.osc1_fm_vca.connect(TANGUY.osc1_tri.frequency);
-TANGUY.osc1_fm_vca.connect(TANGUY.osc1_sin.frequency);
+    //FM OSCILLATOR 1
+    TANGUY.osc1_fm_vca = TANGUY.voice1.createGain();
+    TANGUY.osc1_fm_vca.connect(TANGUY.osc1_saw.frequency);
+    TANGUY.osc1_fm_vca.connect(TANGUY.osc1_sqr.frequency);
+    TANGUY.osc1_fm_vca.connect(TANGUY.osc1_tri.frequency);
+    TANGUY.osc1_fm_vca.connect(TANGUY.osc1_sin.frequency);
 
-//OSC 2 WAVESHAPER
-TANGUY.waveshaper = TANGUY.voice1.createWaveShaper();
-TANGUY.waveshaper.curve = null;
-TANGUY.waveshaper.connect(TANGUY.osc2_vca);
+    //OSC 2 WAVESHAPER
+    TANGUY.waveshaper = TANGUY.voice1.createWaveShaper();
+    TANGUY.waveshaper.connect(TANGUY.osc2_vca);
 
-//OSC 2
-TANGUY.osc2 = TANGUY.voice1.createOscillator();
-TANGUY.osc2.type = TANGUY.program.osc2.waveform;
-TANGUY.osc2.frequency.value = parseFloat((TANGUY.osc2_master_pitch * TANGUY.program.osc2.coarse) + TANGUY.program.osc2.fine);
-TANGUY.osc2.start(0);
-TANGUY.osc2.connect(TANGUY.osc1_fm_vca);
-TANGUY.osc2.connect(TANGUY.waveshaper);
+    //OSC 2
+    TANGUY.osc2 = TANGUY.voice1.createOscillator();
+    TANGUY.osc2.start(0);
+    TANGUY.osc2.connect(TANGUY.osc1_fm_vca);
+    TANGUY.osc2.connect(TANGUY.waveshaper);
 
-//FM OSCILLATOR 2
-TANGUY.osc2_fm_vca = TANGUY.voice1.createGain();
-TANGUY.osc2_fm_vca.gain.value = parseFloat(TANGUY.program.osc2.fm_amt * 24000);
-TANGUY.osc2_fm_vca.connect(TANGUY.osc2.frequency);
-TANGUY.osc1_sin_vca.connect(TANGUY.osc2_fm_vca);
+    //FM OSCILLATOR 2
+    TANGUY.osc2_fm_vca = TANGUY.voice1.createGain();
+    TANGUY.osc2_fm_vca.connect(TANGUY.osc2.frequency);
+    TANGUY.osc1_sin_vca.connect(TANGUY.osc2_fm_vca);
 
-//NOISE SECTION
-TANGUY.pink_noise_filter1 = TANGUY.voice1.createBiquadFilter();
-TANGUY.pink_noise_filter2 = TANGUY.voice1.createBiquadFilter();
-TANGUY.pink_noise_filter1.type = "lowpass";
-TANGUY.pink_noise_filter2.type = "lowpass";
-TANGUY.pink_noise_filter1.frequency.value = 8000;
-TANGUY.pink_noise_filter2.frequency.value = 4000;
-TANGUY.pink_noise_filter1.Q.value = 1;
-TANGUY.pink_noise_filter2.Q.value = 1;
-TANGUY.pink_noise_filter1.connect(TANGUY.pink_noise_filter2);
-TANGUY.pink_noise_filter2.connect(TANGUY.noise_vca);
-TANGUY.empty_white_noise_buffer = TANGUY.voice1.createBuffer(1, 1, TANGUY.voice1.sampleRate);
-TANGUY.empty_pink_noise_buffer = TANGUY.voice1.createBuffer(1, 1, TANGUY.voice1.sampleRate);
-TANGUY.empty_red_noise_buffer = TANGUY.voice1.createBuffer(1, 1, TANGUY.voice1.sampleRate);
-TANGUY.empty_blue_noise_buffer = TANGUY.voice1.createBuffer(1, 1, TANGUY.voice1.sampleRate);
-TANGUY.empty_purple_noise_buffer = TANGUY.voice1.createBuffer(1, 1, TANGUY.voice1.sampleRate);
-TANGUY.white_noise_buffer = TANGUY.voice1.createBuffer(1, 88200, TANGUY.voice1.sampleRate);
-TANGUY.pink_noise_buffer = TANGUY.voice1.createBuffer(1, 44100, TANGUY.voice1.sampleRate);
-TANGUY.red_noise_buffer = TANGUY.voice1.createBuffer(1, 44100, TANGUY.voice1.sampleRate);
-TANGUY.blue_noise_buffer = TANGUY.voice1.createBuffer(1, 44100, TANGUY.voice1.sampleRate);
-TANGUY.purple_noise_buffer = TANGUY.voice1.createBuffer(1, 44100, TANGUY.voice1.sampleRate);
-TANGUY.white_noise = TANGUY.voice1.createBufferSource();
-TANGUY.pink_noise = TANGUY.voice1.createBufferSource();
-TANGUY.red_noise = TANGUY.voice1.createBufferSource();
-TANGUY.blue_noise = TANGUY.voice1.createBufferSource();
-TANGUY.purple_noise = TANGUY.voice1.createBufferSource();
-TANGUY.white_noise.start(0);
-TANGUY.pink_noise.start(0);
-TANGUY.red_noise.start(0);
-TANGUY.blue_noise.start(0);
-TANGUY.purple_noise.start(0);
-TANGUY.white_noise.loop = true;
-TANGUY.pink_noise.loop = true;
-TANGUY.red_noise.loop = true;
-TANGUY.blue_noise.loop = true;
-TANGUY.purple_noise.loop = true;
-TANGUY.white_noise.buffer = TANGUY.white_noise_buffer;
-TANGUY.pink_noise.buffer = TANGUY.empty_pink_noise_buffer;
-TANGUY.red_noise.buffer = TANGUY.empty_red_noise_buffer;
-TANGUY.blue_noise.buffer = TANGUY.empty_blue_noise_buffer;
-TANGUY.purple_noise.buffer = TANGUY.empty_purple_noise_buffer;
-TANGUY.white_noise.connect(TANGUY.noise_vca);
-TANGUY.pink_noise.connect(TANGUY.pink_noise_filter1);
-TANGUY.red_noise.connect(TANGUY.noise_vca);
-TANGUY.blue_noise.connect(TANGUY.noise_vca);
-TANGUY.purple_noise.connect(TANGUY.noise_vca);
-var white_noise_data = TANGUY.white_noise_buffer.getChannelData(0);
-    for (var i = 0; i < 88200; ++i) {
-        white_noise_data[i] = (2 * Math.random() - 1);
-    };
-var pink_noise_data = TANGUY.pink_noise_buffer.getChannelData(0);
-    for (var i = 0; i < 44100; ++i) {
-        pink_noise_data[i] = Math.floor((Math.random() * (2000 - 20) + 20) / 1000);
-        var pink_noise_repeat = pink_noise_data[i];
-        i++;
-        for (var j = 0; j < 4; ++j) {
-            pink_noise_data[i] = Math.abs(pink_noise_repeat);
-            i++;
-            pink_noise_data[i] = Math.abs(pink_noise_repeat) * 0.5;
+    //NOISE SECTION
+    TANGUY.pink_noise_filter1 = TANGUY.voice1.createBiquadFilter();
+    TANGUY.pink_noise_filter2 = TANGUY.voice1.createBiquadFilter();
+    TANGUY.pink_noise_filter1.type = "lowpass";
+    TANGUY.pink_noise_filter2.type = "lowpass";
+    TANGUY.pink_noise_filter1.frequency.value = 8000;
+    TANGUY.pink_noise_filter2.frequency.value = 4000;
+    TANGUY.pink_noise_filter1.Q.value = 1;
+    TANGUY.pink_noise_filter2.Q.value = 1;
+    TANGUY.pink_noise_filter1.connect(TANGUY.pink_noise_filter2);
+    TANGUY.pink_noise_filter2.connect(TANGUY.noise_vca);
+    TANGUY.empty_white_noise_buffer = TANGUY.voice1.createBuffer(1, 1, TANGUY.voice1.sampleRate);
+    TANGUY.empty_pink_noise_buffer = TANGUY.voice1.createBuffer(1, 1, TANGUY.voice1.sampleRate);
+    TANGUY.empty_red_noise_buffer = TANGUY.voice1.createBuffer(1, 1, TANGUY.voice1.sampleRate);
+    TANGUY.empty_blue_noise_buffer = TANGUY.voice1.createBuffer(1, 1, TANGUY.voice1.sampleRate);
+    TANGUY.empty_purple_noise_buffer = TANGUY.voice1.createBuffer(1, 1, TANGUY.voice1.sampleRate);
+    TANGUY.white_noise_buffer = TANGUY.voice1.createBuffer(1, 88200, TANGUY.voice1.sampleRate);
+    TANGUY.pink_noise_buffer = TANGUY.voice1.createBuffer(1, 44100, TANGUY.voice1.sampleRate);
+    TANGUY.red_noise_buffer = TANGUY.voice1.createBuffer(1, 44100, TANGUY.voice1.sampleRate);
+    TANGUY.blue_noise_buffer = TANGUY.voice1.createBuffer(1, 44100, TANGUY.voice1.sampleRate);
+    TANGUY.purple_noise_buffer = TANGUY.voice1.createBuffer(1, 44100, TANGUY.voice1.sampleRate);
+    TANGUY.white_noise = TANGUY.voice1.createBufferSource();
+    TANGUY.pink_noise = TANGUY.voice1.createBufferSource();
+    TANGUY.red_noise = TANGUY.voice1.createBufferSource();
+    TANGUY.blue_noise = TANGUY.voice1.createBufferSource();
+    TANGUY.purple_noise = TANGUY.voice1.createBufferSource();
+    TANGUY.white_noise.start(0);
+    TANGUY.pink_noise.start(0);
+    TANGUY.red_noise.start(0);
+    TANGUY.blue_noise.start(0);
+    TANGUY.purple_noise.start(0);
+    TANGUY.white_noise.loop = true;
+    TANGUY.pink_noise.loop = true;
+    TANGUY.red_noise.loop = true;
+    TANGUY.blue_noise.loop = true;
+    TANGUY.purple_noise.loop = true;
+    TANGUY.white_noise.buffer = TANGUY.white_noise_buffer;
+    TANGUY.pink_noise.buffer = TANGUY.empty_pink_noise_buffer;
+    TANGUY.red_noise.buffer = TANGUY.empty_red_noise_buffer;
+    TANGUY.blue_noise.buffer = TANGUY.empty_blue_noise_buffer;
+    TANGUY.purple_noise.buffer = TANGUY.empty_purple_noise_buffer;
+    TANGUY.white_noise.connect(TANGUY.noise_vca);
+    TANGUY.pink_noise.connect(TANGUY.pink_noise_filter1);
+    TANGUY.red_noise.connect(TANGUY.noise_vca);
+    TANGUY.blue_noise.connect(TANGUY.noise_vca);
+    TANGUY.purple_noise.connect(TANGUY.noise_vca);
+    var white_noise_data = TANGUY.white_noise_buffer.getChannelData(0);
+        for (var i = 0; i < 88200; ++i) {
+            white_noise_data[i] = (2 * Math.random() - 1);
         };
-    };
-var red_noise_data = TANGUY.red_noise_buffer.getChannelData(0);
-    for (var i = 0; i < 44100; ++i) {
-        red_noise_data[i] = (-1 * Math.random() + 2);
-        var red_noise_repeat = red_noise_data[i];
-        i++;
-        for (var j = 0; j < 237; ++j) {
-            red_noise_data[i] = (red_noise_repeat * 0.5);
+    var pink_noise_data = TANGUY.pink_noise_buffer.getChannelData(0);
+        for (var i = 0; i < 44100; ++i) {
+            pink_noise_data[i] = Math.floor((Math.random() * (2000 - 20) + 20) / 1000);
+            var pink_noise_repeat = pink_noise_data[i];
             i++;
+            for (var j = 0; j < 4; ++j) {
+                pink_noise_data[i] = Math.abs(pink_noise_repeat);
+                i++;
+                pink_noise_data[i] = Math.abs(pink_noise_repeat) * 0.5;
+            };
         };
-    };
-var blue_noise_data = TANGUY.blue_noise_buffer.getChannelData(0);
-    for (var i = 0; i < 44100; ++i) {
-        blue_noise_data[i] = (-1 * Math.random() + 1);
-        var blue_noise_repeat = blue_noise_data[i];
-        i++;
-        for (var j = 0; j < 137; ++j) {
-            blue_noise_data[i] = (blue_noise_repeat * 0.5);
+    var red_noise_data = TANGUY.red_noise_buffer.getChannelData(0);
+        for (var i = 0; i < 44100; ++i) {
+            red_noise_data[i] = (-1 * Math.random() + 2);
+            var red_noise_repeat = red_noise_data[i];
             i++;
+            for (var j = 0; j < 237; ++j) {
+                red_noise_data[i] = (red_noise_repeat * 0.5);
+                i++;
+            };
         };
-    };
-var purple_noise_data = TANGUY.purple_noise_buffer.getChannelData(0);
-    for (var i = 0; i < 44100; ++i) {
-        purple_noise_data[i] = (-1 * Math.random() + 1);
-        var purple_noise_repeat = purple_noise_data[i];
-        i++;
-        for (var j = 0; j < 172; ++j) {
-            purple_noise_data[i] = (purple_noise_repeat * 0.75);
+    var blue_noise_data = TANGUY.blue_noise_buffer.getChannelData(0);
+        for (var i = 0; i < 44100; ++i) {
+            blue_noise_data[i] = (-1 * Math.random() + 1);
+            var blue_noise_repeat = blue_noise_data[i];
             i++;
+            for (var j = 0; j < 137; ++j) {
+                blue_noise_data[i] = (blue_noise_repeat * 0.5);
+                i++;
+            };
         };
-    };
+    var purple_noise_data = TANGUY.purple_noise_buffer.getChannelData(0);
+        for (var i = 0; i < 44100; ++i) {
+            purple_noise_data[i] = (-1 * Math.random() + 1);
+            var purple_noise_repeat = purple_noise_data[i];
+            i++;
+            for (var j = 0; j < 172; ++j) {
+                purple_noise_data[i] = (purple_noise_repeat * 0.75);
+                i++;
+            };
+        };
 
-//LFO VCAS
-TANGUY.lfo_pitch_vca = TANGUY.voice1.createGain();
-TANGUY.lfo_filter_vca = TANGUY.voice1.createGain();
-TANGUY.lfo_amp_vca = TANGUY.voice1.createGain();
-TANGUY.lfo_pitch_vca.gain.value = parseFloat(TANGUY.program.lfo.pitch_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
-TANGUY.lfo_filter_vca.gain.value = parseFloat(TANGUY.program.lfo.filter_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
-TANGUY.lfo_amp_vca.gain.value = parseFloat(TANGUY.program.lfo.amp_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction);
-TANGUY.lfo_pitch_vca.connect(TANGUY.osc1_saw.frequency);
-TANGUY.lfo_pitch_vca.connect(TANGUY.osc1_sqr.frequency);
-TANGUY.lfo_pitch_vca.connect(TANGUY.osc1_tri.frequency);
-TANGUY.lfo_pitch_vca.connect(TANGUY.osc1_sin.frequency);
-TANGUY.lfo_pitch_vca.connect(TANGUY.osc2.frequency);
-TANGUY.lfo_filter_vca.connect(TANGUY.lp_filter1.frequency);
-TANGUY.lfo_amp_vca.connect(TANGUY.mixer.gain);
+    //LFO VCAS
+    TANGUY.lfo_pitch_vca = TANGUY.voice1.createGain();
+    TANGUY.lfo_filter_vca = TANGUY.voice1.createGain();
+    TANGUY.lfo_amp_vca = TANGUY.voice1.createGain();
+    TANGUY.lfo_pitch_vca.connect(TANGUY.osc1_saw.frequency);
+    TANGUY.lfo_pitch_vca.connect(TANGUY.osc1_sqr.frequency);
+    TANGUY.lfo_pitch_vca.connect(TANGUY.osc1_tri.frequency);
+    TANGUY.lfo_pitch_vca.connect(TANGUY.osc1_sin.frequency);
+    TANGUY.lfo_pitch_vca.connect(TANGUY.osc2.frequency);
+    TANGUY.lfo_filter_vca.connect(TANGUY.lp_filter1.frequency);
+    TANGUY.lfo_amp_vca.connect(TANGUY.mixer.gain);
 
-//LFO
-TANGUY.lfo = TANGUY.voice1.createOscillator();
-TANGUY.lfo.type = TANGUY.program.lfo.shape;
-TANGUY.lfo.frequency.value = parseFloat(TANGUY.program.lfo.rate);
-TANGUY.lfo.start(0);
-TANGUY.lfo.connect(TANGUY.lfo_pitch_vca);
-TANGUY.lfo.connect(TANGUY.lfo_filter_vca);
-TANGUY.lfo.connect(TANGUY.lfo_amp_vca);
+    //LFO
+    TANGUY.lfo = TANGUY.voice1.createOscillator();
+    TANGUY.lfo.start(0);
+    TANGUY.lfo.connect(TANGUY.lfo_pitch_vca);
+    TANGUY.lfo.connect(TANGUY.lfo_filter_vca);
+    TANGUY.lfo.connect(TANGUY.lfo_amp_vca);
+}
+
+$(document).ready(function () {
+    TANGUY.build_synth();
+    TANGUY.load_program('initialize');
+});
 
 //OSCILLATOR 1 CONTROLS
 $('#osc1-kbd').change(function () {

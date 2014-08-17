@@ -6,7 +6,7 @@
 	label {
 		color: #000;
 		text-align: center;
-		&:hover {
+		&:not(.selected):hover {
 			background: #696663;
 		}
 		&.selected {
@@ -28,16 +28,13 @@
 		height: 1.4rem;
 		vertical-align: middle;
 		width: 4rem;
-		&:hover {
+		&:not(.selected):hover {
 			box-shadow: inset 1px 0 #3e3c39, 1px 0 #3e3c39;
-		}
-		&.selected:hover {
-			box-shadow: none;
 		}
 		&:first-child {
 			border-right: none;
 			border-radius: .2rem 0 0 .2rem;
-			&:hover {
+			&:not(.selected):hover {
 				box-shadow: inset 0 0 #3e3c39, 1px 0 #3e3c39;
 			}
 		}
@@ -55,12 +52,12 @@
 	label {
 		display: block;
 		padding: 0.5rem 0;
-		&:hover {
+		&:not(.selected):hover {
 			box-shadow: inset 0 1px #3e3c39, 0 1px #3e3c39;
 		}
 		&:first-child {
 			border-radius: .2rem .2rem 0 0;
-			&:hover {
+			&:not(.selected):hover {
 				box-shadow: inset 0 0 #3e3c39, 0 1px #3e3c39;
 			}
 		}
