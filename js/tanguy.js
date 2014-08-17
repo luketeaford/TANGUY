@@ -610,7 +610,7 @@ var TANGUY = {
 
             TANGUY.vca.gain.setTargetAtTime((TANGUY.program.vca.sustain + TANGUY.program.vca.gain), vca_end_of_attack, TANGUY.program.vca.decay);
 
-        })();
+        }());
     },
 
     gate_off: function () {
@@ -664,7 +664,7 @@ var TANGUY = {
             TANGUY.vca.gain.cancelScheduledValues(TANGUY.voice1.currentTime),
             TANGUY.vca.gain.setValueAtTime(vca_release_peak, TANGUY.voice1.currentTime),
             TANGUY.vca.gain.setTargetAtTime(TANGUY.program.vca.gain, TANGUY.voice1.currentTime, TANGUY.program.vca.release);
-        })();
+        }());
     },
 
 }
