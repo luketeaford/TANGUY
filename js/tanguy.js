@@ -665,6 +665,9 @@ var TANGUY = {
         }());
     },
 
+    midi: function () {
+        console.log('Web MIDI happening');
+    }
 }
 
 TANGUY.build_synth = function () {
@@ -895,6 +898,7 @@ TANGUY.build_synth = function () {
 $(document).ready(function () {
     TANGUY.build_synth();
     TANGUY.load_program('initialize');
+    TANGUY.midi();
 });
 
 //OSCILLATOR 1 CONTROLS
