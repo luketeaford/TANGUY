@@ -667,13 +667,23 @@ var TANGUY = {
 
     midi: function () {
         console.log('Web MIDI happening');
-    }
+    },
+
 }
 
 TANGUY.build_synth = function () {
+    //DELAY
+    TANGUY.delay_vca = TANGUY.voice1.createGain();
+    TANGUY.delay_vca.gain.value = 0;
+    TANGUY.delay_vca.connect(TANGUY.voice1.destination);
+    TANGUY.delay = TANGUY.voice1.createDelay();
+    TANGUY.delay.maxDelayTime = 3;
+    TANGUY.delay.connect(TANGUY.delay_vca);
+
     //VCA
     TANGUY.vca = TANGUY.voice1.createGain();
     TANGUY.vca.gain.value = 0;
+    TANGUY.vca.connect(TANGUY.delay);
     TANGUY.vca.connect(TANGUY.voice1.destination);
 
     //LP FILTER
@@ -1094,6 +1104,24 @@ $('#lfo-amp').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.lfo.amp_amt = parseFloat(this.value);
         TANGUY.calculate_lfo('amp');
+    });
+}).mouseup(function () {
+    $(this).unbind('mousemove');
+});
+
+//DELAY CONTROLS
+$('#delay-rate').mousedown(function () {
+    $(this).mousemove(function () {
+        //TANGUY.program.delay.time = parseFloat(this.value);
+        TANGUY.delay.delayTime.value = parseFloat(this.value);
+    });
+}).mouseup(function () {
+    $(this).unbind('mousemove');
+});
+$('#delay-amount').mousedown(function () {
+    $(this).mousemove(function () {
+        TANGUY.delay_vca.gain.value = parseFloat(this.value);
+        console.log(TANGUY.delay_vca.gain.value);
     });
 }).mouseup(function () {
     $(this).unbind('mousemove');
