@@ -1,4 +1,3 @@
-/*global AudioContext: true*/
 var TANGUY = {
 
     voice1: new AudioContext(),
@@ -668,6 +667,9 @@ var TANGUY = {
 };
 
 TANGUY.build_synth = function () {
+    var i = 0;
+    var j = 0;
+
     //DELAY
     TANGUY.delay_vca = TANGUY.voice1.createGain();
     TANGUY.delay_vca.gain.value = 0;
@@ -836,7 +838,7 @@ TANGUY.build_synth = function () {
     TANGUY.blue_noise.connect(TANGUY.noise_vca);
     TANGUY.purple_noise.connect(TANGUY.noise_vca);
     var white_noise_data = TANGUY.white_noise_buffer.getChannelData(0);
-        for (var i = 0; i < 88200; ++i) {
+        for (i = 0; i < 88200; ++i) {
             white_noise_data[i] = (2 * Math.random() - 1);
         }
     var pink_noise_data = TANGUY.pink_noise_buffer.getChannelData(0);
@@ -844,7 +846,7 @@ TANGUY.build_synth = function () {
             pink_noise_data[i] = Math.floor((Math.random() * (2000 - 20) + 20) / 1000);
             var pink_noise_repeat = pink_noise_data[i];
             i++;
-            for (var j = 0; j < 4; ++j) {
+            for (j = 0; j < 4; ++j) {
                 pink_noise_data[i] = Math.abs(pink_noise_repeat);
                 i++;
                 pink_noise_data[i] = Math.abs(pink_noise_repeat) * 0.5;
@@ -855,7 +857,7 @@ TANGUY.build_synth = function () {
             red_noise_data[i] = (-1 * Math.random() + 2);
             var red_noise_repeat = red_noise_data[i];
             i++;
-            for (var j = 0; j < 237; ++j) {
+            for (j = 0; j < 237; ++j) {
                 red_noise_data[i] = (red_noise_repeat * 0.5);
                 i++;
             }
@@ -865,7 +867,7 @@ TANGUY.build_synth = function () {
             blue_noise_data[i] = (-1 * Math.random() + 1);
             var blue_noise_repeat = blue_noise_data[i];
             i++;
-            for (var j = 0; j < 137; ++j) {
+            for (j = 0; j < 137; ++j) {
                 blue_noise_data[i] = (blue_noise_repeat * 0.5);
                 i++;
             }
@@ -875,7 +877,7 @@ TANGUY.build_synth = function () {
             purple_noise_data[i] = (-1 * Math.random() + 1);
             var purple_noise_repeat = purple_noise_data[i];
             i++;
-            for (var j = 0; j < 172; ++j) {
+            for (j = 0; j < 172; ++j) {
                 purple_noise_data[i] = (purple_noise_repeat * 0.75);
                 i++;
             }
