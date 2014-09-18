@@ -185,8 +185,7 @@ var TANGUY = {
             if (TANGUY.osc2.shape_amt > 0) {
                 var x = this.value;
                 TANGUY.waveshaper.curve = new Float32Array([x * 1.6, x * -2.5, x * -1.2, x * -2.4, x * -1.6, x * -3.2, x * 6.4, x * -3.2]);
-            }
-            else {
+            } else {
                 TANGUY.waveshaper.curve = null;
             }
             TANGUY.osc2_fm_vca.gain.setValueAtTime((TANGUY.program.osc2.fm_amt * TANGUY.program.osc2.fm_amt) * 24000, TANGUY.voice1.currentTime);//parens needed?
