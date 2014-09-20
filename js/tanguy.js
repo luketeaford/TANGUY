@@ -602,9 +602,9 @@ var TANGUY = {
             break;
         }
 
-        TANGUY.calculate_pitch(1 * (this.getAttribute('data-keyboard-position')), 1 * (this.getAttribute('data-note-value')));
+        TANGUY.calculate_pitch(parseFloat(this.getAttribute('data-keyboard-position')), parseFloat(this.getAttribute('data-note-value')));
 
-        TANGUY.vca.gain.setValueAtTime((0 + TANGUY.program.vca.gain), TANGUY.voice1.currentTime);
+        TANGUY.vca.gain.setValueAtTime(TANGUY.program.vca.gain, TANGUY.voice1.currentTime);
         TANGUY.vca.gain.linearRampToValueAtTime(1, TANGUY.voice1.currentTime + TANGUY.program.vca.attack);
         TANGUY.vca.gain.setTargetAtTime(TANGUY.program.vca.sustain + TANGUY.program.vca.gain, vca_end_of_attack, TANGUY.program.vca.decay);
     },
