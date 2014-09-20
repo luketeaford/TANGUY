@@ -442,8 +442,9 @@ var TANGUY = {
         $(gizmo).parent().siblings().removeClass('selected');
     },
 
-    calculate_lfo: function (pitch, filter, amp) {
-        for (var i = 0; i < arguments.length; i++) {
+    calculate_lfo: function () {
+        var i;
+        for (i = 0; i < arguments.length; i++) {
             if (arguments[i] === 'pitch') {
                 TANGUY.lfo_pitch_vca.gain.value = TANGUY.program.lfo.pitch_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction;
             }
@@ -460,9 +461,10 @@ var TANGUY = {
     },
 
     calculate_pitch: function (pos, note_value) {
-        var note = ((TANGUY.octave_shift + pos) * 1200) + note_value;
-        var osc2_note = ((TANGUY.octave_shift + pos) * 1200) + (note_value + TANGUY.program.osc2.detune);
-        var kbd = (4800 - note) * TANGUY.program.filter.kbd;
+        var note = ((TANGUY.octave_shift + pos) * 1200) + note_value,
+            osc2_note = ((TANGUY.octave_shift + pos) * 1200) + (note_value + TANGUY.program.osc2.detune),
+            kbd = (4800 - note) * TANGUY.program.filter.kbd;
+
         TANGUY.osc1_pitch = note;
         TANGUY.osc2_pitch = osc2_note;
 
@@ -488,7 +490,7 @@ var TANGUY = {
             break;
         case 'off':
             console.log('No filter keyboard tracking to apply');
-        break;
+            break;
         }
 
         if (TANGUY.program.osc1.kbd === true && TANGUY.program.osc2.kbd === true) {
@@ -555,9 +557,9 @@ var TANGUY = {
     },
 
     gate_on: function () {
-        var filter_eg = TANGUY.program.filter.env_amt + TANGUY.program.filter.frequency;
-        var filter_end_of_attack = TANGUY.voice1.currentTime + TANGUY.program.filter.attack;
-        var vca_end_of_attack = TANGUY.voice1.currentTime + TANGUY.program.vca.attack;
+        var filter_eg = TANGUY.program.filter.env_amt + TANGUY.program.filter.frequency,
+            filter_end_of_attack = TANGUY.voice1.currentTime + TANGUY.program.filter.attack,
+            vca_end_of_attack = TANGUY.voice1.currentTime + TANGUY.program.vca.attack;
 
         switch (TANGUY.program.filter.mode) {
         case 'lp':
@@ -608,8 +610,8 @@ var TANGUY = {
     },
 
     gate_off: function () {
-        var filter_release_peak;
-        var vca_release_peak = TANGUY.vca.gain.value;
+        var filter_release_peak,
+            vca_release_peak = TANGUY.vca.gain.value;
 
         switch (TANGUY.program.filter.mode) {
         case 'lp':
@@ -663,12 +665,12 @@ var TANGUY = {
 
     midi: function () {
         console.log('Web MIDI happening');
-    },
+    }
 };
 
 TANGUY.build_synth = function () {
-    var i = 0;
-    var j = 0;
+    var i,
+        j;
 
     //DELAY
     TANGUY.delay_vca = TANGUY.voice1.createGain();
@@ -838,50 +840,50 @@ TANGUY.build_synth = function () {
     TANGUY.blue_noise.connect(TANGUY.noise_vca);
     TANGUY.purple_noise.connect(TANGUY.noise_vca);
     var white_noise_data = TANGUY.white_noise_buffer.getChannelData(0);
-        for (i = 0; i < 88200; ++i) {
-            white_noise_data[i] = (2 * Math.random() - 1);
-        }
+    for (i = 0; i < 88200; ++i) {
+        white_noise_data[i] = (2 * Math.random() - 1);
+    }
     var pink_noise_data = TANGUY.pink_noise_buffer.getChannelData(0);
-        for (i = 0; i < 44100; ++i) {
-            pink_noise_data[i] = Math.floor((Math.random() * (2000 - 20) + 20) / 1000);
-            var pink_noise_repeat = pink_noise_data[i];
+    for (i = 0; i < 44100; ++i) {
+        pink_noise_data[i] = Math.floor((Math.random() * (2000 - 20) + 20) / 1000);
+        var pink_noise_repeat = pink_noise_data[i];
+        i++;
+        for (j = 0; j < 4; ++j) {
+            pink_noise_data[i] = Math.abs(pink_noise_repeat);
             i++;
-            for (j = 0; j < 4; ++j) {
-                pink_noise_data[i] = Math.abs(pink_noise_repeat);
-                i++;
-                pink_noise_data[i] = Math.abs(pink_noise_repeat) * 0.5;
-            }
+            pink_noise_data[i] = Math.abs(pink_noise_repeat) * 0.5;
         }
+    }
     var red_noise_data = TANGUY.red_noise_buffer.getChannelData(0);
-        for (i = 0; i < 44100; ++i) {
-            red_noise_data[i] = (-1 * Math.random() + 2);
-            var red_noise_repeat = red_noise_data[i];
+    for (i = 0; i < 44100; ++i) {
+        red_noise_data[i] = (-1 * Math.random() + 2);
+        var red_noise_repeat = red_noise_data[i];
+        i++;
+        for (j = 0; j < 237; ++j) {
+            red_noise_data[i] = (red_noise_repeat * 0.5);
             i++;
-            for (j = 0; j < 237; ++j) {
-                red_noise_data[i] = (red_noise_repeat * 0.5);
-                i++;
-            }
         }
+    }
     var blue_noise_data = TANGUY.blue_noise_buffer.getChannelData(0);
-        for (i = 0; i < 44100; ++i) {
-            blue_noise_data[i] = (-1 * Math.random() + 1);
-            var blue_noise_repeat = blue_noise_data[i];
+    for (i = 0; i < 44100; ++i) {
+        blue_noise_data[i] = (-1 * Math.random() + 1);
+        var blue_noise_repeat = blue_noise_data[i];
+        i++;
+        for (j = 0; j < 137; ++j) {
+            blue_noise_data[i] = (blue_noise_repeat * 0.5);
             i++;
-            for (j = 0; j < 137; ++j) {
-                blue_noise_data[i] = (blue_noise_repeat * 0.5);
-                i++;
-            }
         }
+    }
     var purple_noise_data = TANGUY.purple_noise_buffer.getChannelData(0);
-        for (i = 0; i < 44100; ++i) {
-            purple_noise_data[i] = (-1 * Math.random() + 1);
-            var purple_noise_repeat = purple_noise_data[i];
+    for (i = 0; i < 44100; ++i) {
+        purple_noise_data[i] = (-1 * Math.random() + 1);
+        var purple_noise_repeat = purple_noise_data[i];
+        i++;
+        for (j = 0; j < 172; ++j) {
+            purple_noise_data[i] = (purple_noise_repeat * 0.75);
             i++;
-            for (j = 0; j < 172; ++j) {
-                purple_noise_data[i] = (purple_noise_repeat * 0.75);
-                i++;
-            }
         }
+    }
 
     //LFO VCAS
     TANGUY.lfo_pitch_vca = TANGUY.voice1.createGain();
