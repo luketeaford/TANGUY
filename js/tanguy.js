@@ -669,7 +669,12 @@ var TANGUY = {
 };
 
 TANGUY.build_synth = function () {
-    var i,
+    var white_noise_data,
+        pink_noise_data,
+        red_noise_data,
+        blue_noise_data,
+        purple_noise_data,
+        i,
         j;
 
     //DELAY
@@ -839,48 +844,44 @@ TANGUY.build_synth = function () {
     TANGUY.red_noise.connect(TANGUY.noise_vca);
     TANGUY.blue_noise.connect(TANGUY.noise_vca);
     TANGUY.purple_noise.connect(TANGUY.noise_vca);
-    var white_noise_data = TANGUY.white_noise_buffer.getChannelData(0);
+    white_noise_data = TANGUY.white_noise_buffer.getChannelData(0);
     for (i = 0; i < 88200; ++i) {
         white_noise_data[i] = (2 * Math.random() - 1);
     }
-    var pink_noise_data = TANGUY.pink_noise_buffer.getChannelData(0);
+    pink_noise_data = TANGUY.pink_noise_buffer.getChannelData(0);
     for (i = 0; i < 44100; ++i) {
         pink_noise_data[i] = Math.floor((Math.random() * (2000 - 20) + 20) / 1000);
-        var pink_noise_repeat = pink_noise_data[i];
         i++;
         for (j = 0; j < 4; ++j) {
-            pink_noise_data[i] = Math.abs(pink_noise_repeat);
+            pink_noise_data[i] = Math.abs(pink_noise_data[i]);
             i++;
-            pink_noise_data[i] = Math.abs(pink_noise_repeat) * 0.5;
+            pink_noise_data[i] = Math.abs(pink_noise_data[i]) * 0.5;
         }
     }
-    var red_noise_data = TANGUY.red_noise_buffer.getChannelData(0);
+    red_noise_data = TANGUY.red_noise_buffer.getChannelData(0);
     for (i = 0; i < 44100; ++i) {
         red_noise_data[i] = (-1 * Math.random() + 2);
-        var red_noise_repeat = red_noise_data[i];
         i++;
         for (j = 0; j < 237; ++j) {
-            red_noise_data[i] = (red_noise_repeat * 0.5);
+            red_noise_data[i] = red_noise_data[i] * 0.5;
             i++;
         }
     }
-    var blue_noise_data = TANGUY.blue_noise_buffer.getChannelData(0);
+    blue_noise_data = TANGUY.blue_noise_buffer.getChannelData(0);
     for (i = 0; i < 44100; ++i) {
         blue_noise_data[i] = (-1 * Math.random() + 1);
-        var blue_noise_repeat = blue_noise_data[i];
         i++;
         for (j = 0; j < 137; ++j) {
-            blue_noise_data[i] = (blue_noise_repeat * 0.5);
+            blue_noise_data[i] = blue_noise_data[i] * 0.5;
             i++;
         }
     }
-    var purple_noise_data = TANGUY.purple_noise_buffer.getChannelData(0);
+    purple_noise_data = TANGUY.purple_noise_buffer.getChannelData(0);
     for (i = 0; i < 44100; ++i) {
         purple_noise_data[i] = (-1 * Math.random() + 1);
-        var purple_noise_repeat = purple_noise_data[i];
         i++;
         for (j = 0; j < 172; ++j) {
-            purple_noise_data[i] = (purple_noise_repeat * 0.75);
+            purple_noise_data[i] = purple_noise_data[i] * 0.75;
             i++;
         }
     }
