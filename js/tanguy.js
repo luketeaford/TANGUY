@@ -1,5 +1,5 @@
 var TANGUY = {
-//I DON'T UNDERSTAND VERSION CONTROL
+
     voice1: new AudioContext(),
 
     //SENSIBLE DEFAULTS
