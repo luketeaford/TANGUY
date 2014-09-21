@@ -668,17 +668,34 @@ TANGUY.build_synth = function () {
         j;
 
     //DELAY
-    TANGUY.delay_vca = TANGUY.voice1.createGain();
-    TANGUY.delay_vca.gain.value = 0;
-    TANGUY.delay_vca.connect(TANGUY.voice1.destination);
-    TANGUY.delay = TANGUY.voice1.createDelay();
-    TANGUY.delay.maxDelayTime = 3;
-    TANGUY.delay.connect(TANGUY.delay_vca);
+    TANGUY.delay1_vca = TANGUY.voice1.createGain();
+    TANGUY.delay2_vca = TANGUY.voice1.createGain();
+    TANGUY.delay3_vca = TANGUY.voice1.createGain();
+    TANGUY.delay4_vca = TANGUY.voice1.createGain();
+    TANGUY.delay1_vca.gain.value = 0;
+    TANGUY.delay2_vca.gain.value = 0;
+    TANGUY.delay3_vca.gain.value = 0;
+    TANGUY.delay4_vca.gain.value = 0;
+    TANGUY.delay1_vca.connect(TANGUY.voice1.destination);
+    TANGUY.delay2_vca.connect(TANGUY.voice1.destination);
+    TANGUY.delay3_vca.connect(TANGUY.voice1.destination);
+    TANGUY.delay4_vca.connect(TANGUY.voice1.destination);
+    TANGUY.delay1 = TANGUY.voice1.createDelay(2);
+    TANGUY.delay2 = TANGUY.voice1.createDelay(2);
+    TANGUY.delay3 = TANGUY.voice1.createDelay(2);
+    TANGUY.delay4 = TANGUY.voice1.createDelay(2);
+    TANGUY.delay1.connect(TANGUY.delay1_vca);
+    TANGUY.delay2.connect(TANGUY.delay2_vca);
+    TANGUY.delay3.connect(TANGUY.delay3_vca);
+    TANGUY.delay4.connect(TANGUY.delay4_vca);
+    TANGUY.delay1_vca.connect(TANGUY.delay2);
+    TANGUY.delay2_vca.connect(TANGUY.delay3);
+    TANGUY.delay3_vca.connect(TANGUY.delay4);
 
     //VCA
     TANGUY.vca = TANGUY.voice1.createGain();
     TANGUY.vca.gain.value = 0;
-    TANGUY.vca.connect(TANGUY.delay);
+    TANGUY.vca.connect(TANGUY.delay1);
     TANGUY.vca.connect(TANGUY.voice1.destination);
 
     //LP FILTER
@@ -1084,14 +1101,21 @@ $('#lfo-amp').mousedown(function () {
 
 //DELAY CONTROLS
 $('#delay-rate').mousedown(function () {
+    var delay = [TANGUY.delay1, TANGUY.delay2, TANGUY.delay3, TANGUY.delay4],
+        i;
     $(this).mousemove(function () {
-        TANGUY.delay.delayTime.value = this.value;
+        for (i = 0; i < delay.length; i += 1) {
+            delay[i].delayTime.value = this.value * 2;
+        }
     });
 }).mouseup(TANGUY.stop_tweaking);
 $('#delay-amount').mousedown(function () {
+    var delay = [TANGUY.delay1_vca, TANGUY.delay2_vca, TANGUY.delay3_vca, TANGUY.delay4_vca],
+        i;
     $(this).mousemove(function () {
-        TANGUY.delay_vca.gain.value = this.value * this.value;
-        console.log(TANGUY.delay_vca.gain.value);
+        for (i = 0; i < delay.length; i += 1) {
+            delay[i].gain.value = this.value * this.value;
+        }
     });
 }).mouseup(TANGUY.stop_tweaking);
 
