@@ -442,7 +442,7 @@ var TANGUY = {
 
     calculate_lfo: function () {
         var i;
-        for (i = 0; i < arguments.length; i++) {
+        for (i = 0; i < arguments.length; i += 1) {
             if (arguments[i] === 'pitch') {
                 TANGUY.lfo_pitch_vca.gain.value = TANGUY.program.lfo.pitch_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction;
             }
@@ -672,6 +672,10 @@ TANGUY.build_synth = function () {
         red_noise_data,
         blue_noise_data,
         purple_noise_data,
+        pink_noise_repeat,
+        red_noise_repeat,
+        blue_noise_repeat,
+        purple_noise_repeat,
         i,
         j;
 
@@ -843,44 +847,48 @@ TANGUY.build_synth = function () {
     TANGUY.blue_noise.connect(TANGUY.noise_vca);
     TANGUY.purple_noise.connect(TANGUY.noise_vca);
     white_noise_data = TANGUY.white_noise_buffer.getChannelData(0);
-    for (i = 0; i < 88200; ++i) {
+    for (i = 0; i < 88200; i += 1) {
         white_noise_data[i] = (2 * Math.random() - 1);
     }
     pink_noise_data = TANGUY.pink_noise_buffer.getChannelData(0);
-    for (i = 0; i < 44100; ++i) {
+    for (i = 0; i < 44100; i += 1) {
         pink_noise_data[i] = Math.floor((Math.random() * (2000 - 20) + 20) / 1000);
-        i++;
-        for (j = 0; j < 4; ++j) {
-            pink_noise_data[i] = Math.abs(pink_noise_data[i]);
-            i++;
-            pink_noise_data[i] = Math.abs(pink_noise_data[i]) * 0.5;
+        pink_noise_repeat = pink_noise_data[i];
+        i += 1;
+        for (j = 0; j < 4; j += 1) {
+            pink_noise_data[i] = Math.abs(pink_noise_repeat);
+            i += 1;
+            pink_noise_data[i] = Math.abs(pink_noise_repeat) * 0.5;
         }
     }
     red_noise_data = TANGUY.red_noise_buffer.getChannelData(0);
-    for (i = 0; i < 44100; ++i) {
+    for (i = 0; i < 44100; i += 1) {
         red_noise_data[i] = (-1 * Math.random() + 2);
-        i++;
-        for (j = 0; j < 237; ++j) {
-            red_noise_data[i] = red_noise_data[i] * 0.5;
-            i++;
+        red_noise_repeat = red_noise_data[i];
+        i += 1;
+        for (j = 0; j < 237; j += 1) {
+            red_noise_data[i] = red_noise_repeat * 0.5;
+            i += 1;
         }
     }
     blue_noise_data = TANGUY.blue_noise_buffer.getChannelData(0);
-    for (i = 0; i < 44100; ++i) {
+    for (i = 0; i < 44100; i += 1) {
         blue_noise_data[i] = (-1 * Math.random() + 1);
-        i++;
-        for (j = 0; j < 137; ++j) {
-            blue_noise_data[i] = blue_noise_data[i] * 0.5;
-            i++;
+        blue_noise_repeat = blue_noise_data[i];
+        i += 1;
+        for (j = 0; j < 137; j += 1) {
+            blue_noise_data[i] = blue_noise_repeat * 0.5;
+            i += 1;
         }
     }
     purple_noise_data = TANGUY.purple_noise_buffer.getChannelData(0);
-    for (i = 0; i < 44100; ++i) {
-        purple_noise_data[i] = (-1 * Math.random() + 1);
-        i++;
-        for (j = 0; j < 172; ++j) {
-            purple_noise_data[i] = purple_noise_data[i] * 0.75;
-            i++;
+    for (i = 0; i < 44100; i += 1) {
+        purple_noise_data[i] = -1 * Math.random() + 1;
+        purple_noise_repeat = purple_noise_data[i];
+        i += 1;
+        for (j = 0; j < 172; j += 1) {
+            purple_noise_data[i] = purple_noise_repeat * 0.75;
+            i += 1;
         }
     }
 
