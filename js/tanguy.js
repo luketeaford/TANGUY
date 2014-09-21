@@ -79,10 +79,8 @@ var TANGUY = {
 
     load_program: function (patch) {
         var patch_url = encodeURI('programs/') + patch + '.json';
-        console.log('LOADING PROGRAM: ' + patch);
         $.getJSON(decodeURI(patch_url), function (loaded) {
             TANGUY.program = loaded;
-            console.log('TANGUY PATCH = ' + TANGUY.program.name);
             //OSCILLATOR 1 KBD TRACKING
             if (TANGUY.program.osc1.kbd === true) {
                 $('#osc1-kbd').prop('checked', true);
@@ -1256,30 +1254,30 @@ $('#filter-keyboard-tracking').change(function () {
     TANGUY.program.filter.kbd = this.value;
 });
 $('#filter-attack').change(function () {
-    TANGUY.program.filter.attack = 1 * this.value;
+    TANGUY.program.filter.attack = parseFloat(this.value);
 });
 $('#filter-decay').change(function () {
-    TANGUY.program.filter.decay = 1 * this.value;
+    TANGUY.program.filter.decay = this.value;
 });
 $('#filter-sustain').change(function () {
-    TANGUY.program.filter.sustain = 1 * this.value;
+    TANGUY.program.filter.sustain = this.value;
 });
 $('#filter-release').change(function () {
-    TANGUY.program.filter.release = 1 * this.value;
+    TANGUY.program.filter.release = this.value;
 });
 
 //VCA CONTROLS
 $('#vca-attack').change(function () {
-    TANGUY.program.vca.attack = 1 * this.value;
+    TANGUY.program.vca.attack = parseFloat(this.value);
 });
 $('#vca-decay').change(function () {
-    TANGUY.program.vca.decay = 1 * this.value;
+    TANGUY.program.vca.decay = this.value;
 });
 $('#vca-sustain').change(function () {
-    TANGUY.program.vca.sustain = 1 * this.value;
+    TANGUY.program.vca.sustain = this.value;
 });
 $('#vca-release').change(function () {
-    TANGUY.program.vca.release = 1 * this.value;
+    TANGUY.program.vca.release = this.value;
 });
 $('#vca-gain').mousedown(function () {
     $(this).mousemove(function () {
@@ -1329,7 +1327,6 @@ $('#mod-amount').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.mod.amt = this.value;
         TANGUY.calculate_lfo();
-        console.log('MOD WHEEL = ' + this.value);
     });
 }).mouseup(function () {
     $(this).unbind('mousemove');
