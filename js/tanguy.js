@@ -440,6 +440,10 @@ var TANGUY = {
         $(gizmo).parent().siblings().removeClass('selected');
     },
 
+    stop_tweaking: function () {
+        $(this).unbind('mousemove');
+    },
+
     calculate_lfo: function () {
         var i;
         for (i = 0; i < arguments.length; i += 1) {
@@ -848,7 +852,7 @@ TANGUY.build_synth = function () {
     TANGUY.purple_noise.connect(TANGUY.noise_vca);
     white_noise_data = TANGUY.white_noise_buffer.getChannelData(0);
     for (i = 0; i < 88200; i += 1) {
-        white_noise_data[i] = (2 * Math.random() - 1);
+        white_noise_data[i] = 2 * Math.random() - 1;
     }
     pink_noise_data = TANGUY.pink_noise_buffer.getChannelData(0);
     for (i = 0; i < 44100; i += 1) {
@@ -934,41 +938,31 @@ $('#osc1-saw').mousedown(function () {
         TANGUY.program.osc1.saw_amt = this.value;
         TANGUY.osc1_saw_vca.gain.setValueAtTime(this.value, TANGUY.voice1.currentTime);
     });
-}).mouseup(function () {
-    $(this).unbind('mousemove');
-});
+}).mouseup(TANGUY.stop_tweaking);
 $('#osc1-sqr').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.osc1.sqr_amt = -1 * this.value;
         TANGUY.osc1_sqr_vca.gain.setValueAtTime(-1 * this.value, TANGUY.voice1.currentTime);
     });
-}).mouseup(function () {
-    $(this).unbind('mousemove');
-});
+}).mouseup(TANGUY.stop_tweaking);
 $('#osc1-tri').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.osc1.tri_amt = this.value;
         TANGUY.osc1_tri_vca.gain.setValueAtTime(this.value, TANGUY.voice1.currentTime);
     });
-}).mouseup(function () {
-    $(this).unbind('mousemove');
-});
+}).mouseup(TANGUY.stop_tweaking);
 $('#osc1-sin').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.osc1.sin_amt = this.value;
         TANGUY.osc1_sin_vca.gain.setValueAtTime(this.value, TANGUY.voice1.currentTime);
     });
-}).mouseup(function () {
-    $(this).unbind('mousemove');
-});
+}).mouseup(TANGUY.stop_tweaking);
 $('#osc1-fm').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.osc1.fm_amt = this.value;
         TANGUY.osc1_fm_vca.gain.setValueAtTime((this.value * this.value) * 24000, TANGUY.voice1.currentTime);
     });
-}).mouseup(function () {
-    $(this).unbind('mousemove');
-});
+}).mouseup(TANGUY.stop_tweaking);
 
 //OSCILLATOR 2 CONTROLS
 $('#osc2-kbd').change(function () {
@@ -986,17 +980,13 @@ $('#osc2-detune').mousedown(function () {
         }
         TANGUY.osc2.detune.setValueAtTime(TANGUY.osc2_pitch + TANGUY.program.osc2.detune, TANGUY.voice1.currentTime);
     });
-}).mouseup(function () {
-    $(this).unbind('mousemove');
-});
+}).mouseup(TANGUY.stop_tweaking);
 $('#osc2-fine').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.osc2.fine = parseFloat(this.value);
         TANGUY.osc2.frequency.setValueAtTime((TANGUY.osc2_master_pitch * TANGUY.program.osc2.coarse) + TANGUY.program.osc2.fine, TANGUY.voice1.currentTime);
     });
-}).mouseup(function () {
-    $(this).unbind('mousemove');
-});
+}).mouseup(TANGUY.stop_tweaking);
 $('#osc2-saw, #osc2-sqr, #osc2-tri, #osc2-sin').change(function () {
     TANGUY.program.osc2.waveform = this.value;
     TANGUY.osc2.type = this.value;
@@ -1011,17 +1001,13 @@ $('#osc2-waveshape').mousedown(function () {
             TANGUY.waveshaper.curve = null;
         }
     });
-}).mouseup(function () {
-    $(this).unbind('mousemove');
-});
+}).mouseup(TANGUY.stop_tweaking);
 $('#osc2-fm').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.osc2.fm_amt = this.value;
         TANGUY.osc2_fm_vca.gain.setValueAtTime((this.value * this.value) * 24000, TANGUY.voice1.currentTime);
     });
-}).mouseup(function () {
-    $(this).unbind('mousemove');
-});
+}).mouseup(TANGUY.stop_tweaking);
 
 //NOISE CONTROLS
 $('#white-noise, #pink-noise, #red-noise, #blue-noise, #purple-noise').change(function () {
@@ -1091,50 +1077,38 @@ $('#lfo-rate').mousedown(function () {
         TANGUY.program.lfo.rate = (this.value * this.value) * 100;
         TANGUY.lfo.frequency.value = (this.value * this.value) * 100;
     });
-}).mouseup(function () {
-    $(this).unbind('mousemove');
-});
+}).mouseup(TANGUY.stop_tweaking);
 $('#lfo-pitch').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.lfo.pitch_amt = this.value;
         TANGUY.calculate_lfo('pitch');
     });
-}).mouseup(function () {
-    $(this).unbind('mousemove');
-});
+}).mouseup(TANGUY.stop_tweaking);
 $('#lfo-filter').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.lfo.filter_amt = this.value;
         TANGUY.calculate_lfo('filter');
     });
-}).mouseup(function () {
-    $(this).unbind('mousemove');
-});
+}).mouseup(TANGUY.stop_tweaking);
 $('#lfo-amp').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.lfo.amp_amt = this.value;
         TANGUY.calculate_lfo('amp');
     });
-}).mouseup(function () {
-    $(this).unbind('mousemove');
-});
+}).mouseup(TANGUY.stop_tweaking);
 
 //DELAY CONTROLS
 $('#delay-rate').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.delay.delayTime.value = this.value;
     });
-}).mouseup(function () {
-    $(this).unbind('mousemove');
-});
+}).mouseup(TANGUY.stop_tweaking);
 $('#delay-amount').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.delay_vca.gain.value = this.value * this.value;
         console.log(TANGUY.delay_vca.gain.value);
     });
-}).mouseup(function () {
-    $(this).unbind('mousemove');
-});
+}).mouseup(TANGUY.stop_tweaking);
 
 //MIXER CONTROLS
 $('#osc1-mix').mousedown(function () {
@@ -1142,25 +1116,19 @@ $('#osc1-mix').mousedown(function () {
         TANGUY.program.mixer.osc1 = this.value;
         TANGUY.osc1_vca.gain.value = TANGUY.program.mixer.osc1;
     });
-}).mouseup(function () {
-    $(this).unbind('mousemove');
-});
+}).mouseup(TANGUY.stop_tweaking);
 $('#osc2-mix').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.mixer.osc2 = this.value;
         TANGUY.osc2_vca.gain.value = TANGUY.program.mixer.osc2;
     });
-}).mouseup(function () {
-    $(this).unbind('mousemove');
-});
+}).mouseup(TANGUY.stop_tweaking);
 $('#noise-mix').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.mixer.noise = this.value;
         TANGUY.noise_vca.gain.value = TANGUY.program.mixer.noise;
     });
-}).mouseup(function () {
-    $(this).unbind('mousemove');
-});
+}).mouseup(TANGUY.stop_tweaking);
 
 //FILTER CONTROLS
 $('#filter-lp, #filter-bp, #filter-hp, #filter-notch, #filter-off').change(function () {
@@ -1227,9 +1195,7 @@ $('#cutoff').mousedown(function () {
             break;
         }
     });
-}).mouseup(function () {
-    $(this).unbind('mousemove');
-});
+}).mouseup(TANGUY.stop_tweaking);
 $('#resonance').mousedown(function () {
     $(this).mousemove(function () {
         TANGUY.program.filter.resonance = (this.value * this.value) * 1000;
@@ -1252,9 +1218,7 @@ $('#resonance').mousedown(function () {
             break;
         }
     });
-}).mouseup(function () {
-    $(this).unbind('mousemove');
-});
+}).mouseup(TANGUY.stop_tweaking);
 $('#filter-envelope-amount').change(function () {
     TANGUY.program.filter.env_amt = parseFloat(this.value);
 });
@@ -1292,9 +1256,7 @@ $('#vca-gain').mousedown(function () {
         TANGUY.program.vca.gain = this.value * this.value;
         TANGUY.vca.gain.setTargetAtTime(TANGUY.program.vca.gain, TANGUY.voice1.currentTime, 0.01);
     });
-}).mouseup(function () {
-    $(this).unbind('mousemove');
-});
+}).mouseup(TANGUY.stop_tweaking);
 
 //OCTAVE SHIFT BUTTONS
 $('.octave-shift-down').click(function () {
@@ -1336,9 +1298,7 @@ $('#mod-amount').mousedown(function () {
         TANGUY.program.mod.amt = this.value;
         TANGUY.calculate_lfo();
     });
-}).mouseup(function () {
-    $(this).unbind('mousemove');
-});
+}).mouseup(TANGUY.stop_tweaking);
 
 //MULTI-SWITCHES
 $('.horizontal-multi-switch label input, .vertical-multi-switch label input').click(function () {
