@@ -465,10 +465,56 @@ var TANGUY = {
     calculate_pitch: function (pos, note_value) {
         var note = ((TANGUY.octave_shift + pos) * 1200) + note_value,
             osc2_note = ((TANGUY.octave_shift + pos) * 1200) + (note_value + TANGUY.program.osc2.detune),
-            kbd = (4800 - note) * TANGUY.program.filter.kbd;
+            kbd = (4800 - note) * TANGUY.program.filter.kbd,
+            no_portamento = function () {
+                if (TANGUY.program.osc1.kbd === true) {
+                    TANGUY.osc1_saw.detune.setValueAtTime(note, TANGUY.voice1.currentTime);
+                    TANGUY.osc1_sqr.detune.setValueAtTime(note, TANGUY.voice1.currentTime);
+                    TANGUY.osc1_tri.detune.setValueAtTime(note, TANGUY.voice1.currentTime);
+                    TANGUY.osc1_sin.detune.setValueAtTime(note, TANGUY.voice1.currentTime);
+                }
+                if (TANGUY.program.osc2.kbd === true) {
+                    TANGUY.osc2.detune.setValueAtTime(osc2_note, TANGUY.voice1.currentTime);
+                }
+            },
+            linear_portamento = function () {
+                if (TANGUY.program.osc1.kbd === true) {
+                    TANGUY.osc1_saw.detune.linearRampToValueAtTime(note, TANGUY.voice1.currentTime + TANGUY.program.portamento.amt);
+                    TANGUY.osc1_sqr.detune.linearRampToValueAtTime(note, TANGUY.voice1.currentTime + TANGUY.program.portamento.amt);
+                    TANGUY.osc1_tri.detune.linearRampToValueAtTime(note, TANGUY.voice1.currentTime + TANGUY.program.portamento.amt);
+                    TANGUY.osc1_sin.detune.linearRampToValueAtTime(note, TANGUY.voice1.currentTime + TANGUY.program.portamento.amt);
+                }
+                if (TANGUY.program.osc2.kbd === true) {
+                    TANGUY.osc2.detune.linearRampToValueAtTime(osc2_note, TANGUY.voice1.currentTime + TANGUY.program.portamento.amt);
+                }
+            },
+            exponential_portamento = function () {
+                if (TANGUY.program.osc1.kbd === true) {
+                    TANGUY.osc1_saw.detune.setTargetAtTime(note, TANGUY.voice1.currentTime, TANGUY.program.portamento.amt / 5);
+                    TANGUY.osc1_sqr.detune.setTargetAtTime(note, TANGUY.voice1.currentTime, TANGUY.program.portamento.amt / 5);
+                    TANGUY.osc1_tri.detune.setTargetAtTime(note, TANGUY.voice1.currentTime, TANGUY.program.portamento.amt / 5);
+                    TANGUY.osc1_sin.detune.setTargetAtTime(note, TANGUY.voice1.currentTime, TANGUY.program.portamento.amt / 5);
+                }
+                if (TANGUY.program.osc2.kbd === true) {
+                    TANGUY.osc2.detune.setTargetAtTime(osc2_note, TANGUY.voice1.currentTime, TANGUY.program.portamento.amt / 5);
+                }
+            };
 
         TANGUY.osc1_pitch = note;
         TANGUY.osc2_pitch = osc2_note;
+
+        //OSCILLATOR TRACKING
+        switch (TANGUY.program.portamento.mode) {
+        case 'off':
+            no_portamento();
+            break;
+        case 'linear':
+            linear_portamento();
+            break;
+        case 'exponential':
+            exponential_portamento();
+            break;
+        }
 
         //FILTER KEYBOARD TRACKING
         switch (TANGUY.program.filter.mode) {
@@ -493,68 +539,6 @@ var TANGUY = {
         case 'off':
             console.log('No filter keyboard tracking to apply');
             break;
-        }
-
-        if (TANGUY.program.osc1.kbd === true && TANGUY.program.osc2.kbd === true) {
-            //SET BOTH OSCILLATORS
-            switch (TANGUY.program.portamento.mode) {
-            case 'off':
-                TANGUY.osc1_saw.detune.setValueAtTime(note, TANGUY.voice1.currentTime);
-                TANGUY.osc1_sqr.detune.setValueAtTime(note, TANGUY.voice1.currentTime);
-                TANGUY.osc1_tri.detune.setValueAtTime(note, TANGUY.voice1.currentTime);
-                TANGUY.osc1_sin.detune.setValueAtTime(note, TANGUY.voice1.currentTime);
-                TANGUY.osc2.detune.setValueAtTime(osc2_note, TANGUY.voice1.currentTime);
-                break;
-            case 'linear':
-                TANGUY.osc1_saw.detune.linearRampToValueAtTime(note, TANGUY.voice1.currentTime + TANGUY.program.portamento.amt);
-                TANGUY.osc1_sqr.detune.linearRampToValueAtTime(note, TANGUY.voice1.currentTime + TANGUY.program.portamento.amt);
-                TANGUY.osc1_tri.detune.linearRampToValueAtTime(note, TANGUY.voice1.currentTime + TANGUY.program.portamento.amt);
-                TANGUY.osc1_sin.detune.linearRampToValueAtTime(note, TANGUY.voice1.currentTime + TANGUY.program.portamento.amt);
-                TANGUY.osc2.detune.linearRampToValueAtTime(osc2_note, TANGUY.voice1.currentTime + TANGUY.program.portamento.amt);
-                break;
-            case 'exponential':
-                TANGUY.osc1_saw.detune.setTargetAtTime(note, TANGUY.voice1.currentTime, TANGUY.program.portamento.amt / 5);
-                TANGUY.osc1_sqr.detune.setTargetAtTime(note, TANGUY.voice1.currentTime, TANGUY.program.portamento.amt / 5);
-                TANGUY.osc1_tri.detune.setTargetAtTime(note, TANGUY.voice1.currentTime, TANGUY.program.portamento.amt / 5);
-                TANGUY.osc1_sin.detune.setTargetAtTime(note, TANGUY.voice1.currentTime, TANGUY.program.portamento.amt / 5);
-                TANGUY.osc2.detune.setTargetAtTime(osc2_note, TANGUY.voice1.currentTime, TANGUY.program.portamento.amt / 5);
-                break;
-            }
-        } else if (TANGUY.program.osc1.kbd === true && TANGUY.program.osc2.kbd === false) {
-            switch (TANGUY.program.portamento.mode) {
-            case 'off':
-                TANGUY.osc1_saw.detune.setValueAtTime(note, TANGUY.voice1.currentTime);
-                TANGUY.osc1_sqr.detune.setValueAtTime(note, TANGUY.voice1.currentTime);
-                TANGUY.osc1_tri.detune.setValueAtTime(note, TANGUY.voice1.currentTime);
-                TANGUY.osc1_sin.detune.setValueAtTime(note, TANGUY.voice1.currentTime);
-                break;
-            case 'linear':
-                TANGUY.osc1_saw.detune.linearRampToValueAtTime(note, TANGUY.voice1.currentTime + TANGUY.program.portamento.amt);
-                TANGUY.osc1_sqr.detune.linearRampToValueAtTime(note, TANGUY.voice1.currentTime + TANGUY.program.portamento.amt);
-                TANGUY.osc1_tri.detune.linearRampToValueAtTime(note, TANGUY.voice1.currentTime + TANGUY.program.portamento.amt);
-                TANGUY.osc1_sin.detune.linearRampToValueAtTime(note, TANGUY.voice1.currentTime + TANGUY.program.portamento.amt);
-                break;
-            case 'exponential':
-                TANGUY.osc1_saw.detune.setTargetAtTime(note, TANGUY.voice1.currentTime, TANGUY.program.portamento.amt / 5);
-                TANGUY.osc1_sqr.detune.setTargetAtTime(note, TANGUY.voice1.currentTime, TANGUY.program.portamento.amt / 5);
-                TANGUY.osc1_tri.detune.setTargetAtTime(note, TANGUY.voice1.currentTime, TANGUY.program.portamento.amt / 5);
-                TANGUY.osc1_sin.detune.setTargetAtTime(note, TANGUY.voice1.currentTime, TANGUY.program.portamento.amt / 5);
-                break;
-            }
-        } else if (TANGUY.program.osc1.kbd === false && TANGUY.program.osc2.kbd === true) {
-            switch (TANGUY.program.portamento.mode) {
-            case 'off':
-                TANGUY.osc2.detune.setValueAtTime(osc2_note, TANGUY.voice1.currentTime);
-                break;
-            case 'linear':
-                TANGUY.osc2.detune.linearRampToValueAtTime(osc2_note, TANGUY.voice1.currentTime + TANGUY.program.portamento.amt);
-                break;
-            case 'exponential':
-                TANGUY.osc2.detune.setTargetAtTime(osc2_note, TANGUY.voice1.currentTime, TANGUY.program.portamento.amt / 5);
-                break;
-            }
-        } else {
-            console.log('No oscillators are tracking the keyboard');
         }
     },
 
