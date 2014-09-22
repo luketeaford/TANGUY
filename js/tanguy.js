@@ -68,6 +68,10 @@ var TANGUY = {
         mod: {
             amt: 0,
             direction: 1
+        },
+        delay: {
+            rate: 0,
+            amt: 0
         }
     },
 
@@ -80,6 +84,8 @@ var TANGUY = {
     load_program: function (patch) {
         var patch_url = encodeURI('programs/') + patch + '.json',
             osc1 = [TANGUY.osc1_saw, TANGUY.osc1_sqr, TANGUY.osc1_tri, TANGUY.osc1_sin],
+            delay = [TANGUY.delay1, TANGUY.delay2, TANGUY.delay3, TANGUY.delay4],
+            delay_vcas = [TANGUY.delay1_vca, TANGUY.delay2_vca, TANGUY.delay3_vca, TANGUY.delay4_vca],
             i;
         $.getJSON(decodeURI(patch_url), function (loaded) {
             TANGUY.program = loaded;
@@ -363,6 +369,16 @@ var TANGUY = {
                 TANGUY.program.mod.direction = 1;
                 TANGUY.lfo.type = 'square';
                 break;
+            }
+
+            //DELAY CONTROLS
+            $('#delay-rate').val(TANGUY.program.delay.rate);
+            $('#delay-amount').val(TANGUY.program.delay.amt);
+            for (i = 0; i < delay.length; i += 1) {
+                delay[i].delayTime.value = TANGUY.program.delay.rate;
+            }
+            for (i = 0; i < delay_vcas; i += 1) {
+                delay_vcas[i].gain.value = TANGUY.program.delay.amt;
             }
 
             //MODWHEEL CONTROL
@@ -1104,6 +1120,7 @@ $('#delay-rate').mousedown(function () {
     var delay = [TANGUY.delay1, TANGUY.delay2, TANGUY.delay3, TANGUY.delay4],
         i;
     $(this).mousemove(function () {
+        TANGUY.program.delay.rate = this.value * 2;
         for (i = 0; i < delay.length; i += 1) {
             delay[i].delayTime.value = this.value * 2;
         }
@@ -1113,6 +1130,7 @@ $('#delay-amount').mousedown(function () {
     var delay = [TANGUY.delay1_vca, TANGUY.delay2_vca, TANGUY.delay3_vca, TANGUY.delay4_vca],
         i;
     $(this).mousemove(function () {
+        TANGUY.program.delay.amt = this.value * this.value;
         for (i = 0; i < delay.length; i += 1) {
             delay[i].gain.value = this.value * this.value;
         }
