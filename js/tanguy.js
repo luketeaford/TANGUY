@@ -377,7 +377,7 @@ var TANGUY = {
             for (i = 0; i < delay.length; i += 1) {
                 delay[i].delayTime.value = TANGUY.program.delay.rate;
             }
-            for (i = 0; i < delay_vcas; i += 1) {
+            for (i = 0; i < delay_vcas.length; i += 1) {
                 delay_vcas[i].gain.value = TANGUY.program.delay.amt;
             }
 
@@ -498,11 +498,11 @@ var TANGUY = {
             linear_portamento = function () {
                 if (TANGUY.program.osc1.kbd === true) {
                     for (i = 0; i < osc1.length; i += 1) {
-                        osc1[i].detune.linearRampToValueAtTime(note, TANGUY.voice1.currentTime + TANGUY.program.portamento.amt);
+                        osc1[i].detune.linearRampToValueAtTime(note, TANGUY.voice1.currentTime + parseFloat(TANGUY.program.portamento.amt));
                     }
                 }
                 if (TANGUY.program.osc2.kbd === true) {
-                    TANGUY.osc2.detune.linearRampToValueAtTime(osc2_note, TANGUY.voice1.currentTime + TANGUY.program.portamento.amt);
+                    TANGUY.osc2.detune.linearRampToValueAtTime(osc2_note, TANGUY.voice1.currentTime + parseFloat(TANGUY.program.portamento.amt));
                 }
             },
             exponential_portamento = function () {
