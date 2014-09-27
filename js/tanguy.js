@@ -129,7 +129,7 @@ var TANGUY = {
             TANGUY.osc1_sqr_vca.gain.setValueAtTime(TANGUY.program.osc1.sqr_amt, TANGUY.voice1.currentTime);
             TANGUY.osc1_tri_vca.gain.setValueAtTime(TANGUY.program.osc1.tri_amt, TANGUY.voice1.currentTime);
             TANGUY.osc1_sin_vca.gain.setValueAtTime(TANGUY.program.osc1.sin_amt, TANGUY.voice1.currentTime);
-            TANGUY.osc1_fm_vca.gain.setValueAtTime((TANGUY.program.osc1.fm_amt * TANGUY.program.osc1.fm_amt) * 24000, TANGUY.voice1.currentTime);
+            TANGUY.osc1_fm_vca.gain.setValueAtTime(TANGUY.program.osc1.fm_amt * TANGUY.program.osc1.fm_amt * 24000, TANGUY.voice1.currentTime);//parens needed?
 
             //OSCILLATOR 2 KEYBOARD TRACKING
             if (TANGUY.program.osc2.kbd === true) {
@@ -185,7 +185,7 @@ var TANGUY = {
             $('#osc2-fine').val(TANGUY.program.osc2.fine);
             $('#osc2-waveshape').val(TANGUY.program.osc2.shape_amt);
             $('#osc2-fm').val(TANGUY.program.osc2.fm_amt);
-            TANGUY.osc2.detune.setValueAtTime(TANGUY.osc2_master_pitch + TANGUY.program.osc2.detune, TANGUY.voice1.currentTime);//parens needed?
+            TANGUY.osc2.detune.setValueAtTime(TANGUY.osc2_master_pitch + TANGUY.program.osc2.detune, TANGUY.voice1.currentTime);
             TANGUY.osc2.frequency.setValueAtTime(((TANGUY.osc2_master_pitch * TANGUY.program.osc2.coarse) + TANGUY.program.osc2.fine), TANGUY.voice1.currentTime);
             if (TANGUY.osc2.shape_amt > 0) {
                 var x = this.value;
@@ -193,7 +193,7 @@ var TANGUY = {
             } else {
                 TANGUY.waveshaper.curve = null;
             }
-            TANGUY.osc2_fm_vca.gain.setValueAtTime((TANGUY.program.osc2.fm_amt * TANGUY.program.osc2.fm_amt) * 24000, TANGUY.voice1.currentTime);//parens needed?
+            TANGUY.osc2_fm_vca.gain.setValueAtTime(TANGUY.program.osc2.fm_amt * TANGUY.program.osc2.fm_amt * 24000, TANGUY.voice1.currentTime);//parens needed?
 
             //NOISE
             switch (TANGUY.program.noise.color) {
@@ -682,6 +682,14 @@ TANGUY.build_synth = function () {
         purple_noise_repeat,
         i,
         j;
+
+    //REVERB - NOTHING CONNECTED TO THIS AT THE MOMENT
+    TANGUY.reverb_vca = TANGUY.voice1.createGain();
+    TANGUY.reverb_vca.gain.value = 0;
+    TANGUY.reverb_vca.connect(TANGUY.voice1.destination);
+    TANGUY.reverb = TANGUY.voice1.createConvolver();
+    TANGUY.reverb.buffer = 0/* an audio buffer containing the IR */;
+    TANGUY.reverb.connect(TANGUY.reverb_vca);
 
     //DELAY
     TANGUY.delay1_vca = TANGUY.voice1.createGain();
