@@ -15,13 +15,13 @@
 	&::after {
 		@extend %horizontal-slider-legend;
 		content: '10';
-		margin-left: -0.6rem;
+		margin-left: -.6rem;
 	}
 }
 %horizontal-slider-legend {
 	color: #9f9693;
 	float: left;
-	font-size: 0.6rem;
+	font-size: .6rem;
 	position: absolute;
 	top: -1rem;
 	z-index: 1;
@@ -42,7 +42,7 @@
 .slider-label {
 	color: #000;
 	display: block;
-	font-size: 0.5rem;
+	font-size: .5rem;
 	text-align: center;
 	text-transform: uppercase;
 }

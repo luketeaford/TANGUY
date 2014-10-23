@@ -19,7 +19,7 @@ body {
 }
 header {
 	background: $tan;
-	box-shadow: 0 -0.5rem 1rem .5rem #3e3c39;
+	box-shadow: 0 -.5rem 1rem .5rem #3e3c39;
 	padding: .5rem 1rem;
 	.wrapper {
 		padding-left: 1rem;
@@ -61,7 +61,7 @@ button {
 }
 .author {
 	display: inline-block;
-	font-size: 0.6rem;
+	font-size: .6rem;
 	font-weight: normal;
 	text-transform: uppercase;
 }
@@ -88,10 +88,7 @@ a:active {
 }
 .promo-text {
 	color: #a3a394;
-	display: inline;
-	font-size: 0.7rem;
-}
-
-.donate {
-	margin: 0.5rem 0;
+	display: block;
+	font-size: .7rem;
+	margin: .5rem 0;
 }

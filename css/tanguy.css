@@ -19,7 +19,7 @@ body {
 
 header {
   background: tan;
-  box-shadow: 0 -0.5rem 1rem .5rem #3e3c39;
+  box-shadow: 0 -.5rem 1rem .5rem #3e3c39;
   padding: .5rem 1rem; }
   header .wrapper {
     padding-left: 1rem; }
@@ -57,7 +57,7 @@ button {
 
 .author {
   display: inline-block;
-  font-size: 0.6rem;
+  font-size: .6rem;
   font-weight: normal;
   text-transform: uppercase; }
 
@@ -84,11 +84,9 @@ a:active {
 
 .promo-text {
   color: #a3a394;
-  display: inline;
-  font-size: 0.7rem; }
-
-.donate {
-  margin: 0.5rem 0; }
+  display: block;
+  font-size: .7rem;
+  margin: .5rem 0; }
 
 .horizontal-multi-switch, .vertical-multi-switch {
   background: #9e9c99 linear-gradient(#6c6956, #887);
@@ -129,7 +127,7 @@ a:active {
   width: 3rem; }
   .vertical-multi-switch label {
     display: block;
-    padding: 0.5rem 0; }
+    padding: .5rem 0; }
     .vertical-multi-switch label:not(.selected):hover {
       box-shadow: inset 0 1px #3e3c39, 0 1px #3e3c39; }
     .vertical-multi-switch label:first-child {
@@ -152,12 +150,12 @@ a:active {
     content: '0'; }
   .horizontal-slider::after {
     content: '10';
-    margin-left: -0.6rem; }
+    margin-left: -.6rem; }
 
 .horizontal-slider::before, .horizontal-slider::after {
   color: #9f9693;
   float: left;
-  font-size: 0.6rem;
+  font-size: .6rem;
   position: absolute;
   top: -1rem;
   z-index: 1; }
@@ -177,7 +175,7 @@ a:active {
 .slider-label {
   color: #000;
   display: block;
-  font-size: 0.5rem;
+  font-size: .5rem;
   text-align: center;
   text-transform: uppercase; }
 
@@ -187,14 +185,14 @@ a:active {
   box-sizing: content-box;
   color: #fff6f3;
   display: inline-block;
-  font-size: 0.5rem;
-  height: 0.6rem;
+  font-size: .5rem;
+  height: .6rem;
   line-height: 4;
-  margin: 1rem 0.9rem 1rem 0;
+  margin: 1rem .9rem 1rem 0;
   opacity: .2;
   text-align: center;
   transition: opacity .25s ease-out;
-  width: 0.6rem; }
+  width: .6rem; }
   .lit.octave-minus-2, .lit.octave-minus-1, .lit.octave-plus-0, .lit.octave-plus-1, .lit.octave-plus-2 {
     color: #fff6f3;
     opacity: 1 !important; }
@@ -202,11 +200,11 @@ a:active {
 .octave-shift-down, .octave-shift-up {
   background: #3e3c39 linear-gradient(#514e5d, #2e2c29);
   border: 1px solid #3c3926;
-  border-radius: 0.2rem;
+  border-radius: .2rem;
   box-shadow: inset 0 -1px 2px 1px #424140, 0 2px 2px -2px #343230;
   color: #9f9693;
   cursor: pointer;
-  font-size: 0.6rem;
+  font-size: .6rem;
   height: 1.5rem;
   width: 3.5rem; }
   .octave-shift-down:hover, .octave-shift-up:hover {
@@ -217,7 +215,7 @@ a:active {
   background: #827c7a;
   border: 1px solid #9f9693;
   float: left;
-  font-size: 0.7rem;
+  font-size: .7rem;
   height: 13.1rem;
   text-align: center;
   width: 4rem; }
@@ -289,7 +287,7 @@ a:active {
   box-shadow: inset 0px -8px 6px 4px #222;
   height: 8.5rem;
   width: 1.5rem;
-  left: -0.75rem;
+  left: -.75rem;
   margin: 0 -1.5rem 0 0;
   position: relative;
   z-index: 1; }
@@ -315,7 +313,7 @@ a:active {
 
 #keyboard-controls {
   display: inline-block;
-  margin: 1rem 0 1rem 0.8rem; }
+  margin: 1rem 0 1rem .8rem; }
 
 .octave-shift {
   display: inline-block; }
@@ -323,27 +321,27 @@ a:active {
 .octave-minus-2 {
   background: radial-gradient(#c00, #600); }
   .octave-minus-2.lit {
-    box-shadow: 0 -0.1rem 1rem #600; }
+    box-shadow: 0 -.1rem 1rem #600; }
 
 .octave-minus-1 {
   background: radial-gradient(#f00, #900); }
   .octave-minus-1.lit {
-    box-shadow: 0 -0.1rem 1rem #900; }
+    box-shadow: 0 -.1rem 1rem #900; }
 
 .octave-plus-0 {
   background: radial-gradient(#9f9, #393); }
   .octave-plus-0.lit {
-    box-shadow: 0 -0.1rem 1rem #393; }
+    box-shadow: 0 -.1rem 1rem #393; }
 
 .octave-plus-1 {
   background: radial-gradient(#9c0, #360); }
   .octave-plus-1.lit {
-    box-shadow: 0 -0.1rem 1rem #9c0; }
+    box-shadow: 0 -.1rem 1rem #9c0; }
 
 .octave-plus-2 {
   background: radial-gradient(#f93, #960); }
   .octave-plus-2.lit {
-    box-shadow: 0 -0.1rem 1rem #f93; }
+    box-shadow: 0 -.1rem 1rem #f93; }
 
 .octave-shift-down {
   margin: 0 1rem 0 0; }
@@ -374,7 +372,7 @@ a:active {
 #lfo,
 #delay,
 #reverb,
-#paypal {
+#information {
   display: inline-block;
   margin: 1rem 0 1rem 1rem;
   vertical-align: top; }

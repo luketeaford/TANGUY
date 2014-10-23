@@ -1,3 +1,16 @@
+// Copyright 2014 Luke Teaford
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
 var TANGUY = {
 
     voice1: new AudioContext(),
@@ -416,40 +429,36 @@ var TANGUY = {
     },
 
     shift_octave: function (direction) {
-        var shift_octave_lights = function (octave_shift) {
-            console.log('OCTAVE SHIFT IS ' + octave_shift);
-            switch (octave_shift) {
-            case -2:
-                $('.octave-minus-2').addClass('lit');
-                $('.octave-minus-1').removeClass('lit');
-                break;
-            case -1:
-                $('.octave-minus-2').removeClass('lit');
-                $('.octave-minus-1').addClass('lit');
-                $('.octave-plus-0').removeClass('lit');
-                break;
-            case 0:
-                $('.octave-minus-1').removeClass('lit');
-                $('.octave-plus-0').addClass('lit');
-                $('.octave-plus-1').removeClass('lit');
-                break;
-            case 1:
-                $('.octave-plus-0').removeClass('lit');
-                $('.octave-plus-1').addClass('lit');
-                $('.octave-plus-2').removeClass('lit');
-                break;
-            case 2:
-                $('.octave-plus-1').removeClass('lit');
-                $('.octave-plus-2').addClass('lit');
-                break;
-            }
-        };
         if (direction > 0 && TANGUY.octave_shift < 2) {
-            TANGUY.octave_shift = TANGUY.octave_shift + 1;
-        } else if (direction < 1 && TANGUY.octave_shift > -2) {
-            TANGUY.octave_shift = TANGUY.octave_shift - 1;
+            TANGUY.octave_shift += 1;
+        } else if (direction < 0 && TANGUY.octave_shift > -2) {
+            TANGUY.octave_shift -= 1;
         }
-        shift_octave_lights(TANGUY.octave_shift);
+        switch (TANGUY.octave_shift) {
+        case -2:
+            $('.octave-minus-2').addClass('lit');
+            $('.octave-minus-1').removeClass('lit');
+            break;
+        case -1:
+            $('.octave-minus-2').removeClass('lit');
+            $('.octave-minus-1').addClass('lit');
+            $('.octave-plus-0').removeClass('lit');
+            break;
+        case 0:
+            $('.octave-minus-1').removeClass('lit');
+            $('.octave-plus-0').addClass('lit');
+            $('.octave-plus-1').removeClass('lit');
+            break;
+        case 1:
+            $('.octave-plus-0').removeClass('lit');
+            $('.octave-plus-1').addClass('lit');
+            $('.octave-plus-2').removeClass('lit');
+            break;
+        case 2:
+            $('.octave-plus-1').removeClass('lit');
+            $('.octave-plus-2').addClass('lit');
+            break;
+        }
     },
 
     multi_switch: function (gizmo) {
@@ -553,7 +562,7 @@ var TANGUY = {
             TANGUY.notch3.detune.setValueAtTime(kbd, TANGUY.voice1.currentTime);
             break;
         case 'off':
-            console.log('No filter keyboard tracking to apply');
+            console.log('No filter in effect');
             break;
         }
     },
@@ -688,7 +697,7 @@ TANGUY.build_synth = function () {
     TANGUY.reverb_vca.gain.value = 0;
     TANGUY.reverb_vca.connect(TANGUY.voice1.destination);
     TANGUY.reverb = TANGUY.voice1.createConvolver();
-    TANGUY.reverb.buffer = 0/* an audio buffer containing the IR */;
+    TANGUY.reverb.buffer = 0;// an audio buffer containing the IR
     TANGUY.reverb.connect(TANGUY.reverb_vca);
 
     //DELAY

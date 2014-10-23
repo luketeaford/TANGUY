@@ -4,14 +4,14 @@
 	box-sizing: content-box;
 	color: #fff6f3;
 	display: inline-block;
-	font-size: 0.5rem;
-	height: 0.6rem;
+	font-size: .5rem;
+	height: .6rem;
 	line-height: 4;
-	margin: 1rem 0.9rem 1rem 0;
+	margin: 1rem .9rem 1rem 0;
 	opacity: .2;
 	text-align: center;
 	transition: opacity .25s ease-out;
-	width: 0.6rem;
+	width: .6rem;
 	&.lit {
 		color: #fff6f3;
 		opacity: 1 !important;

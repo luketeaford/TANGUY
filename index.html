@@ -24,10 +24,12 @@
           <option value="gogohorn">Go-Go Horn</option>
           <option value="coolwire">Cool Wire</option>
           <option value="metalcello">Metal Cello</option>
-          <option value="formermarine">Former Marine</option>
+          <option value="pulsedemon">Pulse Demon</option>
+          <option value="fisherman">Fisherman</option>
           <option value="architecture">Architecture</option>
           <option value="stylishbass">Stylish Bass</option>
           <option value="beatnikbongos">Beatnik Bongos</option>
+          <option value="papayawhip">Papayawhip</option>
           <option value="fuzzy">Fuzzy</option>
           <option value="easycure">Easy Cure</option>
           <option value="rubberband">Rubberband</option>
@@ -36,6 +38,7 @@
           <option value="abominablebassman">Abominable Bassman</option>
           <option value="sciencefictionbrains">Science Fiction Brains</option>
           <option value="shanty">Shanty</option>
+          <option value="bendingbranch">Bending Branch</option>
           <option value="hum">Hum</option>
           <option value="snarlybass">Snarly Bass</option>
           <option value="ozone">Ozone</option>
@@ -48,6 +51,7 @@
           <option value="wistfulpipes">Wistful Pipes</option>
           <option value="synthking">Synth King</option>
           <option value="whompybass">Whompy Bass</option>
+          <option value="formermarine">Former Marine</option>
           <option value="swampmonster">Swamp Monster</option>
           <option value="roundkick">Round Kick</option>
           <option value="cheapsnare">Cheap Snare</option>
@@ -277,14 +281,6 @@
       </div>
     </section>
 
-    <section id="reverb">
-      <h2>Reverb</h2>
-      <div class="slider-wrapper">
-        <input class="vertical-slider" id="reverb-amount" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-        <label class="slider-label" for="reverb-amount">Amount</label>
-      </div>
-    </section>
-
     <br>
 
     <section id="keyboard-controls">
@@ -315,16 +311,11 @@
       </div>
     </section>
 
-    <section id="paypal">
-      <h3>I'm saving for an expensive synth</h3>
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-        <input type="hidden" name="cmd" value="_s-xclick">
-        <input type="hidden" name="hosted_button_id" value="4R54MFFBURZGS">
-        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" class="donate">
-        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-      </form>
-      <span class="promo-text">Don't miss the art, comedy, and moral guidance on my website: <a href="http://luketeaford.com" title="Luke Teaford, artist and writer">Luke Teaford.com</a><br>
-      <span class="promo-text">And <a href="http://github.com/luketeaford/TANGUY" title="TANGUY Web Audio Synth on GitHub">take a look at TANGUY on GitHub</a></span>
+    <section id="information">
+      <h3>Information</h3>
+      <span class="promo-text"><a href="http://luketeaford.com" title="Luke Teaford, artist and writer">Luke Teaford - Artist and Writer</a></span>
+      <span class="promo-text"><a href="http://github.com/luketeaford/TANGUY" title="TANGUY Web Audio Synth on GitHub">TANGUY on GitHub</a></span>
+      <span class="promo-text">© 2014 Luke Teaford</span>
     </section>
 
     <section id="keyboard">
@@ -376,7 +367,6 @@
       <button class="c" data-keyboard-position="2" data-note-value="-900"></button>
     </section>
   </div>
-
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="js/tanguy.js"></script>
   <script>
