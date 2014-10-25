@@ -692,14 +692,6 @@ TANGUY.build_synth = function () {
         i,
         j;
 
-    //REVERB - NOTHING CONNECTED TO THIS AT THE MOMENT
-    TANGUY.reverb_vca = TANGUY.voice1.createGain();
-    TANGUY.reverb_vca.gain.value = 0;
-    TANGUY.reverb_vca.connect(TANGUY.voice1.destination);
-    TANGUY.reverb = TANGUY.voice1.createConvolver();
-    TANGUY.reverb.buffer = 0;// an audio buffer containing the IR
-    TANGUY.reverb.connect(TANGUY.reverb_vca);
-
     //DELAY
     TANGUY.delay1_vca = TANGUY.voice1.createGain();
     TANGUY.delay2_vca = TANGUY.voice1.createGain();
