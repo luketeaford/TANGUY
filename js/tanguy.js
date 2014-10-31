@@ -772,13 +772,11 @@ TANGUY.build_synth = function () {
     TANGUY.osc1_vca = TANGUY.voice1.createGain();
     TANGUY.osc2_vca = TANGUY.voice1.createGain();
     TANGUY.noise_vca = TANGUY.voice1.createGain();
-    TANGUY.ext_in_vca = TANGUY.voice1.createGain();
     TANGUY.mixer.gain.value = 1;
     TANGUY.mixer.connect(TANGUY.lp_filter1);
     TANGUY.osc1_vca.connect(TANGUY.mixer);
     TANGUY.osc2_vca.connect(TANGUY.mixer);
     TANGUY.noise_vca.connect(TANGUY.mixer);
-    TANGUY.ext_in_vca.connect(TANGUY.mixer);
 
     //OSC 1 VCAS
     TANGUY.osc1_saw_vca = TANGUY.voice1.createGain();
