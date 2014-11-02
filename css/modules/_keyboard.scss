@@ -6,46 +6,46 @@
 .octave-shift {
 	display: inline-block;
 }
-.octave-minus-2 {
+#octave-minus-2 {
 	@extend %round-light;
 	background: radial-gradient(#c00, #600);
 	&.lit {
 		box-shadow: 0 -.1rem 1rem #600;
 	}
 }
-.octave-minus-1 {
+#octave-minus-1 {
 	@extend %round-light;
 	background: radial-gradient(#f00, #900);
 	&.lit {
 		box-shadow: 0 -.1rem 1rem #900;
 	}
 }
-.octave-plus-0 {
+#octave-plus-0 {
 	@extend %round-light;
 	background: radial-gradient(#9f9, #393);
 	&.lit {
 		box-shadow: 0 -.1rem 1rem #393;
 	}
 }
-.octave-plus-1 {
+#octave-plus-1 {
 	@extend %round-light;
 	background: radial-gradient(#9c0, #360);
 	&.lit {
 		box-shadow: 0 -.1rem 1rem #9c0;
 	}
 }
-.octave-plus-2 {
+#octave-plus-2 {
 	@extend %round-light;
 	background: radial-gradient(#f93, #960);
 	&.lit {
 		box-shadow: 0 -.1rem 1rem #f93;
 	}
 }
-.octave-shift-down {
+#octave-shift-down {
 	@extend %button;
 	margin: 0 1rem 0 0;
 }
-.octave-shift-up {
+#octave-shift-up {
 	@extend %button;
 }
 #portamento {

@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
     concat = require('gulp-concat'),
     //uglify = require('gulp-uglify'),
+    sass = require('gulp-ruby-sass');
 
     scripts = [
         'js/_license.js',
@@ -24,7 +25,7 @@ var gulp = require('gulp'),
         'js/_mixercontrols.js',
         'js/_filtercontrols.js',
         'js/_vcacontrols.js',
-        'js/_octaveshiftbuttons.js',
+        //'js/_octaveshiftbuttons.js',
         'js/_portamentocontrols.js',
         'js/_pitchwheelcontrols.js',
         'js/_modwheelcontrols.js',
@@ -45,4 +46,11 @@ gulp.task('prod', function() {
     .pipe(gulp.dest('tanguy/js/'))
     .pipe(uglify())
     .pipe(gulp.dest('tanguy/js'))
+});
+
+gulp.task('sass', function() {
+    return gulp.src('css/*.scss')
+    .pipe(sass())
+    .on('error', function (err) { console.log(err.message); })
+    .pipe(gulp.dest('css/'));
 });
