@@ -25,12 +25,10 @@ var gulp = require('gulp'),
         'js/_mixercontrols.js',
         'js/_filtercontrols.js',
         'js/_vcacontrols.js',
-        //'js/_octaveshiftbuttons.js',
         'js/_portamentocontrols.js',
         'js/_pitchwheelcontrols.js',
         'js/_modwheelcontrols.js',
         'js/_multiswitchcontrols.js',
-        'js/_loadprogramcontrols.js',
         'js/_keyboardcontrols.js',
     ];
 

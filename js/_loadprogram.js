@@ -5,31 +5,30 @@ TANGUY.load_program = function (patch) {
         delay_vcas = [TANGUY.delay1_vca, TANGUY.delay2_vca, TANGUY.delay3_vca, TANGUY.delay4_vca],
         i;
     $.getJSON(decodeURI(patch_url), function (loaded) {
+        var osc1_kbd = $('#osc1-kbd'),
+            osc2_kbd = $('#osc2-kbd');
+
         TANGUY.program = loaded;
         //OSCILLATOR 1 KBD TRACKING
         if (TANGUY.program.osc1.kbd === true) {
-            $('#osc1-kbd').prop('checked', true);
+            osc1_kbd.prop('checked', true);
         } else {
-            $('#osc1-kbd').prop('checked', false);
+            osc1_kbd.prop('checked', false);
         }
 
         //OSCILLATOR 1 COARSE
         switch (TANGUY.program.osc1.coarse) {
         case 0.5:
-            $('#osc1-32').parent().addClass('selected');
-            $('#osc1-32').parent().siblings().removeClass('selected');
+            $('#osc1-32').parent().addClass('selected').siblings().removeClass('selected');
             break;
         case 1:
-            $('#osc1-16').parent().addClass('selected');
-            $('#osc1-16').parent().siblings().removeClass('selected');
+            $('#osc1-16').parent().addClass('selected').siblings().removeClass('selected');
             break;
         case 2:
-            $('#osc1-8').parent().addClass('selected');
-            $('#osc1-8').parent().siblings().removeClass('selected');
+            $('#osc1-8').parent().addClass('selected').siblings().removeClass('selected');
             break;
         case 4:
-            $('#osc1-4').parent().addClass('selected');
-            $('#osc1-4').parent().siblings().removeClass('selected');
+            $('#osc1-4').parent().addClass('selected').siblings().removeClass('selected');
             break;
         }
         for (i = 0; i < osc1.length; i += 1) {
@@ -46,32 +45,28 @@ TANGUY.load_program = function (patch) {
         TANGUY.osc1_sqr_vca.gain.setValueAtTime(TANGUY.program.osc1.sqr_amt, TANGUY.synth.currentTime);
         TANGUY.osc1_tri_vca.gain.setValueAtTime(TANGUY.program.osc1.tri_amt, TANGUY.synth.currentTime);
         TANGUY.osc1_sin_vca.gain.setValueAtTime(TANGUY.program.osc1.sin_amt, TANGUY.synth.currentTime);
-        TANGUY.osc1_fm_vca.gain.setValueAtTime(TANGUY.program.osc1.fm_amt * TANGUY.program.osc1.fm_amt * 24000, TANGUY.synth.currentTime);//parens needed?
+        TANGUY.osc1_fm_vca.gain.setValueAtTime(TANGUY.program.osc1.fm_amt * TANGUY.program.osc1.fm_amt * 24000, TANGUY.synth.currentTime);
 
         //OSCILLATOR 2 KEYBOARD TRACKING
         if (TANGUY.program.osc2.kbd === true) {
-            $('#osc2-kbd').prop('checked', true);
+            osc2_kbd.prop('checked', true);
         } else {
-            $('#osc2-kbd').prop('checked', false);
+            osc2_kbd.prop('checked', false);
         }
 
         //OSCILLATOR 2 COARSE
         switch (TANGUY.program.osc2.coarse) {
         case 0.5:
-            $('#osc2-32').parent().addClass('selected');
-            $('#osc2-32').parent().siblings().removeClass('selected');
+            $('#osc2-32').parent().addClass('selected').siblings().removeClass('selected');
             break;
         case 1:
-            $('#osc2-16').parent().addClass('selected');
-            $('#osc2-16').parent().siblings().removeClass('selected');
+            $('#osc2-16').parent().addClass('selected').siblings().removeClass('selected');
             break;
         case 2:
-            $('#osc2-8').parent().addClass('selected');
-            $('#osc2-8').parent().siblings().removeClass('selected');
+            $('#osc2-8').parent().addClass('selected').siblings().removeClass('selected');
             break;
         case 4:
-            $('#osc2-4').parent().addClass('selected');
-            $('#osc2-4').parent().siblings().removeClass('selected');
+            $('#osc2-4').parent().addClass('selected').siblings().removeClass('selected');
             break;
         }
         TANGUY.osc2.frequency.setValueAtTime((TANGUY.osc2_master_pitch * TANGUY.program.osc2.coarse) + TANGUY.program.osc2.fine, TANGUY.synth.currentTime);
@@ -79,20 +74,16 @@ TANGUY.load_program = function (patch) {
         //OSCILLATOR 2 WAVEFORM SELECTOR
         switch (TANGUY.program.osc2.waveform) {
         case 'sawtooth':
-            $('#osc2-saw').parent().addClass('selected');
-            $('#osc2-saw').parent().siblings().removeClass('selected');
+            $('#osc2-saw').parent().addClass('selected').siblings().removeClass('selected');
             break;
         case 'square':
-            $('#osc2-sqr').parent().addClass('selected');
-            $('#osc2-sqr').parent().siblings().removeClass('selected');
+            $('#osc2-sqr').parent().addClass('selected').siblings().removeClass('selected');
             break;
         case 'triangle':
-            $('#osc2-tri').parent().addClass('selected');
-            $('#osc2-tri').parent().siblings().removeClass('selected');
+            $('#osc2-tri').parent().addClass('selected').siblings().removeClass('selected');
             break;
         case 'sine':
-            $('#osc2-sin').parent().addClass('selected');
-            $('#osc2-sin').parent().siblings().removeClass('selected');
+            $('#osc2-sin').parent().addClass('selected').siblings().removeClass('selected');
             break;
         }
         TANGUY.osc2.type = TANGUY.program.osc2.waveform;
@@ -115,8 +106,7 @@ TANGUY.load_program = function (patch) {
         //NOISE
         switch (TANGUY.program.noise.color) {
         case 'white':
-            $('#white-noise').parent().addClass('selected');
-            $('#white-noise').parent().siblings().removeClass('selected');
+            $('#white-noise').parent().addClass('selected').siblings().removeClass('selected');
             TANGUY.white_noise.buffer = TANGUY.white_noise_buffer;
             TANGUY.pink_noise.buffer = TANGUY.empty_pink_noise_buffer;
             TANGUY.red_noise.buffer = TANGUY.empty_red_noise_buffer;
@@ -124,8 +114,7 @@ TANGUY.load_program = function (patch) {
             TANGUY.purple_noise.buffer = TANGUY.empty_purple_noise_buffer;
             break;
         case 'pink':
-            $('#pink-noise').parent().addClass('selected');
-            $('#pink-noise').parent().siblings().removeClass('selected');
+            $('#pink-noise').parent().addClass('selected').siblings().removeClass('selected');
             TANGUY.pink_noise.buffer = TANGUY.pink_noise_buffer;
             TANGUY.white_noise.buffer = TANGUY.empty_white_noise_buffer;
             TANGUY.red_noise.buffer = TANGUY.empty_red_noise_buffer;
@@ -133,8 +122,7 @@ TANGUY.load_program = function (patch) {
             TANGUY.purple_noise.buffer = TANGUY.empty_purple_noise_buffer;
             break;
         case 'red':
-            $('#red-noise').parent().addClass('selected');
-            $('#red-noise').parent().siblings().removeClass('selected');
+            $('#red-noise').parent().addClass('selected').siblings().removeClass('selected');
             TANGUY.red_noise.buffer = TANGUY.red_noise_buffer;
             TANGUY.white_noise.buffer = TANGUY.empty_white_noise_buffer;
             TANGUY.pink_noise.buffer = TANGUY.empty_pink_noise_buffer;
@@ -142,8 +130,7 @@ TANGUY.load_program = function (patch) {
             TANGUY.purple_noise.buffer = TANGUY.empty_purple_noise_buffer;
             break;
         case 'blue':
-            $('#blue-noise').parent().addClass('selected');
-            $('#blue-noise').parent().siblings().removeClass('selected');
+            $('#blue-noise').parent().addClass('selected').siblings().removeClass('selected');
             TANGUY.blue_noise.buffer = TANGUY.blue_noise_buffer;
             TANGUY.white_noise.buffer = TANGUY.empty_white_noise_buffer;
             TANGUY.pink_noise.buffer = TANGUY.empty_pink_noise_buffer;
@@ -151,8 +138,7 @@ TANGUY.load_program = function (patch) {
             TANGUY.purple_noise.buffer = TANGUY.empty_purple_noise_buffer;
             break;
         case 'purple':
-            $('#purple-noise').parent().addClass('selected');
-            $('#purple-noise').parent().siblings().removeClass('selected');
+            $('#purple-noise').parent().addClass('selected').siblings().removeClass('selected');
             TANGUY.purple_noise.buffer = TANGUY.purple_noise_buffer;
             TANGUY.white_noise.buffer = TANGUY.empty_white_noise_buffer;
             TANGUY.pink_noise.buffer = TANGUY.empty_pink_noise_buffer;
@@ -174,8 +160,7 @@ TANGUY.load_program = function (patch) {
         $('#resonance').val(Math.sqrt(TANGUY.program.filter.resonance / 1000));
         switch (TANGUY.program.filter.mode) {
         case 'lp':
-            $('#filter-lp').parent().addClass('selected');
-            $('#filter-lp').parent().siblings().removeClass('selected');
+            $('#filter-lp').parent().addClass('selected').siblings().removeClass('selected');
             TANGUY.mixer.disconnect();
             TANGUY.mixer.connect(TANGUY.lp_filter1);
             TANGUY.lp_filter1.frequency.setValueAtTime(TANGUY.program.filter.frequency, TANGUY.synth.currentTime);
@@ -187,8 +172,7 @@ TANGUY.load_program = function (patch) {
             TANGUY.lfo_filter_vca.connect(TANGUY.lp_filter2.frequency);
             break;
         case 'bp':
-            $('#filter-bp').parent().addClass('selected');
-            $('#filter-bp').parent().siblings().removeClass('selected');
+            $('#filter-bp').parent().addClass('selected').siblings().removeClass('selected');
             TANGUY.mixer.disconnect();
             TANGUY.mixer.connect(TANGUY.bp_filter1);
             TANGUY.bp_filter1.frequency.setValueAtTime(TANGUY.program.filter.frequency, TANGUY.synth.currentTime);
@@ -202,8 +186,7 @@ TANGUY.load_program = function (patch) {
             TANGUY.lfo_filter_vca.connect(TANGUY.bp_filter3.frequency);
             break;
         case 'hp':
-            $('#filter-hp').parent().addClass('selected');
-            $('#filter-hp').parent().siblings().removeClass('selected');
+            $('#filter-hp').parent().addClass('selected').siblings().removeClass('selected');
             TANGUY.mixer.disconnect();
             TANGUY.mixer.connect(TANGUY.hp_filter1);
             TANGUY.hp_filter1.frequency.setValueAtTime(TANGUY.program.filter.frequency, TANGUY.synth.currentTime);
@@ -215,8 +198,7 @@ TANGUY.load_program = function (patch) {
             TANGUY.lfo_filter_vca.connect(TANGUY.hp_filter2.frequency);
             break;
         case 'notch':
-            $('#notch').parent().addClass('selected');
-            $('#notch').parent().siblings().removeClass('selected');
+            $('#filter-notch').parent().addClass('selected').siblings().removeClass('selected');
             TANGUY.mixer.disconnect();
             TANGUY.mixer.connect(TANGUY.notch1);
             TANGUY.notch1.frequency.setValueAtTime(TANGUY.program.filter.frequency, TANGUY.synth.currentTime);
@@ -230,8 +212,7 @@ TANGUY.load_program = function (patch) {
             TANGUY.lfo_filter_vca.connect(TANGUY.notch3.frequency);
             break;
         case 'off':
-            $('#filter-off').parent().addClass('selected');
-            $('#filter-off').parent().siblings().removeClass('selected');
+            $('#filter-off').parent().addClass('selected').siblings().removeClass('selected');
             TANGUY.mixer.disconnect();
             TANGUY.mixer.connect(TANGUY.vca);
             TANGUY.lfo_filter_vca.disconnect();
@@ -255,34 +236,29 @@ TANGUY.load_program = function (patch) {
         //LFO SHAPE
         switch (TANGUY.program.lfo.shape) {
         case 'sine':
-            $('#lfo-sin').parent().addClass('selected');
-            $('#lfo-sin').parent().siblings().removeClass('selected');
+            $('#lfo-sin').parent().addClass('selected').siblings().removeClass('selected');
             TANGUY.program.mod.direction = 1;
             TANGUY.lfo.type = 'sine';
             break;
         case 'triangle':
-            $('#lfo-tri').parent().addClass('selected');
-            $('#lfo-tri').parent().siblings().removeClass('selected');
+            $('#lfo-tri').parent().addClass('selected').siblings().removeClass('selected');
             TANGUY.program.mod.direction = 1;
             TANGUY.lfo.type = 'triangle';
             break;
         case 'ramp':
-            $('#lfo-rmp').parent().addClass('selected');
-            $('#lfo-rmp').parent().siblings().removeClass('selected');
+            $('#lfo-rmp').parent().addClass('selected').siblings().removeClass('selected');
             TANGUY.program.mod.direction = 1;
             TANGUY.lfo.type = 'sawtooth';
             TANGUY.calculate_lfo();
             break;
         case 'sawtooth':
-            $('#lfo-saw').parent().addClass('selected');
-            $('#lfo-saw').parent().siblings().removeClass('selected');
+            $('#lfo-saw').parent().addClass('selected').siblings().removeClass('selected');
             TANGUY.program.mod.direction = -1;
             TANGUY.lfo.type = 'sawtooth';
             TANGUY.calculate_lfo();
             break;
         case 'square':
-            $('#lfo-sqr').parent().addClass('selected');
-            $('#lfo-sqr').parent().siblings().removeClass('selected');
+            $('#lfo-sqr').parent().addClass('selected').siblings().removeClass('selected');
             TANGUY.program.mod.direction = 1;
             TANGUY.lfo.type = 'square';
             break;
@@ -316,18 +292,21 @@ TANGUY.load_program = function (patch) {
         $('#portamento-amount').val(TANGUY.program.portamento.amt);
         switch (TANGUY.program.portamento.mode) {
         case 'off':
-            $('#portamento-off').parent().addClass('selected');
-            $('#portamento-off').parent().siblings().removeClass('selected');
+            $('#portamento-off').parent().addClass('selected').siblings().removeClass('selected');
             break;
         case 'linear':
-            $('#portamento-linear').parent().addClass('selected');
-            $('#portamento-linear').parent().siblings().removeClass('selected');
+            $('#portamento-linear').parent().addClass('selected').siblings().removeClass('selected');
             break;
         case 'exponential':
-            $('#portamento-exponential').parent().addClass('selected');
-            $('#portamento-exponential').parent().siblings().removeClass('selected');
+            $('#portamento-exponential').parent().addClass('selected').siblings().removeClass('selected');
             break;
         }
 
     });
 }
+
+//LOAD PROGRAM CONTROLS
+$('#program-selector').change(function () {
+    TANGUY.load_program(this.value);
+    $(this).blur();
+});
