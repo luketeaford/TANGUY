@@ -75,7 +75,7 @@
         <input checked id="osc1-kbd" type="checkbox" value="1">
       </div>
       <br>
-      <div class="horizontal-multi-switch" id="osc1-coarse">
+      <div id="osc1-coarse">
         <label><input id="osc1-32" name="osc1-coarse-tune" type="radio" value="0.5">32'</label>
         <label class="selected"><input id="osc1-16" name="osc1-coarse-tune" type="radio" value="1">16'</label>
         <label><input id="osc1-8" name="osc1-coarse-tune" type="radio" value="2">8'</label>
@@ -111,14 +111,14 @@
         <input checked id="osc2-kbd" type="checkbox" value="1">
       </div>
       <br>
-      <div class="horizontal-multi-switch" id="osc2-coarse">
+      <div id="osc2-coarse">
         <label><input id="osc2-32" name="osc2-coarse-tune" type="radio" value="0.5">32'</label>
         <label class="selected"><input id="osc2-16" name="osc2-coarse-tune" type="radio" value="1">16'</label>
         <label><input id="osc2-8" name="osc2-coarse-tune" type="radio" value="2">8'</label>
         <label><input id="osc2-4" name="osc2-coarse-tune" type="radio" value="4">4'</label>
       </div>
       <br>
-      <div class="vertical-multi-switch" id="osc2-waveform">
+      <div id="osc2-waveform">
         <label class="selected"><input id="osc2-saw" name="osc2-wave" type="radio" value="sawtooth">Saw</label>
         <label><input id="osc2-sqr" name="osc2-wave" type="radio" value="square">Square</label>
         <label><input id="osc2-tri" name="osc2-wave" type="radio" value="triangle"><abbr title="Triangle">Tri.</abbr></label>
@@ -144,7 +144,7 @@
 
     <section id="noise">
       <h2>Noise</h2>
-      <div class="vertical-multi-switch" id="noise-color">
+      <div id="noise-color">
         <label class="selected"><input id="white-noise" name="noise-color" type="radio" value="white">White</label>
         <label><input id="pink-noise" name="noise-color" type="radio" value="pink">Pink</label>
         <label><input id="red-noise" name="noise-color" type="radio" value="red">Red</label>
@@ -173,7 +173,7 @@
 
     <section id="filter">
       <h2>Filter</h2>
-      <div class="vertical-multi-switch" id="filter-mode">
+      <div id="filter-mode">
         <label class="selected"><input id="filter-lp" name="filter-type" type="radio" value="lp"><abbr title="Low Pass">LP</abbr></label>
         <label><input id="filter-bp" name="filter-type" type="radio" value="bp"><abbr title="Band Pass">BP</abbr></label>
         <label><input id="filter-hp" name="filter-type" type="radio" value="hp"><abbr title="High Pass">HP</abbr></label>
@@ -246,7 +246,7 @@
 
     <section id="lfo">
       <h2><abbr title="Low Frequency Oscillator">LFO</abbr></h2>
-      <div class="vertical-multi-switch">
+      <div id="lfo-shape">
         <label class="selected"><input id="lfo-sin" name="lfo-shape" type="radio" value="sine">Sine</label>
         <label><input id="lfo-tri" name="lfo-shape" type="radio" value="triangle"><abbr title="Triangle">Tri.</abbr></label>
         <label><input id="lfo-rmp" name="lfo-shape" type="radio" value="ramp">Ramp</label>
@@ -306,7 +306,7 @@
         <label for="portamento-amount">Amount</label>
         <input class="horizontal-slider" id="portamento-amount" max="1" min="0.01" step="0.01" type="range" value="0.01">
       </div>
-      <div class="horizontal-multi-switch" id="portamento-mode">
+      <div id="portamento-mode">
         <label class="selected"><input id="portamento-off" name="portamento" type="radio" value="off">Off</label>
         <label><input id="portamento-linear" name="portamento" type="radio" value="linear"><abbr title="Linear">Lin.</abbr></label>
         <label><input id="portamento-exponential" name="portamento" type="radio" value="exponential"><abbr title="Exponential">Exp.</abbr></label>

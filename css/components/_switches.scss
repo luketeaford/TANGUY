@@ -20,8 +20,7 @@
 		}
 	}
 }
-//HORIZONTAL MULTI SWITCH
-.horizontal-multi-switch {
+%horizontal-multi-switch {
 	@extend %multi-switch;
 	label {
 		display: table-cell;
@@ -44,8 +43,7 @@
 		}
 	}
 }
-//VERTICAL MULTI SWITCH
-.vertical-multi-switch {
+%vertical-multi-switch {
 	@extend %multi-switch;
 	vertical-align: top;
 	width: 3rem;
@@ -65,4 +63,15 @@
 			border-radius: 0 0 .2rem .2rem;
 		}
 	}
+}
+#osc1-coarse,
+#osc2-coarse,
+#portamento-mode {
+	@extend %horizontal-multi-switch;
+}
+#osc2-waveform,
+#noise-color,
+#filter-mode,
+#lfo-shape {
+	@extend %vertical-multi-switch;
 }

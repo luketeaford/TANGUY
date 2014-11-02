@@ -28,7 +28,6 @@ var gulp = require('gulp'),
         'js/_portamentocontrols.js',
         'js/_pitchwheelcontrols.js',
         'js/_modwheelcontrols.js',
-        'js/_multiswitchcontrols.js',
         'js/_keyboardcontrols.js',
     ];
 

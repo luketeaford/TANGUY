@@ -72,7 +72,6 @@ TANGUY.calculate_pitch = function (pos, note_value) {
         TANGUY.notch3.detune.setValueAtTime(kbd, TANGUY.synth.currentTime);
         break;
     case 'off':
-        console.log('No filter in effect');
         break;
     }
 }

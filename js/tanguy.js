@@ -458,9 +458,13 @@ $('#octave-shift-up').click(function () {
     TANGUY.shift_octave(1);
 });
 TANGUY.multi_switch = function (gizmo) {
-    $(gizmo).parent().addClass('selected');
-    $(gizmo).parent().siblings().removeClass('selected');
-}
+    $(gizmo).parent().addClass('selected').siblings().removeClass('selected');
+};
+
+//MULTI-SWITCH CONTROLS
+$('#osc1-coarse, #osc2-coarse, #portamento-mode, #osc2-waveform, #noise-color, #filter-mode, #lfo-shape').find('input').click(function () {
+    TANGUY.multi_switch(this);
+});
 TANGUY.stop_tweaking = function () {
     $(this).unbind('mousemove');
 }
@@ -555,7 +559,6 @@ TANGUY.calculate_pitch = function (pos, note_value) {
         TANGUY.notch3.detune.setValueAtTime(kbd, TANGUY.synth.currentTime);
         break;
     case 'off':
-        console.log('No filter in effect');
         break;
     }
 }
@@ -1297,10 +1300,6 @@ $('#mod-amount').mousedown(function () {
         TANGUY.calculate_lfo();
     });
 }).mouseup(TANGUY.stop_tweaking);
-//MULTI-SWITCH CONTROLS
-$('.horizontal-multi-switch label input, .vertical-multi-switch label input').click(function () {
-    TANGUY.multi_switch(this);
-});
 //KEYBOARD CONTROLS
 $('#keyboard button').mousedown(TANGUY.gate_on).mouseup(TANGUY.gate_off);
 

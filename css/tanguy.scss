@@ -8,7 +8,6 @@
 @import 'components/_keys';
 @import 'modules/_program-selector';
 @import 'modules/_oscillator';
-@import 'modules/_lfo';
 @import 'modules/_keyboard';
 
 #osc1,
@@ -20,13 +19,8 @@
 #vca-eg,
 #lfo,
 #delay,
-#reverb,
 #information {
-	display: inline-block;
-	margin: 1rem 0 1rem 1rem;
-	vertical-align: top;
-}
-.osc-tracking {
-	float: right;
-	margin: 0 0.5rem;
+    display: inline-block;
+    margin: 1rem 0 1rem 1rem;
+    vertical-align: top;
 }
