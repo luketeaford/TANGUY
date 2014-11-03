@@ -1,4 +1,5 @@
 TANGUY.load_program = function (patch) {
+    'use strict';
     var patch_url = encodeURI('programs/') + patch + '.json',
         osc1 = [TANGUY.osc1_saw, TANGUY.osc1_sqr, TANGUY.osc1_tri, TANGUY.osc1_sin],
         delay = [TANGUY.delay1, TANGUY.delay2, TANGUY.delay3, TANGUY.delay4],
@@ -307,6 +308,7 @@ TANGUY.load_program = function (patch) {
 
 //LOAD PROGRAM CONTROLS
 $('#program-selector').change(function () {
+    'use strict';
     TANGUY.load_program(this.value);
     $(this).blur();
 });

@@ -1,4 +1,5 @@
 TANGUY.shift_octave = function (direction) {
+    'use strict';
     var minus2 = $('#octave-minus-2'),
         minus1 = $('#octave-minus-1'),
         plus0 = $('#octave-plus-0'),
@@ -40,8 +41,10 @@ TANGUY.shift_octave = function (direction) {
 
 //OCTAVE SHIFT BUTTONS
 $('#octave-shift-down').click(function () {
+    'use strict';
     TANGUY.shift_octave(-1);
 });
 $('#octave-shift-up').click(function () {
+    'use strict';
     TANGUY.shift_octave(1);
 });

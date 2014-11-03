@@ -2,6 +2,7 @@
 $('#keyboard button').mousedown(TANGUY.gate_on).mouseup(TANGUY.gate_off);
 
 $(document).keypress(function (key) {
+    'use strict';
     switch (key.which) {
     case 45:
         TANGUY.shift_octave(-1);
@@ -15,6 +16,7 @@ $(document).keypress(function (key) {
         break;
     }
 }).keydown(function (key) {
+    'use strict';
     if (TANGUY.key_down === false) {
         TANGUY.key_active = key.which;
         TANGUY.key_down = true;
@@ -79,6 +81,7 @@ $(document).keypress(function (key) {
         }
     }
 }).keyup(function (key) {
+    'use strict';
     if (key.which === TANGUY.key_active) {
         TANGUY.key_down = false;
         switch (key.which) {

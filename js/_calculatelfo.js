@@ -1,4 +1,5 @@
 TANGUY.calculate_lfo = function () {
+    'use strict';
     var i;
     for (i = 0; i < arguments.length; i += 1) {
         if (arguments[i] === 'pitch') {

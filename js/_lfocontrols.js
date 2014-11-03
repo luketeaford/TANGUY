@@ -1,5 +1,6 @@
 //LFO CONTROLS
 $('#lfo-sin, #lfo-tri, #lfo-rmp, #lfo-saw, #lfo-sqr').change(function () {
+    'use strict';
     switch (this.value) {
     case 'sawtooth':
         TANGUY.program.lfo.shape = 'sawtooth';
@@ -20,24 +21,28 @@ $('#lfo-sin, #lfo-tri, #lfo-rmp, #lfo-saw, #lfo-sqr').change(function () {
     TANGUY.calculate_lfo();
 });
 $('#lfo-rate').mousedown(function () {
+    'use strict';
     $(this).mousemove(function () {
         TANGUY.program.lfo.rate = (this.value * this.value) * 100;
         TANGUY.lfo.frequency.value = (this.value * this.value) * 100;
     });
 }).mouseup(TANGUY.stop_tweaking);
 $('#lfo-pitch').mousedown(function () {
+    'use strict';
     $(this).mousemove(function () {
         TANGUY.program.lfo.pitch_amt = this.value;
         TANGUY.calculate_lfo('pitch');
     });
 }).mouseup(TANGUY.stop_tweaking);
 $('#lfo-filter').mousedown(function () {
+    'use strict';
     $(this).mousemove(function () {
         TANGUY.program.lfo.filter_amt = this.value;
         TANGUY.calculate_lfo('filter');
     });
 }).mouseup(TANGUY.stop_tweaking);
 $('#lfo-amp').mousedown(function () {
+    'use strict';
     $(this).mousemove(function () {
         TANGUY.program.lfo.amp_amt = this.value;
         TANGUY.calculate_lfo('amp');

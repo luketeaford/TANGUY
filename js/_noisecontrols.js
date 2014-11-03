@@ -1,5 +1,6 @@
 //NOISE CONTROLS
 $('#white-noise, #pink-noise, #red-noise, #blue-noise, #purple-noise').change(function () {
+    'use strict';
     TANGUY.program.noise.color = this.value;
     switch (this.value) {
     case 'white':

@@ -1,4 +1,5 @@
 TANGUY.gate_off = function () {
+    'use strict';
     var filter_release_peak,
         vca_release_peak = TANGUY.vca.gain.value;
 

@@ -1,4 +1,5 @@
 TANGUY.calculate_pitch = function (pos, note_value) {
+    'use strict';
     var note = ((TANGUY.octave_shift + pos) * 1200) + note_value,
         osc2_note = ((TANGUY.octave_shift + pos) * 1200) + (note_value + TANGUY.program.osc2.detune),
         kbd = (4800 - note) * TANGUY.program.filter.kbd,

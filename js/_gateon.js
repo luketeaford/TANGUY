@@ -1,4 +1,5 @@
 TANGUY.gate_on = function () {
+    'use strict';
     var filter_eg = TANGUY.program.filter.env_amt + TANGUY.program.filter.frequency,
         filter_end_of_attack = TANGUY.synth.currentTime + TANGUY.program.filter.attack,
         vca_end_of_attack = TANGUY.synth.currentTime + TANGUY.program.vca.attack;

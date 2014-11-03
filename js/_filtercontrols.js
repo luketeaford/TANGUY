@@ -1,5 +1,6 @@
 //FILTER CONTROLS
 $('#filter-lp, #filter-bp, #filter-hp, #filter-notch, #filter-off').change(function () {
+    'use strict';
     TANGUY.program.filter.mode = this.value;
     switch (this.value) {
     case 'lp':
@@ -40,6 +41,7 @@ $('#filter-lp, #filter-bp, #filter-hp, #filter-notch, #filter-off').change(funct
     }
 });
 $('#cutoff').mousedown(function () {
+    'use strict';
     $(this).mousemove(function () {
         TANGUY.program.filter.frequency = ((this.value * this.value) * 22030) + 20;
         switch (TANGUY.program.filter.mode) {
@@ -65,6 +67,7 @@ $('#cutoff').mousedown(function () {
     });
 }).mouseup(TANGUY.stop_tweaking);
 $('#resonance').mousedown(function () {
+    'use strict';
     $(this).mousemove(function () {
         TANGUY.program.filter.resonance = (this.value * this.value) * 1000;
         switch (TANGUY.program.filter.mode) {
@@ -88,20 +91,26 @@ $('#resonance').mousedown(function () {
     });
 }).mouseup(TANGUY.stop_tweaking);
 $('#filter-envelope-amount').change(function () {
+    'use strict';
     TANGUY.program.filter.env_amt = parseFloat(this.value);
 });
 $('#filter-keyboard-tracking').change(function () {
+    'use strict';
     TANGUY.program.filter.kbd = this.value;
 });
 $('#filter-attack').change(function () {
+    'use strict';
     TANGUY.program.filter.attack = parseFloat(this.value);
 });
 $('#filter-decay').change(function () {
+    'use strict';
     TANGUY.program.filter.decay = this.value;
 });
 $('#filter-sustain').change(function () {
+    'use strict';
     TANGUY.program.filter.sustain = this.value;
 });
 $('#filter-release').change(function () {
+    'use strict';
     TANGUY.program.filter.release = this.value;
 });

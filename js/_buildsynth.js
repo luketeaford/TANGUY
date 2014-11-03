@@ -1,4 +1,5 @@
 TANGUY.build_synth = function () {
+    'use strict';
     var white_noise_data,
         pink_noise_data,
         red_noise_data,

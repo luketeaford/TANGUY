@@ -38,9 +38,9 @@ gulp.task('dev', function() {
     .pipe(gulp.dest('js'))
     .pipe(jslint({
         browser: true,
-        node: true,
+        //node: true,
         devel: true,
-        sloppy: true,
+        //sloppy: true,
     }));
 });
 

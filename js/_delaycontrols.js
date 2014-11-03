@@ -1,5 +1,6 @@
 //DELAY CONTROLS
 $('#delay-rate').mousedown(function () {
+    'use strict';
     var delay = [TANGUY.delay1, TANGUY.delay2, TANGUY.delay3, TANGUY.delay4],
         i;
     $(this).mousemove(function () {
@@ -10,6 +11,7 @@ $('#delay-rate').mousedown(function () {
     });
 }).mouseup(TANGUY.stop_tweaking);
 $('#delay-amount').mousedown(function () {
+    'use strict';
     var delay = [TANGUY.delay1_vca, TANGUY.delay2_vca, TANGUY.delay3_vca, TANGUY.delay4_vca],
         i;
     $(this).mousemove(function () {
