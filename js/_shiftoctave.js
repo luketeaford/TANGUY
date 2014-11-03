@@ -36,7 +36,7 @@ TANGUY.shift_octave = function (direction) {
         plus2.addClass('lit');
         break;
     }
-}
+};
 
 //OCTAVE SHIFT BUTTONS
 $('#octave-shift-down').click(function () {

@@ -92,12 +92,12 @@ var TANGUY = {
             amt: 0
         }
     }
-}
+};
 TANGUY.save_program = function () {
     var patch_name = prompt('PATCH NAME');
     TANGUY.program.name = patch_name;
     console.log('SAVE PROGRAM: ' + JSON.stringify(TANGUY.program));
-}
+};
 TANGUY.load_program = function (patch) {
     var patch_url = encodeURI('programs/') + patch + '.json',
         osc1 = [TANGUY.osc1_saw, TANGUY.osc1_sqr, TANGUY.osc1_tri, TANGUY.osc1_sin],
@@ -106,7 +106,8 @@ TANGUY.load_program = function (patch) {
         i;
     $.getJSON(decodeURI(patch_url), function (loaded) {
         var osc1_kbd = $('#osc1-kbd'),
-            osc2_kbd = $('#osc2-kbd');
+            osc2_kbd = $('#osc2-kbd'),
+            x;
 
         TANGUY.program = loaded;
         //OSCILLATOR 1 KBD TRACKING
@@ -196,7 +197,7 @@ TANGUY.load_program = function (patch) {
         TANGUY.osc2.detune.setValueAtTime(TANGUY.osc2_master_pitch + TANGUY.program.osc2.detune, TANGUY.synth.currentTime);
         TANGUY.osc2.frequency.setValueAtTime(((TANGUY.osc2_master_pitch * TANGUY.program.osc2.coarse) + TANGUY.program.osc2.fine), TANGUY.synth.currentTime);
         if (TANGUY.osc2.shape_amt > 0) {
-            var x = this.value;
+            x = this.value;
             TANGUY.waveshaper.curve = new Float32Array([x * 1.6, x * -2.5, x * -1.2, x * -2.4, x * -1.6, x * -3.2, x * 6.4, x * -3.2]);
         } else {
             TANGUY.waveshaper.curve = null;
@@ -401,9 +402,8 @@ TANGUY.load_program = function (patch) {
             $('#portamento-exponential').parent().addClass('selected').siblings().removeClass('selected');
             break;
         }
-
     });
-}
+};
 
 //LOAD PROGRAM CONTROLS
 $('#program-selector').change(function () {
@@ -448,7 +448,7 @@ TANGUY.shift_octave = function (direction) {
         plus2.addClass('lit');
         break;
     }
-}
+};
 
 //OCTAVE SHIFT BUTTONS
 $('#octave-shift-down').click(function () {
@@ -467,7 +467,7 @@ $('#osc1-coarse, #osc2-coarse, #portamento-mode, #osc2-waveform, #noise-color, #
 });
 TANGUY.stop_tweaking = function () {
     $(this).unbind('mousemove');
-}
+};
 TANGUY.calculate_lfo = function () {
     var i;
     for (i = 0; i < arguments.length; i += 1) {
@@ -484,7 +484,7 @@ TANGUY.calculate_lfo = function () {
     if (arguments.length === 0) {
         TANGUY.calculate_lfo('pitch', 'filter', 'amp');
     }
-}
+};
 TANGUY.calculate_pitch = function (pos, note_value) {
     var note = ((TANGUY.octave_shift + pos) * 1200) + note_value,
         osc2_note = ((TANGUY.octave_shift + pos) * 1200) + (note_value + TANGUY.program.osc2.detune),
@@ -561,7 +561,7 @@ TANGUY.calculate_pitch = function (pos, note_value) {
     case 'off':
         break;
     }
-}
+};
 TANGUY.gate_on = function () {
     var filter_eg = TANGUY.program.filter.env_amt + TANGUY.program.filter.frequency,
         filter_end_of_attack = TANGUY.synth.currentTime + TANGUY.program.filter.attack,
@@ -613,7 +613,7 @@ TANGUY.gate_on = function () {
     TANGUY.vca.gain.setValueAtTime(TANGUY.program.vca.gain, TANGUY.synth.currentTime);
     TANGUY.vca.gain.linearRampToValueAtTime(1, TANGUY.synth.currentTime + TANGUY.program.vca.attack);
     TANGUY.vca.gain.setTargetAtTime(TANGUY.program.vca.sustain + TANGUY.program.vca.gain, vca_end_of_attack, TANGUY.program.vca.decay);
-}
+};
 TANGUY.gate_off = function () {
     var filter_release_peak,
         vca_release_peak = TANGUY.vca.gain.value;
@@ -666,7 +666,7 @@ TANGUY.gate_off = function () {
     TANGUY.vca.gain.cancelScheduledValues(TANGUY.synth.currentTime);
     TANGUY.vca.gain.setValueAtTime(vca_release_peak, TANGUY.synth.currentTime);
     TANGUY.vca.gain.setTargetAtTime(TANGUY.program.vca.gain, TANGUY.synth.currentTime, TANGUY.program.vca.release);
-}
+};
 TANGUY.build_synth = function () {
     var white_noise_data,
         pink_noise_data,
@@ -926,7 +926,7 @@ TANGUY.build_synth = function () {
     TANGUY.lfo.connect(TANGUY.lfo_pitch_vca);
     TANGUY.lfo.connect(TANGUY.lfo_filter_vca);
     TANGUY.lfo.connect(TANGUY.lfo_amp_vca);
-}
+};
 $(document).ready(function () {
     TANGUY.build_synth();
     TANGUY.load_program('initialize');

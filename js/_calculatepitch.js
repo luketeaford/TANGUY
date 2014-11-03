@@ -74,4 +74,4 @@ TANGUY.calculate_pitch = function (pos, note_value) {
     case 'off':
         break;
     }
-}
+};

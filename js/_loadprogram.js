@@ -6,7 +6,8 @@ TANGUY.load_program = function (patch) {
         i;
     $.getJSON(decodeURI(patch_url), function (loaded) {
         var osc1_kbd = $('#osc1-kbd'),
-            osc2_kbd = $('#osc2-kbd');
+            osc2_kbd = $('#osc2-kbd'),
+            x;
 
         TANGUY.program = loaded;
         //OSCILLATOR 1 KBD TRACKING
@@ -96,7 +97,7 @@ TANGUY.load_program = function (patch) {
         TANGUY.osc2.detune.setValueAtTime(TANGUY.osc2_master_pitch + TANGUY.program.osc2.detune, TANGUY.synth.currentTime);
         TANGUY.osc2.frequency.setValueAtTime(((TANGUY.osc2_master_pitch * TANGUY.program.osc2.coarse) + TANGUY.program.osc2.fine), TANGUY.synth.currentTime);
         if (TANGUY.osc2.shape_amt > 0) {
-            var x = this.value;
+            x = this.value;
             TANGUY.waveshaper.curve = new Float32Array([x * 1.6, x * -2.5, x * -1.2, x * -2.4, x * -1.6, x * -3.2, x * 6.4, x * -3.2]);
         } else {
             TANGUY.waveshaper.curve = null;
@@ -301,9 +302,8 @@ TANGUY.load_program = function (patch) {
             $('#portamento-exponential').parent().addClass('selected').siblings().removeClass('selected');
             break;
         }
-
     });
-}
+};
 
 //LOAD PROGRAM CONTROLS
 $('#program-selector').change(function () {

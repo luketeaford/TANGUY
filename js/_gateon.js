@@ -49,4 +49,4 @@ TANGUY.gate_on = function () {
     TANGUY.vca.gain.setValueAtTime(TANGUY.program.vca.gain, TANGUY.synth.currentTime);
     TANGUY.vca.gain.linearRampToValueAtTime(1, TANGUY.synth.currentTime + TANGUY.program.vca.attack);
     TANGUY.vca.gain.setTargetAtTime(TANGUY.program.vca.sustain + TANGUY.program.vca.gain, vca_end_of_attack, TANGUY.program.vca.decay);
-}
+};

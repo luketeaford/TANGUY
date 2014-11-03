@@ -50,4 +50,4 @@ TANGUY.gate_off = function () {
     TANGUY.vca.gain.cancelScheduledValues(TANGUY.synth.currentTime);
     TANGUY.vca.gain.setValueAtTime(vca_release_peak, TANGUY.synth.currentTime);
     TANGUY.vca.gain.setTargetAtTime(TANGUY.program.vca.gain, TANGUY.synth.currentTime, TANGUY.program.vca.release);
-}
+};

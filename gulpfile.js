@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
+    jslint = require('gulp-jslint'),
     concat = require('gulp-concat'),
-    //uglify = require('gulp-uglify'),
+    uglify = require('gulp-uglify'),
     sass = require('gulp-ruby-sass');
 
     scripts = [
@@ -34,7 +35,13 @@ var gulp = require('gulp'),
 gulp.task('dev', function() {
     return gulp.src(scripts)
     .pipe(concat('tanguy.js'))
-    .pipe(gulp.dest('js'));
+    .pipe(gulp.dest('js'))
+    .pipe(jslint({
+        browser: true,
+        node: true,
+        devel: true,
+        sloppy: true,
+    }));
 });
 
 gulp.task('prod', function() {

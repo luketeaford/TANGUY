@@ -14,4 +14,4 @@ TANGUY.calculate_lfo = function () {
     if (arguments.length === 0) {
         TANGUY.calculate_lfo('pitch', 'filter', 'amp');
     }
-}
+};

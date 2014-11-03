@@ -74,4 +74,4 @@ var TANGUY = {
             amt: 0
         }
     }
-}
+};
