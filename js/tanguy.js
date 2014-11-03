@@ -952,7 +952,7 @@ $('#osc1-kbd').change(function () {
     'use strict';
     TANGUY.program.osc1.kbd = this.checked ? true : false;
 });
-$('#osc1-coarse input').change(function () {
+$('input', '#osc1-coarse').change(function () {
     'use strict';
     var osc1 = [TANGUY.osc1_saw, TANGUY.osc1_sqr, TANGUY.osc1_tri, TANGUY.osc1_sin],
         i;
@@ -1001,7 +1001,7 @@ $('#osc2-kbd').change(function () {
     'use strict';
     TANGUY.program.osc2.kbd = this.checked ? true : false;
 });
-$('#osc2-coarse input').change(function () {
+$('input', '#osc2-coarse').change(function () {
     'use strict';
     TANGUY.program.osc2.coarse = this.value;
     TANGUY.osc2.frequency.setValueAtTime(TANGUY.osc2_master_pitch * this.value, TANGUY.synth.currentTime);
@@ -1360,7 +1360,7 @@ $('#mod-amount').mousedown(function () {
     });
 }).mouseup(TANGUY.stop_tweaking);
 //KEYBOARD CONTROLS
-$('#keyboard button').mousedown(TANGUY.gate_on).mouseup(TANGUY.gate_off);
+$('button', '#keyboard').mousedown(TANGUY.gate_on).mouseup(TANGUY.gate_off);
 
 $(document).keypress(function (key) {
     'use strict';

@@ -3,7 +3,7 @@ $('#osc2-kbd').change(function () {
     'use strict';
     TANGUY.program.osc2.kbd = this.checked ? true : false;
 });
-$('#osc2-coarse input').change(function () {
+$('input', '#osc2-coarse').change(function () {
     'use strict';
     TANGUY.program.osc2.coarse = this.value;
     TANGUY.osc2.frequency.setValueAtTime(TANGUY.osc2_master_pitch * this.value, TANGUY.synth.currentTime);
