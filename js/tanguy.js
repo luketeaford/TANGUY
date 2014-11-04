@@ -434,19 +434,28 @@ TANGUY.shift_octave = function (direction) {
         minus1.removeClass('lit');
         break;
     case -1:
-        minus2.removeClass('lit');
+        if (direction > 0) {
+            minus2.removeClass('lit');
+        } else {
+            plus0.removeClass('lit');
+        }
         minus1.addClass('lit');
-        plus0.removeClass('lit');
         break;
     case 0:
-        minus1.removeClass('lit');
+        if (direction > 0) {
+            minus1.removeClass('lit');
+        } else {
+            plus1.removeClass('lit');
+        }
         plus0.addClass('lit');
-        plus1.removeClass('lit');
         break;
     case 1:
-        plus0.removeClass('lit');
+        if (direction > 0) {
+            plus0.removeClass('lit');
+        } else {
+            plus2.removeClass('lit');
+        }
         plus1.addClass('lit');
-        plus2.removeClass('lit');
         break;
     case 2:
         plus1.removeClass('lit');
@@ -456,13 +465,10 @@ TANGUY.shift_octave = function (direction) {
 };
 
 //OCTAVE SHIFT BUTTONS
-$('#octave-shift-down').click(function () {
+$('#octave-shift').find('button').click(function () {
     'use strict';
-    TANGUY.shift_octave(-1);
-});
-$('#octave-shift-up').click(function () {
-    'use strict';
-    TANGUY.shift_octave(1);
+    var direction = this.getAttribute('data-octave-shift');
+    return TANGUY.shift_octave(direction);
 });
 TANGUY.multi_switch = function (gizmo) {
     'use strict';
@@ -1360,7 +1366,7 @@ $('#mod-amount').mousedown(function () {
     });
 }).mouseup(TANGUY.stop_tweaking);
 //KEYBOARD CONTROLS
-$('button', '#keyboard').mousedown(TANGUY.gate_on).mouseup(TANGUY.gate_off);
+$('#keyboard').find('button').mousedown(TANGUY.gate_on).mouseup(TANGUY.gate_off);
 
 $(document).keypress(function (key) {
     'use strict';

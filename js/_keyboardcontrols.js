@@ -1,5 +1,5 @@
 //KEYBOARD CONTROLS
-$('button', '#keyboard').mousedown(TANGUY.gate_on).mouseup(TANGUY.gate_off);
+$('#keyboard').find('button').mousedown(TANGUY.gate_on).mouseup(TANGUY.gate_off);
 
 $(document).keypress(function (key) {
     'use strict';
