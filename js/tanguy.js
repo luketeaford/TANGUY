@@ -958,7 +958,7 @@ $('#osc1-kbd').change(function () {
     'use strict';
     TANGUY.program.osc1.kbd = this.checked ? true : false;
 });
-$('input', '#osc1-coarse').change(function () {
+$('#osc1-coarse').find('input').change(function () {
     'use strict';
     var osc1 = [TANGUY.osc1_saw, TANGUY.osc1_sqr, TANGUY.osc1_tri, TANGUY.osc1_sin],
         i;
@@ -1007,7 +1007,7 @@ $('#osc2-kbd').change(function () {
     'use strict';
     TANGUY.program.osc2.kbd = this.checked ? true : false;
 });
-$('input', '#osc2-coarse').change(function () {
+$('#osc2-coarse').find('input').change(function () {
     'use strict';
     TANGUY.program.osc2.coarse = this.value;
     TANGUY.osc2.frequency.setValueAtTime(TANGUY.osc2_master_pitch * this.value, TANGUY.synth.currentTime);
