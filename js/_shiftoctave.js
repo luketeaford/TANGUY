@@ -1,51 +1,22 @@
 TANGUY.shift_octave = function (direction) {
     'use strict';
-    var minus2 = $('#octave-minus-2'),
-        minus1 = $('#octave-minus-1'),
-        plus0 = $('#octave-plus-0'),
-        plus1 = $('#octave-plus-1'),
-        plus2 = $('#octave-plus-2');
+    var lights = [
+        $('#octave-minus-2'),
+        $('#octave-minus-1'),
+        $('#octave-plus-0'),
+        $('#octave-plus-1'),
+        $('#octave-plus-2')];
 
     if (direction > 0 && TANGUY.octave_shift < 2) {
         TANGUY.octave_shift += 1;
+        lights[TANGUY.octave_shift + 2].addClass('lit');
+        lights[TANGUY.octave_shift + 1].removeClass('lit');
     } else if (direction < 0 && TANGUY.octave_shift > -2) {
         TANGUY.octave_shift -= 1;
+        lights[TANGUY.octave_shift + 2].addClass('lit');
+        lights[TANGUY.octave_shift + 3].removeClass('lit');
     }
 
-    switch (TANGUY.octave_shift) {
-    case -2:
-        minus2.addClass('lit');
-        minus1.removeClass('lit');
-        break;
-    case -1:
-        if (direction > 0) {
-            minus2.removeClass('lit');
-        } else {
-            plus0.removeClass('lit');
-        }
-        minus1.addClass('lit');
-        break;
-    case 0:
-        if (direction > 0) {
-            minus1.removeClass('lit');
-        } else {
-            plus1.removeClass('lit');
-        }
-        plus0.addClass('lit');
-        break;
-    case 1:
-        if (direction > 0) {
-            plus0.removeClass('lit');
-        } else {
-            plus2.removeClass('lit');
-        }
-        plus1.addClass('lit');
-        break;
-    case 2:
-        plus1.removeClass('lit');
-        plus2.addClass('lit');
-        break;
-    }
 };
 
 //OCTAVE SHIFT BUTTONS
