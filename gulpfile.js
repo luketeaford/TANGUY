@@ -2,7 +2,8 @@ var gulp = require('gulp'),
     jslint = require('gulp-jslint'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
-    sass = require('gulp-ruby-sass');
+    sass = require('gulp-ruby-sass'),
+    minifyHTML = require('gulp-minify-html');
 
     scripts = [
         'js/_license.js',
@@ -39,20 +40,20 @@ gulp.task('dev', function() {
     .pipe(jslint({
         browser: true,
         devel: true,
-    }));
-});
-
-gulp.task('prod', function() {
-    return gulp.src(scripts)
-    .pipe(concat('tanguy.js'))
-    .pipe(gulp.dest('tanguy/js/'))
+    }))
     .pipe(uglify())
     .pipe(gulp.dest('tanguy/js'))
 });
 
 gulp.task('sass', function() {
     return gulp.src('css/*.scss')
-    .pipe(sass())
+    .pipe(sass({style: 'compressed'}))
     .on('error', function (err) { console.log(err.message); })
-    .pipe(gulp.dest('css/'));
+    .pipe(gulp.dest('tanguy/css'))
 });
+
+gulp.task('html', function() {
+    return gulp.src('index.html')
+    .pipe(minifyHTML())
+    .pipe(gulp.dest('tanguy'))
+})

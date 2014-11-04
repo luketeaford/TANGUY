@@ -16,7 +16,6 @@ TANGUY.shift_octave = function (direction) {
         lights[TANGUY.octave_shift + 2].addClass('lit');
         lights[TANGUY.octave_shift + 3].removeClass('lit');
     }
-
 };
 
 //OCTAVE SHIFT BUTTONS
