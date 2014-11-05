@@ -1,4 +1,3 @@
-/*global $, AudioContext, Float32Array*/
 var TANGUY = {
 
     synth: new AudioContext(),

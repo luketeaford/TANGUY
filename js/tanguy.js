@@ -16,7 +16,6 @@
 //
 // luketeaford@gmail.com
 // 153 Illinois Avenue, Dayton OH 45410
-/*global $, AudioContext, Float32Array*/
 var TANGUY = {
 
     synth: new AudioContext(),
