@@ -3,7 +3,7 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
     sass = require('gulp-ruby-sass'),
-    minifyHTML = require('gulp-minify-html');
+    minifyHTML = require('gulp-minify-html'),
 
     scripts = [
         'js/_license.js',
@@ -30,7 +30,7 @@ var gulp = require('gulp'),
         'js/_portamentocontrols.js',
         'js/_pitchwheelcontrols.js',
         'js/_modwheelcontrols.js',
-        'js/_keyboardcontrols.js',
+        'js/_keyboardcontrols.js'
     ];
 
 gulp.task('dev', function() {

@@ -5,7 +5,8 @@ TANGUY.shift_octave = function (direction) {
         $('#octave-minus-1'),
         $('#octave-plus-0'),
         $('#octave-plus-1'),
-        $('#octave-plus-2')];
+        $('#octave-plus-2')
+    ];
 
     if (direction > 0 && TANGUY.octave_shift < 2) {
         TANGUY.octave_shift += 1;
@@ -18,9 +19,7 @@ TANGUY.shift_octave = function (direction) {
     }
 };
 
-//OCTAVE SHIFT BUTTONS
-$('#octave-shift').find('button').click(function () {
+$('#octave-shift').on('click', '#octave-shift-down, #octave-shift-up', function () {
     'use strict';
-    var direction = this.getAttribute('data-octave-shift');
-    return TANGUY.shift_octave(direction);
+    return TANGUY.shift_octave(this.getAttribute('data-octave-shift'));
 });
