@@ -3,7 +3,7 @@ $('#osc2-kbd').change(function () {
     'use strict';
     TANGUY.program.osc2.kbd = this.checked ? true : false;
 });
-$('#osc2-coarse').find('input').change(function () {
+$('#osc2-coarse').on('change', 'input', function () {
     'use strict';
     TANGUY.program.osc2.coarse = this.value;
     TANGUY.osc2.frequency.setValueAtTime(TANGUY.osc2_master_pitch * this.value, TANGUY.synth.currentTime);
@@ -25,7 +25,7 @@ $('#osc2-fine').mousedown(function () {
         TANGUY.osc2.frequency.setValueAtTime((TANGUY.osc2_master_pitch * TANGUY.program.osc2.coarse) + TANGUY.program.osc2.fine, TANGUY.synth.currentTime);
     });
 }).mouseup(TANGUY.stop_tweaking);
-$('#osc2-saw, #osc2-sqr, #osc2-tri, #osc2-sin').change(function () {
+$('#osc2-waveform').on('change', '#osc2-saw, #osc2-sqr, #osc2-tri, #osc2-sin', function () {
     'use strict';
     TANGUY.program.osc2.waveform = this.value;
     TANGUY.osc2.type = this.value;

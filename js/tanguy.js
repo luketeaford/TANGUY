@@ -440,14 +440,11 @@ $('#octave-shift').on('click', '#octave-shift-down, #octave-shift-up', function 
 });
 TANGUY.multi_switch = function (gizmo) {
     'use strict';
-    $(gizmo).parent().addClass('selected').siblings().removeClass('selected');
+    $(gizmo.currentTarget).parent().addClass('selected').siblings().removeClass('selected');
 };
 
 //MULTI-SWITCH CONTROLS
-$('#osc1-coarse, #osc2-coarse, #portamento-mode, #osc2-waveform, #noise-color, #filter-mode, #lfo-shape').find('input').click(function () {
-    'use strict';
-    TANGUY.multi_switch(this);
-});
+$('#osc1-coarse, #osc2-coarse, #portamento-mode, #osc2-waveform, #noise-color, #filter-mode, #lfo-shape').on('click', 'input', $(this), TANGUY.multi_switch);
 TANGUY.stop_tweaking = function () {
     'use strict';
     $(this).unbind('mousemove');
@@ -926,7 +923,7 @@ $('#osc1-kbd').change(function () {
     'use strict';
     TANGUY.program.osc1.kbd = this.checked ? true : false;
 });
-$('#osc1-coarse').find('input').change(function () {
+$('#osc1-coarse').on('change', 'input', function () {
     'use strict';
     var osc1 = [TANGUY.osc1_saw, TANGUY.osc1_sqr, TANGUY.osc1_tri, TANGUY.osc1_sin],
         i;
@@ -975,7 +972,7 @@ $('#osc2-kbd').change(function () {
     'use strict';
     TANGUY.program.osc2.kbd = this.checked ? true : false;
 });
-$('#osc2-coarse').find('input').change(function () {
+$('#osc2-coarse').on('change', 'input', function () {
     'use strict';
     TANGUY.program.osc2.coarse = this.value;
     TANGUY.osc2.frequency.setValueAtTime(TANGUY.osc2_master_pitch * this.value, TANGUY.synth.currentTime);
@@ -997,7 +994,7 @@ $('#osc2-fine').mousedown(function () {
         TANGUY.osc2.frequency.setValueAtTime((TANGUY.osc2_master_pitch * TANGUY.program.osc2.coarse) + TANGUY.program.osc2.fine, TANGUY.synth.currentTime);
     });
 }).mouseup(TANGUY.stop_tweaking);
-$('#osc2-saw, #osc2-sqr, #osc2-tri, #osc2-sin').change(function () {
+$('#osc2-waveform').on('change', '#osc2-saw, #osc2-sqr, #osc2-tri, #osc2-sin', function () {
     'use strict';
     TANGUY.program.osc2.waveform = this.value;
     TANGUY.osc2.type = this.value;
@@ -1022,7 +1019,7 @@ $('#osc2-fm').mousedown(function () {
     });
 }).mouseup(TANGUY.stop_tweaking);
 //NOISE CONTROLS
-$('#white-noise, #pink-noise, #red-noise, #blue-noise, #purple-noise').change(function () {
+$('#noise-color').on('change', 'input', function () {
     'use strict';
     TANGUY.program.noise.color = this.value;
     switch (this.value) {
@@ -1064,7 +1061,7 @@ $('#white-noise, #pink-noise, #red-noise, #blue-noise, #purple-noise').change(fu
     }
 });
 //LFO CONTROLS
-$('#lfo-sin, #lfo-tri, #lfo-rmp, #lfo-saw, #lfo-sqr').change(function () {
+$('#lfo-shape').on('change', 'input', function () {
     'use strict';
     switch (this.value) {
     case 'sawtooth':
@@ -1159,44 +1156,36 @@ $('#noise-mix').mousedown(function () {
     });
 }).mouseup(TANGUY.stop_tweaking);
 //FILTER CONTROLS
-$('#filter-lp, #filter-bp, #filter-hp, #filter-notch, #filter-off').change(function () {
+$('#filter-mode').on('change', '#filter-lp, #filter-bp, #filter-hp, #filter-notch, #filter-off', function () {
     'use strict';
+    TANGUY.mixer.disconnect();
+    TANGUY.lfo_filter_vca.disconnect();
     TANGUY.program.filter.mode = this.value;
     switch (this.value) {
     case 'lp':
-        TANGUY.mixer.disconnect();
         TANGUY.mixer.connect(TANGUY.lp_filter1);
-        TANGUY.lfo_filter_vca.disconnect();
         TANGUY.lfo_filter_vca.connect(TANGUY.lp_filter1.frequency);
         TANGUY.lfo_filter_vca.connect(TANGUY.lp_filter2.frequency);
         break;
     case 'bp':
-        TANGUY.mixer.disconnect();
         TANGUY.mixer.connect(TANGUY.bp_filter1);
-        TANGUY.lfo_filter_vca.disconnect();
         TANGUY.lfo_filter_vca.connect(TANGUY.bp_filter1.frequency);
         TANGUY.lfo_filter_vca.connect(TANGUY.bp_filter2.frequency);
         TANGUY.lfo_filter_vca.connect(TANGUY.bp_filter3.frequency);
         break;
     case 'hp':
-        TANGUY.mixer.disconnect();
         TANGUY.mixer.connect(TANGUY.hp_filter1);
-        TANGUY.lfo_filter_vca.disconnect();
         TANGUY.lfo_filter_vca.connect(TANGUY.hp_filter1.frequency);
         TANGUY.lfo_filter_vca.connect(TANGUY.hp_filter2.frequency);
         break;
     case 'notch':
-        TANGUY.mixer.disconnect();
         TANGUY.mixer.connect(TANGUY.notch1);
-        TANGUY.lfo_filter_vca.disconnect();
         TANGUY.lfo_filter_vca.connect(TANGUY.notch1.frequency);
         TANGUY.lfo_filter_vca.connect(TANGUY.notch2.frequency);
         TANGUY.lfo_filter_vca.connect(TANGUY.notch3.frequency);
         break;
     case 'off':
-        TANGUY.mixer.disconnect();
         TANGUY.mixer.connect(TANGUY.vca);
-        TANGUY.lfo_filter_vca.disconnect();
         break;
     }
 });

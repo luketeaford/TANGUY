@@ -1,5 +1,5 @@
 //LFO CONTROLS
-$('#lfo-sin, #lfo-tri, #lfo-rmp, #lfo-saw, #lfo-sqr').change(function () {
+$('#lfo-shape').on('change', 'input', function () {
     'use strict';
     switch (this.value) {
     case 'sawtooth':

@@ -1,42 +1,34 @@
 //FILTER CONTROLS
-$('#filter-lp, #filter-bp, #filter-hp, #filter-notch, #filter-off').change(function () {
+$('#filter-mode').on('change', '#filter-lp, #filter-bp, #filter-hp, #filter-notch, #filter-off', function () {
     'use strict';
+    TANGUY.mixer.disconnect();
+    TANGUY.lfo_filter_vca.disconnect();
     TANGUY.program.filter.mode = this.value;
     switch (this.value) {
     case 'lp':
-        TANGUY.mixer.disconnect();
         TANGUY.mixer.connect(TANGUY.lp_filter1);
-        TANGUY.lfo_filter_vca.disconnect();
         TANGUY.lfo_filter_vca.connect(TANGUY.lp_filter1.frequency);
         TANGUY.lfo_filter_vca.connect(TANGUY.lp_filter2.frequency);
         break;
     case 'bp':
-        TANGUY.mixer.disconnect();
         TANGUY.mixer.connect(TANGUY.bp_filter1);
-        TANGUY.lfo_filter_vca.disconnect();
         TANGUY.lfo_filter_vca.connect(TANGUY.bp_filter1.frequency);
         TANGUY.lfo_filter_vca.connect(TANGUY.bp_filter2.frequency);
         TANGUY.lfo_filter_vca.connect(TANGUY.bp_filter3.frequency);
         break;
     case 'hp':
-        TANGUY.mixer.disconnect();
         TANGUY.mixer.connect(TANGUY.hp_filter1);
-        TANGUY.lfo_filter_vca.disconnect();
         TANGUY.lfo_filter_vca.connect(TANGUY.hp_filter1.frequency);
         TANGUY.lfo_filter_vca.connect(TANGUY.hp_filter2.frequency);
         break;
     case 'notch':
-        TANGUY.mixer.disconnect();
         TANGUY.mixer.connect(TANGUY.notch1);
-        TANGUY.lfo_filter_vca.disconnect();
         TANGUY.lfo_filter_vca.connect(TANGUY.notch1.frequency);
         TANGUY.lfo_filter_vca.connect(TANGUY.notch2.frequency);
         TANGUY.lfo_filter_vca.connect(TANGUY.notch3.frequency);
         break;
     case 'off':
-        TANGUY.mixer.disconnect();
         TANGUY.mixer.connect(TANGUY.vca);
-        TANGUY.lfo_filter_vca.disconnect();
         break;
     }
 });

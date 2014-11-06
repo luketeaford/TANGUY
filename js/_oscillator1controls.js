@@ -3,7 +3,7 @@ $('#osc1-kbd').change(function () {
     'use strict';
     TANGUY.program.osc1.kbd = this.checked ? true : false;
 });
-$('#osc1-coarse').find('input').change(function () {
+$('#osc1-coarse').on('change', 'input', function () {
     'use strict';
     var osc1 = [TANGUY.osc1_saw, TANGUY.osc1_sqr, TANGUY.osc1_tri, TANGUY.osc1_sin],
         i;
