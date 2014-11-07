@@ -19,7 +19,7 @@ TANGUY.shift_octave = function (direction) {
     }
 };
 
-$('#octave-shift').on('click', '#octave-shift-down, #octave-shift-up', function () {
+$('#octave-shift').on('click', 'button', function () {
     'use strict';
     return TANGUY.shift_octave(this.getAttribute('data-octave-shift'));
 });

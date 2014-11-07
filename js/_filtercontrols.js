@@ -1,5 +1,5 @@
 //FILTER CONTROLS
-$('#filter-mode').on('change', '#filter-lp, #filter-bp, #filter-hp, #filter-notch, #filter-off', function () {
+$('#filter-mode').on('change', 'input', function () {
     'use strict';
     TANGUY.mixer.disconnect();
     TANGUY.lfo_filter_vca.disconnect();

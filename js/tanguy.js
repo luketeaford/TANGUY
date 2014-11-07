@@ -434,7 +434,7 @@ TANGUY.shift_octave = function (direction) {
     }
 };
 
-$('#octave-shift').on('click', '#octave-shift-down, #octave-shift-up', function () {
+$('#octave-shift').on('click', 'button', function () {
     'use strict';
     return TANGUY.shift_octave(this.getAttribute('data-octave-shift'));
 });
@@ -1156,7 +1156,7 @@ $('#noise-mix').mousedown(function () {
     });
 }).mouseup(TANGUY.stop_tweaking);
 //FILTER CONTROLS
-$('#filter-mode').on('change', '#filter-lp, #filter-bp, #filter-hp, #filter-notch, #filter-off', function () {
+$('#filter-mode').on('change', 'input', function () {
     'use strict';
     TANGUY.mixer.disconnect();
     TANGUY.lfo_filter_vca.disconnect();
