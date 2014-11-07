@@ -7,7 +7,7 @@ TANGUY.calculate_pitch = function (pos, note_value) {
         i,
         no_portamento = function () {
             if (TANGUY.program.osc1.kbd === true) {
-                for (i = 0; i < osc1.length; i += 1) {
+                for (i = 0; i < 4; i += 1) {
                     osc1[i].detune.setValueAtTime(note, TANGUY.synth.currentTime);
                 }
             }
@@ -17,7 +17,7 @@ TANGUY.calculate_pitch = function (pos, note_value) {
         },
         linear_portamento = function () {
             if (TANGUY.program.osc1.kbd === true) {
-                for (i = 0; i < osc1.length; i += 1) {
+                for (i = 0; i < 4; i += 1) {
                     osc1[i].detune.linearRampToValueAtTime(note, TANGUY.synth.currentTime + parseFloat(TANGUY.program.portamento.amt));
                 }
             }
@@ -27,7 +27,7 @@ TANGUY.calculate_pitch = function (pos, note_value) {
         },
         exponential_portamento = function () {
             if (TANGUY.program.osc1.kbd === true) {
-                for (i = 0; i < osc1.length; i += 1) {
+                for (i = 0; i < 4; i += 1) {
                     osc1[i].detune.setTargetAtTime(note, TANGUY.synth.currentTime, TANGUY.program.portamento.amt / 5);
                 }
             }

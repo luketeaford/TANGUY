@@ -8,7 +8,7 @@ $('#osc1-coarse').on('change', 'input', function () {
     var osc1 = [TANGUY.osc1_saw, TANGUY.osc1_sqr, TANGUY.osc1_tri, TANGUY.osc1_sin],
         i;
     TANGUY.program.osc1.coarse = this.value;
-    for (i = 0; i < osc1.length; i += 1) {
+    for (i = 0; i < 4; i += 1) {
         osc1[i].frequency.setValueAtTime(440 * this.value, TANGUY.synth.currentTime);
     }
 });

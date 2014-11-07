@@ -1,20 +1,10 @@
-//VCA CONTROLS
-$('#vca-attack').change(function () {
+//VCA ENVELOPE CONTROLS
+$('#vca-eg').on('change', '#vca-attack, #vca-decay, #vca-sustain, #vca-release', $(this), function (e) {
     'use strict';
-    TANGUY.program.vca.attack = parseFloat(this.value);
+    var param = e.currentTarget.getAttribute('data-param');
+    TANGUY.program.vca[param] = parseFloat(e.currentTarget.value);
 });
-$('#vca-decay').change(function () {
-    'use strict';
-    TANGUY.program.vca.decay = this.value;
-});
-$('#vca-sustain').change(function () {
-    'use strict';
-    TANGUY.program.vca.sustain = this.value;
-});
-$('#vca-release').change(function () {
-    'use strict';
-    TANGUY.program.vca.release = this.value;
-});
+
 $('#vca-gain').mousedown(function () {
     'use strict';
     $(this).mousemove(function () {

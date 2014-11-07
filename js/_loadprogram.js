@@ -33,7 +33,7 @@ TANGUY.load_program = function (patch) {
             $('#osc1-4').parent().addClass('selected').siblings().removeClass('selected');
             break;
         }
-        for (i = 0; i < osc1.length; i += 1) {
+        for (i = 0; i < 4; i += 1) {
             osc1[i].frequency.setValueAtTime(TANGUY.osc1_master_pitch * TANGUY.program.osc1.coarse, TANGUY.synth.currentTime);
         }
 
@@ -269,10 +269,10 @@ TANGUY.load_program = function (patch) {
         //DELAY CONTROLS
         $('#delay-rate').val(TANGUY.program.delay.rate);
         $('#delay-amount').val(TANGUY.program.delay.amt);
-        for (i = 0; i < delay.length; i += 1) {
+        for (i = 0; i < 4; i += 1) {
             delay[i].delayTime.value = TANGUY.program.delay.rate;
         }
-        for (i = 0; i < delay_vcas.length; i += 1) {
+        for (i = 0; i < 4; i += 1) {
             delay_vcas[i].gain.value = TANGUY.program.delay.amt;
         }
 

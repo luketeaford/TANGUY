@@ -82,27 +82,17 @@ $('#resonance').mousedown(function () {
         }
     });
 }).mouseup(TANGUY.stop_tweaking);
-$('#filter-envelope-amount').change(function () {
+
+//FILTER ENVELOPE CONTROLS
+$('#filter-eg').on('change', 'input', $(this), function (e) {
     'use strict';
-    TANGUY.program.filter.env_amt = parseFloat(this.value);
+    var param = e.currentTarget.getAttribute('data-param');
+    TANGUY.program.filter[param] = parseFloat(e.currentTarget.value);
 });
-$('#filter-keyboard-tracking').change(function () {
+
+//BAD DESIGN QUICK FIX
+$('#filter').on('change', '#filter-envelope-amount, #filter-keyboard-tracking', $(this), function (e) {
     'use strict';
-    TANGUY.program.filter.kbd = this.value;
-});
-$('#filter-attack').change(function () {
-    'use strict';
-    TANGUY.program.filter.attack = parseFloat(this.value);
-});
-$('#filter-decay').change(function () {
-    'use strict';
-    TANGUY.program.filter.decay = this.value;
-});
-$('#filter-sustain').change(function () {
-    'use strict';
-    TANGUY.program.filter.sustain = this.value;
-});
-$('#filter-release').change(function () {
-    'use strict';
-    TANGUY.program.filter.release = this.value;
+    var param = e.currentTarget.getAttribute('data-param');
+    TANGUY.program.filter[param] = parseFloat(e.currentTarget.value);
 });

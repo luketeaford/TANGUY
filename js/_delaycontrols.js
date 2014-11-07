@@ -5,7 +5,7 @@ $('#delay-rate').mousedown(function () {
         i;
     $(this).mousemove(function () {
         TANGUY.program.delay.rate = this.value * 2;
-        for (i = 0; i < delay.length; i += 1) {
+        for (i = 0; i < 4; i += 1) {
             delay[i].delayTime.value = this.value * 2;
         }
     });
@@ -16,7 +16,7 @@ $('#delay-amount').mousedown(function () {
         i;
     $(this).mousemove(function () {
         TANGUY.program.delay.amt = this.value * this.value;
-        for (i = 0; i < delay.length; i += 1) {
+        for (i = 0; i < 4; i += 1) {
             delay[i].gain.value = this.value * this.value;
         }
     });

@@ -1,6 +1,6 @@
-TANGUY.multi_switch = function (gizmo) {
+TANGUY.multi_switch = function (e) {
     'use strict';
-    $(gizmo.currentTarget).parent().addClass('selected').siblings().removeClass('selected');
+    $(e.currentTarget).parent().addClass('selected').siblings().removeClass('selected');
 };
 
 //MULTI-SWITCH CONTROLS

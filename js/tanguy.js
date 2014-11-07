@@ -134,7 +134,7 @@ TANGUY.load_program = function (patch) {
             $('#osc1-4').parent().addClass('selected').siblings().removeClass('selected');
             break;
         }
-        for (i = 0; i < osc1.length; i += 1) {
+        for (i = 0; i < 4; i += 1) {
             osc1[i].frequency.setValueAtTime(TANGUY.osc1_master_pitch * TANGUY.program.osc1.coarse, TANGUY.synth.currentTime);
         }
 
@@ -370,10 +370,10 @@ TANGUY.load_program = function (patch) {
         //DELAY CONTROLS
         $('#delay-rate').val(TANGUY.program.delay.rate);
         $('#delay-amount').val(TANGUY.program.delay.amt);
-        for (i = 0; i < delay.length; i += 1) {
+        for (i = 0; i < 4; i += 1) {
             delay[i].delayTime.value = TANGUY.program.delay.rate;
         }
-        for (i = 0; i < delay_vcas.length; i += 1) {
+        for (i = 0; i < 4; i += 1) {
             delay_vcas[i].gain.value = TANGUY.program.delay.amt;
         }
 
@@ -438,16 +438,16 @@ $('#octave-shift').on('click', 'button', function () {
     'use strict';
     return TANGUY.shift_octave(this.getAttribute('data-octave-shift'));
 });
-TANGUY.multi_switch = function (gizmo) {
+TANGUY.multi_switch = function (e) {
     'use strict';
-    $(gizmo.currentTarget).parent().addClass('selected').siblings().removeClass('selected');
+    $(e.currentTarget).parent().addClass('selected').siblings().removeClass('selected');
 };
 
 //MULTI-SWITCH CONTROLS
 $('#osc1-coarse, #osc2-coarse, #portamento-mode, #osc2-waveform, #noise-color, #filter-mode, #lfo-shape').on('click', 'input', $(this), TANGUY.multi_switch);
 TANGUY.stop_tweaking = function () {
     'use strict';
-    $(this).unbind('mousemove');
+    return $(this).unbind('mousemove');
 };
 TANGUY.calculate_lfo = function () {
     'use strict';
@@ -476,7 +476,7 @@ TANGUY.calculate_pitch = function (pos, note_value) {
         i,
         no_portamento = function () {
             if (TANGUY.program.osc1.kbd === true) {
-                for (i = 0; i < osc1.length; i += 1) {
+                for (i = 0; i < 4; i += 1) {
                     osc1[i].detune.setValueAtTime(note, TANGUY.synth.currentTime);
                 }
             }
@@ -486,7 +486,7 @@ TANGUY.calculate_pitch = function (pos, note_value) {
         },
         linear_portamento = function () {
             if (TANGUY.program.osc1.kbd === true) {
-                for (i = 0; i < osc1.length; i += 1) {
+                for (i = 0; i < 4; i += 1) {
                     osc1[i].detune.linearRampToValueAtTime(note, TANGUY.synth.currentTime + parseFloat(TANGUY.program.portamento.amt));
                 }
             }
@@ -496,7 +496,7 @@ TANGUY.calculate_pitch = function (pos, note_value) {
         },
         exponential_portamento = function () {
             if (TANGUY.program.osc1.kbd === true) {
-                for (i = 0; i < osc1.length; i += 1) {
+                for (i = 0; i < 4; i += 1) {
                     osc1[i].detune.setTargetAtTime(note, TANGUY.synth.currentTime, TANGUY.program.portamento.amt / 5);
                 }
             }
@@ -928,7 +928,7 @@ $('#osc1-coarse').on('change', 'input', function () {
     var osc1 = [TANGUY.osc1_saw, TANGUY.osc1_sqr, TANGUY.osc1_tri, TANGUY.osc1_sin],
         i;
     TANGUY.program.osc1.coarse = this.value;
-    for (i = 0; i < osc1.length; i += 1) {
+    for (i = 0; i < 4; i += 1) {
         osc1[i].frequency.setValueAtTime(440 * this.value, TANGUY.synth.currentTime);
     }
 });
@@ -1117,7 +1117,7 @@ $('#delay-rate').mousedown(function () {
         i;
     $(this).mousemove(function () {
         TANGUY.program.delay.rate = this.value * 2;
-        for (i = 0; i < delay.length; i += 1) {
+        for (i = 0; i < 4; i += 1) {
             delay[i].delayTime.value = this.value * 2;
         }
     });
@@ -1128,7 +1128,7 @@ $('#delay-amount').mousedown(function () {
         i;
     $(this).mousemove(function () {
         TANGUY.program.delay.amt = this.value * this.value;
-        for (i = 0; i < delay.length; i += 1) {
+        for (i = 0; i < 4; i += 1) {
             delay[i].gain.value = this.value * this.value;
         }
     });
@@ -1239,47 +1239,28 @@ $('#resonance').mousedown(function () {
         }
     });
 }).mouseup(TANGUY.stop_tweaking);
-$('#filter-envelope-amount').change(function () {
+
+//FILTER ENVELOPE CONTROLS
+$('#filter-eg').on('change', 'input', $(this), function (e) {
     'use strict';
-    TANGUY.program.filter.env_amt = parseFloat(this.value);
+    var param = e.currentTarget.getAttribute('data-param');
+    TANGUY.program.filter[param] = parseFloat(e.currentTarget.value);
 });
-$('#filter-keyboard-tracking').change(function () {
+
+//BAD DESIGN QUICK FIX
+$('#filter').on('change', '#filter-envelope-amount, #filter-keyboard-tracking', $(this), function (e) {
     'use strict';
-    TANGUY.program.filter.kbd = this.value;
+    var param = e.currentTarget.getAttribute('data-param');
+    TANGUY.program.filter[param] = parseFloat(e.currentTarget.value);
 });
-$('#filter-attack').change(function () {
+
+//VCA ENVELOPE CONTROLS
+$('#vca-eg').on('change', '#vca-attack, #vca-decay, #vca-sustain, #vca-release', $(this), function (e) {
     'use strict';
-    TANGUY.program.filter.attack = parseFloat(this.value);
+    var param = e.currentTarget.getAttribute('data-param');
+    TANGUY.program.vca[param] = parseFloat(e.currentTarget.value);
 });
-$('#filter-decay').change(function () {
-    'use strict';
-    TANGUY.program.filter.decay = this.value;
-});
-$('#filter-sustain').change(function () {
-    'use strict';
-    TANGUY.program.filter.sustain = this.value;
-});
-$('#filter-release').change(function () {
-    'use strict';
-    TANGUY.program.filter.release = this.value;
-});
-//VCA CONTROLS
-$('#vca-attack').change(function () {
-    'use strict';
-    TANGUY.program.vca.attack = parseFloat(this.value);
-});
-$('#vca-decay').change(function () {
-    'use strict';
-    TANGUY.program.vca.decay = this.value;
-});
-$('#vca-sustain').change(function () {
-    'use strict';
-    TANGUY.program.vca.sustain = this.value;
-});
-$('#vca-release').change(function () {
-    'use strict';
-    TANGUY.program.vca.release = this.value;
-});
+
 $('#vca-gain').mousedown(function () {
     'use strict';
     $(this).mousemove(function () {
@@ -1303,13 +1284,13 @@ $('#pitch-bend').mousedown(function () {
     var osc1 = [TANGUY.osc1_saw, TANGUY.osc1_sqr, TANGUY.osc1_tri, TANGUY.osc1_sin],
         i;
     $(this).mousemove(function () {
-        for (i = 0; i < osc1.length; i += 1) {
+        for (i = 0; i < 4; i += 1) {
             osc1[i].detune.setTargetAtTime(TANGUY.osc1_pitch + (this.value * 100), TANGUY.synth.currentTime, 0.2);
         }
         TANGUY.osc2.detune.setTargetAtTime(TANGUY.osc2_pitch + (this.value * 100), TANGUY.synth.currentTime, 0.2);
     }).mouseup(function () {
         $(this).val(0).unbind('mousemove');
-        for (i = 0; i < osc1.length; i += 1) {
+        for (i = 0; i < 4; i += 1) {
             osc1[i].detune.setTargetAtTime(TANGUY.osc1_pitch + (this.value * 100), TANGUY.synth.currentTime, 0.2);
         }
         TANGUY.osc2.detune.setTargetAtTime(TANGUY.osc2_pitch + (this.value * 100), TANGUY.synth.currentTime, 0.2);
