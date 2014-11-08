@@ -932,7 +932,7 @@ $('#osc1-coarse').on('change', 'input', function () {
         osc1[i].frequency.setValueAtTime(440 * this.value, TANGUY.synth.currentTime);
     }
 });
-$('#osc1-saw').mousedown(function () {
+/*$('#osc1-saw').mousedown(function () {
     'use strict';
     $(this).mousemove(function () {
         TANGUY.program.osc1.saw_amt = this.value;
@@ -966,7 +966,7 @@ $('#osc1-fm').mousedown(function () {
         TANGUY.program.osc1.fm_amt = this.value;
         TANGUY.osc1_fm_vca.gain.setValueAtTime((this.value * this.value) * 24000, TANGUY.synth.currentTime);
     });
-}).mouseup(TANGUY.stop_tweaking);
+}).mouseup(TANGUY.stop_tweaking);*/
 //OSCILLATOR 2 CONTROLS
 $('#osc2-kbd').change(function () {
     'use strict';
@@ -1134,11 +1134,13 @@ $('#delay-amount').mousedown(function () {
     });
 }).mouseup(TANGUY.stop_tweaking);
 //MIXER CONTROLS
-$('#osc1-mix').mousedown(function () {
+/*$('#osc1-mix').mousedown(function () {
     'use strict';
     $(this).mousemove(function () {
         TANGUY.program.mixer.osc1 = this.value;
-        TANGUY.osc1_vca.gain.value = TANGUY.program.mixer.osc1;
+        //TANGUY.osc1_vca.gain.value = TANGUY.program.mixer.osc1;
+        TANGUY.osc1_vca.gain.setValueAtTime(this.value, TANGUY.synth.currentTime);
+        console.log('Set value at time');
     });
 }).mouseup(TANGUY.stop_tweaking);
 $('#osc2-mix').mousedown(function () {
@@ -1155,6 +1157,7 @@ $('#noise-mix').mousedown(function () {
         TANGUY.noise_vca.gain.value = TANGUY.program.mixer.noise;
     });
 }).mouseup(TANGUY.stop_tweaking);
+*/
 //FILTER CONTROLS
 $('#filter-mode').on('change', 'input', function () {
     'use strict';
@@ -1304,6 +1307,40 @@ $('#mod-amount').mousedown(function () {
         TANGUY.calculate_lfo();
     });
 }).mouseup(TANGUY.stop_tweaking);
+TANGUY.slider = {
+    grab: function () {
+        'use strict';
+        var config = {
+            mode: this.getAttribute('data-mode'),//lin. or exp.
+            program: this.getAttribute('data-program'),//mixer.osc1
+            param: this.getAttribute('data-param')//osc1_vca
+        };
+        return $(this).mousemove(config, TANGUY.slider.store_program).mouseup(TANGUY.slider.release);
+    },
+
+    store_program: function (e) {
+        'use strict';
+        TANGUY.program.mixer[e.data.program] = e.currentTarget.value;
+        console.log('Super Storing ' + e.data.program);
+        return TANGUY.slider.update(e);
+    },
+
+    update: function (e) {
+        'use strict';
+        if (e.data.mode === 'exp') {
+            return TANGUY[e.data.param].gain.setValueAtTime(e.currentTarget.value * e.currentTarget.value, TANGUY.synth.currentTime);
+        }
+        return TANGUY[e.data.param].gain.setValueAtTime(e.currentTarget.value, TANGUY.synth.currentTime);
+    },
+
+    release: function () {
+        'use strict';
+        return $(this).unbind('mousemove');
+    }
+};
+
+$('#mixer').on('mousedown', 'input', TANGUY.slider.grab);
+//$('#osc1').on('mousedown', 'input.vertical-slider', TANGUY.slider.grab);
 //KEYBOARD CONTROLS
 $('#keyboard').on('mousedown', 'button', TANGUY.gate_on).on('mouseup', 'button', TANGUY.gate_off);
 

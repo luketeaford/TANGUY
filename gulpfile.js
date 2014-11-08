@@ -30,6 +30,7 @@ var gulp = require('gulp'),
         'js/_portamentocontrols.js',
         'js/_pitchwheelcontrols.js',
         'js/_modwheelcontrols.js',
+        'js/_slidercontrols.js',
         'js/_keyboardcontrols.js'
     ];
 

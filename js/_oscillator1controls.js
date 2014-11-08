@@ -12,7 +12,7 @@ $('#osc1-coarse').on('change', 'input', function () {
         osc1[i].frequency.setValueAtTime(440 * this.value, TANGUY.synth.currentTime);
     }
 });
-$('#osc1-saw').mousedown(function () {
+/*$('#osc1-saw').mousedown(function () {
     'use strict';
     $(this).mousemove(function () {
         TANGUY.program.osc1.saw_amt = this.value;
@@ -46,4 +46,4 @@ $('#osc1-fm').mousedown(function () {
         TANGUY.program.osc1.fm_amt = this.value;
         TANGUY.osc1_fm_vca.gain.setValueAtTime((this.value * this.value) * 24000, TANGUY.synth.currentTime);
     });
-}).mouseup(TANGUY.stop_tweaking);
+}).mouseup(TANGUY.stop_tweaking);*/

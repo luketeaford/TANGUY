@@ -84,23 +84,23 @@
       </div>
       <br>
       <div class="slider-wrapper">
-        <input class="vertical-slider" id="osc1-saw" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
+        <input class="vertical-slider" data-mode="exp" id="osc1-saw" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
         <label class="slider-label" for="osc1-saw">Saw</label>
       </div>
       <div class="slider-wrapper">
-        <input class="vertical-slider" id="osc1-sqr" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        <input class="vertical-slider" data-mode="exp" id="osc1-sqr" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
         <label class="slider-label" for="osc1-sqr">Square</label>
       </div>
       <div class="slider-wrapper">
-        <input class="vertical-slider" id="osc1-tri" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        <input class="vertical-slider" data-mode="exp" id="osc1-tri" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
         <label class="slider-label" for="osc1-tri">Triangle</label>
       </div>
       <div class="slider-wrapper">
-        <input class="vertical-slider" id="osc1-sin" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        <input class="vertical-slider" data-mode="exp" id="osc1-sin" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
         <label class="slider-label" for="osc1-sin">Sine</label>
       </div>
       <div class="slider-wrapper">
-        <input class="vertical-slider" id="osc1-fm" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        <input class="vertical-slider" data-mode="exp" id="osc1-fm" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
         <label class="slider-label" for="osc1-fm"><abbr title="Oscillator 1 Frequency Modulation Amount">FM Amt.</abbr></label>
       </div>
     </section>
@@ -157,15 +157,15 @@
     <section id="mixer">
       <h2>Mixer</h2>
       <div class="slider-wrapper">
-        <input class="vertical-slider" id="osc1-mix" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
+        <input class="vertical-slider" data-mode="exp" data-param="osc1_vca" data-program="osc1" id="osc1-mix" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
         <label class="slider-label" for="osc1-mix"><abbr title="Oscillator One">Osc. 1</abbr></label>
       </div>
       <div class="slider-wrapper">
-        <input class="vertical-slider" id="osc2-mix" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
+        <input class="vertical-slider" data-mode="exp" data-param="osc2_vca" data-program="osc2" id="osc2-mix" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
         <label class="slider-label" for="osc2-mix"><abbr title="Oscillator Two">Osc. 2</abbr></label>
       </div>
       <div class="slider-wrapper">
-        <input class="vertical-slider" id="noise-mix" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        <input class="vertical-slider" data-mode="exp" data-param="noise_vca" data-program="noise" id="noise-mix" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
         <label class="slider-label" for="noise-mix">Noise</label>
       </div>
     </section>
