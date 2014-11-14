@@ -1111,29 +1111,24 @@ $('#lfo-amp').mousedown(function () {
         TANGUY.calculate_lfo('amp');
     });
 }).mouseup(TANGUY.stop_tweaking);
-//DELAY CONTROLS
-$('#delay-rate').mousedown(function () {
+//DELAY CONTROLS - GOOD
+TANGUY.update_delay_rate = function () {
     'use strict';
     var delay = [TANGUY.delay1, TANGUY.delay2, TANGUY.delay3, TANGUY.delay4],
         i;
-    $(this).mousemove(function () {
-        TANGUY.program.delay.rate = this.value * 2;
-        for (i = 0; i < 4; i += 1) {
-            delay[i].delayTime.value = this.value * 2;
-        }
-    });
-}).mouseup(TANGUY.stop_tweaking);
-$('#delay-amount').mousedown(function () {
+    for (i = 0; i < 4; i += 1) {
+        delay[i].delayTime.value = TANGUY.program.delay_rate * 2;
+    }
+};
+
+TANGUY.update_delay_amt = function () {
     'use strict';
     var delay = [TANGUY.delay1_vca, TANGUY.delay2_vca, TANGUY.delay3_vca, TANGUY.delay4_vca],
         i;
-    $(this).mousemove(function () {
-        TANGUY.program.delay.amt = this.value * this.value;
-        for (i = 0; i < 4; i += 1) {
-            delay[i].gain.value = this.value * this.value;
-        }
-    });
-}).mouseup(TANGUY.stop_tweaking);
+    for (i = 0; i < 4; i += 1) {
+        delay[i].gain.value = TANGUY.program.delay_amt * TANGUY.program.delay_amt;
+    }
+};
 //MIXER CONTROLS - GOOD
 TANGUY.update_osc1_mix = function () {
     'use strict';
@@ -1184,14 +1179,6 @@ $('#filter-mode').on('change', 'input', function () {
     }
 });
 
-//FILTER ENVELOPE CONTROLS
-/* This was an ok idea, but has been replaced with something better
-$('#filter-eg').on('change', 'input', $(this), function (e) {
-    'use strict';
-    var param = e.currentTarget.getAttribute('data-param');
-    TANGUY.program.filter[param] = parseFloat(e.currentTarget.value);
-});*/
-
 //BAD DESIGN QUICK FIX
 $('#filter').on('change', '#filter-envelope-amount, #filter-keyboard-tracking', $(this), function (e) {
     'use strict';
@@ -1199,23 +1186,7 @@ $('#filter').on('change', '#filter-envelope-amount, #filter-keyboard-tracking', 
     TANGUY.program.filter[param] = parseFloat(e.currentTarget.value);
 });
 
-//VCA ENVELOPE CONTROLS
-/* This is an earlier idea that is kind of on the right track...
-$('#vca-eg').on('change', '#vca-attack, #vca-decay, #vca-sustain, #vca-release', $(this), function (e) {
-    'use strict';
-    var param = e.currentTarget.getAttribute('data-param');
-    TANGUY.program.vca[param] = parseFloat(e.currentTarget.value);
-});*/
-
-/*$('#vca-gain').mousedown(function () {
-    'use strict';
-    $(this).mousemove(function () {
-        TANGUY.program.vca.gain = this.value * this.value;
-        TANGUY.vca.gain.setTargetAtTime(TANGUY.program.vca.gain, TANGUY.synth.currentTime, 0.01);
-    });
-}).mouseup(TANGUY.stop_tweaking);*/
-
-
+//VCA CONTROLS - GOOD
 TANGUY.update_vca_gain = function () {
     'use strict';
     TANGUY.vca.gain.setTargetAtTime(TANGUY.program.vca_gain * TANGUY.program.vca_gain, TANGUY.synth.currentTime, 0.01);
@@ -1273,6 +1244,7 @@ TANGUY.slider = {
 };
 
 //CLEAN THESE UP LATER, OBVIOUSLY
+$('#delay').on('mousedown', 'input', TANGUY.slider.grab);
 $('#filter-eg').on('mousedown', 'input', TANGUY.slider.grab);
 $('#vca-eg').on('mousedown', 'input', TANGUY.slider.grab);
 $('#mixer').on('mousedown', 'input', TANGUY.slider.grab);

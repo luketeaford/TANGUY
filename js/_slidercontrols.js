@@ -15,6 +15,7 @@ TANGUY.slider = {
 };
 
 //CLEAN THESE UP LATER, OBVIOUSLY
+$('#delay').on('mousedown', 'input', TANGUY.slider.grab);
 $('#filter-eg').on('mousedown', 'input', TANGUY.slider.grab);
 $('#vca-eg').on('mousedown', 'input', TANGUY.slider.grab);
 $('#mixer').on('mousedown', 'input', TANGUY.slider.grab);
