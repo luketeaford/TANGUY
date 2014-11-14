@@ -157,15 +157,15 @@
     <section id="mixer">
       <h2>Mixer</h2>
       <div class="slider-wrapper">
-        <input class="vertical-slider" data-mode="exp" data-param="osc1_vca" data-program="osc1" id="osc1-mix" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
+        <input class="vertical-slider" data-program="osc1_mix" data-update="update_osc1_mix" id="osc1-mix" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
         <label class="slider-label" for="osc1-mix"><abbr title="Oscillator One">Osc. 1</abbr></label>
       </div>
       <div class="slider-wrapper">
-        <input class="vertical-slider" data-mode="exp" data-param="osc2_vca" data-program="osc2" id="osc2-mix" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
+        <input class="vertical-slider" data-program="osc2_mix" data-update="update_osc2_mix" id="osc2-mix" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
         <label class="slider-label" for="osc2-mix"><abbr title="Oscillator Two">Osc. 2</abbr></label>
       </div>
       <div class="slider-wrapper">
-        <input class="vertical-slider" data-mode="exp" data-param="noise_vca" data-program="noise" id="noise-mix" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        <input class="vertical-slider" data-program="noise_mix" data-update="update_noise_mix" id="noise-mix" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
         <label class="slider-label" for="noise-mix">Noise</label>
       </div>
     </section>
@@ -182,11 +182,11 @@
         <label><input id="filter-off" name="filter-type" type="radio" value="off">Off</label>
       </div>
       <div class="slider-wrapper">
-        <input class="vertical-slider" id="cutoff" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
+        <input class="vertical-slider" data-program="cutoff" data-update="update_cutoff" id="cutoff" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
         <label class="slider-label" for="cutoff">Cutoff</label>
       </div>
       <div class="slider-wrapper">
-        <input class="vertical-slider" id="resonance" max="1" min="0.0001" orient="vertical" step="0.0001" type="range" value="0.0001">
+        <input class="vertical-slider" data-program="res" data-update="update_resonance" id="resonance" max="1" min="0.0001" orient="vertical" step="0.0001" type="range" value="0.0001">
         <label class="slider-label" for="resonance"><abbr title="Resonance">Res.</abbr></label>
       </div>
       <div class="slider-wrapper">
@@ -222,7 +222,7 @@
     <section id="vca-eg">
       <h2><abbr title="Voltage Controlled Amplifier">VCA</abbr> Envelope Generator</h2>
       <div class="slider-wrapper">
-        <input class="vertical-slider" data-param="attack" id="vca-attack" max="1" min="0.0008" orient="vertical" step="0.0001" type="range" value="0.0008">
+        <input class="vertical-slider" data-program="vca_attack" id="vca-attack" max="1" min="0.0008" orient="vertical" step="0.0001" type="range" value="0.0008">
         <label class="slider-label" for="vca-attack">Attack</label>
       </div>
       <div class="slider-wrapper">
