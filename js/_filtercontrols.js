@@ -33,13 +33,6 @@ $('#filter-mode').on('change', 'input', function () {
     }
 });
 
-//FILTER ENVELOPE CONTROLS
-$('#filter-eg').on('change', 'input', $(this), function (e) {
-    'use strict';
-    var param = e.currentTarget.getAttribute('data-param');
-    TANGUY.program.filter[param] = parseFloat(e.currentTarget.value);
-});
-
 //BAD DESIGN QUICK FIX
 $('#filter').on('change', '#filter-envelope-amount, #filter-keyboard-tracking', $(this), function (e) {
     'use strict';

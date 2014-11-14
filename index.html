@@ -202,19 +202,19 @@
     <section id="filter-eg">
       <h2>Filter Envelope Generator</h2>
       <div class="slider-wrapper">
-        <input class="vertical-slider" data-param="attack" id="filter-attack" max="1" min="0.008" orient="vertical" step="0.0001" type="range" value="0.008">
+        <input class="vertical-slider" data-program="filter_attack" id="filter-attack" max="1" min="0.008" orient="vertical" step="0.0001" type="range" value="0.008">
         <label class="slider-label" for="filter-attack">Attack</label>
       </div>
       <div class="slider-wrapper">
-        <input class="vertical-slider" data-param="decay" id="filter-decay" max="1" min="0.008" orient="vertical" step="0.0001" type="range" value="0.008">
+        <input class="vertical-slider" data-program="filter_decay" id="filter-decay" max="1" min="0.008" orient="vertical" step="0.0001" type="range" value="0.008">
         <label class="slider-label" for="filter-decay">Decay</label>
       </div>
       <div class="slider-wrapper">
-        <input class="vertical-slider" data-param="sustain" id="filter-sustain" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        <input class="vertical-slider" data-program="filter_sustain" id="filter-sustain" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
         <label class="slider-label" for="filter-sustain">Sustain</label>
       </div>
       <div class="slider-wrapper">
-        <input class="vertical-slider" data-param="release" id="filter-release" max="1" min="0.008" orient="vertical" step="0.0001" type="range" value="0.008">
+        <input class="vertical-slider" data-program="filter_release" id="filter-release" max="1" min="0.008" orient="vertical" step="0.0001" type="range" value="0.008">
         <label class="slider-label" for="filter-release">Release</label>
       </div>
     </section>
@@ -226,19 +226,19 @@
         <label class="slider-label" for="vca-attack">Attack</label>
       </div>
       <div class="slider-wrapper">
-        <input class="vertical-slider" data-param="decay" id="vca-decay" max="1" min="0.0008" orient="vertical" step="0.0001" type="range" value="0.0008">
+        <input class="vertical-slider" data-program="vca_decay" id="vca-decay" max="1" min="0.0008" orient="vertical" step="0.0001" type="range" value="0.0008">
         <label class="slider-label" for="vca-decay">Decay</label>
       </div>
       <div class="slider-wrapper">
-        <input class="vertical-slider" data-param="sustain" id="vca-sustain" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
+        <input class="vertical-slider" data-program="vca_sustain" id="vca-sustain" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
         <label class="slider-label" for="vca-sustain">Sustain</label>
       </div>
       <div class="slider-wrapper">
-        <input class="vertical-slider" data-param="release" id="vca-release" max="1" min="0.0008" orient="vertical" step="0.0001" type="range" value="0.0008">
+        <input class="vertical-slider" data-program="vca_release" id="vca-release" max="1" min="0.0008" orient="vertical" step="0.0001" type="range" value="0.0008">
         <label class="slider-label" for="vca-release">Release</label>
       </div>
       <div class="slider-wrapper">
-        <input class="vertical-slider" id="vca-gain" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        <input class="vertical-slider" data-program="vca_gain" data-update="update_vca_gain" id="vca-gain" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
         <label class="slider-label" for="vca-gain"><abbr title="Voltage Controlled Amplifier Gain">VCA Gain</abbr></label>
       </div>
     </section>

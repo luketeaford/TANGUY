@@ -1,4 +1,4 @@
-//MIXER CONTROLS
+//MIXER CONTROLS - GOOD
 TANGUY.update_osc1_mix = function () {
     'use strict';
     return TANGUY.osc1_vca.gain.setValueAtTime(TANGUY.program.osc1_mix * TANGUY.program.osc1_mix, TANGUY.synth.currentTime);

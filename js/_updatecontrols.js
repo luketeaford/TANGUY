@@ -34,23 +34,23 @@ TANGUY.update_cutoff = function () {
 
 TANGUY.update_resonance = function () {
     'use strict';
-    var resonance = TANGUY.program.res * TANGUY.program.res * 1000;
+    var q = TANGUY.program.res * TANGUY.program.res * 1000;
     switch (TANGUY.program.filter.mode) {
     case 'lp':
-        TANGUY.lp_filter1.Q.setTargetAtTime(resonance / 82, TANGUY.synth.currentTime, 0.01);
-        TANGUY.lp_filter2.Q.setTargetAtTime(resonance / 123, TANGUY.synth.currentTime, 0.01);
+        TANGUY.lp_filter1.Q.setTargetAtTime(q / 82, TANGUY.synth.currentTime, 0.01);
+        TANGUY.lp_filter2.Q.setTargetAtTime(q / 123, TANGUY.synth.currentTime, 0.01);
         break;
     case 'bp':
-        TANGUY.bp_filter2.gain.setTargetAtTime(resonance / 82, TANGUY.synth.currentTime, 0.01);
-        TANGUY.bp_filter3.gain.setTargetAtTime(resonance / 82, TANGUY.synth.currentTime, 0.01);
+        TANGUY.bp_filter2.gain.setTargetAtTime(q / 82, TANGUY.synth.currentTime, 0.01);
+        TANGUY.bp_filter3.gain.setTargetAtTime(q / 82, TANGUY.synth.currentTime, 0.01);
         break;
     case 'hp':
-        TANGUY.hp_filter1.Q.setTargetAtTime(resonance / 82, TANGUY.synth.currentTime, 0.01);
-        TANGUY.hp_filter2.Q.setTargetAtTime(resonance / 123, TANGUY.synth.currentTime, 0.01);
+        TANGUY.hp_filter1.Q.setTargetAtTime(q / 82, TANGUY.synth.currentTime, 0.01);
+        TANGUY.hp_filter2.Q.setTargetAtTime(q / 123, TANGUY.synth.currentTime, 0.01);
         break;
     case 'notch':
-        TANGUY.notch2.gain.setTargetAtTime(resonance / -21, TANGUY.synth.currentTime, 0.01);
-        TANGUY.notch3.gain.setTargetAtTime(resonance / -21, TANGUY.synth.currentTime, 0.01);
+        TANGUY.notch2.gain.setTargetAtTime(q / -21, TANGUY.synth.currentTime, 0.01);
+        TANGUY.notch3.gain.setTargetAtTime(q / -21, TANGUY.synth.currentTime, 0.01);
         break;
     }
 };

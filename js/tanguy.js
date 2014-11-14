@@ -445,6 +445,7 @@ TANGUY.multi_switch = function (e) {
 
 //MULTI-SWITCH CONTROLS
 $('#osc1-coarse, #osc2-coarse, #portamento-mode, #osc2-waveform, #noise-color, #filter-mode, #lfo-shape').on('click', 'input', $(this), TANGUY.multi_switch);
+//EVENTUALLY, THIS CAN BE DELETED
 TANGUY.stop_tweaking = function () {
     'use strict';
     return $(this).unbind('mousemove');
@@ -1133,7 +1134,7 @@ $('#delay-amount').mousedown(function () {
         }
     });
 }).mouseup(TANGUY.stop_tweaking);
-//MIXER CONTROLS
+//MIXER CONTROLS - GOOD
 TANGUY.update_osc1_mix = function () {
     'use strict';
     return TANGUY.osc1_vca.gain.setValueAtTime(TANGUY.program.osc1_mix * TANGUY.program.osc1_mix, TANGUY.synth.currentTime);
@@ -1184,11 +1185,12 @@ $('#filter-mode').on('change', 'input', function () {
 });
 
 //FILTER ENVELOPE CONTROLS
+/* This was an ok idea, but has been replaced with something better
 $('#filter-eg').on('change', 'input', $(this), function (e) {
     'use strict';
     var param = e.currentTarget.getAttribute('data-param');
     TANGUY.program.filter[param] = parseFloat(e.currentTarget.value);
-});
+});*/
 
 //BAD DESIGN QUICK FIX
 $('#filter').on('change', '#filter-envelope-amount, #filter-keyboard-tracking', $(this), function (e) {
@@ -1205,13 +1207,19 @@ $('#vca-eg').on('change', '#vca-attack, #vca-decay, #vca-sustain, #vca-release',
     TANGUY.program.vca[param] = parseFloat(e.currentTarget.value);
 });*/
 
-$('#vca-gain').mousedown(function () {
+/*$('#vca-gain').mousedown(function () {
     'use strict';
     $(this).mousemove(function () {
         TANGUY.program.vca.gain = this.value * this.value;
         TANGUY.vca.gain.setTargetAtTime(TANGUY.program.vca.gain, TANGUY.synth.currentTime, 0.01);
     });
-}).mouseup(TANGUY.stop_tweaking);
+}).mouseup(TANGUY.stop_tweaking);*/
+
+
+TANGUY.update_vca_gain = function () {
+    'use strict';
+    TANGUY.vca.gain.setTargetAtTime(TANGUY.program.vca_gain * TANGUY.program.vca_gain, TANGUY.synth.currentTime, 0.01);
+};
 //NEW PORTAMENTO CONTROLS
 $('#portamento').on('change', '#portamento-amount, #portamento-off, #portamento-linear, #portamento-exponential', function () {
     'use strict';
@@ -1265,6 +1273,7 @@ TANGUY.slider = {
 };
 
 //CLEAN THESE UP LATER, OBVIOUSLY
+$('#filter-eg').on('mousedown', 'input', TANGUY.slider.grab);
 $('#vca-eg').on('mousedown', 'input', TANGUY.slider.grab);
 $('#mixer').on('mousedown', 'input', TANGUY.slider.grab);
 $('#filter').on('mousedown', 'input', TANGUY.slider.grab);
@@ -1273,15 +1282,9 @@ TANGUY.store_program = function (e) {
     'use strict';
     TANGUY.program[e.data.program] = parseFloat(e.currentTarget.value);
     if (TANGUY[e.data.update]) {
-        console.log('Neat!');
         return TANGUY[e.data.update]();
     }
     return;
-};
-
-TANGUY.update_vca_attack2 = function () {// GARBAGE
-    'use strict';
-    console.log('vca attack pointless');
 };
 
 TANGUY.update_cutoff = function () {
@@ -1311,23 +1314,23 @@ TANGUY.update_cutoff = function () {
 
 TANGUY.update_resonance = function () {
     'use strict';
-    var resonance = TANGUY.program.res * TANGUY.program.res * 1000;
+    var q = TANGUY.program.res * TANGUY.program.res * 1000;
     switch (TANGUY.program.filter.mode) {
     case 'lp':
-        TANGUY.lp_filter1.Q.setTargetAtTime(resonance / 82, TANGUY.synth.currentTime, 0.01);
-        TANGUY.lp_filter2.Q.setTargetAtTime(resonance / 123, TANGUY.synth.currentTime, 0.01);
+        TANGUY.lp_filter1.Q.setTargetAtTime(q / 82, TANGUY.synth.currentTime, 0.01);
+        TANGUY.lp_filter2.Q.setTargetAtTime(q / 123, TANGUY.synth.currentTime, 0.01);
         break;
     case 'bp':
-        TANGUY.bp_filter2.gain.setTargetAtTime(resonance / 82, TANGUY.synth.currentTime, 0.01);
-        TANGUY.bp_filter3.gain.setTargetAtTime(resonance / 82, TANGUY.synth.currentTime, 0.01);
+        TANGUY.bp_filter2.gain.setTargetAtTime(q / 82, TANGUY.synth.currentTime, 0.01);
+        TANGUY.bp_filter3.gain.setTargetAtTime(q / 82, TANGUY.synth.currentTime, 0.01);
         break;
     case 'hp':
-        TANGUY.hp_filter1.Q.setTargetAtTime(resonance / 82, TANGUY.synth.currentTime, 0.01);
-        TANGUY.hp_filter2.Q.setTargetAtTime(resonance / 123, TANGUY.synth.currentTime, 0.01);
+        TANGUY.hp_filter1.Q.setTargetAtTime(q / 82, TANGUY.synth.currentTime, 0.01);
+        TANGUY.hp_filter2.Q.setTargetAtTime(q / 123, TANGUY.synth.currentTime, 0.01);
         break;
     case 'notch':
-        TANGUY.notch2.gain.setTargetAtTime(resonance / -21, TANGUY.synth.currentTime, 0.01);
-        TANGUY.notch3.gain.setTargetAtTime(resonance / -21, TANGUY.synth.currentTime, 0.01);
+        TANGUY.notch2.gain.setTargetAtTime(q / -21, TANGUY.synth.currentTime, 0.01);
+        TANGUY.notch3.gain.setTargetAtTime(q / -21, TANGUY.synth.currentTime, 0.01);
         break;
     }
 };
