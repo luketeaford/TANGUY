@@ -12,38 +12,29 @@ $('#osc1-coarse').on('change', 'input', function () {
         osc1[i].frequency.setValueAtTime(440 * this.value, TANGUY.synth.currentTime);
     }
 });
-/*$('#osc1-saw').mousedown(function () {
+
+//OSCILLATOR 1 CONTROLS - GOOD
+TANGUY.update_osc1_saw_amt = function () {
     'use strict';
-    $(this).mousemove(function () {
-        TANGUY.program.osc1.saw_amt = this.value;
-        TANGUY.osc1_saw_vca.gain.setValueAtTime(this.value, TANGUY.synth.currentTime);
-    });
-}).mouseup(TANGUY.stop_tweaking);
-$('#osc1-sqr').mousedown(function () {
+    return TANGUY.osc1_saw_vca.gain.setValueAtTime(TANGUY.program.osc1_saw * TANGUY.program.osc1_saw, TANGUY.synth.currentTime);
+};
+
+TANGUY.update_osc1_sqr_amt = function () {
     'use strict';
-    $(this).mousemove(function () {
-        TANGUY.program.osc1.sqr_amt = -1 * this.value;
-        TANGUY.osc1_sqr_vca.gain.setValueAtTime(-1 * this.value, TANGUY.synth.currentTime);
-    });
-}).mouseup(TANGUY.stop_tweaking);
-$('#osc1-tri').mousedown(function () {
+    return TANGUY.osc1_sqr_vca.gain.setValueAtTime((TANGUY.program.osc1_sqr * TANGUY.program.osc1_sqr) * -1, TANGUY.synth.currentTime);
+};
+
+TANGUY.update_osc1_tri_amt = function () {
     'use strict';
-    $(this).mousemove(function () {
-        TANGUY.program.osc1.tri_amt = this.value;
-        TANGUY.osc1_tri_vca.gain.setValueAtTime(this.value, TANGUY.synth.currentTime);
-    });
-}).mouseup(TANGUY.stop_tweaking);
-$('#osc1-sin').mousedown(function () {
+    return TANGUY.osc1_tri_vca.gain.setValueAtTime(TANGUY.program.osc1_tri * TANGUY.program.osc1_tri, TANGUY.synth.currentTime);
+};
+
+TANGUY.update_osc1_sin_amt = function () {
     'use strict';
-    $(this).mousemove(function () {
-        TANGUY.program.osc1.sin_amt = this.value;
-        TANGUY.osc1_sin_vca.gain.setValueAtTime(this.value, TANGUY.synth.currentTime);
-    });
-}).mouseup(TANGUY.stop_tweaking);
-$('#osc1-fm').mousedown(function () {
+    return TANGUY.osc1_sin_vca.gain.setValueAtTime(TANGUY.program.osc1_sin * TANGUY.program.osc1_sin, TANGUY.synth.currentTime);
+};
+
+TANGUY.update_osc1_fm_amt = function () {
     'use strict';
-    $(this).mousemove(function () {
-        TANGUY.program.osc1.fm_amt = this.value;
-        TANGUY.osc1_fm_vca.gain.setValueAtTime((this.value * this.value) * 24000, TANGUY.synth.currentTime);
-    });
-}).mouseup(TANGUY.stop_tweaking);*/
+    return TANGUY.osc1_fm_vca.gain.setValueAtTime(TANGUY.program.osc1_fm * TANGUY.program.osc1_fm * 24000, TANGUY.synth.currentTime);
+};

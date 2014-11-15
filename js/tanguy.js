@@ -933,41 +933,32 @@ $('#osc1-coarse').on('change', 'input', function () {
         osc1[i].frequency.setValueAtTime(440 * this.value, TANGUY.synth.currentTime);
     }
 });
-/*$('#osc1-saw').mousedown(function () {
+
+//OSCILLATOR 1 CONTROLS - GOOD
+TANGUY.update_osc1_saw_amt = function () {
     'use strict';
-    $(this).mousemove(function () {
-        TANGUY.program.osc1.saw_amt = this.value;
-        TANGUY.osc1_saw_vca.gain.setValueAtTime(this.value, TANGUY.synth.currentTime);
-    });
-}).mouseup(TANGUY.stop_tweaking);
-$('#osc1-sqr').mousedown(function () {
+    return TANGUY.osc1_saw_vca.gain.setValueAtTime(TANGUY.program.osc1_saw * TANGUY.program.osc1_saw, TANGUY.synth.currentTime);
+};
+
+TANGUY.update_osc1_sqr_amt = function () {
     'use strict';
-    $(this).mousemove(function () {
-        TANGUY.program.osc1.sqr_amt = -1 * this.value;
-        TANGUY.osc1_sqr_vca.gain.setValueAtTime(-1 * this.value, TANGUY.synth.currentTime);
-    });
-}).mouseup(TANGUY.stop_tweaking);
-$('#osc1-tri').mousedown(function () {
+    return TANGUY.osc1_sqr_vca.gain.setValueAtTime((TANGUY.program.osc1_sqr * TANGUY.program.osc1_sqr) * -1, TANGUY.synth.currentTime);
+};
+
+TANGUY.update_osc1_tri_amt = function () {
     'use strict';
-    $(this).mousemove(function () {
-        TANGUY.program.osc1.tri_amt = this.value;
-        TANGUY.osc1_tri_vca.gain.setValueAtTime(this.value, TANGUY.synth.currentTime);
-    });
-}).mouseup(TANGUY.stop_tweaking);
-$('#osc1-sin').mousedown(function () {
+    return TANGUY.osc1_tri_vca.gain.setValueAtTime(TANGUY.program.osc1_tri * TANGUY.program.osc1_tri, TANGUY.synth.currentTime);
+};
+
+TANGUY.update_osc1_sin_amt = function () {
     'use strict';
-    $(this).mousemove(function () {
-        TANGUY.program.osc1.sin_amt = this.value;
-        TANGUY.osc1_sin_vca.gain.setValueAtTime(this.value, TANGUY.synth.currentTime);
-    });
-}).mouseup(TANGUY.stop_tweaking);
-$('#osc1-fm').mousedown(function () {
+    return TANGUY.osc1_sin_vca.gain.setValueAtTime(TANGUY.program.osc1_sin * TANGUY.program.osc1_sin, TANGUY.synth.currentTime);
+};
+
+TANGUY.update_osc1_fm_amt = function () {
     'use strict';
-    $(this).mousemove(function () {
-        TANGUY.program.osc1.fm_amt = this.value;
-        TANGUY.osc1_fm_vca.gain.setValueAtTime((this.value * this.value) * 24000, TANGUY.synth.currentTime);
-    });
-}).mouseup(TANGUY.stop_tweaking);*/
+    return TANGUY.osc1_fm_vca.gain.setValueAtTime(TANGUY.program.osc1_fm * TANGUY.program.osc1_fm * 24000, TANGUY.synth.currentTime);
+};
 //OSCILLATOR 2 CONTROLS
 $('#osc2-kbd').change(function () {
     'use strict';
@@ -978,7 +969,8 @@ $('#osc2-coarse').on('change', 'input', function () {
     TANGUY.program.osc2.coarse = this.value;
     TANGUY.osc2.frequency.setValueAtTime(TANGUY.osc2_master_pitch * this.value, TANGUY.synth.currentTime);
 });
-$('#osc2-detune').mousedown(function () {
+
+/*$('#osc2-detune').mousedown(function () {
     'use strict';
     $(this).mousemove(function () {
         TANGUY.program.osc2.detune = parseFloat(this.value);
@@ -987,20 +979,22 @@ $('#osc2-detune').mousedown(function () {
         }
         TANGUY.osc2.detune.setValueAtTime(TANGUY.osc2_pitch + TANGUY.program.osc2.detune, TANGUY.synth.currentTime);
     });
-}).mouseup(TANGUY.stop_tweaking);
-$('#osc2-fine').mousedown(function () {
+}).mouseup(TANGUY.stop_tweaking);*/
+
+/*$('#osc2-fine').mousedown(function () {
     'use strict';
     $(this).mousemove(function () {
         TANGUY.program.osc2.fine = parseFloat(this.value);
         TANGUY.osc2.frequency.setValueAtTime((TANGUY.osc2_master_pitch * TANGUY.program.osc2.coarse) + TANGUY.program.osc2.fine, TANGUY.synth.currentTime);
     });
-}).mouseup(TANGUY.stop_tweaking);
+}).mouseup(TANGUY.stop_tweaking);*/
+
 $('#osc2-waveform').on('change', '#osc2-saw, #osc2-sqr, #osc2-tri, #osc2-sin', function () {
     'use strict';
     TANGUY.program.osc2.waveform = this.value;
     TANGUY.osc2.type = this.value;
 });
-$('#osc2-waveshape').mousedown(function () {
+/*$('#osc2-waveshape').mousedown(function () {
     'use strict';
     $(this).mousemove(function () {
         var x = this.value;
@@ -1011,14 +1005,14 @@ $('#osc2-waveshape').mousedown(function () {
             TANGUY.waveshaper.curve = null;
         }
     });
-}).mouseup(TANGUY.stop_tweaking);
-$('#osc2-fm').mousedown(function () {
+}).mouseup(TANGUY.stop_tweaking);*/
+/*$('#osc2-fm').mousedown(function () {
     'use strict';
     $(this).mousemove(function () {
         TANGUY.program.osc2.fm_amt = this.value;
         TANGUY.osc2_fm_vca.gain.setValueAtTime((this.value * this.value) * 24000, TANGUY.synth.currentTime);
     });
-}).mouseup(TANGUY.stop_tweaking);
+}).mouseup(TANGUY.stop_tweaking);*/
 //NOISE CONTROLS
 $('#noise-color').on('change', 'input', function () {
     'use strict';
@@ -1249,7 +1243,8 @@ $('#filter-eg').on('mousedown', 'input', TANGUY.slider.grab);
 $('#vca-eg').on('mousedown', 'input', TANGUY.slider.grab);
 $('#mixer').on('mousedown', 'input', TANGUY.slider.grab);
 $('#filter').on('mousedown', 'input', TANGUY.slider.grab);
-//$('#osc1').on('mousedown', 'input.vertical-slider', TANGUY.slider.grab);
+$('#osc1').on('mousedown', 'input.vertical-slider', TANGUY.slider.grab);
+$('#osc2').on('mousedown', 'input.vertical-slider', TANGUY.slider.grab);
 TANGUY.store_program = function (e) {
     'use strict';
     TANGUY.program[e.data.program] = parseFloat(e.currentTarget.value);
@@ -1257,6 +1252,36 @@ TANGUY.store_program = function (e) {
         return TANGUY[e.data.update]();
     }
     return;
+};
+
+TANGUY.update_osc2_detune = function () {
+    'use strict';
+    if (TANGUY.osc2_pitch === undefined) {
+        TANGUY.osc2_pitch = TANGUY.osc2_master_pitch;
+    }
+    TANGUY.osc2.detune.setValueAtTime(TANGUY.osc2_pitch + TANGUY.program.osc2_detune, TANGUY.synth.currentTime);
+};
+
+TANGUY.update_osc2_fine = function () {
+    'use strict';
+    console.log('The final top row slider!');
+    return TANGUY.osc2.frequency.setValueAtTime((TANGUY.osc2_master_pitch * TANGUY.program.osc2.coarse) + TANGUY.program.osc2_fine, TANGUY.synth.currentTime);
+};
+
+TANGUY.update_osc2_shape_amt = function () {
+    'use strict';
+    var x = TANGUY.program.osc2_shape;
+    if (x > 0) {
+        TANGUY.waveshaper.curve = new Float32Array([x * 1.6, x * -2.5, x * -1.2, x * -2.4, x * -1.6, x * -3.2, x * 6.4, x * -3.2]);
+    } else {
+        TANGUY.waveshaper.curve = null;
+    }
+    return;
+};
+
+TANGUY.update_osc2_fm_amt = function () {
+    'use strict';
+    return TANGUY.osc2_fm_vca.gain.setValueAtTime(TANGUY.program.osc2_fm * TANGUY.program.osc2_fm * 24000, TANGUY.synth.currentTime);
 };
 
 TANGUY.update_cutoff = function () {
