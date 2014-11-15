@@ -2,7 +2,7 @@ TANGUY.calculate_pitch = function (pos, note_value) {
     'use strict';
     var note = ((TANGUY.octave_shift + pos) * 1200) + note_value,
         osc2_note = ((TANGUY.octave_shift + pos) * 1200) + (note_value + TANGUY.program.osc2.detune),
-        kbd = (4800 - note) * TANGUY.program.filter.kbd,
+        kbd = (4800 - note) * TANGUY.program.filter_kbd,
         osc1 = [TANGUY.osc1_saw, TANGUY.osc1_sqr, TANGUY.osc1_tri, TANGUY.osc1_sin],
         i,
         no_portamento = function () {
