@@ -13,6 +13,6 @@ TANGUY.update_delay_amt = function () {
     var delay = [TANGUY.delay1_vca, TANGUY.delay2_vca, TANGUY.delay3_vca, TANGUY.delay4_vca],
         i;
     for (i = 0; i < 4; i += 1) {
-        delay[i].gain.value = TANGUY.program.delay_amt * TANGUY.program.delay_amt;
+        delay[i].gain.value = TANGUY.program.delay * TANGUY.program.delay;
     }
 };

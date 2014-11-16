@@ -1,28 +1,28 @@
 {
-    "name": "INITIALIZE good",
+    "name": "INITIALIZE (external)",
     "osc1_kbd": true,
     "osc1_coarse": 1,
-    "osc1_saw_amt": 1,
-    "osc1_sqr_amt": 0,
-    "osc1_tri_amt": 0,
-    "osc1_sin_amt": 0,
-    "osc1_fm_amt": 0,
+    "osc1_saw": 1,
+    "osc1_sqr": 0,
+    "osc1_tri": 0,
+    "osc1_sin": 0,
+    "osc1_fm": 0,
 
     "osc2_kbd": true,
     "osc2_coarse": 1,
     "osc2_waveform": "sawtooth",
     "osc2_detune": 0,
     "osc2_fine": 0,
-    "osc2_shape_amt": 0,
-    "osc2_fm_amt": 0,
+    "osc2_shape": 0,
+    "osc2_fm": 0,
 
     "noise_color": "white",
 
     "lfo_shape": "sine",
     "lfo_rate": 0.1,
-    "lfo_pitch_amt": 0,
-    "lfo_filter_amt": 0,
-    "lfo_amp_amt": 0,
+    "lfo_pitch": 0,
+    "lfo_filter": 0,
+    "lfo_amp": 0,
 
     "osc1_mix": 1,
     "osc2_mix": 1,
@@ -31,7 +31,7 @@
     "filter_mode": "lp",
     "cutoff": 22050,
     "res": 0.0001,
-    "filter_eg_amt": 0,
+    "filter_eg": 0,
     "filter_kbd": 0,
     "filter_attack": 0.008,
     "filter_decay": 0.008,
@@ -45,11 +45,11 @@
     "vca_release": 0.0001,
 
     "portamento_mode": "off",
-    "portamento_amt": 0.01,
+    "portamento": 0.01,
 
-    "mod_amt": 0,
+    "mod": 0,
     "mod_direction": 1,
 
     "delay_rate": 0,
-    "delay_amt": 0
+    "delay": 0
 }

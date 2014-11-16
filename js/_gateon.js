@@ -1,7 +1,7 @@
 TANGUY.gate_on = function () {
     'use strict';
     var cutoff = TANGUY.program.cutoff * TANGUY.program.cutoff * 22030 + 20,
-        filter_eg = ((TANGUY.program.filter_eg_amt * (22050 - cutoff)) * Math.abs(TANGUY.program.filter_eg_amt)) + cutoff,
+        filter_eg = ((TANGUY.program.filter_eg * (22050 - cutoff)) * Math.abs(TANGUY.program.filter_eg)) + cutoff,
         filter_end_of_attack = TANGUY.synth.currentTime + TANGUY.program.filter_attack,
         sustain = filter_eg * TANGUY.program.filter_sustain * TANGUY.program.filter_sustain + cutoff,
         vca_end_of_attack = TANGUY.synth.currentTime + TANGUY.program.vca_attack;

@@ -30,18 +30,18 @@ TANGUY.update_lfo_rate = function () {
 
 TANGUY.update_lfo_pitch = function () {
     'use strict';
-    TANGUY.lfo_pitch_vca.gain.value = TANGUY.program.lfo_pitch * TANGUY.program.mod_amt * TANGUY.program.mod_direction;
+    TANGUY.lfo_pitch_vca.gain.value = TANGUY.program.lfo_pitch * TANGUY.program.mod * TANGUY.program.mod_direction;
     return;
 };
 
 TANGUY.update_lfo_filter = function () {
     'use strict';
-    TANGUY.lfo_filter_vca.gain.value = TANGUY.program.lfo_filter * TANGUY.program.mod_amt * TANGUY.program.mod_direction;
+    TANGUY.lfo_filter_vca.gain.value = TANGUY.program.lfo_filter * TANGUY.program.mod * TANGUY.program.mod_direction;
     return;
 };
 
 TANGUY.update_lfo_amp = function () {
     'use strict';
-    TANGUY.lfo_amp_vca.gain.value = TANGUY.program.lfo_amp * TANGUY.program.mod_amt * TANGUY.program.mod_direction;
+    TANGUY.lfo_amp_vca.gain.value = TANGUY.program.lfo_amp * TANGUY.program.mod * TANGUY.program.mod_direction;
     return;
 };
