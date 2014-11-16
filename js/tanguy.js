@@ -147,21 +147,6 @@ TANGUY.multi_switch = function (e) {
 
 //MULTI-SWITCH CONTROLS
 $('#osc1-coarse, #osc2-coarse, #portamento-mode, #osc2-waveform, #noise-color, #filter-mode, #lfo-shape').on('click', 'input', $(this), TANGUY.multi_switch);
-//EVENTUALLY, THIS CAN BE DELETED
-TANGUY.stop_tweaking = function () {
-    'use strict';
-    return $(this).unbind('mousemove');
-};
-//SIMPLER AND MAKES MORE SENSE
-TANGUY.calculate_lfo = function () {
-    'use strict';
-    var amt = TANGUY.program.mod * TANGUY.program.mod_direction;
-    TANGUY.lfo_pitch_vca.gain.value = TANGUY.program.lfo_pitch * amt;
-    TANGUY.lfo_filter_vca.gain.value = TANGUY.program.lfo_filter * amt;
-    TANGUY.lfo_amp_vca.gain.value = TANGUY.program.lfo_amp * amt;
-    console.log('This is the modwheel, baby!');
-    return;
-};
 TANGUY.calculate_pitch = function (pos, note_value) {
     'use strict';
     var note = ((TANGUY.octave_shift + pos) * 1200) + note_value,
@@ -773,26 +758,27 @@ $('#lfo-shape').on('change', 'input', function () {
 //LFO CONTROLS - OK (SET TARGET AT TIME OR SIMILAR?)
 TANGUY.update_lfo_rate = function () {
     'use strict';
-    TANGUY.lfo.frequency.value = TANGUY.program.lfo_rate * TANGUY.program.lfo_rate * 100;
-    return;
+    //TANGUY.lfo.frequency.value = TANGUY.program.lfo_rate * TANGUY.program.lfo_rate * 100;
+    return TANGUY.lfo.frequency.setValueAtTime(TANGUY.program.lfo_rate * TANGUY.program.lfo_rate * 100, TANGUY.synth.currentTime);
 };
 
 TANGUY.update_lfo_pitch = function () {
     'use strict';
-    TANGUY.lfo_pitch_vca.gain.value = TANGUY.program.lfo_pitch * TANGUY.program.mod * TANGUY.program.mod_direction;
-    return;
+//    TANGUY.lfo_pitch_vca.gain.value = TANGUY.program.lfo_pitch * TANGUY.program.mod * TANGUY.program.mod_direction;
+    return TANGUY.lfo_pitch_vca.gain.setValueAtTime(TANGUY.program.lfo_pitch * TANGUY.program.mod * TANGUY.program.mod_direction, TANGUY.synth.currentTime);
+
 };
 
 TANGUY.update_lfo_filter = function () {
     'use strict';
-    TANGUY.lfo_filter_vca.gain.value = TANGUY.program.lfo_filter * TANGUY.program.mod * TANGUY.program.mod_direction;
-    return;
+//    TANGUY.lfo_filter_vca.gain.value = TANGUY.program.lfo_filter * TANGUY.program.mod * TANGUY.program.mod_direction;
+    return TANGUY.lfo_filter_vca.gain.setValueAtTime(TANGUY.program.lfo_filter * TANGUY.program.mod * TANGUY.program.mod_direction, TANGUY.synth.currentTime);
 };
 
 TANGUY.update_lfo_amp = function () {
     'use strict';
-    TANGUY.lfo_amp_vca.gain.value = TANGUY.program.lfo_amp * TANGUY.program.mod * TANGUY.program.mod_direction;
-    return;
+//    TANGUY.lfo_amp_vca.gain.value = TANGUY.program.lfo_amp * TANGUY.program.mod * TANGUY.program.mod_direction;
+    return TANGUY.lfo_amp_vca.gain.setValueAtTime(TANGUY.program.lfo_amp * TANGUY.program.mod * TANGUY.program.mod_direction, TANGUY.synth.currentTime);
 };
 //DELAY CONTROLS - GOOD
 TANGUY.update_delay_rate = function () {
@@ -800,8 +786,10 @@ TANGUY.update_delay_rate = function () {
     var delay = [TANGUY.delay1, TANGUY.delay2, TANGUY.delay3, TANGUY.delay4],
         i;
     for (i = 0; i < 4; i += 1) {
-        delay[i].delayTime.value = TANGUY.program.delay_rate * 2;
+        //delay[i].delayTime.value = TANGUY.program.delay_rate * 2; OLD WAY
+        delay[i].delayTime.setValueAtTime(TANGUY.program.delay_rate * 2, TANGUY.synth.currentTime);//Performance may be slightly worse? (clicks)
     }
+    return;
 };
 
 TANGUY.update_delay_amt = function () {
@@ -809,8 +797,10 @@ TANGUY.update_delay_amt = function () {
     var delay = [TANGUY.delay1_vca, TANGUY.delay2_vca, TANGUY.delay3_vca, TANGUY.delay4_vca],
         i;
     for (i = 0; i < 4; i += 1) {
-        delay[i].gain.value = TANGUY.program.delay * TANGUY.program.delay;
+        //delay[i].gain.value = TANGUY.program.delay * TANGUY.program.delay;
+        delay[i].gain.setValueAtTime(TANGUY.program.delay * TANGUY.program.delay, TANGUY.synth.currentTime);
     }
+    return;
 };
 //MIXER CONTROLS - GOOD
 TANGUY.update_osc1_mix = function () {
@@ -942,6 +932,16 @@ $('#pitch-bend').mousedown(function () {
         TANGUY.osc2.detune.setTargetAtTime(TANGUY.osc2_pitch + (this.value * 100), TANGUY.synth.currentTime, 0.2);
     });
 });
+//MODWHEEL CONTROLS - GOOD
+TANGUY.calculate_lfo = function () {
+    'use strict';
+    var amt = TANGUY.program.mod * TANGUY.program.mod_direction;
+    TANGUY.lfo_pitch_vca.gain.setValueAtTime(TANGUY.program.lfo_pitch * amt, TANGUY.synth.currentTime);
+    TANGUY.lfo_filter_vca.gain.setValueAtTime(TANGUY.program.lfo_filter * amt, TANGUY.synth.currentTime);
+    TANGUY.lfo_amp_vca.gain.setValueAtTime(TANGUY.program.lfo_amp * amt, TANGUY.synth.currentTime);
+    return;
+};
+
 TANGUY.slider = {
     grab: function () {
         'use strict';
