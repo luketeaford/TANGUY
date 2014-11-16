@@ -61,7 +61,7 @@ TANGUY.update_cutoff = function () {
 TANGUY.update_resonance = function () {
     'use strict';
     var q = TANGUY.program.res * TANGUY.program.res * 1000;
-    switch (TANGUY.program.filter.mode) {
+    switch (TANGUY.program.filter_mode) {
     case 'lp':
         TANGUY.lp_filter1.Q.setTargetAtTime(q / 82, TANGUY.synth.currentTime, 0.01);
         TANGUY.lp_filter2.Q.setTargetAtTime(q / 123, TANGUY.synth.currentTime, 0.01);

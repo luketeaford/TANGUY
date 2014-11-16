@@ -1,7 +1,7 @@
 //NOISE CONTROLS
 $('#noise-color').on('change', 'input', function () {
     'use strict';
-    TANGUY.program.noise.color = this.value;
+    TANGUY.program.noise_color = this.value;
     switch (this.value) {
     case 'white':
         TANGUY.white_noise.buffer = TANGUY.white_noise_buffer;

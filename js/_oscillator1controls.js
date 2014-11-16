@@ -1,13 +1,13 @@
 //OSCILLATOR 1 CONTROLS
 $('#osc1-kbd').change(function () {
     'use strict';
-    TANGUY.program.osc1.kbd = this.checked ? true : false;
+    TANGUY.program.osc1_kbd = this.checked ? true : false;
 });
 $('#osc1-coarse').on('change', 'input', function () {
     'use strict';
     var osc1 = [TANGUY.osc1_saw, TANGUY.osc1_sqr, TANGUY.osc1_tri, TANGUY.osc1_sin],
         i;
-    TANGUY.program.osc1.coarse = this.value;
+    TANGUY.program.osc1_coarse = this.value;
     for (i = 0; i < 4; i += 1) {
         osc1[i].frequency.setValueAtTime(440 * this.value, TANGUY.synth.currentTime);
     }

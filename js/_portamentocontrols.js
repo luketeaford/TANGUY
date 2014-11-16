@@ -3,8 +3,8 @@ $('#portamento').on('change', '#portamento-amount, #portamento-off, #portamento-
     'use strict';
     var x = this.getAttribute('data-portamento');
     if (x === 'amount') {
-        TANGUY.program.portamento.amt = parseFloat(this.value);
+        TANGUY.program.portamento_amt = parseFloat(this.value);
     } else {
-        TANGUY.program.portamento.mode = this.value;
+        TANGUY.program.portamento_mode = this.value;
     }
 });

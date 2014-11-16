@@ -3,21 +3,21 @@ $('#lfo-shape').on('change', 'input', function () {
     'use strict';
     switch (this.value) {
     case 'sawtooth':
-        TANGUY.program.lfo.shape = 'sawtooth';
+        TANGUY.program.lfo_shape = 'sawtooth';
         TANGUY.program.mod_direction = -1;
         break;
     case 'ramp':
-        TANGUY.program.lfo.shape = 'sawtooth';
+        TANGUY.program.lfo_shape = 'sawtooth';
         TANGUY.program.mod_direction = 1;
         break;
     case 'sine':
     case 'triangle':
     case 'square':
-        TANGUY.program.lfo.shape = this.value;
+        TANGUY.program.lfo_shape = this.value;
         TANGUY.program.mod_direction = 1;
         break;
     }
-    TANGUY.lfo.type = TANGUY.program.lfo.shape;
+    TANGUY.lfo.type = TANGUY.program.lfo_shape;
     TANGUY.calculate_lfo();
 });
 
@@ -36,12 +36,12 @@ TANGUY.update_lfo_pitch = function () {
 
 TANGUY.update_lfo_filter = function () {
     'use strict';
-    TANGUY.lfo_filter_vca.gain.value = TANGUY.program.lfo.filter_amt * TANGUY.program.mod_amt * TANGUY.program.mod_direction;
+    TANGUY.lfo_filter_vca.gain.value = TANGUY.program.lfo_filter * TANGUY.program.mod_amt * TANGUY.program.mod_direction;
     return;
 };
 
 TANGUY.update_lfo_amp = function () {
     'use strict';
-    TANGUY.lfo_amp_vca.gain.value = TANGUY.program.lfo.amp_amt * TANGUY.program.mod_amt * TANGUY.program.mod_direction;
+    TANGUY.lfo_amp_vca.gain.value = TANGUY.program.lfo_amp * TANGUY.program.mod_amt * TANGUY.program.mod_direction;
     return;
 };

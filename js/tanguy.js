@@ -481,24 +481,25 @@ TANGUY.calculate_pitch = function (pos, note_value) {
                 TANGUY.osc2.detune.setValueAtTime(osc2_note, TANGUY.synth.currentTime);
             }
         },
+        //I BET THE PARSE FLOATS ARE NOT NEEDED
         linear_portamento = function () {
             if (TANGUY.program.osc1_kbd === true) {
                 for (i = 0; i < 4; i += 1) {
-                    osc1[i].detune.linearRampToValueAtTime(note, TANGUY.synth.currentTime + parseFloat(TANGUY.program.portamento.amt));
+                    osc1[i].detune.linearRampToValueAtTime(note, TANGUY.synth.currentTime + parseFloat(TANGUY.program.portamento_amt));
                 }
             }
-            if (TANGUY.program.osc2.kbd === true) {
-                TANGUY.osc2.detune.linearRampToValueAtTime(osc2_note, TANGUY.synth.currentTime + parseFloat(TANGUY.program.portamento.amt));
+            if (TANGUY.program.osc2_kbd === true) {
+                TANGUY.osc2.detune.linearRampToValueAtTime(osc2_note, TANGUY.synth.currentTime + parseFloat(TANGUY.program.portamento_amt));
             }
         },
         exponential_portamento = function () {
             if (TANGUY.program.osc1_kbd === true) {
                 for (i = 0; i < 4; i += 1) {
-                    osc1[i].detune.setTargetAtTime(note, TANGUY.synth.currentTime, TANGUY.program.portamento.amt / 5);
+                    osc1[i].detune.setTargetAtTime(note, TANGUY.synth.currentTime, TANGUY.program.portamento_amt / 5);
                 }
             }
             if (TANGUY.program.osc2_kbd === true) {
-                TANGUY.osc2.detune.setTargetAtTime(osc2_note, TANGUY.synth.currentTime, TANGUY.program.portamento.amt / 5);
+                TANGUY.osc2.detune.setTargetAtTime(osc2_note, TANGUY.synth.currentTime, TANGUY.program.portamento_amt / 5);
             }
         };
 
@@ -922,13 +923,13 @@ $(document).ready(function () {
 //OSCILLATOR 1 CONTROLS
 $('#osc1-kbd').change(function () {
     'use strict';
-    TANGUY.program.osc1.kbd = this.checked ? true : false;
+    TANGUY.program.osc1_kbd = this.checked ? true : false;
 });
 $('#osc1-coarse').on('change', 'input', function () {
     'use strict';
     var osc1 = [TANGUY.osc1_saw, TANGUY.osc1_sqr, TANGUY.osc1_tri, TANGUY.osc1_sin],
         i;
-    TANGUY.program.osc1.coarse = this.value;
+    TANGUY.program.osc1_coarse = this.value;
     for (i = 0; i < 4; i += 1) {
         osc1[i].frequency.setValueAtTime(440 * this.value, TANGUY.synth.currentTime);
     }
@@ -962,16 +963,16 @@ TANGUY.update_osc1_fm_amt = function () {
 //OSCILLATOR 2 CONTROLS
 $('#osc2-kbd').change(function () {
     'use strict';
-    TANGUY.program.osc2.kbd = this.checked ? true : false;
+    TANGUY.program.osc2_kbd = this.checked ? true : false;
 });
 $('#osc2-coarse').on('change', 'input', function () {
     'use strict';
-    TANGUY.program.osc2.coarse = this.value;
+    TANGUY.program.osc2_coarse = this.value;
     TANGUY.osc2.frequency.setValueAtTime(TANGUY.osc2_master_pitch * this.value, TANGUY.synth.currentTime);
 });
 $('#osc2-waveform').on('change', '#osc2-saw, #osc2-sqr, #osc2-tri, #osc2-sin', function () {
     'use strict';
-    TANGUY.program.osc2.waveform = this.value;
+    TANGUY.program.osc2_waveform = this.value;
     TANGUY.osc2.type = this.value;
 });
 
@@ -988,7 +989,7 @@ TANGUY.update_osc2_detune = function () {
 
 TANGUY.update_osc2_fine = function () {
     'use strict';
-    return TANGUY.osc2.frequency.setValueAtTime((TANGUY.osc2_master_pitch * TANGUY.program.osc2.coarse) + TANGUY.program.osc2_fine, TANGUY.synth.currentTime);
+    return TANGUY.osc2.frequency.setValueAtTime((TANGUY.osc2_master_pitch * TANGUY.program.osc2_coarse) + TANGUY.program.osc2_fine, TANGUY.synth.currentTime);
 };
 
 TANGUY.update_osc2_shape_amt = function () {
@@ -1009,7 +1010,7 @@ TANGUY.update_osc2_fm_amt = function () {
 //NOISE CONTROLS
 $('#noise-color').on('change', 'input', function () {
     'use strict';
-    TANGUY.program.noise.color = this.value;
+    TANGUY.program.noise_color = this.value;
     switch (this.value) {
     case 'white':
         TANGUY.white_noise.buffer = TANGUY.white_noise_buffer;
@@ -1053,21 +1054,21 @@ $('#lfo-shape').on('change', 'input', function () {
     'use strict';
     switch (this.value) {
     case 'sawtooth':
-        TANGUY.program.lfo.shape = 'sawtooth';
+        TANGUY.program.lfo_shape = 'sawtooth';
         TANGUY.program.mod_direction = -1;
         break;
     case 'ramp':
-        TANGUY.program.lfo.shape = 'sawtooth';
+        TANGUY.program.lfo_shape = 'sawtooth';
         TANGUY.program.mod_direction = 1;
         break;
     case 'sine':
     case 'triangle':
     case 'square':
-        TANGUY.program.lfo.shape = this.value;
+        TANGUY.program.lfo_shape = this.value;
         TANGUY.program.mod_direction = 1;
         break;
     }
-    TANGUY.lfo.type = TANGUY.program.lfo.shape;
+    TANGUY.lfo.type = TANGUY.program.lfo_shape;
     TANGUY.calculate_lfo();
 });
 
@@ -1086,13 +1087,13 @@ TANGUY.update_lfo_pitch = function () {
 
 TANGUY.update_lfo_filter = function () {
     'use strict';
-    TANGUY.lfo_filter_vca.gain.value = TANGUY.program.lfo.filter_amt * TANGUY.program.mod_amt * TANGUY.program.mod_direction;
+    TANGUY.lfo_filter_vca.gain.value = TANGUY.program.lfo_filter * TANGUY.program.mod_amt * TANGUY.program.mod_direction;
     return;
 };
 
 TANGUY.update_lfo_amp = function () {
     'use strict';
-    TANGUY.lfo_amp_vca.gain.value = TANGUY.program.lfo.amp_amt * TANGUY.program.mod_amt * TANGUY.program.mod_direction;
+    TANGUY.lfo_amp_vca.gain.value = TANGUY.program.lfo_amp * TANGUY.program.mod_amt * TANGUY.program.mod_direction;
     return;
 };
 //DELAY CONTROLS - GOOD
@@ -1191,7 +1192,7 @@ TANGUY.update_cutoff = function () {
 TANGUY.update_resonance = function () {
     'use strict';
     var q = TANGUY.program.res * TANGUY.program.res * 1000;
-    switch (TANGUY.program.filter.mode) {
+    switch (TANGUY.program.filter_mode) {
     case 'lp':
         TANGUY.lp_filter1.Q.setTargetAtTime(q / 82, TANGUY.synth.currentTime, 0.01);
         TANGUY.lp_filter2.Q.setTargetAtTime(q / 123, TANGUY.synth.currentTime, 0.01);
@@ -1220,9 +1221,9 @@ $('#portamento').on('change', '#portamento-amount, #portamento-off, #portamento-
     'use strict';
     var x = this.getAttribute('data-portamento');
     if (x === 'amount') {
-        TANGUY.program.portamento.amt = parseFloat(this.value);
+        TANGUY.program.portamento_amt = parseFloat(this.value);
     } else {
-        TANGUY.program.portamento.mode = this.value;
+        TANGUY.program.portamento_mode = this.value;
     }
 });
 //PITCH WHEEL CONTROLS

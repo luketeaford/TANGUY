@@ -1,16 +1,16 @@
 //OSCILLATOR 2 CONTROLS
 $('#osc2-kbd').change(function () {
     'use strict';
-    TANGUY.program.osc2.kbd = this.checked ? true : false;
+    TANGUY.program.osc2_kbd = this.checked ? true : false;
 });
 $('#osc2-coarse').on('change', 'input', function () {
     'use strict';
-    TANGUY.program.osc2.coarse = this.value;
+    TANGUY.program.osc2_coarse = this.value;
     TANGUY.osc2.frequency.setValueAtTime(TANGUY.osc2_master_pitch * this.value, TANGUY.synth.currentTime);
 });
 $('#osc2-waveform').on('change', '#osc2-saw, #osc2-sqr, #osc2-tri, #osc2-sin', function () {
     'use strict';
-    TANGUY.program.osc2.waveform = this.value;
+    TANGUY.program.osc2_waveform = this.value;
     TANGUY.osc2.type = this.value;
 });
 
@@ -27,7 +27,7 @@ TANGUY.update_osc2_detune = function () {
 
 TANGUY.update_osc2_fine = function () {
     'use strict';
-    return TANGUY.osc2.frequency.setValueAtTime((TANGUY.osc2_master_pitch * TANGUY.program.osc2.coarse) + TANGUY.program.osc2_fine, TANGUY.synth.currentTime);
+    return TANGUY.osc2.frequency.setValueAtTime((TANGUY.osc2_master_pitch * TANGUY.program.osc2_coarse) + TANGUY.program.osc2_fine, TANGUY.synth.currentTime);
 };
 
 TANGUY.update_osc2_shape_amt = function () {
