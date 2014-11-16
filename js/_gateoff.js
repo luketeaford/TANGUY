@@ -4,7 +4,7 @@ TANGUY.gate_off = function () {
         filter_release_peak,
         vca_release_peak = TANGUY.vca.gain.value;
 
-    switch (TANGUY.program.filter.mode) {
+    switch (TANGUY.program.filter_mode) {
     case 'lp':
         filter_release_peak = TANGUY.lp_filter1.frequency.value;
         TANGUY.lp_filter1.frequency.cancelScheduledValues(TANGUY.synth.currentTime);

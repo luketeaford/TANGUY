@@ -3,7 +3,7 @@ $('#filter-mode').on('change', 'input', function () {
     'use strict';
     TANGUY.mixer.disconnect();
     TANGUY.lfo_filter_vca.disconnect();
-    TANGUY.program.filter.mode = this.value;
+    TANGUY.program.filter_mode = this.value;
     switch (this.value) {
     case 'lp':
         TANGUY.mixer.connect(TANGUY.lp_filter1);
@@ -36,7 +36,7 @@ $('#filter-mode').on('change', 'input', function () {
 TANGUY.update_cutoff = function () {
     'use strict';
     var cutoff = TANGUY.program.cutoff * TANGUY.program.cutoff * 22030 + 20;
-    switch (TANGUY.program.filter.mode) {
+    switch (TANGUY.program.filter_mode) {
     case 'lp':
         TANGUY.lp_filter1.frequency.setTargetAtTime(cutoff, TANGUY.synth.currentTime, 0.08);
         TANGUY.lp_filter2.frequency.setTargetAtTime(cutoff / 2, TANGUY.synth.currentTime, 0.08);

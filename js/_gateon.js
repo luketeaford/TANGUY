@@ -6,7 +6,7 @@ TANGUY.gate_on = function () {
         sustain = filter_eg * TANGUY.program.filter_sustain * TANGUY.program.filter_sustain + cutoff,
         vca_end_of_attack = TANGUY.synth.currentTime + TANGUY.program.vca_attack;
 
-    switch (TANGUY.program.filter.mode) {
+    switch (TANGUY.program.filter_mode) {
     case 'lp':
         TANGUY.lp_filter1.frequency.setValueAtTime(cutoff, TANGUY.synth.currentTime);
         TANGUY.lp_filter2.frequency.setValueAtTime(cutoff / 2, TANGUY.synth.currentTime);

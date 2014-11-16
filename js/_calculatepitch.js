@@ -1,22 +1,22 @@
 TANGUY.calculate_pitch = function (pos, note_value) {
     'use strict';
     var note = ((TANGUY.octave_shift + pos) * 1200) + note_value,
-        osc2_note = ((TANGUY.octave_shift + pos) * 1200) + (note_value + TANGUY.program.osc2.detune),
+        osc2_note = ((TANGUY.octave_shift + pos) * 1200) + (note_value + TANGUY.program.osc2_detune),
         kbd = (4800 - note) * TANGUY.program.filter_kbd,
         osc1 = [TANGUY.osc1_saw, TANGUY.osc1_sqr, TANGUY.osc1_tri, TANGUY.osc1_sin],
         i,
         no_portamento = function () {
-            if (TANGUY.program.osc1.kbd === true) {
+            if (TANGUY.program.osc1_kbd === true) {
                 for (i = 0; i < 4; i += 1) {
                     osc1[i].detune.setValueAtTime(note, TANGUY.synth.currentTime);
                 }
             }
-            if (TANGUY.program.osc2.kbd === true) {
+            if (TANGUY.program.osc2_kbd === true) {
                 TANGUY.osc2.detune.setValueAtTime(osc2_note, TANGUY.synth.currentTime);
             }
         },
         linear_portamento = function () {
-            if (TANGUY.program.osc1.kbd === true) {
+            if (TANGUY.program.osc1_kbd === true) {
                 for (i = 0; i < 4; i += 1) {
                     osc1[i].detune.linearRampToValueAtTime(note, TANGUY.synth.currentTime + parseFloat(TANGUY.program.portamento.amt));
                 }
@@ -26,12 +26,12 @@ TANGUY.calculate_pitch = function (pos, note_value) {
             }
         },
         exponential_portamento = function () {
-            if (TANGUY.program.osc1.kbd === true) {
+            if (TANGUY.program.osc1_kbd === true) {
                 for (i = 0; i < 4; i += 1) {
                     osc1[i].detune.setTargetAtTime(note, TANGUY.synth.currentTime, TANGUY.program.portamento.amt / 5);
                 }
             }
-            if (TANGUY.program.osc2.kbd === true) {
+            if (TANGUY.program.osc2_kbd === true) {
                 TANGUY.osc2.detune.setTargetAtTime(osc2_note, TANGUY.synth.currentTime, TANGUY.program.portamento.amt / 5);
             }
         };
@@ -40,7 +40,7 @@ TANGUY.calculate_pitch = function (pos, note_value) {
     TANGUY.osc2_pitch = osc2_note;
 
     //OSCILLATOR TRACKING
-    switch (TANGUY.program.portamento.mode) {
+    switch (TANGUY.program.portamento_mode) {
     case 'off':
         no_portamento();
         break;
@@ -53,7 +53,7 @@ TANGUY.calculate_pitch = function (pos, note_value) {
     }
 
     //FILTER KEYBOARD TRACKING
-    switch (TANGUY.program.filter.mode) {
+    switch (TANGUY.program.filter_mode) {
     case 'lp':
         TANGUY.lp_filter1.detune.setValueAtTime(kbd, TANGUY.synth.currentTime);
         TANGUY.lp_filter2.detune.setValueAtTime(kbd / 2, TANGUY.synth.currentTime);
