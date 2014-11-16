@@ -450,23 +450,14 @@ TANGUY.stop_tweaking = function () {
     'use strict';
     return $(this).unbind('mousemove');
 };
+//SIMPLER AND MAKES MORE SENSE
 TANGUY.calculate_lfo = function () {
     'use strict';
-    var i;
-    for (i = 0; i < arguments.length; i += 1) {
-        if (arguments[i] === 'pitch') {
-            TANGUY.lfo_pitch_vca.gain.value = TANGUY.program.lfo.pitch_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction;
-        }
-        if (arguments[i] === 'filter') {
-            TANGUY.lfo_filter_vca.gain.value = TANGUY.program.lfo.filter_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction;
-        }
-        if (arguments[i] === 'amp') {
-            TANGUY.lfo_amp_vca.gain.value = TANGUY.program.lfo.amp_amt * TANGUY.program.mod.amt * TANGUY.program.mod.direction;
-        }
-    }
-    if (arguments.length === 0) {
-        TANGUY.calculate_lfo('pitch', 'filter', 'amp');
-    }
+    var amt = TANGUY.program.mod_amt * TANGUY.program.mod_direction;
+    TANGUY.lfo_pitch_vca.gain.value = TANGUY.program.lfo_pitch * amt;
+    TANGUY.lfo_filter_vca.gain.value = TANGUY.program.lfo.filter * amt;
+    TANGUY.lfo_amp_vca.gain.value = TANGUY.program.lfo.amp * amt;
+    return;
 };
 TANGUY.calculate_pitch = function (pos, note_value) {
     'use strict';
@@ -1074,34 +1065,31 @@ $('#lfo-shape').on('change', 'input', function () {
     TANGUY.lfo.type = TANGUY.program.lfo.shape;
     TANGUY.calculate_lfo();
 });
-$('#lfo-rate').mousedown(function () {
+
+//LFO CONTROLS - GOOD
+TANGUY.update_lfo_rate = function () {
     'use strict';
-    $(this).mousemove(function () {
-        TANGUY.program.lfo.rate = (this.value * this.value) * 100;
-        TANGUY.lfo.frequency.value = (this.value * this.value) * 100;
-    });
-}).mouseup(TANGUY.stop_tweaking);
-$('#lfo-pitch').mousedown(function () {
+    TANGUY.lfo.frequency.value = TANGUY.program.lfo_rate * TANGUY.program.lfo_rate * 100;
+    return;
+};
+
+TANGUY.update_lfo_pitch = function () {
     'use strict';
-    $(this).mousemove(function () {
-        TANGUY.program.lfo.pitch_amt = this.value;
-        TANGUY.calculate_lfo('pitch');
-    });
-}).mouseup(TANGUY.stop_tweaking);
-$('#lfo-filter').mousedown(function () {
+    TANGUY.lfo_pitch_vca.gain.value = TANGUY.program.lfo_pitch * TANGUY.program.mod_amt * TANGUY.program.mod_direction;
+    return;
+};
+
+TANGUY.update_lfo_filter = function () {
     'use strict';
-    $(this).mousemove(function () {
-        TANGUY.program.lfo.filter_amt = this.value;
-        TANGUY.calculate_lfo('filter');
-    });
-}).mouseup(TANGUY.stop_tweaking);
-$('#lfo-amp').mousedown(function () {
+    TANGUY.lfo_filter_vca.gain.value = TANGUY.program.lfo.filter_amt * TANGUY.program.mod_amt * TANGUY.program.mod_direction;
+    return;
+};
+
+TANGUY.update_lfo_amp = function () {
     'use strict';
-    $(this).mousemove(function () {
-        TANGUY.program.lfo.amp_amt = this.value;
-        TANGUY.calculate_lfo('amp');
-    });
-}).mouseup(TANGUY.stop_tweaking);
+    TANGUY.lfo_amp_vca.gain.value = TANGUY.program.lfo.amp_amt * TANGUY.program.mod_amt * TANGUY.program.mod_direction;
+    return;
+};
 //DELAY CONTROLS - GOOD
 TANGUY.update_delay_rate = function () {
     'use strict';
@@ -1282,6 +1270,7 @@ $('#mixer').on('mousedown', 'input', TANGUY.slider.grab);
 $('#filter').on('mousedown', 'input', TANGUY.slider.grab);
 $('#osc1').on('mousedown', 'input.vertical-slider', TANGUY.slider.grab);
 $('#osc2').on('mousedown', 'input.vertical-slider', TANGUY.slider.grab);
+$('#lfo').on('mousedown', 'input.vertical-slider', TANGUY.slider.grab);
 TANGUY.store_program = function (e) {
     'use strict';
     TANGUY.program[e.data.program] = parseFloat(e.currentTarget.value);

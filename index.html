@@ -255,19 +255,19 @@
         <label><input id="lfo-sqr" name="lfo-shape" type="radio" value="square">Square</label>
       </div>
       <div class="slider-wrapper">
-        <input class="vertical-slider" id="lfo-rate" max="1" min="0.0001" orient="vertical" step="0.0001" type="range" value="0.0001">
+        <input class="vertical-slider" data-program="lfo_rate" data-update="update_lfo_rate" id="lfo-rate" max="1" min="0.0001" orient="vertical" step="0.0001" type="range" value="0.0001">
         <label class="slider-label" for="lfo-rate">Rate</label>
       </div>
       <div class="slider-wrapper">
-        <input class="vertical-slider" id="lfo-pitch" max="50" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        <input class="vertical-slider" data-program="lfo_pitch" data-update="update_lfo_pitch" id="lfo-pitch" max="50" min="0" orient="vertical" step="0.0001" type="range" value="0">
         <label class="slider-label" for="lfo-pitch"><abbr title="Pitch Amount">Pitch</abbr></label>
       </div>
       <div class="slider-wrapper">
-        <input class="vertical-slider" id="lfo-filter" max="10000" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        <input class="vertical-slider" data-program="lfo_filter" data-update="update_lfo_filter" id="lfo-filter" max="10000" min="0" orient="vertical" step="0.0001" type="range" value="0">
         <label class="slider-label" for="lfo-filter"><abbr title="Filter Amount">Filter</abbr></label>
       </div>
       <div class="slider-wrapper">
-        <input class="vertical-slider" id="lfo-amp" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        <input class="vertical-slider" data-program="lfo_amp" data-update="update_lfo_amp" id="lfo-amp" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
         <label class="slider-label" for="lfo-amp"><abbr title="Amplitude Amount">Amp.</abbr></label>
       </div>
     </section>
