@@ -112,9 +112,105 @@ $('#program-selector').change(function () {
 });
 TANGUY.update_program = function () {
     'use strict';
-    console.log('This is the coolest!');
-};
+    console.log('Update program...');
 
+    //OSCILLATOR 1
+    TANGUY.update_osc1_saw_amt();
+    TANGUY.update_osc1_sqr_amt();
+    TANGUY.update_osc1_tri_amt();
+    TANGUY.update_osc1_sin_amt();
+    TANGUY.update_osc1_fm_amt();
+
+    //OSCILLATOR 2
+    TANGUY.update_osc2_detune();
+    TANGUY.update_osc2_fine();
+    TANGUY.update_osc2_shape_amt();
+    TANGUY.update_osc2_fm_amt();
+
+    //NOISE
+
+    //MIXER
+    TANGUY.update_osc1_mix();
+    TANGUY.update_osc2_mix();
+    TANGUY.update_noise_mix();
+
+    //FILTER
+    TANGUY.update_cutoff();
+    TANGUY.update_resonance();
+
+    //VCA
+    TANGUY.update_vca_gain();
+
+    //LFO
+    TANGUY.update_lfo_rate();
+    TANGUY.calculate_lfo();
+
+    //DELAY
+    TANGUY.update_delay_rate();
+    TANGUY.update_delay_amt();
+
+    //PORTAMENTO
+
+    return TANGUY.update_panel();
+};
+TANGUY.update_panel = function () {
+    'use strict';
+    console.log('UPDATING THE PANEL, MASTER');
+
+    //OSCILLATOR 1
+    $('#osc1-saw').val(TANGUY.program.osc1_saw);
+    $('#osc1-sqr').val(TANGUY.program.osc1_sqr);
+    $('#osc1-tri').val(TANGUY.program.osc1_tri);
+    $('#osc1-sin').val(TANGUY.program.osc1_sin);
+    $('#osc1-fm').val(TANGUY.program.osc1_fm);
+
+    //OSCILLATOR 2
+    $('#osc2-detune').val(TANGUY.program.osc2_detune);
+    $('#osc2-fine').val(TANGUY.program.osc2_fine);
+    $('#osc2-waveshape').val(TANGUY.program.osc2_shape);
+    $('#osc2-fm').val(TANGUY.program.osc2_fm);
+
+    //NOISE
+
+    //MIXER
+    $('#osc1-mix').val(TANGUY.program.osc1_mix);
+    $('#osc2-mix').val(TANGUY.program.osc2_mix);
+    $('#noise-mix').val(TANGUY.program.noise_mix);
+
+    //FILTER
+    $('#cutoff').val(TANGUY.program.cutoff);
+    $('#resonance').val(TANGUY.program.res);
+    $('#filter-envelope-amount').val(TANGUY.program.filter_eg);
+    $('#filter-keyboard-tracking').val(TANGUY.program.filter_kbd);
+    $('#filter-attack').val(TANGUY.program.filter_attack);
+    $('#filter-decay').val(TANGUY.program.filter_decay);
+    $('#filter-sustain').val(TANGUY.program.filter_sustain);
+    $('#filter-release').val(TANGUY.program.filter_release);
+
+    //VCA
+    $('#vca-attack').val(TANGUY.program.vca_attack);
+    $('#vca-decay').val(TANGUY.program.vca_decay);
+    $('#vca-sustain').val(TANGUY.program.vca_sustain);
+    $('#vca-release').val(TANGUY.program.vca_release);
+    $('#vca-gain').val(TANGUY.program.vca_gain);
+
+    //LFO
+    $('#lfo-rate').val(TANGUY.program.lfo_rate);
+    $('#lfo-pitch').val(TANGUY.program.lfo_pitch);
+    $('#lfo-filter').val(TANGUY.program.lfo_filter);
+    $('#lfo-amp').val(TANGUY.program.lfo_amp);
+
+    //DELAY
+    $('#delay-rate').val(TANGUY.program.delay_rate);
+    $('#delay-amount').val(TANGUY.program.delay);
+
+    //PORTAMENTO
+    $('#portamento-amount').val(TANGUY.program.portamento);
+
+    //MODWHEEL
+    $('#mod-amount').val(TANGUY.program.mod_amt);
+
+};
 TANGUY.shift_octave = function (direction) {
     'use strict';
     var lights = [
@@ -297,7 +393,6 @@ TANGUY.gate_off = function () {
         TANGUY.lp_filter1.frequency.setTargetAtTime(cutoff, TANGUY.synth.currentTime, TANGUY.program.filter_release);
         TANGUY.lp_filter2.frequency.setTargetAtTime(cutoff / 2, TANGUY.synth.currentTime, TANGUY.program.filter_release);
         break;
-        //ALL OTHER CASES ARE BROKEN
     case 'bp':
         filter_release_peak = TANGUY.bp_filter1.frequency.value;
         TANGUY.bp_filter1.frequency.cancelScheduledValues(TANGUY.synth.currentTime);
@@ -603,11 +698,13 @@ $(document).ready(function () {
     TANGUY.build_synth();
     TANGUY.load_program('initialize');
 });
-//OSCILLATOR 1 CONTROLS
-$('#osc1-kbd').change(function () {
+//OSCILLATOR 1 CONTROLS - TOTAL GARBAGE
+TANGUY.update_osc1_kbd = function () {
     'use strict';
-    TANGUY.program.osc1_kbd = this.checked ? true : false;
-});
+    $('#osc1').off('click', '#osc1-kbd', TANGUY.button.tick);
+};
+
+//OSCILLATOR 1 CONTROLS - OLD FASHIONED
 $('#osc1-coarse').on('change', 'input', function () {
     'use strict';
     var osc1 = [TANGUY.osc1_saw, TANGUY.osc1_sqr, TANGUY.osc1_tri, TANGUY.osc1_sin],
@@ -643,16 +740,19 @@ TANGUY.update_osc1_fm_amt = function () {
     'use strict';
     return TANGUY.osc1_fm_vca.gain.setValueAtTime(TANGUY.program.osc1_fm * TANGUY.program.osc1_fm * 24000, TANGUY.synth.currentTime);
 };
-//OSCILLATOR 2 CONTROLS
-$('#osc2-kbd').change(function () {
+//OSCILLATOR 2 CONTROLS - TOTAL GARBAGE
+TANGUY.update_osc2_kbd = function () {
     'use strict';
-    TANGUY.program.osc2_kbd = this.checked ? true : false;
-});
+    $('#osc2').off('click', '#osc2-kbd', TANGUY.button.tick);
+};
+
+//OSCILLATOR 2 CONTROLS - OLD FASHIONED
 $('#osc2-coarse').on('change', 'input', function () {
     'use strict';
     TANGUY.program.osc2_coarse = this.value;
     TANGUY.osc2.frequency.setValueAtTime(TANGUY.osc2_master_pitch * this.value, TANGUY.synth.currentTime);
 });
+
 $('#osc2-waveform').on('change', '#osc2-saw, #osc2-sqr, #osc2-tri, #osc2-sin', function () {
     'use strict';
     TANGUY.program.osc2_waveform = this.value;
@@ -755,29 +855,24 @@ $('#lfo-shape').on('change', 'input', function () {
     TANGUY.calculate_lfo();
 });
 
-//LFO CONTROLS - OK (SET TARGET AT TIME OR SIMILAR?)
+//LFO CONTROLS - GOOD
 TANGUY.update_lfo_rate = function () {
     'use strict';
-    //TANGUY.lfo.frequency.value = TANGUY.program.lfo_rate * TANGUY.program.lfo_rate * 100;
     return TANGUY.lfo.frequency.setValueAtTime(TANGUY.program.lfo_rate * TANGUY.program.lfo_rate * 100, TANGUY.synth.currentTime);
 };
 
 TANGUY.update_lfo_pitch = function () {
     'use strict';
-//    TANGUY.lfo_pitch_vca.gain.value = TANGUY.program.lfo_pitch * TANGUY.program.mod * TANGUY.program.mod_direction;
     return TANGUY.lfo_pitch_vca.gain.setValueAtTime(TANGUY.program.lfo_pitch * TANGUY.program.mod * TANGUY.program.mod_direction, TANGUY.synth.currentTime);
-
 };
 
 TANGUY.update_lfo_filter = function () {
     'use strict';
-//    TANGUY.lfo_filter_vca.gain.value = TANGUY.program.lfo_filter * TANGUY.program.mod * TANGUY.program.mod_direction;
     return TANGUY.lfo_filter_vca.gain.setValueAtTime(TANGUY.program.lfo_filter * TANGUY.program.mod * TANGUY.program.mod_direction, TANGUY.synth.currentTime);
 };
 
 TANGUY.update_lfo_amp = function () {
     'use strict';
-//    TANGUY.lfo_amp_vca.gain.value = TANGUY.program.lfo_amp * TANGUY.program.mod * TANGUY.program.mod_direction;
     return TANGUY.lfo_amp_vca.gain.setValueAtTime(TANGUY.program.lfo_amp * TANGUY.program.mod * TANGUY.program.mod_direction, TANGUY.synth.currentTime);
 };
 //DELAY CONTROLS - GOOD
@@ -936,6 +1031,7 @@ $('#pitch-bend').mousedown(function () {
 TANGUY.calculate_lfo = function () {
     'use strict';
     var amt = TANGUY.program.mod * TANGUY.program.mod_direction;
+    //PROBABLY MAKES BETTER SENSE TO CALL THE UPDATE FUNCTIONS HERE...
     TANGUY.lfo_pitch_vca.gain.setValueAtTime(TANGUY.program.lfo_pitch * amt, TANGUY.synth.currentTime);
     TANGUY.lfo_filter_vca.gain.setValueAtTime(TANGUY.program.lfo_filter * amt, TANGUY.synth.currentTime);
     TANGUY.lfo_amp_vca.gain.setValueAtTime(TANGUY.program.lfo_amp * amt, TANGUY.synth.currentTime);
@@ -946,8 +1042,8 @@ TANGUY.slider = {
     grab: function () {
         'use strict';
         var config = {
-            program: this.getAttribute('data-program'),//filter_cutoff
-            update: this.getAttribute('data-update')//update_cutoff (callback)
+            program: this.getAttribute('data-program'),
+            update: this.getAttribute('data-update')
         };
         return $(this).mousemove(config, TANGUY.store_program).mouseup(TANGUY.slider.release);
     },
@@ -968,9 +1064,34 @@ $('#osc1').on('mousedown', 'input.vertical-slider', TANGUY.slider.grab);
 $('#osc2').on('mousedown', 'input.vertical-slider', TANGUY.slider.grab);
 $('#lfo').on('mousedown', 'input.vertical-slider', TANGUY.slider.grab);
 $('#mod-wheel').on('mousedown', 'input', TANGUY.slider.grab);
+
+
+
+TANGUY.button = {
+    tick: function () {
+        'use strict';
+        var config = {
+            program: this.getAttribute('data-program'),
+            update: this.getAttribute('data-update')
+        };
+        return $(this).change(config, TANGUY.store_program);
+    }
+};
+
+//TOTAL GARBAGE
+$('#osc1').on('click', '#osc1-kbd', TANGUY.button.tick);
+$('#osc2').on('click', '#osc2-kbd', TANGUY.button.tick);
+
 TANGUY.store_program = function (e) {
     'use strict';
-    TANGUY.program[e.data.program] = parseFloat(e.currentTarget.value);
+    switch (e.data.program) {
+    case 'osc1_kbd':
+    case 'osc2_kbd':
+        TANGUY.program[e.data.program] = e.currentTarget.checked;
+        break;
+    default:
+        TANGUY.program[e.data.program] = parseFloat(e.currentTarget.value);
+    }
     if (TANGUY[e.data.update]) {
         return TANGUY[e.data.update]();
     }

@@ -1,8 +1,10 @@
-//OSCILLATOR 1 CONTROLS
-$('#osc1-kbd').change(function () {
+//OSCILLATOR 1 CONTROLS - TOTAL GARBAGE
+TANGUY.update_osc1_kbd = function () {
     'use strict';
-    TANGUY.program.osc1_kbd = this.checked ? true : false;
-});
+    $('#osc1').off('click', '#osc1-kbd', TANGUY.button.tick);
+};
+
+//OSCILLATOR 1 CONTROLS - OLD FASHIONED
 $('#osc1-coarse').on('change', 'input', function () {
     'use strict';
     var osc1 = [TANGUY.osc1_saw, TANGUY.osc1_sqr, TANGUY.osc1_tri, TANGUY.osc1_sin],

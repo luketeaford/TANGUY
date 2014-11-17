@@ -12,6 +12,7 @@ var gulp = require('gulp'),
 //        'js/_loadprogram.js',
         'js/_loadprogram2.js',
         'js/_updateprogram.js',
+        'js/_updatepanel.js',
         'js/_shiftoctave.js',
         'js/_multiswitch.js',
 //        'js/_stoptweaking.js',
@@ -33,7 +34,9 @@ var gulp = require('gulp'),
         'js/_pitchwheelcontrols.js',
         'js/_modwheelcontrols.js',
         'js/_slidercontrols.js',
-        'js/_updatecontrols.js',
+        'js/_buttoncontrols.js',
+//        'js/_updatecontrols.js',
+        'js/_storeprogram.js',
         'js/_keyboardcontrols.js'
     ];
 

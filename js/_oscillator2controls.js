@@ -1,13 +1,16 @@
-//OSCILLATOR 2 CONTROLS
-$('#osc2-kbd').change(function () {
+//OSCILLATOR 2 CONTROLS - TOTAL GARBAGE
+TANGUY.update_osc2_kbd = function () {
     'use strict';
-    TANGUY.program.osc2_kbd = this.checked ? true : false;
-});
+    $('#osc2').off('click', '#osc2-kbd', TANGUY.button.tick);
+};
+
+//OSCILLATOR 2 CONTROLS - OLD FASHIONED
 $('#osc2-coarse').on('change', 'input', function () {
     'use strict';
     TANGUY.program.osc2_coarse = this.value;
     TANGUY.osc2.frequency.setValueAtTime(TANGUY.osc2_master_pitch * this.value, TANGUY.synth.currentTime);
 });
+
 $('#osc2-waveform').on('change', '#osc2-saw, #osc2-sqr, #osc2-tri, #osc2-sin', function () {
     'use strict';
     TANGUY.program.osc2_waveform = this.value;

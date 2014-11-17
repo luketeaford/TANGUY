@@ -30,7 +30,6 @@ TANGUY.update_lfo_rate = function () {
 TANGUY.update_lfo_pitch = function () {
     'use strict';
     return TANGUY.lfo_pitch_vca.gain.setValueAtTime(TANGUY.program.lfo_pitch * TANGUY.program.mod * TANGUY.program.mod_direction, TANGUY.synth.currentTime);
-
 };
 
 TANGUY.update_lfo_filter = function () {

@@ -2,8 +2,8 @@ TANGUY.slider = {
     grab: function () {
         'use strict';
         var config = {
-            program: this.getAttribute('data-program'),//filter_cutoff
-            update: this.getAttribute('data-update')//update_cutoff (callback)
+            program: this.getAttribute('data-program'),
+            update: this.getAttribute('data-update')
         };
         return $(this).mousemove(config, TANGUY.store_program).mouseup(TANGUY.slider.release);
     },
@@ -24,3 +24,5 @@ $('#osc1').on('mousedown', 'input.vertical-slider', TANGUY.slider.grab);
 $('#osc2').on('mousedown', 'input.vertical-slider', TANGUY.slider.grab);
 $('#lfo').on('mousedown', 'input.vertical-slider', TANGUY.slider.grab);
 $('#mod-wheel').on('mousedown', 'input', TANGUY.slider.grab);
+
+

@@ -14,7 +14,6 @@ TANGUY.gate_off = function () {
         TANGUY.lp_filter1.frequency.setTargetAtTime(cutoff, TANGUY.synth.currentTime, TANGUY.program.filter_release);
         TANGUY.lp_filter2.frequency.setTargetAtTime(cutoff / 2, TANGUY.synth.currentTime, TANGUY.program.filter_release);
         break;
-        //ALL OTHER CASES ARE BROKEN
     case 'bp':
         filter_release_peak = TANGUY.bp_filter1.frequency.value;
         TANGUY.bp_filter1.frequency.cancelScheduledValues(TANGUY.synth.currentTime);
