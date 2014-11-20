@@ -996,32 +996,6 @@ TANGUY.update_vca_gain = function () {
     'use strict';
     return TANGUY.vca.gain.setTargetAtTime(TANGUY.program.vca_gain * TANGUY.program.vca_gain, TANGUY.synth.currentTime, 0.01);
 };
-//PORTAMENTO SLIDER
-TANGUY.update_portamento = function () {
-    'use strict';
-    console.log('PORTAMENTO AMOUNT ' + TANGUY.program.portamento);
-    return;
-};
-
-//PORTAMENTO BUTTONS
-TANGUY.update_portamento_mode = function () {
-    'use strict';
-    console.log('PORTAMENTO MODE ' + TANGUY.program.portamento_mode);
-    return;
-};
-
-
-//PORTAMENTO SLIDER - GROSS
-// This is one event that is doing all the saving to the program. Needs to work like envelope sliders
-$('#portamento').on('change', '#portamento-amount, #portamento-off, #portamento-linear, #portamento-exponential', function () {
-    'use strict';
-    var x = this.getAttribute('data-portamento');
-    if (x === 'amount') {
-        TANGUY.program.portamento = parseFloat(this.value);
-    } else {
-        TANGUY.program.portamento_mode = this.value;
-    }
-});
 //PITCH WHEEL CONTROLS
 $('#pitch-bend').mousedown(function () {
     'use strict';
@@ -1077,6 +1051,7 @@ $('#osc1').on('mousedown', 'input.vertical-slider', TANGUY.slider.grab);
 $('#osc2').on('mousedown', 'input.vertical-slider', TANGUY.slider.grab);
 $('#lfo').on('mousedown', 'input.vertical-slider', TANGUY.slider.grab);
 $('#mod-wheel').on('mousedown', 'input', TANGUY.slider.grab);
+$('#portamento').on('mousedown', 'input.horizontal-slider', TANGUY.slider.grab);
 TANGUY.button = {
     touch: function () {
         'use strict';
@@ -1109,7 +1084,6 @@ TANGUY.store_program = function (e) {
     case 'lfo_shape':
     case 'portamento_mode':
         TANGUY.program[e.data.program] = e.currentTarget.value;
-        console.log('Portamento mode found');
         break;
     default:
         TANGUY.program[e.data.program] = parseFloat(e.currentTarget.value);
