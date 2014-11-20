@@ -6,6 +6,7 @@ TANGUY.store_program = function (e) {
         TANGUY.program[e.data.program] = e.currentTarget.checked;
         break;
     case 'osc2_waveform':
+    case 'noise_color':
         TANGUY.program[e.data.program] = e.currentTarget.value;
         break;
     default:

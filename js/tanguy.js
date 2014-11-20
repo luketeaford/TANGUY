@@ -133,6 +133,7 @@ TANGUY.update_program = function () {
     TANGUY.update_osc2_fm_amt();
 
     //NOISE
+    TANGUY.update_noise_color();
 
     //MIXER
     TANGUY.update_osc1_mix();
@@ -789,11 +790,9 @@ TANGUY.update_osc2_fm_amt = function () {
     'use strict';
     return TANGUY.osc2_fm_vca.gain.setValueAtTime(TANGUY.program.osc2_fm * TANGUY.program.osc2_fm * 24000, TANGUY.synth.currentTime);
 };
-//NOISE CONTROLS
-$('#noise-color').on('change', 'input', function () {
+TANGUY.update_noise_color = function () {
     'use strict';
-    TANGUY.program.noise_color = this.value;
-    switch (this.value) {
+    switch (TANGUY.program.noise_color) {
     case 'white':
         TANGUY.white_noise.buffer = TANGUY.white_noise_buffer;
         TANGUY.pink_noise.buffer = TANGUY.empty_pink_noise_buffer;
@@ -830,7 +829,9 @@ $('#noise-color').on('change', 'input', function () {
         TANGUY.blue_noise.buffer = TANGUY.empty_blue_noise_buffer;
         break;
     }
-});
+    console.log('Lemme get a shared system');
+    return;
+};
 //LFO CONTROLS
 $('#lfo-shape').on('change', 'input', function () {
     'use strict';
@@ -1078,7 +1079,7 @@ TANGUY.button = {
 $('#osc1-coarse').on('change', 'input', TANGUY.button.touch);
 $('#osc2-coarse').on('change', 'input', TANGUY.button.touch);
 $('#osc2-waveform').on('change', 'input', TANGUY.button.touch);
-
+$('#noise-color').on('change', 'input', TANGUY.button.touch);
 TANGUY.store_program = function (e) {
     'use strict';
     switch (e.data.program) {
@@ -1087,6 +1088,7 @@ TANGUY.store_program = function (e) {
         TANGUY.program[e.data.program] = e.currentTarget.checked;
         break;
     case 'osc2_waveform':
+    case 'noise_color':
         TANGUY.program[e.data.program] = e.currentTarget.value;
         break;
     default:

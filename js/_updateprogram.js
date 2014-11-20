@@ -18,6 +18,7 @@ TANGUY.update_program = function () {
     TANGUY.update_osc2_fm_amt();
 
     //NOISE
+    TANGUY.update_noise_color();
 
     //MIXER
     TANGUY.update_osc1_mix();
