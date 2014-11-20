@@ -1,10 +1,8 @@
-//FILTER CONTROLS
-$('#filter-mode').on('change', 'input', function () {
+TANGUY.update_filter_mode = function () {
     'use strict';
     TANGUY.mixer.disconnect();
     TANGUY.lfo_filter_vca.disconnect();
-    TANGUY.program.filter_mode = this.value;
-    switch (this.value) {
+    switch (TANGUY.program.filter_mode) {
     case 'lp':
         TANGUY.mixer.connect(TANGUY.lp_filter1);
         TANGUY.lfo_filter_vca.connect(TANGUY.lp_filter1.frequency);
@@ -31,7 +29,8 @@ $('#filter-mode').on('change', 'input', function () {
         TANGUY.mixer.connect(TANGUY.vca);
         break;
     }
-});
+    return;
+};
 
 TANGUY.update_cutoff = function () {
     'use strict';

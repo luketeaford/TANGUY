@@ -26,6 +26,7 @@ TANGUY.update_program = function () {
     TANGUY.update_noise_mix();
 
     //FILTER
+    TANGUY.update_filter_mode();
     TANGUY.update_cutoff();
     TANGUY.update_resonance();
 

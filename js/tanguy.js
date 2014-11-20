@@ -141,6 +141,7 @@ TANGUY.update_program = function () {
     TANGUY.update_noise_mix();
 
     //FILTER
+    TANGUY.update_filter_mode();
     TANGUY.update_cutoff();
     TANGUY.update_resonance();
 
@@ -829,7 +830,6 @@ TANGUY.update_noise_color = function () {
         TANGUY.blue_noise.buffer = TANGUY.empty_blue_noise_buffer;
         break;
     }
-    console.log('Lemme get a shared system');
     return;
 };
 //LFO CONTROLS
@@ -912,8 +912,8 @@ TANGUY.update_noise_mix = function () {
     'use strict';
     return TANGUY.noise_vca.gain.setValueAtTime(TANGUY.program.noise_mix * TANGUY.program.noise_mix, TANGUY.synth.currentTime);
 };
-//FILTER CONTROLS
-$('#filter-mode').on('change', 'input', function () {
+//FILTER CONTROLS - OLD FASHIONED
+/*$('#filter-mode').on('change', 'input', function () {
     'use strict';
     TANGUY.mixer.disconnect();
     TANGUY.lfo_filter_vca.disconnect();
@@ -945,8 +945,46 @@ $('#filter-mode').on('change', 'input', function () {
         TANGUY.mixer.connect(TANGUY.vca);
         break;
     }
-});
+});*/
 
+//FILTER MODE BUTTON - NEW
+TANGUY.update_filter_mode = function () {
+    'use strict';
+    console.log('FLap falp flap');
+    TANGUY.mixer.disconnect();
+    TANGUY.lfo_filter_vca.disconnect();
+    switch (TANGUY.program.filter_mode) {
+    case 'lp':
+        TANGUY.mixer.connect(TANGUY.lp_filter1);
+        TANGUY.lfo_filter_vca.connect(TANGUY.lp_filter1.frequency);
+        TANGUY.lfo_filter_vca.connect(TANGUY.lp_filter2.frequency);
+        break;
+    case 'bp':
+        TANGUY.mixer.connect(TANGUY.bp_filter1);
+        TANGUY.lfo_filter_vca.connect(TANGUY.bp_filter1.frequency);
+        TANGUY.lfo_filter_vca.connect(TANGUY.bp_filter2.frequency);
+        TANGUY.lfo_filter_vca.connect(TANGUY.bp_filter3.frequency);
+        break;
+    case 'hp':
+        TANGUY.mixer.connect(TANGUY.hp_filter1);
+        TANGUY.lfo_filter_vca.connect(TANGUY.hp_filter1.frequency);
+        TANGUY.lfo_filter_vca.connect(TANGUY.hp_filter2.frequency);
+        break;
+    case 'notch':
+        TANGUY.mixer.connect(TANGUY.notch1);
+        TANGUY.lfo_filter_vca.connect(TANGUY.notch1.frequency);
+        TANGUY.lfo_filter_vca.connect(TANGUY.notch2.frequency);
+        TANGUY.lfo_filter_vca.connect(TANGUY.notch3.frequency);
+        break;
+    case 'off':
+        TANGUY.mixer.connect(TANGUY.vca);
+        break;
+    }
+    return;
+};
+
+
+//FILTER CONTROLS - GOOD
 TANGUY.update_cutoff = function () {
     'use strict';
     var cutoff = TANGUY.program.cutoff * TANGUY.program.cutoff * 22030 + 20;
@@ -1080,6 +1118,7 @@ $('#osc1-coarse').on('change', 'input', TANGUY.button.touch);
 $('#osc2-coarse').on('change', 'input', TANGUY.button.touch);
 $('#osc2-waveform').on('change', 'input', TANGUY.button.touch);
 $('#noise-color').on('change', 'input', TANGUY.button.touch);
+$('#filter-mode').on('change', 'input', TANGUY.button.touch);
 TANGUY.store_program = function (e) {
     'use strict';
     switch (e.data.program) {
@@ -1089,7 +1128,9 @@ TANGUY.store_program = function (e) {
         break;
     case 'osc2_waveform':
     case 'noise_color':
+    case 'filter_mode':
         TANGUY.program[e.data.program] = e.currentTarget.value;
+        console.log('Syncing with makenoise');
         break;
     default:
         TANGUY.program[e.data.program] = parseFloat(e.currentTarget.value);
