@@ -34,6 +34,7 @@ TANGUY.update_program = function () {
     TANGUY.update_vca_gain();
 
     //LFO
+    TANGUY.update_lfo_shape();
     TANGUY.update_lfo_rate();
     TANGUY.calculate_lfo();
 

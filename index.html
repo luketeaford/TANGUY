@@ -247,7 +247,7 @@
 
     <section id="lfo">
       <h2><abbr title="Low Frequency Oscillator">LFO</abbr></h2>
-      <div id="lfo-shape">
+      <div data-program="lfo_shape" data-update="update_lfo_shape" id="lfo-shape">
         <label class="selected"><input id="lfo-sin" name="lfo-shape" type="radio" value="sine">Sine</label>
         <label><input id="lfo-tri" name="lfo-shape" type="radio" value="triangle"><abbr title="Triangle">Tri.</abbr></label>
         <label><input id="lfo-rmp" name="lfo-shape" type="radio" value="ramp">Ramp</label>
@@ -307,7 +307,7 @@
         <label for="portamento-amount">Amount</label>
         <input class="horizontal-slider" id="portamento-amount" data-portamento="amount" max="1" min="0.01" step="0.01" type="range" value="0.01">
       </div>
-      <div id="portamento-mode">
+      <div data-program="portamento_mode" data-update="update_portamento_mode" id="portamento-mode">
         <label class="selected"><input id="portamento-off" name="portamento" type="radio" value="off">Off</label>
         <label><input id="portamento-linear" name="portamento" type="radio" value="linear"><abbr title="Linear">Lin.</abbr></label>
         <label><input id="portamento-exponential" name="portamento" type="radio" value="exponential"><abbr title="Exponential">Exp.</abbr></label>

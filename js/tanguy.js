@@ -149,6 +149,7 @@ TANGUY.update_program = function () {
     TANGUY.update_vca_gain();
 
     //LFO
+    TANGUY.update_lfo_shape();
     TANGUY.update_lfo_rate();
     TANGUY.calculate_lfo();
 
@@ -832,30 +833,27 @@ TANGUY.update_noise_color = function () {
     }
     return;
 };
-//LFO CONTROLS
-$('#lfo-shape').on('change', 'input', function () {
+TANGUY.update_lfo_shape = function () {
     'use strict';
-    switch (this.value) {
+    switch (TANGUY.program.lfo_shape) {
     case 'sawtooth':
-        TANGUY.program.lfo_shape = 'sawtooth';
+        TANGUY.lfo.type = TANGUY.program.lfo_shape;
         TANGUY.program.mod_direction = -1;
         break;
     case 'ramp':
-        TANGUY.program.lfo_shape = 'sawtooth';
+        TANGUY.lfo.type = 'sawtooth';
         TANGUY.program.mod_direction = 1;
         break;
     case 'sine':
     case 'triangle':
     case 'square':
-        TANGUY.program.lfo_shape = this.value;
+        TANGUY.lfo.type = TANGUY.program.lfo_shape;
         TANGUY.program.mod_direction = 1;
         break;
     }
-    TANGUY.lfo.type = TANGUY.program.lfo_shape;
-    TANGUY.calculate_lfo();
-});
+    return TANGUY.calculate_lfo();
+};
 
-//LFO CONTROLS - GOOD
 TANGUY.update_lfo_rate = function () {
     'use strict';
     return TANGUY.lfo.frequency.setValueAtTime(TANGUY.program.lfo_rate * TANGUY.program.lfo_rate * 100, TANGUY.synth.currentTime);
@@ -912,45 +910,8 @@ TANGUY.update_noise_mix = function () {
     'use strict';
     return TANGUY.noise_vca.gain.setValueAtTime(TANGUY.program.noise_mix * TANGUY.program.noise_mix, TANGUY.synth.currentTime);
 };
-//FILTER CONTROLS - OLD FASHIONED
-/*$('#filter-mode').on('change', 'input', function () {
-    'use strict';
-    TANGUY.mixer.disconnect();
-    TANGUY.lfo_filter_vca.disconnect();
-    TANGUY.program.filter_mode = this.value;
-    switch (this.value) {
-    case 'lp':
-        TANGUY.mixer.connect(TANGUY.lp_filter1);
-        TANGUY.lfo_filter_vca.connect(TANGUY.lp_filter1.frequency);
-        TANGUY.lfo_filter_vca.connect(TANGUY.lp_filter2.frequency);
-        break;
-    case 'bp':
-        TANGUY.mixer.connect(TANGUY.bp_filter1);
-        TANGUY.lfo_filter_vca.connect(TANGUY.bp_filter1.frequency);
-        TANGUY.lfo_filter_vca.connect(TANGUY.bp_filter2.frequency);
-        TANGUY.lfo_filter_vca.connect(TANGUY.bp_filter3.frequency);
-        break;
-    case 'hp':
-        TANGUY.mixer.connect(TANGUY.hp_filter1);
-        TANGUY.lfo_filter_vca.connect(TANGUY.hp_filter1.frequency);
-        TANGUY.lfo_filter_vca.connect(TANGUY.hp_filter2.frequency);
-        break;
-    case 'notch':
-        TANGUY.mixer.connect(TANGUY.notch1);
-        TANGUY.lfo_filter_vca.connect(TANGUY.notch1.frequency);
-        TANGUY.lfo_filter_vca.connect(TANGUY.notch2.frequency);
-        TANGUY.lfo_filter_vca.connect(TANGUY.notch3.frequency);
-        break;
-    case 'off':
-        TANGUY.mixer.connect(TANGUY.vca);
-        break;
-    }
-});*/
-
-//FILTER MODE BUTTON - NEW
 TANGUY.update_filter_mode = function () {
     'use strict';
-    console.log('FLap falp flap');
     TANGUY.mixer.disconnect();
     TANGUY.lfo_filter_vca.disconnect();
     switch (TANGUY.program.filter_mode) {
@@ -983,8 +944,6 @@ TANGUY.update_filter_mode = function () {
     return;
 };
 
-
-//FILTER CONTROLS - GOOD
 TANGUY.update_cutoff = function () {
     'use strict';
     var cutoff = TANGUY.program.cutoff * TANGUY.program.cutoff * 22030 + 20;
@@ -1037,7 +996,23 @@ TANGUY.update_vca_gain = function () {
     'use strict';
     return TANGUY.vca.gain.setTargetAtTime(TANGUY.program.vca_gain * TANGUY.program.vca_gain, TANGUY.synth.currentTime, 0.01);
 };
-//NEW PORTAMENTO CONTROLS
+//PORTAMENTO SLIDER
+TANGUY.update_portamento = function () {
+    'use strict';
+    console.log('PORTAMENTO AMOUNT ' + TANGUY.program.portamento);
+    return;
+};
+
+//PORTAMENTO BUTTONS
+TANGUY.update_portamento_mode = function () {
+    'use strict';
+    console.log('PORTAMENTO MODE ' + TANGUY.program.portamento_mode);
+    return;
+};
+
+
+//PORTAMENTO SLIDER - GROSS
+// This is one event that is doing all the saving to the program. Needs to work like envelope sliders
 $('#portamento').on('change', '#portamento-amount, #portamento-off, #portamento-linear, #portamento-exponential', function () {
     'use strict';
     var x = this.getAttribute('data-portamento');
@@ -1119,6 +1094,8 @@ $('#osc2-coarse').on('change', 'input', TANGUY.button.touch);
 $('#osc2-waveform').on('change', 'input', TANGUY.button.touch);
 $('#noise-color').on('change', 'input', TANGUY.button.touch);
 $('#filter-mode').on('change', 'input', TANGUY.button.touch);
+$('#lfo-shape').on('change', 'input', TANGUY.button.touch);
+$('#portamento-mode').on('change', 'input', TANGUY.button.touch);
 TANGUY.store_program = function (e) {
     'use strict';
     switch (e.data.program) {
@@ -1129,8 +1106,10 @@ TANGUY.store_program = function (e) {
     case 'osc2_waveform':
     case 'noise_color':
     case 'filter_mode':
+    case 'lfo_shape':
+    case 'portamento_mode':
         TANGUY.program[e.data.program] = e.currentTarget.value;
-        console.log('Syncing with makenoise');
+        console.log('Portamento mode found');
         break;
     default:
         TANGUY.program[e.data.program] = parseFloat(e.currentTarget.value);

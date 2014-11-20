@@ -1,27 +1,24 @@
-//LFO CONTROLS
-$('#lfo-shape').on('change', 'input', function () {
+TANGUY.update_lfo_shape = function () {
     'use strict';
-    switch (this.value) {
+    switch (TANGUY.program.lfo_shape) {
     case 'sawtooth':
-        TANGUY.program.lfo_shape = 'sawtooth';
+        TANGUY.lfo.type = TANGUY.program.lfo_shape;
         TANGUY.program.mod_direction = -1;
         break;
     case 'ramp':
-        TANGUY.program.lfo_shape = 'sawtooth';
+        TANGUY.lfo.type = 'sawtooth';
         TANGUY.program.mod_direction = 1;
         break;
     case 'sine':
     case 'triangle':
     case 'square':
-        TANGUY.program.lfo_shape = this.value;
+        TANGUY.lfo.type = TANGUY.program.lfo_shape;
         TANGUY.program.mod_direction = 1;
         break;
     }
-    TANGUY.lfo.type = TANGUY.program.lfo_shape;
-    TANGUY.calculate_lfo();
-});
+    return TANGUY.calculate_lfo();
+};
 
-//LFO CONTROLS - GOOD
 TANGUY.update_lfo_rate = function () {
     'use strict';
     return TANGUY.lfo.frequency.setValueAtTime(TANGUY.program.lfo_rate * TANGUY.program.lfo_rate * 100, TANGUY.synth.currentTime);
