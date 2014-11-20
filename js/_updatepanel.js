@@ -1,6 +1,5 @@
 TANGUY.update_panel = function () {
     'use strict';
-    console.log('UPDATING THE PANEL, MASTER');
 
     //OSCILLATOR 1
     $('#osc1-saw').val(TANGUY.program.osc1_saw);

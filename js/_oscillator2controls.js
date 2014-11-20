@@ -4,18 +4,19 @@ TANGUY.update_osc2_kbd = function () {
     $('#osc2').off('click', '#osc2-kbd', TANGUY.button.tick);
 };
 
-//OSCILLATOR 2 CONTROLS - OLD FASHIONED
-$('#osc2-coarse').on('change', 'input', function () {
-    'use strict';
-    TANGUY.program.osc2_coarse = this.value;
-    TANGUY.osc2.frequency.setValueAtTime(TANGUY.osc2_master_pitch * this.value, TANGUY.synth.currentTime);
-});
 
-$('#osc2-waveform').on('change', '#osc2-saw, #osc2-sqr, #osc2-tri, #osc2-sin', function () {
+//OSCILLATOR 2 NEW BUTTON CONTROLS
+TANGUY.update_osc2_coarse = function () {
     'use strict';
-    TANGUY.program.osc2_waveform = this.value;
-    TANGUY.osc2.type = this.value;
-});
+    return TANGUY.osc2.frequency.setValueAtTime(TANGUY.osc2_master_pitch * TANGUY.program.osc2_coarse, TANGUY.synth.currentTime);
+};
+
+TANGUY.update_osc2_waveform = function () {
+    'use strict';
+    TANGUY.osc2.type = TANGUY.program.osc2_waveform;
+    return;
+};
+
 
 //OSCILLATOR 2 CONTROLS - GOOD
 // what is osc2_pitch? why isn't that on fine tune?

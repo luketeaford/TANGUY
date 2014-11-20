@@ -1,3 +1,6 @@
+//BROWSER PREFIXING
+window.AudioContext = window.AudioContext || window.webkitAudioContext;
+
 var TANGUY = {
 
     synth: new AudioContext(),

@@ -16,6 +16,9 @@
 //
 // luketeaford@gmail.com
 // 153 Illinois Avenue, Dayton OH 45410
+//BROWSER PREFIXING
+window.AudioContext = window.AudioContext || window.webkitAudioContext;
+
 var TANGUY = {
 
     synth: new AudioContext(),
@@ -112,9 +115,9 @@ $('#program-selector').change(function () {
 });
 TANGUY.update_program = function () {
     'use strict';
-    console.log('Update program...');
 
     //OSCILLATOR 1
+    TANGUY.update_osc1_coarse();
     TANGUY.update_osc1_saw_amt();
     TANGUY.update_osc1_sqr_amt();
     TANGUY.update_osc1_tri_amt();
@@ -122,6 +125,8 @@ TANGUY.update_program = function () {
     TANGUY.update_osc1_fm_amt();
 
     //OSCILLATOR 2
+    TANGUY.update_osc2_coarse();
+    TANGUY.update_osc2_waveform();
     TANGUY.update_osc2_detune();
     TANGUY.update_osc2_fine();
     TANGUY.update_osc2_shape_amt();
@@ -155,7 +160,6 @@ TANGUY.update_program = function () {
 };
 TANGUY.update_panel = function () {
     'use strict';
-    console.log('UPDATING THE PANEL, MASTER');
 
     //OSCILLATOR 1
     $('#osc1-saw').val(TANGUY.program.osc1_saw);
@@ -698,24 +702,18 @@ $(document).ready(function () {
     TANGUY.build_synth();
     TANGUY.load_program('initialize');
 });
-//OSCILLATOR 1 CONTROLS - TOTAL GARBAGE
-TANGUY.update_osc1_kbd = function () {
-    'use strict';
-    $('#osc1').off('click', '#osc1-kbd', TANGUY.button.tick);
-};
-
-//OSCILLATOR 1 CONTROLS - OLD FASHIONED
-$('#osc1-coarse').on('change', 'input', function () {
+//OSCILLATOR 1 BUTTONS - GOOD
+TANGUY.update_osc1_coarse = function () {
     'use strict';
     var osc1 = [TANGUY.osc1_saw, TANGUY.osc1_sqr, TANGUY.osc1_tri, TANGUY.osc1_sin],
         i;
-    TANGUY.program.osc1_coarse = this.value;
     for (i = 0; i < 4; i += 1) {
-        osc1[i].frequency.setValueAtTime(440 * this.value, TANGUY.synth.currentTime);
+        osc1[i].frequency.setValueAtTime(440 * TANGUY.program.osc1_coarse, TANGUY.synth.currentTime);
     }
-});
+    return;
+};
 
-//OSCILLATOR 1 CONTROLS - GOOD
+//OSCILLATOR 1 SLIDERS - GOOD
 TANGUY.update_osc1_saw_amt = function () {
     'use strict';
     return TANGUY.osc1_saw_vca.gain.setValueAtTime(TANGUY.program.osc1_saw * TANGUY.program.osc1_saw, TANGUY.synth.currentTime);
@@ -746,18 +744,19 @@ TANGUY.update_osc2_kbd = function () {
     $('#osc2').off('click', '#osc2-kbd', TANGUY.button.tick);
 };
 
-//OSCILLATOR 2 CONTROLS - OLD FASHIONED
-$('#osc2-coarse').on('change', 'input', function () {
-    'use strict';
-    TANGUY.program.osc2_coarse = this.value;
-    TANGUY.osc2.frequency.setValueAtTime(TANGUY.osc2_master_pitch * this.value, TANGUY.synth.currentTime);
-});
 
-$('#osc2-waveform').on('change', '#osc2-saw, #osc2-sqr, #osc2-tri, #osc2-sin', function () {
+//OSCILLATOR 2 NEW BUTTON CONTROLS
+TANGUY.update_osc2_coarse = function () {
     'use strict';
-    TANGUY.program.osc2_waveform = this.value;
-    TANGUY.osc2.type = this.value;
-});
+    return TANGUY.osc2.frequency.setValueAtTime(TANGUY.osc2_master_pitch * TANGUY.program.osc2_coarse, TANGUY.synth.currentTime);
+};
+
+TANGUY.update_osc2_waveform = function () {
+    'use strict';
+    TANGUY.osc2.type = TANGUY.program.osc2_waveform;
+    return;
+};
+
 
 //OSCILLATOR 2 CONTROLS - GOOD
 // what is osc2_pitch? why isn't that on fine tune?
@@ -1064,23 +1063,21 @@ $('#osc1').on('mousedown', 'input.vertical-slider', TANGUY.slider.grab);
 $('#osc2').on('mousedown', 'input.vertical-slider', TANGUY.slider.grab);
 $('#lfo').on('mousedown', 'input.vertical-slider', TANGUY.slider.grab);
 $('#mod-wheel').on('mousedown', 'input', TANGUY.slider.grab);
-
-
-
 TANGUY.button = {
-    tick: function () {
+    touch: function () {
         'use strict';
         var config = {
-            program: this.getAttribute('data-program'),
-            update: this.getAttribute('data-update')
+            program: this.parentNode.parentNode.getAttribute('data-program'),
+            update: this.parentNode.parentNode.getAttribute('data-update')
         };
-        return $(this).change(config, TANGUY.store_program);
+        return $(this).one('click', config, TANGUY.store_program);
     }
 };
 
-//TOTAL GARBAGE
-$('#osc1').on('click', '#osc1-kbd', TANGUY.button.tick);
-$('#osc2').on('click', '#osc2-kbd', TANGUY.button.tick);
+//SLOPPY BINDINGS
+$('#osc1-coarse').on('change', 'input', TANGUY.button.touch);
+$('#osc2-coarse').on('change', 'input', TANGUY.button.touch);
+$('#osc2-waveform').on('change', 'input', TANGUY.button.touch);
 
 TANGUY.store_program = function (e) {
     'use strict';
@@ -1088,6 +1085,9 @@ TANGUY.store_program = function (e) {
     case 'osc1_kbd':
     case 'osc2_kbd':
         TANGUY.program[e.data.program] = e.currentTarget.checked;
+        break;
+    case 'osc2_waveform':
+        TANGUY.program[e.data.program] = e.currentTarget.value;
         break;
     default:
         TANGUY.program[e.data.program] = parseFloat(e.currentTarget.value);

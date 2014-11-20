@@ -1,14 +1,15 @@
 TANGUY.button = {
-    tick: function () {
+    touch: function () {
         'use strict';
         var config = {
-            program: this.getAttribute('data-program'),
-            update: this.getAttribute('data-update')
+            program: this.parentNode.parentNode.getAttribute('data-program'),
+            update: this.parentNode.parentNode.getAttribute('data-update')
         };
-        return $(this).change(config, TANGUY.store_program);
+        return $(this).one('click', config, TANGUY.store_program);
     }
 };
 
-//TOTAL GARBAGE
-$('#osc1').on('click', '#osc1-kbd', TANGUY.button.tick);
-$('#osc2').on('click', '#osc2-kbd', TANGUY.button.tick);
+//SLOPPY BINDINGS
+$('#osc1-coarse').on('change', 'input', TANGUY.button.touch);
+$('#osc2-coarse').on('change', 'input', TANGUY.button.touch);
+$('#osc2-waveform').on('change', 'input', TANGUY.button.touch);

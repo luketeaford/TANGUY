@@ -1,21 +1,15 @@
-//OSCILLATOR 1 CONTROLS - TOTAL GARBAGE
-TANGUY.update_osc1_kbd = function () {
-    'use strict';
-    $('#osc1').off('click', '#osc1-kbd', TANGUY.button.tick);
-};
-
-//OSCILLATOR 1 CONTROLS - OLD FASHIONED
-$('#osc1-coarse').on('change', 'input', function () {
+//OSCILLATOR 1 BUTTONS - GOOD
+TANGUY.update_osc1_coarse = function () {
     'use strict';
     var osc1 = [TANGUY.osc1_saw, TANGUY.osc1_sqr, TANGUY.osc1_tri, TANGUY.osc1_sin],
         i;
-    TANGUY.program.osc1_coarse = this.value;
     for (i = 0; i < 4; i += 1) {
-        osc1[i].frequency.setValueAtTime(440 * this.value, TANGUY.synth.currentTime);
+        osc1[i].frequency.setValueAtTime(440 * TANGUY.program.osc1_coarse, TANGUY.synth.currentTime);
     }
-});
+    return;
+};
 
-//OSCILLATOR 1 CONTROLS - GOOD
+//OSCILLATOR 1 SLIDERS - GOOD
 TANGUY.update_osc1_saw_amt = function () {
     'use strict';
     return TANGUY.osc1_saw_vca.gain.setValueAtTime(TANGUY.program.osc1_saw * TANGUY.program.osc1_saw, TANGUY.synth.currentTime);

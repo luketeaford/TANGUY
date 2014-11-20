@@ -1,5 +1,5 @@
 {
-    "name": "INITIALIZE (external)",
+    "name": "INITIALIZE (external-testing version)",
     "osc1_kbd": true,
     "osc1_coarse": 1,
     "osc1_saw": 0,
@@ -10,7 +10,7 @@
 
     "osc2_kbd": true,
     "osc2_coarse": 1,
-    "osc2_waveform": "sawtooth",
+    "osc2_waveform": "square",
     "osc2_detune": 0,
     "osc2_fine": 0,
     "osc2_shape": 0,
@@ -29,8 +29,8 @@
     "noise_mix": 0,
 
     "filter_mode": "lp",
-    "cutoff": 0.1606,
-    "res": 0.7477,
+    "cutoff": 1,
+    "res": 0.0001,
     "filter_eg": 0,
     "filter_kbd": 0,
     "filter_attack": 0.008,

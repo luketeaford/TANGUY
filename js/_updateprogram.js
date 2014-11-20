@@ -1,8 +1,8 @@
 TANGUY.update_program = function () {
     'use strict';
-    console.log('Update program...');
 
     //OSCILLATOR 1
+    TANGUY.update_osc1_coarse();
     TANGUY.update_osc1_saw_amt();
     TANGUY.update_osc1_sqr_amt();
     TANGUY.update_osc1_tri_amt();
@@ -10,6 +10,8 @@ TANGUY.update_program = function () {
     TANGUY.update_osc1_fm_amt();
 
     //OSCILLATOR 2
+    TANGUY.update_osc2_coarse();
+    TANGUY.update_osc2_waveform();
     TANGUY.update_osc2_detune();
     TANGUY.update_osc2_fine();
     TANGUY.update_osc2_shape_amt();

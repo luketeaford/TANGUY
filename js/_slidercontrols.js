@@ -24,5 +24,3 @@ $('#osc1').on('mousedown', 'input.vertical-slider', TANGUY.slider.grab);
 $('#osc2').on('mousedown', 'input.vertical-slider', TANGUY.slider.grab);
 $('#lfo').on('mousedown', 'input.vertical-slider', TANGUY.slider.grab);
 $('#mod-wheel').on('mousedown', 'input', TANGUY.slider.grab);
-
-
