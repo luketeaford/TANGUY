@@ -4,16 +4,16 @@ TANGUY.update_panel = function () {
     //OSCILLATOR 1
     switch (TANGUY.program.osc1_coarse) {
     case 0.5:
-        TANGUY.multi_switch($('#osc1-32'));
+        TANGUY.button.change($('#osc1-32'));
         break;
     case 1:
-        TANGUY.multi_switch($('#osc1-16'));
+        TANGUY.button.change($('#osc1-16'));
         break;
     case 2:
-        TANGUY.multi_switch($('#osc1-8'));
+        TANGUY.button.change($('#osc1-8'));
         break;
     case 4:
-        TANGUY.multi_switch($('#osc1-4'));
+        TANGUY.button.change($('#osc1-4'));
         break;
     }
     $('#osc1-saw').val(TANGUY.program.osc1_saw);
@@ -25,30 +25,30 @@ TANGUY.update_panel = function () {
     //OSCILLATOR 2
     switch (TANGUY.program.osc2_coarse) {
     case 0.5:
-        TANGUY.multi_switch($('#osc2-32'));
+        TANGUY.button.change($('#osc2-32'));
         break;
     case 1:
-        TANGUY.multi_switch($('#osc2-16'));
+        TANGUY.button.change($('#osc2-16'));
         break;
     case 2:
-        TANGUY.multi_switch($('#osc2-8'));
+        TANGUY.button.change($('#osc2-8'));
         break;
     case 4:
-        TANGUY.multi_switch($('#osc2-4'));
+        TANGUY.button.change($('#osc2-4'));
         break;
     }
     switch (TANGUY.program.osc2_waveform) {
     case 'sawtooth':
-        TANGUY.multi_switch($('#osc2-saw'));
+        TANGUY.button.change($('#osc2-saw'));
         break;
     case 'square':
-        TANGUY.multi_switch($('#osc2-sqr'));
+        TANGUY.button.change($('#osc2-sqr'));
         break;
     case 'triangle':
-        TANGUY.multi_switch($('#osc2-tri'));
+        TANGUY.button.change($('#osc2-tri'));
         break;
     case 'sine':
-        TANGUY.multi_switch($('#osc2-sin'));
+        TANGUY.button.change($('#osc2-sin'));
         break;
     }
     $('#osc2-detune').val(TANGUY.program.osc2_detune);
@@ -59,19 +59,19 @@ TANGUY.update_panel = function () {
     //NOISE
     switch (TANGUY.program.noise_color) {
     case 'white':
-        TANGUY.multi_switch($('#white-noise'));
+        TANGUY.button.change($('#white-noise'));
         break;
     case 'pink':
-        TANGUY.multi_switch($('#pink-noise'));
+        TANGUY.button.change($('#pink-noise'));
         break;
     case 'red':
-        TANGUY.multi_switch($('#red-noise'));
+        TANGUY.button.change($('#red-noise'));
         break;
     case 'blue':
-        TANGUY.multi_switch($('#blue-noise'));
+        TANGUY.button.change($('#blue-noise'));
         break;
     case 'purple':
-        TANGUY.multi_switch($('#purple-noise'));
+        TANGUY.button.change($('#purple-noise'));
         break;
     }
 
@@ -83,19 +83,19 @@ TANGUY.update_panel = function () {
     //FILTER
     switch (TANGUY.program.filter_mode) {
     case 'lp':
-        TANGUY.multi_switch($('#filter-lp'));
+        TANGUY.button.change($('#filter-lp'));
         break;
     case 'bp':
-        TANGUY.multi_switch($('#filter-bp'));
+        TANGUY.button.change($('#filter-bp'));
         break;
     case 'hp':
-        TANGUY.multi_switch($('#filter-hp'));
+        TANGUY.button.change($('#filter-hp'));
         break;
     case 'notch':
-        TANGUY.multi_switch($('#filter-notch'));
+        TANGUY.button.change($('#filter-notch'));
         break;
     case 'off':
-        TANGUY.multi_switch($('#filter-off'));
+        TANGUY.button.change($('#filter-off'));
         break;
     }
     $('#cutoff').val(TANGUY.program.cutoff);
@@ -117,19 +117,19 @@ TANGUY.update_panel = function () {
     //LFO
     switch (TANGUY.program.lfo_shape) {
     case 'sine':
-        TANGUY.multi_switch($('#lfo-sin'));
+        TANGUY.button.change($('#lfo-sin'));
         break;
     case 'triangle':
-        TANGUY.multi_switch($('#lfo-tri'));
+        TANGUY.button.change($('#lfo-tri'));
         break;
     case 'ramp':
-        TANGUY.multi_switch($('#lfo-rmp'));
+        TANGUY.button.change($('#lfo-rmp'));
         break;
     case 'sawtooth':
-        TANGUY.multi_switch($('#lfo-saw'));
+        TANGUY.button.change($('#lfo-saw'));
         break;
     case 'square':
-        TANGUY.multi_switch($('#lfo-sqr'));
+        TANGUY.button.change($('#lfo-sqr'));
         break;
     }
     $('#lfo-rate').val(TANGUY.program.lfo_rate);
@@ -144,13 +144,13 @@ TANGUY.update_panel = function () {
     //PORTAMENTO
     switch (TANGUY.program.portamento_mode) {
     case 'off':
-        TANGUY.multi_switch($('#portamento-off'));
+        TANGUY.button.change($('#portamento-off'));
         break;
     case 'linear':
-        TANGUY.multi_switch($('#portamento-linear'));
+        TANGUY.button.change($('#portamento-linear'));
         break;
     case 'exponential':
-        TANGUY.multi_switch($('#portamento-exponential'));
+        TANGUY.button.change($('#portamento-exponential'));
         break;
     }
     $('#portamento-amount').val(TANGUY.program.portamento);

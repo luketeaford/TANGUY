@@ -5,7 +5,14 @@ TANGUY.button = {
             program: this.parentNode.parentNode.getAttribute('data-program'),
             update: this.parentNode.parentNode.getAttribute('data-update')
         };
+        TANGUY.button.change($(this));
         return $(this).one('click', config, TANGUY.store_program);
+    },
+    change: function (e) {
+        'use strict';
+        var button = e.currentTarget === undefined ? $(e) : $(e.currentTarget);
+        console.log('You did a button change');
+        return button.parent().addClass('selected').siblings().removeClass('selected');
     }
 };
 
