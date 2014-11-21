@@ -1,7 +1,8 @@
 {
-    "name": "INITIALIZE (external-testing version)",
+    "name": "INITIALIZE",
+
     "osc1_kbd": true,
-    "osc1_coarse": 0.5,
+    "osc1_coarse": 1,
     "osc1_saw": 1,
     "osc1_sqr": 0,
     "osc1_tri": 0,
@@ -9,26 +10,20 @@
     "osc1_fm": 0,
 
     "osc2_kbd": true,
-    "osc2_coarse": 2,
-    "osc2_waveform": "square",
+    "osc2_coarse": 1,
+    "osc2_waveform": "sawtooth",
     "osc2_detune": 0,
     "osc2_fine": 0,
     "osc2_shape": 0,
     "osc2_fm": 0,
 
-    "noise_color": "pink",
-
-    "lfo_shape": "ramp",
-    "lfo_rate": 0.1,
-    "lfo_pitch": 0,
-    "lfo_filter": 0,
-    "lfo_amp": 0,
+    "noise_color": "white",
 
     "osc1_mix": 1,
     "osc2_mix": 1,
     "noise_mix": 0,
 
-    "filter_mode": "notch",
+    "filter_mode": "lp",
     "cutoff": 1,
     "res": 0.0001,
     "filter_eg": 0,
@@ -44,12 +39,19 @@
     "vca_sustain": 1,
     "vca_release": 0.0001,
 
-    "portamento_mode": "linear",
+    "lfo_shape": "sine",
+    "lfo_rate": 0.1,
+    "lfo_pitch": 0,
+    "lfo_filter": 0,
+    "lfo_amp": 0,
+
+    "delay_rate": 0,
+    "delay": 0,
+
+    "portamento_mode": "off",
     "portamento": 0.01,
 
     "mod": 0,
-    "mod_direction": 1,
+    "mod_direction": 1
 
-    "delay_rate": 0,
-    "delay": 0
 }

@@ -12,7 +12,8 @@ var TANGUY = {
     key_down: false,
 
     program: {
-        "name": "INITIALIZE (internal)",
+        "name": "INITIALIZE",
+
         "osc1_kbd": true,
         "osc1_coarse": 1,
         "osc1_saw": 1,
@@ -31,18 +32,12 @@ var TANGUY = {
 
         "noise_color": "white",
 
-        "lfo_shape": "sine",
-        "lfo_rate": 0.1,
-        "lfo_pitch": 0,
-        "lfo_filter": 0,
-        "lfo_amp": 0,
-
         "osc1_mix": 1,
         "osc2_mix": 1,
         "noise_mix": 0,
 
         "filter_mode": "lp",
-        "cutoff": 22050,
+        "cutoff": 1,
         "res": 0.0001,
         "filter_eg": 0,
         "filter_kbd": 0,
@@ -57,13 +52,19 @@ var TANGUY = {
         "vca_sustain": 1,
         "vca_release": 0.0001,
 
+        "lfo_shape": "sine",
+        "lfo_rate": 0.1,
+        "lfo_pitch": 0,
+        "lfo_filter": 0,
+        "lfo_amp": 0,
+
+        "delay_rate": 0,
+        "delay": 0,
+
         "portamento_mode": "off",
         "portamento": 0.01,
 
         "mod": 0,
-        "mod_direction": 1,
-
-        "delay_rate": 0,
-        "delay": 0
+        "mod_direction": 1
     }
 };
