@@ -2,21 +2,21 @@
     "name": "INITIALIZE (external-testing version)",
     "osc1_kbd": true,
     "osc1_coarse": 1,
-    "osc1_saw": 0,
-    "osc1_sqr": 1,
+    "osc1_saw": 1,
+    "osc1_sqr": 0,
     "osc1_tri": 0,
     "osc1_sin": 0,
-    "osc1_fm": 0.25,
+    "osc1_fm": 0,
 
     "osc2_kbd": true,
     "osc2_coarse": 1,
-    "osc2_waveform": "square",
+    "osc2_waveform": "triangle",
     "osc2_detune": 0,
     "osc2_fine": 0,
     "osc2_shape": 0,
     "osc2_fm": 0,
 
-    "noise_color": "white",
+    "noise_color": "red",
 
     "lfo_shape": "sine",
     "lfo_rate": 0.1,
@@ -24,8 +24,8 @@
     "lfo_filter": 0,
     "lfo_amp": 0,
 
-    "osc1_mix": 0.1,
-    "osc2_mix": 0.8,
+    "osc1_mix": 1,
+    "osc2_mix": 1,
     "noise_mix": 0,
 
     "filter_mode": "lp",
@@ -35,13 +35,13 @@
     "filter_kbd": 0,
     "filter_attack": 0.008,
     "filter_decay": 0.008,
-    "filter_sustain": 1,
+    "filter_sustain": 0,
     "filter_release": 0.008,
 
     "vca_gain": 0,
     "vca_attack": 0.0001,
     "vca_decay": 0.0001,
-    "vca_sustain": 0.8,
+    "vca_sustain": 1,
     "vca_release": 0.0001,
 
     "portamento_mode": "off",

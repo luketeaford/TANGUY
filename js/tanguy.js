@@ -165,6 +165,20 @@ TANGUY.update_panel = function () {
     'use strict';
 
     //OSCILLATOR 1
+    switch (TANGUY.program.osc1_coarse) {
+    case 0.5:
+        TANGUY.multi_switch($('#osc1-32'));
+        break;
+    case 1:
+        TANGUY.multi_switch($('#osc1-16'));
+        break;
+    case 2:
+        TANGUY.multi_switch($('#osc1-8'));
+        break;
+    case 4:
+        TANGUY.multi_switch($('#osc1-4'));
+        break;
+    }
     $('#osc1-saw').val(TANGUY.program.osc1_saw);
     $('#osc1-sqr').val(TANGUY.program.osc1_sqr);
     $('#osc1-tri').val(TANGUY.program.osc1_tri);
@@ -172,12 +186,57 @@ TANGUY.update_panel = function () {
     $('#osc1-fm').val(TANGUY.program.osc1_fm);
 
     //OSCILLATOR 2
+    switch (TANGUY.program.osc2_coarse) {
+    case 0.5:
+        TANGUY.multi_switch($('#osc2-32'));
+        break;
+    case 1:
+        TANGUY.multi_switch($('#osc2-16'));
+        break;
+    case 2:
+        TANGUY.multi_switch($('#osc2-8'));
+        break;
+    case 4:
+        TANGUY.multi_switch($('#osc2-4'));
+        break;
+    }
+    switch (TANGUY.program.osc2_waveform) {
+    case 'sawtooth':
+        TANGUY.multi_switch($('#osc2-saw'));
+        break;
+    case 'square':
+        TANGUY.multi_switch($('#osc2-sqr'));
+        break;
+    case 'triangle':
+        TANGUY.multi_switch($('#osc2-tri'));
+        break;
+    case 'sine':
+        TANGUY.multi_switch($('#osc2-sin'));
+        break;
+    }
     $('#osc2-detune').val(TANGUY.program.osc2_detune);
     $('#osc2-fine').val(TANGUY.program.osc2_fine);
     $('#osc2-waveshape').val(TANGUY.program.osc2_shape);
     $('#osc2-fm').val(TANGUY.program.osc2_fm);
 
     //NOISE
+    switch (TANGUY.program.noise_color) {
+    case 'white':
+        TANGUY.multi_switch($('#white-noise'));
+        break;
+    case 'pink':
+        TANGUY.multi_switch($('#pink-noise'));
+        break;
+    case 'red':
+        TANGUY.multi_switch($('#red-noise'));
+        break;
+    case 'blue':
+        TANGUY.multi_switch($('#blue-noise'));
+        break;
+    case 'purple':
+        TANGUY.multi_switch($('#purple-noise'));
+        break;
+    }
 
     //MIXER
     $('#osc1-mix').val(TANGUY.program.osc1_mix);
@@ -185,6 +244,23 @@ TANGUY.update_panel = function () {
     $('#noise-mix').val(TANGUY.program.noise_mix);
 
     //FILTER
+    switch (TANGUY.program.filter_mode) {
+    case 'lp':
+        TANGUY.multi_switch($('#filter-lp'));
+        break;
+    case 'bp':
+        TANGUY.multi_switch($('#filter-bp'));
+        break;
+    case 'hp':
+        TANGUY.multi_switch($('#filter-hp'));
+        break;
+    case 'notch':
+        TANGUY.multi_switch($('#filter-notch'));
+        break;
+    case 'off':
+        TANGUY.multi_switch($('#filter-off'));
+        break;
+    }
     $('#cutoff').val(TANGUY.program.cutoff);
     $('#resonance').val(TANGUY.program.res);
     $('#filter-envelope-amount').val(TANGUY.program.filter_eg);
@@ -202,6 +278,23 @@ TANGUY.update_panel = function () {
     $('#vca-gain').val(TANGUY.program.vca_gain);
 
     //LFO
+    switch (TANGUY.program.lfo_shape) {
+    case 'sine':
+        TANGUY.multi_switch($('#lfo-sin'));
+        break;
+    case 'triangle':
+        TANGUY.multi_switch($('#lfo-tri'));
+        break;
+    case 'ramp':
+        TANGUY.multi_switch($('#lfo-rmp'));
+        break;
+    case 'sawtooth':
+        TANGUY.multi_switch($('#lfo-saw'));
+        break;
+    case 'square':
+        TANGUY.multi_switch($('#lfo-sqr'));
+        break;
+    }
     $('#lfo-rate').val(TANGUY.program.lfo_rate);
     $('#lfo-pitch').val(TANGUY.program.lfo_pitch);
     $('#lfo-filter').val(TANGUY.program.lfo_filter);
@@ -212,10 +305,21 @@ TANGUY.update_panel = function () {
     $('#delay-amount').val(TANGUY.program.delay);
 
     //PORTAMENTO
+    switch (TANGUY.program.portamento_mode) {
+    case 'off':
+        TANGUY.multi_switch($('#portamento-off'));
+        break;
+    case 'linear':
+        TANGUY.multi_switch($('#portamento-linear'));
+        break;
+    case 'exponential':
+        TANGUY.multi_switch($('#portamento-exponential'));
+        break;
+    }
     $('#portamento-amount').val(TANGUY.program.portamento);
 
     //MODWHEEL
-    $('#mod-amount').val(TANGUY.program.mod_amt);
+    $('#mod-amount').val(TANGUY.program.mod);
 
 };
 TANGUY.shift_octave = function (direction) {
@@ -245,11 +349,24 @@ $('#octave-shift').on('click', 'button', function () {
 });
 TANGUY.multi_switch = function (e) {
     'use strict';
-    $(e.currentTarget).parent().addClass('selected').siblings().removeClass('selected');
+    if (e.currentTarget === undefined) {
+        console.log('TARGET NOT FOUND');
+        $(e).parent().addClass('selected').siblings().removeClass('selected');
+    } else {
+        return $(e.currentTarget).parent().addClass('selected').siblings().removeClass('selected');
+    }
 };
 
 //MULTI-SWITCH CONTROLS
 $('#osc1-coarse, #osc2-coarse, #portamento-mode, #osc2-waveform, #noise-color, #filter-mode, #lfo-shape').on('click', 'input', $(this), TANGUY.multi_switch);
+
+    //osc1-coarse
+    //osc2-coarse
+    //osc2-waveform
+    //noise-color
+    //filter-mode
+    //lfo-shape
+//portamento-mode
 TANGUY.calculate_pitch = function (pos, note_value) {
     'use strict';
     var note = ((TANGUY.octave_shift + pos) * 1200) + note_value,
@@ -833,6 +950,7 @@ TANGUY.update_noise_color = function () {
     }
     return;
 };
+
 TANGUY.update_lfo_shape = function () {
     'use strict';
     switch (TANGUY.program.lfo_shape) {

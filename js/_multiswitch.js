@@ -1,6 +1,10 @@
 TANGUY.multi_switch = function (e) {
     'use strict';
-    $(e.currentTarget).parent().addClass('selected').siblings().removeClass('selected');
+    if (e.currentTarget === undefined) {
+        $(e).parent().addClass('selected').siblings().removeClass('selected');
+    } else {
+        return $(e.currentTarget).parent().addClass('selected').siblings().removeClass('selected');
+    }
 };
 
 //MULTI-SWITCH CONTROLS
