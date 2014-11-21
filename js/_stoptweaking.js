@@ -1,5 +1,0 @@
-//EVENTUALLY, THIS CAN BE DELETED
-TANGUY.stop_tweaking = function () {
-    'use strict';
-    return $(this).unbind('mousemove');
-};
