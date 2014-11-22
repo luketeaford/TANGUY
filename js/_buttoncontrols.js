@@ -11,7 +11,6 @@ TANGUY.button = {
     change: function (e) {
         'use strict';
         var button = e.currentTarget === undefined ? $(e) : $(e.currentTarget);
-        console.log('You did a button change');
         return button.parent().addClass('selected').siblings().removeClass('selected');
     }
 };

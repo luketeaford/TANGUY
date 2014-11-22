@@ -10,6 +10,7 @@ TANGUY.update_program = function () {
     TANGUY.update_osc1_fm_amt();
 
     //OSCILLATOR 2
+    TANGUY.update_osc2_kbd();
     TANGUY.update_osc2_coarse();
     TANGUY.update_osc2_waveform();
     TANGUY.update_osc2_detune();
@@ -41,8 +42,6 @@ TANGUY.update_program = function () {
     //DELAY
     TANGUY.update_delay_rate();
     TANGUY.update_delay_amt();
-
-    //PORTAMENTO
 
     return TANGUY.update_panel();
 };

@@ -11,6 +11,7 @@ TANGUY.load_program = function (patch) {
             x;
 
         TANGUY.program = loaded;
+
         //OSCILLATOR 1 KBD TRACKING
         if (TANGUY.program.osc1_kbd === true) {
             osc1_kbd.prop('checked', true);
@@ -103,7 +104,7 @@ TANGUY.load_program = function (patch) {
         } else {
             TANGUY.waveshaper.curve = null;
         }
-        TANGUY.osc2_fm_vca.gain.setValueAtTime(TANGUY.program.osc2_fm * TANGUY.program.osc2_fm * 24000, TANGUY.synth.currentTime);//parens needed?
+        TANGUY.osc2_fm_vca.gain.setValueAtTime(TANGUY.program.osc2_fm * TANGUY.program.osc2_fm * 24000, TANGUY.synth.currentTime);
 
         //NOISE
         switch (TANGUY.program.noise_color) {

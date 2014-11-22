@@ -1,4 +1,4 @@
-//MODWHEEL CONTROLS - GOOD
+//MODWHEEL CONTROLS
 TANGUY.calculate_lfo = function () {
     'use strict';
     var amt = TANGUY.program.mod * TANGUY.program.mod_direction;

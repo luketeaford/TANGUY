@@ -95,14 +95,7 @@ TANGUY.save_program = function () {
 TANGUY.load_program = function (patch) {
     'use strict';
     var patch_url = encodeURI('programs/') + patch + '.json';
-        //osc1 = [TANGUY.osc1_saw, TANGUY.osc1_sqr, TANGUY.osc1_tri, TANGUY.osc1_sin],
-        //delay = [TANGUY.delay1, TANGUY.delay2, TANGUY.delay3, TANGUY.delay4],
-        //delay_vcas = [TANGUY.delay1_vca, TANGUY.delay2_vca, TANGUY.delay3_vca, TANGUY.delay4_vca],
-        //i;
     $.getJSON(decodeURI(patch_url), function (loaded) {
-        //var osc1_kbd = $('#osc1-kbd'),
-        //    osc2_kbd = $('#osc2-kbd'),
-        //    x;
         TANGUY.program = loaded;
         return TANGUY.update_program();
     });
@@ -126,6 +119,7 @@ TANGUY.update_program = function () {
     TANGUY.update_osc1_fm_amt();
 
     //OSCILLATOR 2
+    TANGUY.update_osc2_kbd();
     TANGUY.update_osc2_coarse();
     TANGUY.update_osc2_waveform();
     TANGUY.update_osc2_detune();
@@ -157,8 +151,6 @@ TANGUY.update_program = function () {
     //DELAY
     TANGUY.update_delay_rate();
     TANGUY.update_delay_amt();
-
-    //PORTAMENTO
 
     return TANGUY.update_panel();
 };
@@ -365,15 +357,14 @@ TANGUY.calculate_pitch = function (pos, note_value) {
                 TANGUY.osc2.detune.setValueAtTime(osc2_note, TANGUY.synth.currentTime);
             }
         },
-        //I BET THE PARSE FLOATS ARE NOT NEEDED
         linear_portamento = function () {
             if (TANGUY.program.osc1_kbd === true) {
                 for (i = 0; i < 4; i += 1) {
-                    osc1[i].detune.linearRampToValueAtTime(note, TANGUY.synth.currentTime + parseFloat(TANGUY.program.portamento));
+                    osc1[i].detune.linearRampToValueAtTime(note, TANGUY.synth.currentTime + TANGUY.program.portamento);
                 }
             }
             if (TANGUY.program.osc2_kbd === true) {
-                TANGUY.osc2.detune.linearRampToValueAtTime(osc2_note, TANGUY.synth.currentTime + parseFloat(TANGUY.program.portamento));
+                TANGUY.osc2.detune.linearRampToValueAtTime(osc2_note, TANGUY.synth.currentTime + TANGUY.program.portamento);
             }
         },
         exponential_portamento = function () {
@@ -803,7 +794,6 @@ $(document).ready(function () {
     TANGUY.build_synth();
     TANGUY.load_program('initialize');
 });
-//OSCILLATOR 1 BUTTONS - GOOD
 TANGUY.update_osc1_coarse = function () {
     'use strict';
     var osc1 = [TANGUY.osc1_saw, TANGUY.osc1_sqr, TANGUY.osc1_tri, TANGUY.osc1_sin],
@@ -814,7 +804,6 @@ TANGUY.update_osc1_coarse = function () {
     return;
 };
 
-//OSCILLATOR 1 SLIDERS - GOOD
 TANGUY.update_osc1_saw_amt = function () {
     'use strict';
     return TANGUY.osc1_saw_vca.gain.setValueAtTime(TANGUY.program.osc1_saw * TANGUY.program.osc1_saw, TANGUY.synth.currentTime);
@@ -839,14 +828,14 @@ TANGUY.update_osc1_fm_amt = function () {
     'use strict';
     return TANGUY.osc1_fm_vca.gain.setValueAtTime(TANGUY.program.osc1_fm * TANGUY.program.osc1_fm * 24000, TANGUY.synth.currentTime);
 };
-//OSCILLATOR 2 CONTROLS - TOTAL GARBAGE
+//OSCILLATOR 2 KEYBOARD TRACKING
 TANGUY.update_osc2_kbd = function () {
     'use strict';
-    $('#osc2').off('click', '#osc2-kbd', TANGUY.button.tick);
+    console.log('Updating osc 2 kbd');
+    return;
 };
 
-
-//OSCILLATOR 2 NEW BUTTON CONTROLS
+//OSCILLATOR 2 CONTROLS - GOOD
 TANGUY.update_osc2_coarse = function () {
     'use strict';
     return TANGUY.osc2.frequency.setValueAtTime(TANGUY.osc2_master_pitch * TANGUY.program.osc2_coarse, TANGUY.synth.currentTime);
@@ -858,10 +847,6 @@ TANGUY.update_osc2_waveform = function () {
     return;
 };
 
-
-//OSCILLATOR 2 CONTROLS - GOOD
-// what is osc2_pitch? why isn't that on fine tune?
-// watch out for the coarse tuning which will break sometime soon
 TANGUY.update_osc2_detune = function () {
     'use strict';
     if (TANGUY.osc2_pitch === undefined) {
@@ -971,14 +956,12 @@ TANGUY.update_lfo_amp = function () {
     'use strict';
     return TANGUY.lfo_amp_vca.gain.setValueAtTime(TANGUY.program.lfo_amp * TANGUY.program.mod * TANGUY.program.mod_direction, TANGUY.synth.currentTime);
 };
-//DELAY CONTROLS - GOOD
 TANGUY.update_delay_rate = function () {
     'use strict';
     var delay = [TANGUY.delay1, TANGUY.delay2, TANGUY.delay3, TANGUY.delay4],
         i;
     for (i = 0; i < 4; i += 1) {
-        //delay[i].delayTime.value = TANGUY.program.delay_rate * 2; OLD WAY
-        delay[i].delayTime.setValueAtTime(TANGUY.program.delay_rate * 2, TANGUY.synth.currentTime);//Performance may be slightly worse? (clicks)
+        delay[i].delayTime.setValueAtTime(TANGUY.program.delay_rate * 2, TANGUY.synth.currentTime);
     }
     return;
 };
@@ -988,12 +971,10 @@ TANGUY.update_delay_amt = function () {
     var delay = [TANGUY.delay1_vca, TANGUY.delay2_vca, TANGUY.delay3_vca, TANGUY.delay4_vca],
         i;
     for (i = 0; i < 4; i += 1) {
-        //delay[i].gain.value = TANGUY.program.delay * TANGUY.program.delay;
         delay[i].gain.setValueAtTime(TANGUY.program.delay * TANGUY.program.delay, TANGUY.synth.currentTime);
     }
     return;
 };
-//MIXER CONTROLS - GOOD
 TANGUY.update_osc1_mix = function () {
     'use strict';
     return TANGUY.osc1_vca.gain.setValueAtTime(TANGUY.program.osc1_mix * TANGUY.program.osc1_mix, TANGUY.synth.currentTime);
@@ -1089,7 +1070,6 @@ TANGUY.update_resonance = function () {
         break;
     }
 };
-//VCA CONTROLS - GOOD
 TANGUY.update_vca_gain = function () {
     'use strict';
     return TANGUY.vca.gain.setTargetAtTime(TANGUY.program.vca_gain * TANGUY.program.vca_gain, TANGUY.synth.currentTime, 0.01);
@@ -1112,7 +1092,7 @@ $('#pitch-bend').mousedown(function () {
         TANGUY.osc2.detune.setTargetAtTime(TANGUY.osc2_pitch + (this.value * 100), TANGUY.synth.currentTime, 0.2);
     });
 });
-//MODWHEEL CONTROLS - GOOD
+//MODWHEEL CONTROLS
 TANGUY.calculate_lfo = function () {
     'use strict';
     var amt = TANGUY.program.mod * TANGUY.program.mod_direction;
@@ -1163,7 +1143,6 @@ TANGUY.button = {
     change: function (e) {
         'use strict';
         var button = e.currentTarget === undefined ? $(e) : $(e.currentTarget);
-        console.log('You did a button change');
         return button.parent().addClass('selected').siblings().removeClass('selected');
     }
 };

@@ -1,11 +1,11 @@
-//OSCILLATOR 2 CONTROLS - TOTAL GARBAGE
+//OSCILLATOR 2 KEYBOARD TRACKING
 TANGUY.update_osc2_kbd = function () {
     'use strict';
-    $('#osc2').off('click', '#osc2-kbd', TANGUY.button.tick);
+    console.log('Updating osc 2 kbd');
+    return;
 };
 
-
-//OSCILLATOR 2 NEW BUTTON CONTROLS
+//OSCILLATOR 2 CONTROLS - GOOD
 TANGUY.update_osc2_coarse = function () {
     'use strict';
     return TANGUY.osc2.frequency.setValueAtTime(TANGUY.osc2_master_pitch * TANGUY.program.osc2_coarse, TANGUY.synth.currentTime);
@@ -17,10 +17,6 @@ TANGUY.update_osc2_waveform = function () {
     return;
 };
 
-
-//OSCILLATOR 2 CONTROLS - GOOD
-// what is osc2_pitch? why isn't that on fine tune?
-// watch out for the coarse tuning which will break sometime soon
 TANGUY.update_osc2_detune = function () {
     'use strict';
     if (TANGUY.osc2_pitch === undefined) {

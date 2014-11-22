@@ -15,15 +15,14 @@ TANGUY.calculate_pitch = function (pos, note_value) {
                 TANGUY.osc2.detune.setValueAtTime(osc2_note, TANGUY.synth.currentTime);
             }
         },
-        //I BET THE PARSE FLOATS ARE NOT NEEDED
         linear_portamento = function () {
             if (TANGUY.program.osc1_kbd === true) {
                 for (i = 0; i < 4; i += 1) {
-                    osc1[i].detune.linearRampToValueAtTime(note, TANGUY.synth.currentTime + parseFloat(TANGUY.program.portamento));
+                    osc1[i].detune.linearRampToValueAtTime(note, TANGUY.synth.currentTime + TANGUY.program.portamento);
                 }
             }
             if (TANGUY.program.osc2_kbd === true) {
-                TANGUY.osc2.detune.linearRampToValueAtTime(osc2_note, TANGUY.synth.currentTime + parseFloat(TANGUY.program.portamento));
+                TANGUY.osc2.detune.linearRampToValueAtTime(osc2_note, TANGUY.synth.currentTime + TANGUY.program.portamento);
             }
         },
         exponential_portamento = function () {

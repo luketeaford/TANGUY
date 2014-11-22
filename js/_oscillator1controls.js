@@ -1,4 +1,3 @@
-//OSCILLATOR 1 BUTTONS - GOOD
 TANGUY.update_osc1_coarse = function () {
     'use strict';
     var osc1 = [TANGUY.osc1_saw, TANGUY.osc1_sqr, TANGUY.osc1_tri, TANGUY.osc1_sin],
@@ -9,7 +8,6 @@ TANGUY.update_osc1_coarse = function () {
     return;
 };
 
-//OSCILLATOR 1 SLIDERS - GOOD
 TANGUY.update_osc1_saw_amt = function () {
     'use strict';
     return TANGUY.osc1_saw_vca.gain.setValueAtTime(TANGUY.program.osc1_saw * TANGUY.program.osc1_saw, TANGUY.synth.currentTime);
