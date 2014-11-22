@@ -64,6 +64,8 @@
 		}
 	}
 }
+#osc1-kbd,
+#osc2-kbd,
 #osc1-coarse,
 #osc2-coarse,
 #portamento-mode {
@@ -74,4 +76,9 @@
 #filter-mode,
 #lfo-shape {
 	@extend %vertical-multi-switch;
+}
+#osc1-kbd,
+#osc2-kbd {
+	margin: 0 0 0 1.5rem;
+	position: absolute;
 }

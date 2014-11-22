@@ -75,9 +75,9 @@
 
     <section id="osc1">
       <h2 class="osc-title">Oscillator One</h2>
-      <div class="osc-tracking">
-        <label for="osc1-kbd">Track Keyboard</label>
-        <input checked data-program="osc1_kbd" data-update="update_osc1_kbd" id="osc1-kbd" type="checkbox" value="1">
+      <div data-program="osc1_kbd" id="osc1-kbd">
+        <label><input id="osc1-off" name="osc1-kbd-tracking" type="radio" value="off">Off</label>
+        <label class="selected"><input id="osc1-on" name="osc1-kbd-tracking" type="radio" value="on">On</label>
       </div>
       <br>
       <div data-program="osc1_coarse" data-update="update_osc1_coarse" id="osc1-coarse">
@@ -111,9 +111,9 @@
 
     <section id="osc2">
       <h2 class="osc-title">Oscillator Two</h2>
-      <div class="osc-tracking">
-        <label for="osc2-kbd">Track Keyboard</label>
-        <input checked data-program="osc2_kbd" data-update="update_osc2_kbd" id="osc2-kbd" type="checkbox" value="1">
+      <div data-program="osc2_kbd" id="osc2-kbd">
+        <label><input id="osc2-off" name="osc2-kbd-tracking" type="radio" value="off">Off</label>
+        <label class="selected"><input id="osc2-on" name="osc2-kbd-tracking" type="radio" value="on">On</label>
       </div>
       <br>
       <div data-program="osc2_coarse" data-update="update_osc2_coarse" id="osc2-coarse">

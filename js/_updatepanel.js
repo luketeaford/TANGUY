@@ -1,6 +1,13 @@
 TANGUY.update_panel = function () {
     'use strict';
 
+    //OSC 1 KEYTRACKING
+    if (TANGUY.program.osc1_kbd) {
+        TANGUY.button.change($('#osc1-on'));
+    } else {
+        TANGUY.button.change($('#osc1-off'));
+    }
+
     //OSCILLATOR 1
     switch (TANGUY.program.osc1_coarse) {
     case 0.5:
@@ -23,6 +30,13 @@ TANGUY.update_panel = function () {
     $('#osc1-fm').val(TANGUY.program.osc1_fm);
 
     //OSCILLATOR 2
+    //OSC 2 KEYTRACKING
+    if (TANGUY.program.osc2_kbd) {
+        TANGUY.button.change($('#osc2-on'));
+    } else {
+        TANGUY.button.change($('#osc2-off'));
+    }
+
     switch (TANGUY.program.osc2_coarse) {
     case 0.5:
         TANGUY.button.change($('#osc2-32'));

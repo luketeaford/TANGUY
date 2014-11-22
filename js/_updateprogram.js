@@ -10,7 +10,6 @@ TANGUY.update_program = function () {
     TANGUY.update_osc1_fm_amt();
 
     //OSCILLATOR 2
-    TANGUY.update_osc2_kbd();
     TANGUY.update_osc2_coarse();
     TANGUY.update_osc2_waveform();
     TANGUY.update_osc2_detune();

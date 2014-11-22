@@ -16,7 +16,9 @@ TANGUY.button = {
 };
 
 //SLOPPY BINDINGS
+$('#osc1-kbd').on('change', 'input', TANGUY.button.touch);
 $('#osc1-coarse').on('change', 'input', TANGUY.button.touch);
+$('#osc2-kbd').on('change', 'input', TANGUY.button.touch);
 $('#osc2-coarse').on('change', 'input', TANGUY.button.touch);
 $('#osc2-waveform').on('change', 'input', TANGUY.button.touch);
 $('#noise-color').on('change', 'input', TANGUY.button.touch);

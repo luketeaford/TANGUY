@@ -52,6 +52,7 @@ gulp.task('sass', function() {
     return gulp.src('css/*.scss')
     .pipe(sass({style: 'compressed'}))
     .on('error', function (err) { console.log(err.message); })
+    .pipe(gulp.dest('css'))
     .pipe(gulp.dest('tanguy/css'))
 });
 

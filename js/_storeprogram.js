@@ -3,7 +3,7 @@ TANGUY.store_program = function (e) {
     switch (e.data.program) {
     case 'osc1_kbd':
     case 'osc2_kbd':
-        TANGUY.program[e.data.program] = e.currentTarget.checked;
+        TANGUY.program[e.data.program] = e.currentTarget.value === 'on' ? true : false;
         break;
     case 'osc2_waveform':
     case 'noise_color':

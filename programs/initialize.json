@@ -1,7 +1,7 @@
 {
     "name": "INITIALIZE",
 
-    "osc1_kbd": true,
+    "osc1_kbd": false,
     "osc1_coarse": 1,
     "osc1_saw": 1,
     "osc1_sqr": 0,
@@ -9,7 +9,7 @@
     "osc1_sin": 0,
     "osc1_fm": 0,
 
-    "osc2_kbd": true,
+    "osc2_kbd": false,
     "osc2_coarse": 1,
     "osc2_waveform": "sawtooth",
     "osc2_detune": 0,
@@ -20,7 +20,7 @@
     "noise_color": "white",
 
     "osc1_mix": 1,
-    "osc2_mix": 1,
+    "osc2_mix": 0,
     "noise_mix": 0,
 
     "filter_mode": "lp",

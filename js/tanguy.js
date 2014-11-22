@@ -119,7 +119,6 @@ TANGUY.update_program = function () {
     TANGUY.update_osc1_fm_amt();
 
     //OSCILLATOR 2
-    TANGUY.update_osc2_kbd();
     TANGUY.update_osc2_coarse();
     TANGUY.update_osc2_waveform();
     TANGUY.update_osc2_detune();
@@ -157,6 +156,13 @@ TANGUY.update_program = function () {
 TANGUY.update_panel = function () {
     'use strict';
 
+    //OSC 1 KEYTRACKING
+    if (TANGUY.program.osc1_kbd) {
+        TANGUY.button.change($('#osc1-on'));
+    } else {
+        TANGUY.button.change($('#osc1-off'));
+    }
+
     //OSCILLATOR 1
     switch (TANGUY.program.osc1_coarse) {
     case 0.5:
@@ -179,6 +185,13 @@ TANGUY.update_panel = function () {
     $('#osc1-fm').val(TANGUY.program.osc1_fm);
 
     //OSCILLATOR 2
+    //OSC 2 KEYTRACKING
+    if (TANGUY.program.osc2_kbd) {
+        TANGUY.button.change($('#osc2-on'));
+    } else {
+        TANGUY.button.change($('#osc2-off'));
+    }
+
     switch (TANGUY.program.osc2_coarse) {
     case 0.5:
         TANGUY.button.change($('#osc2-32'));
@@ -1148,7 +1161,9 @@ TANGUY.button = {
 };
 
 //SLOPPY BINDINGS
+$('#osc1-kbd').on('change', 'input', TANGUY.button.touch);
 $('#osc1-coarse').on('change', 'input', TANGUY.button.touch);
+$('#osc2-kbd').on('change', 'input', TANGUY.button.touch);
 $('#osc2-coarse').on('change', 'input', TANGUY.button.touch);
 $('#osc2-waveform').on('change', 'input', TANGUY.button.touch);
 $('#noise-color').on('change', 'input', TANGUY.button.touch);
@@ -1160,7 +1175,7 @@ TANGUY.store_program = function (e) {
     switch (e.data.program) {
     case 'osc1_kbd':
     case 'osc2_kbd':
-        TANGUY.program[e.data.program] = e.currentTarget.checked;
+        TANGUY.program[e.data.program] = e.currentTarget.value === 'on' ? true : false;
         break;
     case 'osc2_waveform':
     case 'noise_color':
