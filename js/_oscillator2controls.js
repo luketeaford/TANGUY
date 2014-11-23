@@ -1,11 +1,3 @@
-//OSCILLATOR 2 KEYBOARD TRACKING
-TANGUY.update_osc2_kbd = function () {
-    'use strict';
-    console.log('Updating osc 2 kbd');
-    return;
-};
-
-//OSCILLATOR 2 CONTROLS - GOOD
 TANGUY.update_osc2_coarse = function () {
     'use strict';
     return TANGUY.osc2.frequency.setValueAtTime(TANGUY.osc2_master_pitch * TANGUY.program.osc2_coarse, TANGUY.synth.currentTime);

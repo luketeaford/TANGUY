@@ -106,7 +106,7 @@
       </div>
       <div class="slider-wrapper">
         <input class="vertical-slider" data-program="osc1_fm" data-update="update_osc1_fm" id="osc1-fm" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-        <label class="slider-label" for="osc1-fm"><abbr title="Oscillator 1 Frequency Modulation Amount">FM Amt.</abbr></label>
+        <label class="slider-label" for="osc1-fm">FM Amt.</label>
       </div>
     </section>
 
@@ -127,7 +127,7 @@
       <div data-program="osc2_waveform" data-update="update_osc2_waveform" id="osc2-waveform">
         <label class="selected"><input id="osc2-saw" name="osc2-wave" type="radio" value="sawtooth">Saw</label>
         <label><input id="osc2-sqr" name="osc2-wave" type="radio" value="square">Square</label>
-        <label><input id="osc2-tri" name="osc2-wave" type="radio" value="triangle"><abbr title="Triangle">Tri.</abbr></label>
+        <label><input id="osc2-tri" name="osc2-wave" type="radio" value="triangle">Tri.</label>
         <label><input id="osc2-sin" name="osc2-wave" type="radio" value="sine">Sine</label>
       </div>
       <div class="slider-wrapper">
@@ -144,7 +144,7 @@
       </div>
       <div class="slider-wrapper">
         <input class="vertical-slider" data-program="osc2_fm" data-update="update_osc2_fm" id="osc2-fm" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-        <label class="slider-label" for="osc2-fm"><abbr title="Oscillator 2 Frequency Modulation Amount">FM Amt.</abbr></label>
+        <label class="slider-label" for="osc2-fm">FM Amt.</label>
       </div>
     </section>
 
@@ -163,11 +163,11 @@
       <h2>Mixer</h2>
       <div class="slider-wrapper">
         <input class="vertical-slider" data-program="osc1_mix" data-update="update_osc1_mix" id="osc1-mix" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
-        <label class="slider-label" for="osc1-mix"><abbr title="Oscillator One">Osc. 1</abbr></label>
+        <label class="slider-label" for="osc1-mix">Osc. 1</label>
       </div>
       <div class="slider-wrapper">
         <input class="vertical-slider" data-program="osc2_mix" data-update="update_osc2_mix" id="osc2-mix" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
-        <label class="slider-label" for="osc2-mix"><abbr title="Oscillator Two">Osc. 2</abbr></label>
+        <label class="slider-label" for="osc2-mix">Osc. 2</label>
       </div>
       <div class="slider-wrapper">
         <input class="vertical-slider" data-program="noise_mix" data-update="update_noise_mix" id="noise-mix" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
@@ -180,9 +180,9 @@
     <section id="filter">
       <h2>Filter</h2>
       <div data-program="filter_mode" data-update="update_filter_mode" id="filter-mode">
-        <label class="selected"><input id="filter-lp" name="filter-type" type="radio" value="lp"><abbr title="Low Pass">LP</abbr></label>
-        <label><input id="filter-bp" name="filter-type" type="radio" value="bp"><abbr title="Band Pass">BP</abbr></label>
-        <label><input id="filter-hp" name="filter-type" type="radio" value="hp"><abbr title="High Pass">HP</abbr></label>
+        <label class="selected"><input id="filter-lp" name="filter-type" type="radio" value="lp">LP</label>
+        <label><input id="filter-bp" name="filter-type" type="radio" value="bp">BP</label>
+        <label><input id="filter-hp" name="filter-type" type="radio" value="hp">HP</label>
         <label><input id="filter-notch" name="filter-type" type="radio" value="notch">Notch</label>
         <label><input id="filter-off" name="filter-type" type="radio" value="off">Off</label>
       </div>
@@ -192,15 +192,15 @@
       </div>
       <div class="slider-wrapper">
         <input class="vertical-slider" data-program="res" data-update="update_resonance" id="resonance" max="1" min="0.0001" orient="vertical" step="0.0001" type="range" value="0.0001">
-        <label class="slider-label" for="resonance"><abbr title="Resonance">Res.</abbr></label>
+        <label class="slider-label" for="resonance">Res.</label>
       </div>
       <div class="slider-wrapper">
-        <input class="vertical-slider" data-program="filter_eg" id="filter-envelope-amount" max="1" min="-1" orient="vertical" step="0.0001" type="range" value="0">
-        <label class="slider-label" for="filter-envelope-amount"><abbr title="Envelope Amount">Env. Amt.</abbr></label>
+        <input class="vertical-slider" data-program="filter_eg" id="filter-eg-amt" max="1" min="-1" orient="vertical" step="0.0001" type="range" value="0">
+        <label class="slider-label" for="filter-eg-amt">Env. Amt.</label>
       </div>
       <div class="slider-wrapper">
-        <input class="vertical-slider" data-program="filter_kbd" id="filter-keyboard-tracking" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-        <label class="slider-label" for="filter-keyboard-tracking"><abbr title="Keyboard Tracking">Kbd.</abbr></label>
+        <input class="vertical-slider" data-program="filter_kbd" id="filter-kbd" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        <label class="slider-label" for="filter-kbd">Kbd.</label>
       </div>
     </section>
 
@@ -225,7 +225,7 @@
     </section>
 
     <section id="vca-eg">
-      <h2><abbr title="Voltage Controlled Amplifier">VCA</abbr> Envelope Generator</h2>
+      <h2>VCA Envelope Generator</h2>
       <div class="slider-wrapper">
         <input class="vertical-slider" data-program="vca_attack" id="vca-attack" max="1" min="0.0008" orient="vertical" step="0.0001" type="range" value="0.0008">
         <label class="slider-label" for="vca-attack">Attack</label>
@@ -244,17 +244,17 @@
       </div>
       <div class="slider-wrapper">
         <input class="vertical-slider" data-program="vca_gain" data-update="update_vca_gain" id="vca-gain" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-        <label class="slider-label" for="vca-gain"><abbr title="Voltage Controlled Amplifier Gain">VCA Gain</abbr></label>
+        <label class="slider-label" for="vca-gain">VCA Gain</label>
       </div>
     </section>
 
     <br>
 
     <section id="lfo">
-      <h2><abbr title="Low Frequency Oscillator">LFO</abbr></h2>
+      <h2>LFO</h2>
       <div data-program="lfo_shape" data-update="update_lfo_shape" id="lfo-shape">
         <label class="selected"><input id="lfo-sin" name="lfo-shape" type="radio" value="sine">Sine</label>
-        <label><input id="lfo-tri" name="lfo-shape" type="radio" value="triangle"><abbr title="Triangle">Tri.</abbr></label>
+        <label><input id="lfo-tri" name="lfo-shape" type="radio" value="triangle">Tri.</label>
         <label><input id="lfo-rmp" name="lfo-shape" type="radio" value="ramp">Ramp</label>
         <label><input id="lfo-saw" name="lfo-shape" type="radio" value="sawtooth">Saw</label>
         <label><input id="lfo-sqr" name="lfo-shape" type="radio" value="square">Square</label>
@@ -265,15 +265,15 @@
       </div>
       <div class="slider-wrapper">
         <input class="vertical-slider" data-program="lfo_pitch" data-update="update_lfo_pitch" id="lfo-pitch" max="50" min="0" orient="vertical" step="0.0001" type="range" value="0">
-        <label class="slider-label" for="lfo-pitch"><abbr title="Pitch Amount">Pitch</abbr></label>
+        <label class="slider-label" for="lfo-pitch">Pitch</label>
       </div>
       <div class="slider-wrapper">
         <input class="vertical-slider" data-program="lfo_filter" data-update="update_lfo_filter" id="lfo-filter" max="10000" min="0" orient="vertical" step="0.0001" type="range" value="0">
-        <label class="slider-label" for="lfo-filter"><abbr title="Filter Amount">Filter</abbr></label>
+        <label class="slider-label" for="lfo-filter">Filter</label>
       </div>
       <div class="slider-wrapper">
         <input class="vertical-slider" data-program="lfo_amp" data-update="update_lfo_amp" id="lfo-amp" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-        <label class="slider-label" for="lfo-amp"><abbr title="Amplitude Amount">Amp.</abbr></label>
+        <label class="slider-label" for="lfo-amp">Amp.</label>
       </div>
     </section>
 
@@ -314,8 +314,8 @@
       </div>
       <div data-program="portamento_mode" id="portamento-mode">
         <label class="selected"><input id="portamento-off" name="portamento" type="radio" value="off">Off</label>
-        <label><input id="portamento-linear" name="portamento" type="radio" value="linear"><abbr title="Linear">Lin.</abbr></label>
-        <label><input id="portamento-exponential" name="portamento" type="radio" value="exponential"><abbr title="Exponential">Exp.</abbr></label>
+        <label><input id="portamento-linear" name="portamento" type="radio" value="linear">Lin.</label>
+        <label><input id="portamento-exponential" name="portamento" type="radio" value="exponential">Exp.</label>
       </div>
     </section>
 
@@ -332,7 +332,7 @@
         <input id="pitch-bend" max="12" min="-12" orient="vertical" step="0.0001" type="range" value="0">
       </div>
       <div id="mod-wheel">
-        <label for="mod-amount"><abbr title="Modulation">Mod.</abbr></label>
+        <label for="mod-amount">Mod.</label>
         <input data-program="mod" data-update="calculate_lfo" id="mod-amount" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
       </div>
       <button class="c" data-keyboard-position="-1" data-note-value="-900" id="c1"></button>

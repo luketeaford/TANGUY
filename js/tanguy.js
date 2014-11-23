@@ -156,14 +156,13 @@ TANGUY.update_program = function () {
 TANGUY.update_panel = function () {
     'use strict';
 
-    //OSC 1 KEYTRACKING
+    //OSCILLATOR 1
     if (TANGUY.program.osc1_kbd) {
         TANGUY.button.change($('#osc1-on'));
     } else {
         TANGUY.button.change($('#osc1-off'));
     }
 
-    //OSCILLATOR 1
     switch (TANGUY.program.osc1_coarse) {
     case 0.5:
         TANGUY.button.change($('#osc1-32'));
@@ -178,6 +177,7 @@ TANGUY.update_panel = function () {
         TANGUY.button.change($('#osc1-4'));
         break;
     }
+
     $('#osc1-saw').val(TANGUY.program.osc1_saw);
     $('#osc1-sqr').val(TANGUY.program.osc1_sqr);
     $('#osc1-tri').val(TANGUY.program.osc1_tri);
@@ -185,7 +185,6 @@ TANGUY.update_panel = function () {
     $('#osc1-fm').val(TANGUY.program.osc1_fm);
 
     //OSCILLATOR 2
-    //OSC 2 KEYTRACKING
     if (TANGUY.program.osc2_kbd) {
         TANGUY.button.change($('#osc2-on'));
     } else {
@@ -206,6 +205,7 @@ TANGUY.update_panel = function () {
         TANGUY.button.change($('#osc2-4'));
         break;
     }
+
     switch (TANGUY.program.osc2_waveform) {
     case 'sawtooth':
         TANGUY.button.change($('#osc2-saw'));
@@ -220,6 +220,7 @@ TANGUY.update_panel = function () {
         TANGUY.button.change($('#osc2-sin'));
         break;
     }
+
     $('#osc2-detune').val(TANGUY.program.osc2_detune);
     $('#osc2-fine').val(TANGUY.program.osc2_fine);
     $('#osc2-waveshape').val(TANGUY.program.osc2_shape);
@@ -267,10 +268,11 @@ TANGUY.update_panel = function () {
         TANGUY.button.change($('#filter-off'));
         break;
     }
+
     $('#cutoff').val(TANGUY.program.cutoff);
     $('#resonance').val(TANGUY.program.res);
-    $('#filter-envelope-amount').val(TANGUY.program.filter_eg);
-    $('#filter-keyboard-tracking').val(TANGUY.program.filter_kbd);
+    $('#filter-eg-amt').val(TANGUY.program.filter_eg);
+    $('#filter-kbd').val(TANGUY.program.filter_kbd);
     $('#filter-attack').val(TANGUY.program.filter_attack);
     $('#filter-decay').val(TANGUY.program.filter_decay);
     $('#filter-sustain').val(TANGUY.program.filter_sustain);
@@ -301,6 +303,7 @@ TANGUY.update_panel = function () {
         TANGUY.button.change($('#lfo-sqr'));
         break;
     }
+
     $('#lfo-rate').val(TANGUY.program.lfo_rate);
     $('#lfo-pitch').val(TANGUY.program.lfo_pitch);
     $('#lfo-filter').val(TANGUY.program.lfo_filter);
@@ -322,6 +325,7 @@ TANGUY.update_panel = function () {
         TANGUY.button.change($('#portamento-exponential'));
         break;
     }
+
     $('#portamento-amount').val(TANGUY.program.portamento);
 
     //MODWHEEL
@@ -841,14 +845,6 @@ TANGUY.update_osc1_fm = function () {
     'use strict';
     return TANGUY.osc1_fm_vca.gain.setValueAtTime(TANGUY.program.osc1_fm * TANGUY.program.osc1_fm * 24000, TANGUY.synth.currentTime);
 };
-//OSCILLATOR 2 KEYBOARD TRACKING
-TANGUY.update_osc2_kbd = function () {
-    'use strict';
-    console.log('Updating osc 2 kbd');
-    return;
-};
-
-//OSCILLATOR 2 CONTROLS - GOOD
 TANGUY.update_osc2_coarse = function () {
     'use strict';
     return TANGUY.osc2.frequency.setValueAtTime(TANGUY.osc2_master_pitch * TANGUY.program.osc2_coarse, TANGUY.synth.currentTime);
