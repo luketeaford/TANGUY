@@ -3,19 +3,19 @@ TANGUY.update_program = function () {
 
     //OSCILLATOR 1
     TANGUY.update_osc1_coarse();
-    TANGUY.update_osc1_saw_amt();
-    TANGUY.update_osc1_sqr_amt();
-    TANGUY.update_osc1_tri_amt();
-    TANGUY.update_osc1_sin_amt();
-    TANGUY.update_osc1_fm_amt();
+    TANGUY.update_osc1_saw();
+    TANGUY.update_osc1_sqr();
+    TANGUY.update_osc1_tri();
+    TANGUY.update_osc1_sin();
+    TANGUY.update_osc1_fm();
 
     //OSCILLATOR 2
     TANGUY.update_osc2_coarse();
     TANGUY.update_osc2_waveform();
     TANGUY.update_osc2_detune();
     TANGUY.update_osc2_fine();
-    TANGUY.update_osc2_shape_amt();
-    TANGUY.update_osc2_fm_amt();
+    TANGUY.update_osc2_shape();
+    TANGUY.update_osc2_fm();
 
     //NOISE
     TANGUY.update_noise_color();
@@ -36,7 +36,7 @@ TANGUY.update_program = function () {
     //LFO
     TANGUY.update_lfo_shape();
     TANGUY.update_lfo_rate();
-    TANGUY.calculate_lfo();
+    TANGUY.calculate_lfo();//update lfo amount?
 
     //DELAY
     TANGUY.update_delay_rate();

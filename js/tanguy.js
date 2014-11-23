@@ -112,19 +112,19 @@ TANGUY.update_program = function () {
 
     //OSCILLATOR 1
     TANGUY.update_osc1_coarse();
-    TANGUY.update_osc1_saw_amt();
-    TANGUY.update_osc1_sqr_amt();
-    TANGUY.update_osc1_tri_amt();
-    TANGUY.update_osc1_sin_amt();
-    TANGUY.update_osc1_fm_amt();
+    TANGUY.update_osc1_saw();
+    TANGUY.update_osc1_sqr();
+    TANGUY.update_osc1_tri();
+    TANGUY.update_osc1_sin();
+    TANGUY.update_osc1_fm();
 
     //OSCILLATOR 2
     TANGUY.update_osc2_coarse();
     TANGUY.update_osc2_waveform();
     TANGUY.update_osc2_detune();
     TANGUY.update_osc2_fine();
-    TANGUY.update_osc2_shape_amt();
-    TANGUY.update_osc2_fm_amt();
+    TANGUY.update_osc2_shape();
+    TANGUY.update_osc2_fm();
 
     //NOISE
     TANGUY.update_noise_color();
@@ -145,7 +145,7 @@ TANGUY.update_program = function () {
     //LFO
     TANGUY.update_lfo_shape();
     TANGUY.update_lfo_rate();
-    TANGUY.calculate_lfo();
+    TANGUY.calculate_lfo();//update lfo amount?
 
     //DELAY
     TANGUY.update_delay_rate();
@@ -817,27 +817,27 @@ TANGUY.update_osc1_coarse = function () {
     return;
 };
 
-TANGUY.update_osc1_saw_amt = function () {
+TANGUY.update_osc1_saw = function () {
     'use strict';
     return TANGUY.osc1_saw_vca.gain.setValueAtTime(TANGUY.program.osc1_saw * TANGUY.program.osc1_saw, TANGUY.synth.currentTime);
 };
 
-TANGUY.update_osc1_sqr_amt = function () {
+TANGUY.update_osc1_sqr = function () {
     'use strict';
     return TANGUY.osc1_sqr_vca.gain.setValueAtTime((TANGUY.program.osc1_sqr * TANGUY.program.osc1_sqr) * -1, TANGUY.synth.currentTime);
 };
 
-TANGUY.update_osc1_tri_amt = function () {
+TANGUY.update_osc1_tri = function () {
     'use strict';
     return TANGUY.osc1_tri_vca.gain.setValueAtTime(TANGUY.program.osc1_tri * TANGUY.program.osc1_tri, TANGUY.synth.currentTime);
 };
 
-TANGUY.update_osc1_sin_amt = function () {
+TANGUY.update_osc1_sin = function () {
     'use strict';
     return TANGUY.osc1_sin_vca.gain.setValueAtTime(TANGUY.program.osc1_sin * TANGUY.program.osc1_sin, TANGUY.synth.currentTime);
 };
 
-TANGUY.update_osc1_fm_amt = function () {
+TANGUY.update_osc1_fm = function () {
     'use strict';
     return TANGUY.osc1_fm_vca.gain.setValueAtTime(TANGUY.program.osc1_fm * TANGUY.program.osc1_fm * 24000, TANGUY.synth.currentTime);
 };
@@ -873,7 +873,7 @@ TANGUY.update_osc2_fine = function () {
     return TANGUY.osc2.frequency.setValueAtTime((TANGUY.osc2_master_pitch * TANGUY.program.osc2_coarse) + TANGUY.program.osc2_fine, TANGUY.synth.currentTime);
 };
 
-TANGUY.update_osc2_shape_amt = function () {
+TANGUY.update_osc2_shape = function () {
     'use strict';
     var x = TANGUY.program.osc2_shape;
     if (x > 0) {
@@ -884,7 +884,7 @@ TANGUY.update_osc2_shape_amt = function () {
     return;
 };
 
-TANGUY.update_osc2_fm_amt = function () {
+TANGUY.update_osc2_fm = function () {
     'use strict';
     return TANGUY.osc2_fm_vca.gain.setValueAtTime(TANGUY.program.osc2_fm * TANGUY.program.osc2_fm * 24000, TANGUY.synth.currentTime);
 };

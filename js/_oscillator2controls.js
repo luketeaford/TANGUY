@@ -30,7 +30,7 @@ TANGUY.update_osc2_fine = function () {
     return TANGUY.osc2.frequency.setValueAtTime((TANGUY.osc2_master_pitch * TANGUY.program.osc2_coarse) + TANGUY.program.osc2_fine, TANGUY.synth.currentTime);
 };
 
-TANGUY.update_osc2_shape_amt = function () {
+TANGUY.update_osc2_shape = function () {
     'use strict';
     var x = TANGUY.program.osc2_shape;
     if (x > 0) {
@@ -41,7 +41,7 @@ TANGUY.update_osc2_shape_amt = function () {
     return;
 };
 
-TANGUY.update_osc2_fm_amt = function () {
+TANGUY.update_osc2_fm = function () {
     'use strict';
     return TANGUY.osc2_fm_vca.gain.setValueAtTime(TANGUY.program.osc2_fm * TANGUY.program.osc2_fm * 24000, TANGUY.synth.currentTime);
 };

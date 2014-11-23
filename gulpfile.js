@@ -3,7 +3,6 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
     sass = require('gulp-ruby-sass'),
-//    minifyHTML = require('gulp-minify-html'),
 
     scripts = [
         'js/_license.js',
@@ -55,9 +54,3 @@ gulp.task('sass', function() {
     .pipe(gulp.dest('css'))
     .pipe(gulp.dest('tanguy/css'))
 });
-
-gulp.task('html', function() {
-    return gulp.src('index.html')
-    .pipe(minifyHTML())
-    .pipe(gulp.dest('tanguy'))
-})
