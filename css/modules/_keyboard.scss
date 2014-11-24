@@ -1,70 +1,33 @@
-//OCTAVE SHIFT
-#keyboard-controls {
-	display: inline-block;
-	margin: 1rem 0 1rem .8rem;
-}
-#octave-shift {
-	display: inline-block;
-}
-#octave-minus-2 {
-	@extend %round-light;
-	background: radial-gradient(#c00, #600);
-	&.lit {
-		box-shadow: 0 -.1rem 1rem #600;
-	}
-}
-#octave-minus-1 {
-	@extend %round-light;
-	background: radial-gradient(#f00, #900);
-	&.lit {
-		box-shadow: 0 -.1rem 1rem #900;
-	}
-}
-#octave-plus-0 {
-	@extend %round-light;
-	background: radial-gradient(#9f9, #393);
-	&.lit {
-		box-shadow: 0 -.1rem 1rem #393;
-	}
-}
-#octave-plus-1 {
-	@extend %round-light;
-	background: radial-gradient(#9c0, #360);
-	&.lit {
-		box-shadow: 0 -.1rem 1rem #9c0;
-	}
-}
-#octave-plus-2 {
-	@extend %round-light;
-	background: radial-gradient(#f93, #960);
-	&.lit {
-		box-shadow: 0 -.1rem 1rem #f93;
-	}
-}
-#octave-shift-down {
-	@extend %button;
-	margin: 0 1rem 0 0;
-}
-#octave-shift-up {
-	@extend %button;
-}
-#portamento {
-	display: inline-block;
-	margin: 1rem 0;
-	vertical-align: top;
-}
-#portamento-amount {
-	display: inline-block;
-}
-#pitch-wheel {
-	@extend %wheel-wrapper;
-}
-#mod-wheel {
-	@extend %wheel-wrapper;
-	background: #999;
-	margin: 0 1rem 0 0;
-}
 #keyboard {
-	clear: both;
-	margin: 0 1rem 2rem;
+    background: #1f1f17;
+    font-size: 0;
+    margin: 2rem -1rem -1rem;
+}
+%darken-endcheeks {
+    background: rgba(0,0,0,0.1);
+    bottom: 0;
+    content: '';
+    position: absolute;
+    top: calc(100% - 13rem);
+    width: 3rem;
+}
+#keyboard::before {
+    @extend %darken-endcheeks;
+    left: -3rem;
+}
+
+#keyboard::after {
+    @extend %darken-endcheeks;
+    right: -3rem;
+    z-index: 1;
+}
+
+.fake-shadow {
+    border: 0;
+    //box-shadow: -1px 4px 6px 2px rgba(0,0,0,.36);// subtle version
+    box-shadow: -1px 4px 4px 5px rgba(0,0,0,.66);
+    margin: 0 auto;
+    position: relative;
+    width: calc(100% - 10px);
+    z-index: 2;
 }

@@ -1,26 +1,6 @@
 @import 'config/_colors';
 @import 'config/_reset';
 @import 'components/_switches';
-@import 'components/_sliders';
-@import 'components/_lights';
-@import 'components/_buttons';
-@import 'components/_wheels';
 @import 'components/_keys';
-@import 'modules/_program-selector';
-@import 'modules/_oscillator';
 @import 'modules/_keyboard';
 
-#osc1,
-#osc2,
-#noise,
-#mixer,
-#filter,
-#filter-eg,
-#vca-eg,
-#lfo,
-#delay,
-#information {
-    display: inline-block;
-    margin: 1rem 0 1rem 1rem;
-    vertical-align: top;
-}

@@ -3,6 +3,7 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
     sass = require('gulp-ruby-sass'),
+    livereload = require('gulp-livereload'),
 
     scripts = [
         'js/_license.js',
@@ -34,7 +35,7 @@ var gulp = require('gulp'),
         'js/_keyboardcontrols.js'
     ];
 
-gulp.task('dev', function() {
+gulp.task('dev', function () {
     return gulp.src(scripts)
     .pipe(concat('tanguy.js'))
     .pipe(gulp.dest('js'))
@@ -47,10 +48,19 @@ gulp.task('dev', function() {
     .pipe(gulp.dest('tanguy/js'))
 });
 
-gulp.task('sass', function() {
-    return gulp.src('css/*.scss')
+gulp.task('sass', function () {
+    return gulp.src('css/tanguy.scss')
     .pipe(sass({style: 'compressed'}))
     .on('error', function (err) { console.log(err.message); })
     .pipe(gulp.dest('css'))
     .pipe(gulp.dest('tanguy/css'))
+    .pipe(livereload())
 });
+
+gulp.task('watch', function () {
+    var server = livereload();
+    gulp.watch('js/*.js', ['dev']);
+    gulp.watch('css/**/*.scss', ['sass']);
+});
+
+gulp.task('default', ['watch']);

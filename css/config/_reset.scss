@@ -6,89 +6,51 @@
 	padding: 0;
 }
 html {
+	background-image: url('../images/bg-too-big.jpg');
+	background-position-y: -2rem;
 	box-sizing: border-box;
-	font-family: arial, helvetica, sans-serif;
+	color: #a3a394;
+	font-family: helvetica, arial, sans-serif;
 	font-size: 20px;
+	margin: 2rem 0;
 }
 body {
-	background-image: url("../images/bg-spots.jpg");
-}
-.wrapper {
+	background: #242423;
 	margin: 0 auto;
-	max-width: 1200px;
-}
-header {
-	background: $tan;
-	box-shadow: 0 -.5rem 1rem .5rem #3e3c39;
 	padding: .5rem 1rem;
-	.wrapper {
-		padding-left: 1rem;
-	}
-	h1 {
-		display: inline;
-		font-family: "brandon-grotesque", sans-serif;
-		font-size: 1rem;
-		font-weight: normal;
-		margin: 0 1rem 0 0;
-		text-transform: uppercase;
-	}
+	position: relative;
+	width: 48rem;
 }
-section {
-	margin: 1rem;
-	padding: 0;
-	h2 {
-		color: #a3a394;
-		font-family: "brandon-grotesque", sans-serif;
-		font-size: .8rem;
-		font-style: italic;
-		text-transform: uppercase;
-	}
-	h3 {
-		color: #a3a394;
-		font-family: "brandon-grotesque", sans-serif;
-		font-size: .7rem;
-		text-transform: uppercase;
-	}
+%endcheeks {
+	background: url('../images/wood-texture2.jpg');
+	bottom: 0;
+	content: '';
+	position: absolute;
+	top: 0;
+	width: 3rem;
 }
-label {
-	color: $beige;
-	cursor: pointer;
-	font-size: .5rem;
+body::before {
+	@extend %endcheeks;
+	background-position-x: -30px;
+	background-position-y: 121px;
+	left: -3rem;
+}
+body::after {
+	@extend %endcheeks;
+	right: -3rem;
+}
+
+h1 {
+	font-size: 1rem;
+	font-weight: 100;
+	letter-spacing: .25rem;
+	margin: 0 0 2rem;
 	text-transform: uppercase;
 }
-button {
-	outline: none;
-}
-.author {
-	display: inline-block;
-	font-size: .6rem;
-	font-weight: normal;
+
+h2 {
+	font-family: 'brandon-grotesque', sans-serif;
+	font-size: .8rem;
+	font-style: italic;
 	text-transform: uppercase;
-}
-a {
-	text-decoration: none;
-}
-a:link {
-	color: blanchedalmond;
-}
-a:visited {
-	color: linen;
-}
-a:hover {
-	color: #fff;
-}
-a:active {
-	color: #fdfdfd;
-}
-.title-only {
-	display: none;
-}
-:focus {
-	outline: none;
-}
-.promo-text {
-	color: #a3a394;
-	display: block;
-	font-size: .7rem;
-	margin: .5rem 0;
 }
