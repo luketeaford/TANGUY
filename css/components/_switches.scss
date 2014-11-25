@@ -1,7 +1,32 @@
+@-webkit-keyframes switch-off {
+    0% {
+        background-position: 3rem;
+    }
+    50% {
+        color: #cfc6c3;
+    }
+    100% {
+        background-position: 0rem;
+    }
+}
+
+@-webkit-keyframes switch-on {
+    0% {
+        background-position: -3rem;
+    }
+    50% {
+        color: #cfc6c3;
+    }
+    100% {
+        background-position: 0rem;
+    }
+}
+
 #osc1-kbd {
+//    background: #9e9c99 linear-gradient(#6c6956, #887);
+//    background: linear-gradient(#53515f, #363432);
     background: #9e9c99 linear-gradient(#6c6956, #887);
     border: 1px solid #2c2916;
-    border-radius: .2rem;
     color: #000;
     display: inline-block;
 }
@@ -11,30 +36,37 @@
 }
 
 #osc1-kbd label {
-    background-image: linear-gradient(#53515f, #363432);
-    background-position: 3rem;
+    background: linear-gradient(#53515f, #363432);
     background-repeat: repeat-y;
     background-size: 3rem;
-    border-radius: .2rem 0 0 .2rem;
     display: table-cell;
     font-size: .5rem;
-    height: 1.4rem;
+    height: 1.5rem;
     text-align: center;
     text-transform: uppercase;
-    transition: background-position .3s;
+    transition: color .25s, background-position .25s;
     vertical-align: middle;
     width: 3rem;
 }
-#osc1-kbd label + label {
-    background-image: linear-gradient(#53515f, #363432);
-    background-repeat: repeat-y;
-    background-size: 3rem;
-    background-position: -3rem;
-    border-radius: 0 .2rem .2rem 0;
-}
+
 #osc1-kbd .selected {
-    background-position: 0;
-    box-shadow: inset 0 -1px 2px 1px #424140, 0 2px 4px -2px #543230;
     color: #cfc6c3;
     text-shadow: -2px 0 1px #7f7673, 2px 0 1px #7f7673;
+}
+
+#osc1-kbd > label {
+    &:first-child {
+        background-position: 3rem;
+        &.selected {
+            background-position: 0rem;
+            -webkit-animation: switch-off .25s;
+        }
+    }
+    &:last-child {
+        background-position: -3rem;
+        &.selected {
+            background-position: 0rem;
+            -webkit-animation: switch-on .25s;
+        }
+    }
 }
