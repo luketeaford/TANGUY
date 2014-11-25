@@ -26,52 +26,52 @@
     }
 }
 
-#osc1-kbd {
+%on-off-switch {
     background: #9e9c99 linear-gradient(#6c6956, #887);
     border: 1px solid #2c2916;
     border-radius: .25rem;
     color: #000;
     display: inline-block;
-}
-
-#osc1-kbd input {
-    display: none;
-}
-
-#osc1-kbd label {
-    background: linear-gradient(#53515f, #363432);
-    background-repeat: repeat-y;
-    background-size: 3rem;
-    display: table-cell;
-    font-size: .5rem;
-    height: 1rem;
-    text-align: center;
-    text-transform: uppercase;
-    transition: background-position .25s;
-    vertical-align: middle;
-    width: 3rem;
-}
-
-#osc1-kbd .selected {
-    color: #cfc6c3;
-    text-shadow: -2px 0 1px #7f7673, 2px 0 1px #7f7673;
-}
-
-#osc1-kbd > label {
-    &:first-child {
-        background-position: 3rem;
-        &.selected {
-            -webkit-animation: switch-off .25s;
-            background-position: 0rem;
-            border-radius: .2rem 0 0 .2rem;
-        }
+    vertical-align: top;
+    input {
+        display: none;
     }
-    &:last-child {
-        background-position: -3rem;
+    > label {
+        background: linear-gradient(#53515f, #363432);
+        background-repeat: repeat-y;
+        background-size: 3rem;
+        display: table-cell;
+        font-size: .5rem;
+        height: 1rem;
+        text-align: center;
+        text-transform: uppercase;
+        transition: background-position .25s;
+        vertical-align: middle;
+        width: 3rem;
+        &:not(.selected):hover {
+            background-color: #696663;
+         //   border-radius: .2rem 0 0 .2rem;
+            box-shadow: inset 1px 0 #3e3c39, 1px 0 #3e3c39;
+        }
         &.selected {
-            -webkit-animation: switch-on .25s;
-            background-position: 0rem;
+            color: #cfc6c3;
+            text-shadow: -2px 0 1px #7f7673, 2px 0 1px #7f7673;
+        }
+        &:first-child {
+            background-position: 3rem;
+            border-radius: .2rem 0 0 .2rem;
+            &.selected {
+                -webkit-animation: switch-off .25s;
+                background-position: 0rem;
+            }
+        }
+        &:last-child {
+            background-position: -3rem;
             border-radius: 0 .2rem .2rem 0;
+            &.selected {
+                -webkit-animation: switch-on .25s;
+                background-position: 0rem;
+            }
         }
     }
 }

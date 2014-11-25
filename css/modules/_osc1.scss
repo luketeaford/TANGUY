@@ -1,0 +1,22 @@
+#osc1 {
+    border: 2px solid #555;
+    border-radius: .5rem;
+    display: inline-block;
+    padding: .5rem;
+    > h2 {
+        background: linear-gradient(to right, #242423 5rem, transparent);
+        padding: 0 1rem 0 .25rem;
+        position: relative;
+        top: -20px;
+    }
+}
+
+#osc1-kbd {
+    @extend %on-off-switch;
+}
+
+.kbd-tracking {//TOTAL GARBAGE!
+    font-size: .5rem;
+    text-transform: uppercase;
+    vertical-align: middle;
+}

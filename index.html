@@ -14,39 +14,47 @@
 
   <div id="osc1">
     <h2>Oscillator One</h2>
+
+
+    <span class="kbd-tracking">Keyboard Tracking</span>
+
     <div data-program="osc1_kbd" id="osc1-kbd">
       <label><input id="osc1-off" name="osc1-kbd-tracking" type="radio" value="off">Off</label>
       <label><input id="osc1-on" name="osc1-kbd-tracking" type="radio" value="on">On</label>
     </div>
-<!--
+
+    <br>
+
     <div data-program="osc1_coarse" data-update="update_osc1_coarse" id="osc1-coarse">
       <label><input id="osc1-32" name="osc1-coarse-tune" type="radio" value="0.5">32'</label>
       <label class="selected"><input id="osc1-16" name="osc1-coarse-tune" type="radio" value="1">16'</label>
       <label><input id="osc1-8" name="osc1-coarse-tune" type="radio" value="2">8'</label>
       <label><input id="osc1-4" name="osc1-coarse-tune" type="radio" value="4">4'</label>
     </div>
-    <div class="slider-wrapper">
-      <input class="vertical-slider" data-program="osc1_saw" data-update="update_osc1_saw" id="osc1-saw" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
-      <label class="slider-label" for="osc1-saw">Saw</label>
-    </div>
-    <div class="slider-wrapper">
-      <input class="vertical-slider" data-program="osc1_sqr" data-update="update_osc1_sqr" id="osc1-sqr" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-      <label class="slider-label" for="osc1-sqr">Square</label>
-    </div>
-    <div class="slider-wrapper">
-      <input class="vertical-slider" data-program="osc1_tri" data-update="update_osc1_tri" id="osc1-tri" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-      <label class="slider-label" for="osc1-tri">Triangle</label>
-    </div>
-    <div class="slider-wrapper">
-      <input class="vertical-slider" data-program="osc1_sin" data-update="update_osc1_sin" id="osc1-sin" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-      <label class="slider-label" for="osc1-sin">Sine</label>
-    </div>
-    <div class="slider-wrapper">
-      <input class="vertical-slider" data-program="osc1_fm" data-update="update_osc1_fm" id="osc1-fm" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-      <label class="slider-label" for="osc1-fm">FM Amt.</label>
-    </div>
-  </div>
 
+    <label class="slider-label">
+      <input class="vertical-slider" data-program="osc1_saw" data-update="update_osc1_saw" id="osc1-saw" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
+      Saw
+    </label>
+    <label class="slider-label">
+      <input class="vertical-slider" data-program="osc1_sqr" data-update="update_osc1_sqr" id="osc1-sqr" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+      Square
+    </label>
+    <label class="slider-label">
+      <input class="vertical-slider" data-program="osc1_tri" data-update="update_osc1_tri" id="osc1-tri" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+      Triangle
+    </label>
+    <label class="slider-label">
+      <input class="vertical-slider" data-program="osc1_sin" data-update="update_osc1_sin" id="osc1-sin" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+      Sine
+    </label>
+    <label class="slider-label">
+      <input class="vertical-slider" data-program="osc1_fm" data-update="update_osc1_fm" id="osc1-fm" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+      FM Amt.
+    </label>
+
+  </div>
+<!--
 
   <div id="osc2">
     <h2>Oscillator Two</h2>
