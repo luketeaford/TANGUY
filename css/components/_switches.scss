@@ -50,8 +50,7 @@
         width: 3rem;
         &:not(.selected):hover {
             background-color: #696663;
-         //   border-radius: .2rem 0 0 .2rem;
-            box-shadow: inset 1px 0 #3e3c39, 1px 0 #3e3c39;
+            box-shadow: inset 0px 0px 20px -3px #3e3c39;
         }
         &.selected {
             color: #cfc6c3;
