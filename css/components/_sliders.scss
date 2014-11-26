@@ -1,13 +1,10 @@
 .slider-label {
-  background: linear-gradient(#444 0px, #444 1px, transparent 1px, transparent 20px,
-                              #666 20px, #666 21px, transparent 21px, transparent 40px
-                              );
-  border-bottom: 1px solid #444;
+  background: linear-gradient(#444 0px, #444 1px, transparent 1px, transparent 20px, #666 20px, #666 21px, transparent 21px, transparent 40px);
   background-position: center top;
   background-repeat: repeat-y;
   background-size: 2.3rem 2rem;
+  border-bottom: 1px solid #444;
   display: inline-block;
-  font-family: arial, sans-serif;
   font-size: 0.5rem;
   height: 6rem;
   position: relative;
@@ -29,8 +26,8 @@
   border: 1px solid #000;
   content: '';
   display: inline-block;
-  position: absolute;
   height: 8rem;
+  position: absolute;
   top: -1rem;
   width: 3rem;
   z-index: -1;
