@@ -1,4 +1,4 @@
-#osc1 {
+%module {//originally #osc1
     border: 2px solid #555;
     border-radius: .5rem;
     display: inline-block;
@@ -9,6 +9,10 @@
         position: relative;
         top: -20px;
     }
+}
+
+#osc1 {
+    @extend %module;
 }
 
 #osc1-kbd {
@@ -24,3 +28,4 @@
 #osc1-coarse {
     @extend %multi-switch;
 }
+

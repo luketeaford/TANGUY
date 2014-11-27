@@ -1,0 +1,15 @@
+#osc2 {
+    @extend %module;
+}
+
+#osc2-kbd {
+    @extend %on-off-switch;
+}
+
+#osc2-coarse {
+    @extend %multi-switch;
+}
+
+#osc2-waveform {
+    @extend %vertical-switch;
+}

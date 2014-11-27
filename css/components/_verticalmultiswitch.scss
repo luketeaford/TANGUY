@@ -1,0 +1,26 @@
+%vertical-switch {
+    background: #9e9c99 linear-gradient(#6c6956, #887);
+    border: 1px solid #3c3926;
+    border-radius: .2rem;
+    display: inline-block;
+    vertical-align: top;
+    width: 3rem;
+    label {
+        color: #000;
+        cursor: pointer;
+        display: block;
+        font-size: .5rem;
+        padding: .5rem 0;
+        text-align: center;
+        text-transform: uppercase;
+        &.selected {
+            background: #9e9c99 linear-gradient(#53515f, #363432);
+            box-shadow: inset 0 -1px 2px 1px #424140, 0 2px 4px -2px #543230;
+            color: #cfc6c3;
+            text-shadow: -2px 0 1px #7f7673, 2px 0 1px #7f7673;
+        }
+    }
+    input {
+        display: none;
+    }
+}

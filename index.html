@@ -15,7 +15,6 @@
   <div id="osc1">
     <h2>Oscillator One</h2>
 
-
     <span class="kbd-tracking">Keyboard Tracking</span>
 
     <div data-program="osc1_kbd" id="osc1-kbd">
@@ -27,7 +26,7 @@
 
     <div data-program="osc1_coarse" data-update="update_osc1_coarse" id="osc1-coarse">
       <label><input id="osc1-32" name="osc1-coarse-tune" type="radio" value="0.5">32'</label>
-      <label class="selected"><input id="osc1-16" name="osc1-coarse-tune" type="radio" value="1">16'</label>
+      <label><input id="osc1-16" name="osc1-coarse-tune" type="radio" value="1">16'</label>
       <label><input id="osc1-8" name="osc1-coarse-tune" type="radio" value="2">8'</label>
       <label><input id="osc1-4" name="osc1-coarse-tune" type="radio" value="4">4'</label>
     </div>
@@ -56,42 +55,44 @@
     </label>
 
   </div>
-<!--
 
   <div id="osc2">
     <h2>Oscillator Two</h2>
+    <span class="kbd-tracking">Keyboard Tracking</span>
     <div data-program="osc2_kbd" id="osc2-kbd">
       <label><input id="osc2-off" name="osc2-kbd-tracking" type="radio" value="off">Off</label>
-      <label class="selected"><input id="osc2-on" name="osc2-kbd-tracking" type="radio" value="on">On</label>
+      <label><input id="osc2-on" name="osc2-kbd-tracking" type="radio" value="on">On</label>
     </div>
+    <br><br>
     <div data-program="osc2_coarse" data-update="update_osc2_coarse" id="osc2-coarse">
       <label><input id="osc2-32" name="osc2-coarse-tune" type="radio" value="0.5">32'</label>
-      <label class="selected"><input id="osc2-16" name="osc2-coarse-tune" type="radio" value="1">16'</label>
+      <label><input id="osc2-16" name="osc2-coarse-tune" type="radio" value="1">16'</label>
       <label><input id="osc2-8" name="osc2-coarse-tune" type="radio" value="2">8'</label>
       <label><input id="osc2-4" name="osc2-coarse-tune" type="radio" value="4">4'</label>
     </div>
+    <br><br>
     <div data-program="osc2_waveform" data-update="update_osc2_waveform" id="osc2-waveform">
       <label class="selected"><input id="osc2-saw" name="osc2-wave" type="radio" value="sawtooth">Saw</label>
       <label><input id="osc2-sqr" name="osc2-wave" type="radio" value="square">Square</label>
       <label><input id="osc2-tri" name="osc2-wave" type="radio" value="triangle">Tri.</label>
       <label><input id="osc2-sin" name="osc2-wave" type="radio" value="sine">Sine</label>
     </div>
-    <div class="slider-wrapper">
+    <label class="slider-label" for="osc2-detune">
       <input class="vertical-slider" data-program="osc2_detune" data-update="update_osc2_detune" id="osc2-detune" max="1200" min="-1200" orient="vertical" step="100" type="range" value="0">
-      <label class="slider-label" for="osc2-detune">Detune</label>
-    </div>
-    <div class="slider-wrapper">
+      Detune
+    </label>
+    <label class="slider-label" for="osc2-fine">
       <input class="vertical-slider" data-program="osc2_fine" data-update="update_osc2_fine" id="osc2-fine" max="100" min="-100" orient="vertical" step="0.0001" type="range" value="0">
-      <label class="slider-label" for="osc2-fine">Fine</label>
-    </div>
-    <div class="slider-wrapper">
+      Fine
+    </label>
+    <label class="slider-label" for="osc2-waveshape">
       <input class="vertical-slider" data-program="osc2_shape" data-update="update_osc2_shape" id="osc2-waveshape" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-      <label class="slider-label" for="osc2-waveshape">Shaping</label>
-    </div>
-    <div class="slider-wrapper">
+      Shaping
+    </label>
+    <label class="slider-label" for="osc2-fm">
       <input class="vertical-slider" data-program="osc2_fm" data-update="update_osc2_fm" id="osc2-fm" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-      <label class="slider-label" for="osc2-fm">FM Amt.</label>
-    </div>
+      FM Amt.
+    </label>
   </div>
 
   <div id="noise">
@@ -104,6 +105,8 @@
       <label><input id="purple-noise" name="noise-color" type="radio" value="purple">Purple</label>
     </div>
   </div>
+
+<!--
 
   <div id="mixer">
     <h2>Mixer</h2>
