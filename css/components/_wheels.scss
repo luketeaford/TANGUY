@@ -1,0 +1,12 @@
+%wheel {
+    -webkit-appearance: slider-vertical;
+    height: 10rem;
+    margin: 1rem auto 0;
+    width: 4rem;
+}
+#pitch-bend {
+    @extend %wheel;
+}
+#mod-amount {
+    @extend %wheel;
+}

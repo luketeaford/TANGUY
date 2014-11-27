@@ -1,0 +1,7 @@
+#filter {
+    @extend %module;
+}
+
+#filter-mode {
+    @extend %vertical-switch;
+}

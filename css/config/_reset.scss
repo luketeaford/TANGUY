@@ -55,3 +55,22 @@ h2 {
 	text-transform: uppercase;
 }
 
+.panel {
+	background: radial-gradient(#131311, transparent);
+	background-position-y: -18px;
+	background-repeat: no-repeat;
+	background-size: 52rem 20px;
+	border: none;
+	display: block;
+	height: 1rem;
+	margin: 1rem auto;
+	width: 54rem;
+}
+
+button {
+	outline: none;
+}
+
+input {
+	outline: none;
+}

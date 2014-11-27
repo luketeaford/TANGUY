@@ -1,0 +1,78 @@
+#keyboard-controls {
+    @extend %module;
+}
+
+#octave-shift {
+    display: inline-block;
+    text-align: center;
+}
+
+%round-light {
+    border: 1px solid #2e2a0e;
+    border-radius: 50%;
+    box-sizing: content-box;
+    color: #fff6f3;
+    display: inline-block;
+    font-size: .5rem;
+    height: .6rem;
+    line-height: 4;
+    margin: 1rem .45rem;
+    opacity: .2;
+    text-align: center;
+    transition: opacity .25s ease-out;
+    width: .6rem;
+    &.lit {
+        color: #fff6f3;
+        opacity: 1 !important;
+    }
+}
+
+//MIXINS NEEDED! LIGHT MUST BE MORE SUBTLE FOR THE BACKGROUND
+#octave-minus-2 {
+    @extend %round-light;
+    background: radial-gradient(#c00, #600);
+    &.lit {
+        box-shadow: 0 -.1rem 1rem #600;
+    }
+}
+
+#octave-minus-1 {
+    @extend %round-light;
+    background: radial-gradient(#f00, #900);
+    &.lit {
+        box-shadow: 0 -.1rem 1rem #900;
+    }
+}
+
+#octave-plus-0 {
+    @extend %round-light;
+    background: radial-gradient(#9f9, #393);
+    &.lit {
+        box-shadow: 0 -.1rem 1rem #393;
+    }
+}
+
+#octave-plus-1 {
+    @extend %round-light;
+    background: radial-gradient(#9c0, #360);
+    &.lit {
+        box-shadow: 0 -.1rem 1rem #9c0;
+    }
+}
+
+#octave-plus-2 {
+    @extend %round-light;
+    background: radial-gradient(#f93, #960);
+    &.lit {
+        box-shadow: 0 -.1rem 1rem #f93;
+    }
+}
+
+#octave-shift-down {
+    @extend %button;
+    margin: 0 1rem 0 0;
+}
+
+#octave-shift-up {
+    @extend %button;
+}
