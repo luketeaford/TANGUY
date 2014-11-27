@@ -1,3 +1,12 @@
 #noise {
+    @extend %module;
+    > h2 {
+        background: linear-gradient(to right, #242423 2.5rem, transparent);//BAD-- NEED MIXIN!
+    }
+}
+
+#noise-color {
     @extend %vertical-switch;
+    display: block;
+    margin: 0 auto;
 }
