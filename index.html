@@ -276,16 +276,17 @@
   <div id="keyboard">
     <hr class="fake-shadow">
     <!--COULD BE A PROBLEM NESTING THESE INSIDE KEYBOARD... RENAME SO KEYBOARD ONLY CONTAINS KEYS-->
-<!--
-    <div id="pitch-wheel">
-      <label for="pitch-bend">Pitch</label>
-      <input id="pitch-bend" max="12" min="-12" orient="vertical" step="0.0001" type="range" value="0">
-    </div>
-    <div id="mod-wheel">
-      <label for="mod-amount">Mod.</label>
-      <input data-program="mod" data-update="calculate_lfo" id="mod-amount" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-    </div>
--->
+
+
+<label id="pitch-wheel">
+  <input id="pitch-bend" max="12" min="-12" orient="vertical" step="0.0001" type="range" value="0">
+  Pitch
+</label>
+<label id="mod-wheel">
+  <input data-program="mod" data-update="calculate_lfo" id="mod-amount" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+  Mod.
+</label>
+
     <button class="c" data-keyboard-position="-1" data-note-value="-900" id="c1"></button>
     <button class="c-sharp" data-keyboard-position="-1" data-note-value="-800" id="cs1"></button>
     <button class="d" data-keyboard-position="-1" data-note-value="-700" id="d1"></button>

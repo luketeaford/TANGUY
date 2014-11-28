@@ -55,6 +55,7 @@ h2 {
 	text-transform: uppercase;
 }
 
+//WHERE DOES THIS BELONG?
 .panel {
 	background: radial-gradient(#131311, transparent);
 	background-position-y: -18px;
@@ -63,7 +64,7 @@ h2 {
 	border: none;
 	display: block;
 	height: 1rem;
-	margin: 1rem auto;
+	margin: 1rem auto 0;
 	width: 54rem;
 }
 
