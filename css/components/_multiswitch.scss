@@ -39,6 +39,10 @@
         text-transform: uppercase;
         vertical-align: middle;
         width: 4rem;
+        &:not(.selected):hover {//CAN BE COMBINED WITH SOMETHING ELSE...
+            background-color: #696663;
+            box-shadow: inset 0px 0px 20px -3px #3e3c39;
+        }
     }
     .selected {
         -webkit-animation: multi-switch .25s;

@@ -19,6 +19,10 @@
             color: #cfc6c3;
             text-shadow: -2px 0 1px #7f7673, 2px 0 1px #7f7673;
         }
+        &:not(.selected):hover {//CAN BE COMBINED WITH SOMETHING ELSE
+            background-color: #696663;
+            box-shadow: inset 0px 0px 20px -3px #3e3c39;
+        }
     }
     input {
         display: none;
