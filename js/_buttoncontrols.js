@@ -14,14 +14,18 @@ TANGUY.button = {
             bg_pos;
         switch (button.val()) {
         case '0.5':
+        case 'dumb':
+        case 'no-portamento':
             console.log('I knew it!');
             bg_pos = 'pos1';
             break;
         case '1':
+        case 'linear':
             console.log('Sweet');
             bg_pos = 'pos2';
             break;
         case '2':
+        case 'exponential':
             console.log('Two to tango');
             bg_pos = 'pos3';
             break;

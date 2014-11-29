@@ -79,7 +79,7 @@ var TANGUY = {
         "delay_rate": 0,
         "delay": 0,
 
-        "portamento_mode": "off",
+        "portamento_mode": "no-portamento",
         "portamento": 0.01,
 
         "mod": 0,
@@ -317,6 +317,7 @@ TANGUY.update_panel = function () {
     switch (TANGUY.program.portamento_mode) {
     case 'off':
         TANGUY.button.change($('#portamento-off'));
+        console.log('Still works');
         break;
     case 'linear':
         TANGUY.button.change($('#portamento-linear'));
@@ -400,8 +401,9 @@ TANGUY.calculate_pitch = function (pos, note_value) {
 
     //OSCILLATOR TRACKING
     switch (TANGUY.program.portamento_mode) {
-    case 'off':
+    case 'no-portamento':
         no_portamento();
+        console.log('Calculate pitch');
         break;
     case 'linear':
         linear_portamento();
@@ -1155,14 +1157,18 @@ TANGUY.button = {
             bg_pos;
         switch (button.val()) {
         case '0.5':
+        case 'dumb':
+        case 'no-portamento':
             console.log('I knew it!');
             bg_pos = 'pos1';
             break;
         case '1':
+        case 'linear':
             console.log('Sweet');
             bg_pos = 'pos2';
             break;
         case '2':
+        case 'exponential':
             console.log('Two to tango');
             bg_pos = 'pos3';
             break;

@@ -1,12 +1,10 @@
 #keyboard-controls {
     @extend %module;
 }
-
 #octave-shift {
     display: inline-block;
     text-align: center;
 }
-
 %round-light {
     border: 1px solid #2e2a0e;//darker?
     border-radius: 50%;
@@ -18,7 +16,6 @@
     line-height: 4;
     margin: 1rem .45rem;
     opacity: .2;
-//    text-align: center;
     transition: opacity .25s ease-out;
     width: .6rem;
     &.lit {
@@ -35,7 +32,6 @@
         box-shadow: 0 -.1rem .8rem #600;
     }
 }
-
 #octave-minus-1 {
     @extend %round-light;
     background: radial-gradient(#f00, #900);
@@ -43,7 +39,6 @@
         box-shadow: 0 -.1rem .8rem #900;
     }
 }
-
 #octave-plus-0 {
     @extend %round-light;
     background: radial-gradient(#9f9, #393);
@@ -51,7 +46,6 @@
         box-shadow: 0 -.1rem .8rem #393;
     }
 }
-
 #octave-plus-1 {
     @extend %round-light;
     background: radial-gradient(#9c0, #360);
@@ -59,7 +53,6 @@
         box-shadow: 0 -.1rem .8rem #9c0;
     }
 }
-
 #octave-plus-2 {
     @extend %round-light;
     background: radial-gradient(#f93, #960);
@@ -67,12 +60,10 @@
         box-shadow: 0 -.1rem .8rem #f93;
     }
 }
-
 #octave-shift-down {
     @extend %button;
     margin: 0 1rem 0 0;
 }
-
 #octave-shift-up {
     @extend %button;
 }

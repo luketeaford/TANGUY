@@ -162,6 +162,7 @@ TANGUY.update_panel = function () {
     switch (TANGUY.program.portamento_mode) {
     case 'off':
         TANGUY.button.change($('#portamento-off'));
+        console.log('Still works');
         break;
     case 'linear':
         TANGUY.button.change($('#portamento-linear'));

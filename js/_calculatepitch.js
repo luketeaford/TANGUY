@@ -41,8 +41,9 @@ TANGUY.calculate_pitch = function (pos, note_value) {
 
     //OSCILLATOR TRACKING
     switch (TANGUY.program.portamento_mode) {
-    case 'off':
+    case 'no-portamento':
         no_portamento();
+        console.log('Calculate pitch');
         break;
     case 'linear':
         linear_portamento();

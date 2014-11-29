@@ -61,7 +61,7 @@ var TANGUY = {
         "delay_rate": 0,
         "delay": 0,
 
-        "portamento_mode": "off",
+        "portamento_mode": "no-portamento",
         "portamento": 0.01,
 
         "mod": 0,
