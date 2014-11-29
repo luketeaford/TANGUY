@@ -1,13 +1,18 @@
 #osc2 {
     @extend %module;
+    > h2 {
+        margin-bottom: -1rem;
+    }
 }
 
 #osc2-kbd {
     @extend %on-off-switch;
+    margin-left: 4rem;
 }
 
 #osc2-coarse {
     @extend %multi-switch;
+    margin: 1rem 0;
 }
 
 #osc2-waveform {

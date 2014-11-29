@@ -1,0 +1,8 @@
+//PORTAMENTO
+#portamento {
+    @extend %module;
+}
+
+#portamento-mode {
+    @extend %multi-switch;
+}

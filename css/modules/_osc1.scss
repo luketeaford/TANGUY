@@ -1,4 +1,4 @@
-%module {//originally #osc1
+%module {
     border: 2px solid #555;
     border-radius: .5rem;
     display: inline-block;
@@ -8,16 +8,20 @@
         background: linear-gradient(to right, #242423 5rem, transparent);
         padding: 0 1rem 0 .25rem;
         position: relative;
-        top: -20px;
+        top: -1rem;
     }
 }
 
 #osc1 {
     @extend %module;
+    > h2 {
+        margin-bottom: -1rem;
+    }
 }
 
 #osc1-kbd {
     @extend %on-off-switch;
+    margin-left: 4rem;
 }
 
 .kbd-tracking {//TOTAL GARBAGE!
@@ -28,5 +32,6 @@
 
 #osc1-coarse {
     @extend %multi-switch;
+    margin: 1rem 0;
 }
 

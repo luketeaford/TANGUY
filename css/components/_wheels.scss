@@ -1,6 +1,7 @@
 %wheel {
-    background: linear-gradient(#6c6956, #887);
-    border: 1px solid #000;
+    //background: linear-gradient(#6c6956, #887);
+    border: 1px solid #1f1e1e;
+    box-shadow: inset 0px 0px 20px 2px #555;
     color: #000;
     display: inline-block;
     font-size: 0.5rem;
@@ -22,10 +23,12 @@
 //MOVE TO KEYBOARD CONTROLS
 #pitch-wheel {
     @extend %wheel;
+    background: #827c7a;
     margin: 0 1rem;
 }
 
 #mod-wheel {
     @extend %wheel;
+    background: #999;
     margin: 0 1rem 0 0;
 }
