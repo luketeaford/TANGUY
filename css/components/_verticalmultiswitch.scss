@@ -9,19 +9,19 @@
     vertical-align: top;
     width: 3rem;
     &.pos1 {
-        background-position: 0;
+        background-position-y: 0;
     }
     &.pos2 {
-        background-position: 1.5rem;
+        background-position-y: 1.5rem;
     }
     &.pos3 {
-        background-position: 3rem;
+        background-position-y: 3rem;
     }
     &.pos4 {
-        background-position: 4.5rem;
+        background-position-y: 4.5rem;
     }
     &.pos5 {
-        background-position: 6rem;
+        background-position-y: 6rem;
     }
     label {
         color: #000;

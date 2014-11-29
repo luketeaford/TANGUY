@@ -1154,33 +1154,13 @@ TANGUY.button = {
     change: function (e) {
         'use strict';
         var button = e.currentTarget === undefined ? $(e) : $(e.currentTarget),
+            pos = button.attr('data-pos'),
             bg_pos;
-        switch (button.val()) {
-        case '0.5':
-        case 'dumb':
-        case 'no-portamento':
-            console.log('I knew it!');
-            bg_pos = 'pos1';
-            break;
-        case '1':
-        case 'linear':
-            console.log('Sweet');
-            bg_pos = 'pos2';
-            break;
-        case '2':
-        case 'exponential':
-            console.log('Two to tango');
-            bg_pos = 'pos3';
-            break;
-        case '4':
-            console.log('Eyes');
-            bg_pos = 'pos4';
-            break;
-        default:
-            console.log('DANGER! NOTHING!');
-            break;
-        }
-        button.parent().parent().removeClass().addClass(bg_pos);//remove all classes then add the proper one
+            if (pos) {
+                bg_pos = 'pos' + pos;
+                button.parent().parent().removeClass().addClass(bg_pos);//remove all classes then add the proper one
+                console.log('Should be ' + button.attr('data-pos') + ' and ' + bg_pos);
+            }
         return button.parent().addClass('selected').siblings().removeClass('selected');
     }
 };

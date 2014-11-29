@@ -25,10 +25,10 @@
     <br>
 
     <div data-program="osc1_coarse" data-update="update_osc1_coarse" id="osc1-coarse">
-      <label><input id="osc1-32" name="osc1-coarse-tune" type="radio" value="0.5">32'</label>
-      <label><input id="osc1-16" name="osc1-coarse-tune" type="radio" value="1">16'</label>
-      <label><input id="osc1-8" name="osc1-coarse-tune" type="radio" value="2">8'</label>
-      <label><input id="osc1-4" name="osc1-coarse-tune" type="radio" value="4">4'</label>
+      <label><input data-pos="1" id="osc1-32" name="osc1-coarse-tune" type="radio" value="0.5">32'</label>
+      <label><input data-pos="2" id="osc1-16" name="osc1-coarse-tune" type="radio" value="1">16'</label>
+      <label><input data-pos="3" id="osc1-8" name="osc1-coarse-tune" type="radio" value="2">8'</label>
+      <label><input data-pos="4" id="osc1-4" name="osc1-coarse-tune" type="radio" value="4">4'</label>
     </div>
 
     <br>
@@ -65,17 +65,17 @@
     </div>
     <br>
     <div data-program="osc2_coarse" data-update="update_osc2_coarse" id="osc2-coarse">
-      <label><input id="osc2-32" name="osc2-coarse-tune" type="radio" value="0.5">32'</label>
-      <label><input id="osc2-16" name="osc2-coarse-tune" type="radio" value="1">16'</label>
-      <label><input id="osc2-8" name="osc2-coarse-tune" type="radio" value="2">8'</label>
-      <label><input id="osc2-4" name="osc2-coarse-tune" type="radio" value="4">4'</label>
+      <label><input data-pos="1" id="osc2-32" name="osc2-coarse-tune" type="radio" value="0.5">32'</label>
+      <label><input data-pos="2" id="osc2-16" name="osc2-coarse-tune" type="radio" value="1">16'</label>
+      <label><input data-pos="3" id="osc2-8" name="osc2-coarse-tune" type="radio" value="2">8'</label>
+      <label><input data-pos="4" id="osc2-4" name="osc2-coarse-tune" type="radio" value="4">4'</label>
     </div>
     <br>
     <div data-program="osc2_waveform" data-update="update_osc2_waveform" id="osc2-waveform">
-      <label class="selected"><input id="osc2-saw" name="osc2-wave" type="radio" value="sawtooth">Saw</label>
-      <label><input id="osc2-sqr" name="osc2-wave" type="radio" value="square">Square</label>
-      <label><input id="osc2-tri" name="osc2-wave" type="radio" value="triangle">Tri.</label>
-      <label><input id="osc2-sin" name="osc2-wave" type="radio" value="sine">Sine</label>
+      <label><input data-pos="1" id="osc2-saw" name="osc2-wave" type="radio" value="sawtooth">Saw</label>
+      <label><input data-pos="2" id="osc2-sqr" name="osc2-wave" type="radio" value="square">Square</label>
+      <label><input data-pos="3" id="osc2-tri" name="osc2-wave" type="radio" value="triangle">Tri.</label>
+      <label><input data-pos="4" id="osc2-sin" name="osc2-wave" type="radio" value="sine">Sine</label>
     </div>
     <label class="slider-label" for="osc2-detune">
       <input class="vertical-slider" data-program="osc2_detune" data-update="update_osc2_detune" id="osc2-detune" max="1200" min="-1200" orient="vertical" step="100" type="range" value="0">
@@ -98,11 +98,11 @@
   <div id="noise">
     <h2>Noise</h2>
     <div data-program="noise_color" data-update="update_noise_color" id="noise-color">
-      <label class="selected"><input id="white-noise" name="noise-color" type="radio" value="white">White</label>
-      <label><input id="pink-noise" name="noise-color" type="radio" value="pink">Pink</label>
-      <label><input id="red-noise" name="noise-color" type="radio" value="red">Red</label>
-      <label><input id="blue-noise" name="noise-color" type="radio" value="blue">Blue</label>
-      <label><input id="purple-noise" name="noise-color" type="radio" value="purple">Purple</label>
+      <label><input data-pos="1" id="white-noise" name="noise-color" type="radio" value="white">White</label>
+      <label><input data-pos="2" id="pink-noise" name="noise-color" type="radio" value="pink">Pink</label>
+      <label><input data-pos="3" id="red-noise" name="noise-color" type="radio" value="red">Red</label>
+      <label><input data-pos="4" id="blue-noise" name="noise-color" type="radio" value="blue">Blue</label>
+      <label><input data-pos="5" id="purple-noise" name="noise-color" type="radio" value="purple">Purple</label>
     </div>
   </div>
 
@@ -127,11 +127,11 @@
   <div id="filter">
     <h2>Filter</h2>
     <div data-program="filter_mode" data-update="update_filter_mode" id="filter-mode">
-      <label><input id="filter-lp" name="filter-mode" type="radio" value="lp">LP</label>
-      <label><input id="filter-bp" name="filter-mode" type="radio" value="bp">BP</label>
-      <label><input id="filter-hp" name="filter-mode" type="radio" value="hp">HP</label>
-      <label><input id="filter-notch" name="filter-mode" type="radio" value="notch">Notch</label>
-      <label><input id="filter-off" name="filter-mode" type="radio" value="off">Off</label>
+      <label><input data-pos="1" id="filter-lp" name="filter-mode" type="radio" value="lp">LP</label>
+      <label><input data-pos="2" id="filter-bp" name="filter-mode" type="radio" value="bp">BP</label>
+      <label><input data-pos="3" id="filter-hp" name="filter-mode" type="radio" value="hp">HP</label>
+      <label><input data-pos="4" id="filter-notch" name="filter-mode" type="radio" value="notch">Notch</label>
+      <label><input data-pos="5" id="filter-off" name="filter-mode" type="radio" value="off">Off</label>
     </div>
     <label class="slider-label" for="cutoff">
       <input class="vertical-slider" data-program="cutoff" data-update="update_cutoff" id="cutoff" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
@@ -204,11 +204,11 @@
   <div id="lfo">
     <h2>LFO</h2>
     <div data-program="lfo_shape" data-update="update_lfo_shape" id="lfo-shape">
-      <label class="selected"><input id="lfo-sin" name="lfo-shape" type="radio" value="sine">Sine</label>
-      <label><input id="lfo-tri" name="lfo-shape" type="radio" value="triangle">Tri.</label>
-      <label><input id="lfo-rmp" name="lfo-shape" type="radio" value="ramp">Ramp</label>
-      <label><input id="lfo-saw" name="lfo-shape" type="radio" value="sawtooth">Saw</label>
-      <label><input id="lfo-sqr" name="lfo-shape" type="radio" value="square">Square</label>
+      <label><input data-pos="1" id="lfo-sin" name="lfo-shape" type="radio" value="sine">Sine</label>
+      <label><input data-pos="2" id="lfo-tri" name="lfo-shape" type="radio" value="triangle">Tri.</label>
+      <label><input data-pos="3" id="lfo-rmp" name="lfo-shape" type="radio" value="ramp">Ramp</label>
+      <label><input data-pos="4" id="lfo-saw" name="lfo-shape" type="radio" value="sawtooth">Saw</label>
+      <label><input data-pos="5" id="lfo-sqr" name="lfo-shape" type="radio" value="square">Square</label>
     </div>
     <label class="slider-label" for="lfo-rate">
       <input class="vertical-slider" data-program="lfo_rate" data-update="update_lfo_rate" id="lfo-rate" max="1" min="0.0001" orient="vertical" step="0.0001" type="range" value="0.0001">
@@ -266,9 +266,9 @@
       <br>
 
     <div data-program="portamento_mode" id="portamento-mode">
-      <label><input id="portamento-off" name="portamento" type="radio" value="no-portamento">Off</label>
-      <label><input id="portamento-linear" name="portamento" type="radio" value="linear">Lin.</label>
-      <label><input id="portamento-exponential" name="portamento" type="radio" value="exponential">Exp.</label>
+      <label><input data-pos="1" id="portamento-off" name="portamento" type="radio" value="no-portamento">Off</label>
+      <label><input data-pos="1" id="portamento-linear" name="portamento" type="radio" value="linear">Lin.</label>
+      <label><input data-pos="1" id="portamento-exponential" name="portamento" type="radio" value="exponential">Exp.</label>
     </div>
   </div>
 
