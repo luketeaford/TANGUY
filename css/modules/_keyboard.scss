@@ -1,5 +1,6 @@
 #keyboard {
-//    background: #1f1f17;//temporarily commenting out for a quick fix...
+    background: linear-gradient(#1f1f17, #191911) repeat-x;
+    background-size: 1px 13rem;//FIND WHATEVER IS 13REM AND USE VARIABLE
     font-size: 0;
     margin: 1rem -1rem -1rem;
 }
@@ -8,7 +9,7 @@
     bottom: 0;
     content: '';
     position: absolute;
-    top: calc(100% - 13rem);
+    top: calc(100% - 13rem);//USE VARIABLE
     width: 3rem;
 }
 #keyboard::before {
@@ -24,10 +25,9 @@
 
 .fake-shadow {
     border: 0;
-    //box-shadow: -1px 4px 6px 2px rgba(0,0,0,.36);// subtle version
-    box-shadow: -1px 4px 4px 5px rgba(0,0,0,.66);
+    box-shadow: -1px 3px 4px 5px rgba(0,0,0,.66);//ok but unconvincing
     margin: 0 auto;
     position: relative;
-    width: calc(100% - 10px);
+    width: calc(100% - 12px);
     z-index: 2;
 }

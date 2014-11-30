@@ -3,7 +3,9 @@
 }
 #octave-shift {
     display: inline-block;
+    position: relative;
     text-align: center;
+    top: -.25rem;
 }
 %round-light {
     border: 1px solid #2e2a0e;//darker?

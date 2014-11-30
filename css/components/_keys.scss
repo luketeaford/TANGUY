@@ -2,40 +2,38 @@
 	-webkit-user-select: none;
 	-webkit-tap-highlight-color: rgba(255,255,255,0);
 	border: 1px solid #7a7878;
+	border-top: 0;
 	cursor: pointer;
 	vertical-align: top;
 }
 %white-key {
 	@extend %key;
-	background: linear-gradient(#fff, #f2f2f2 2px, #d2d2d2);
+	background: linear-gradient(#1f1f17, #f2f2f2 2px, #d2d2d2);//VARIABLE
 	border-radius: 0 0 6px 6px;
 	box-shadow: inset 0 -4px 2px 2px #c2c1c0, 0 4px 6px -2px #242220;
 	height: 13.5rem;
 	width: 2.2rem;
-	&:hover {
-		background: linear-gradient(#fff, #f0f0f0 2px, #e8e8e8 10rem, #a2a2a0);
-		box-shadow: inset 0 -1px 2px 1px #a2a1a0, 0 4px 3px -3px #100b0a;
-	}
+	&:hover,
 	&.playing {
-		background: linear-gradient(#fff, #f0f0f0 2px, #e8e8e8 10rem, #a2a2a0);
+		background: linear-gradient(#1f1f17, #f0f0f0 2px, #e8e8e8 10rem, #a2a2a0);//VARIABLES
 		box-shadow: inset 0 -1px 2px 1px #a2a1a0, 0 4px 3px -3px #100b0a;
 	}
 }
 %black-key {
 	@extend %key;
-	background: linear-gradient(#ccc, #222 2px, #111);
+	background: linear-gradient(#1f1f17, #2e2c29 2px, #111);//VARIABLE FOR FIRST COLOR
 	border-radius: 0 0 6px 4px;
-	box-shadow: inset 0px -8px 6px 4px #222;//PRETTY GOOD
+	box-shadow: inset 0px -8px 6px 4px #2e2c29;//PRETTY GOOD
 	height: 8.5rem;
 	width: 1.5rem;
 	left: -.75rem;
 	margin: 0 -1.5rem 0 0;
 	position: relative;
 	z-index: 1;
-	&:hover {
-	}
+	&:hover,
 	&.playing {
-		background: #3e3c39 !important;
+		background: linear-gradient(#1e1c19, #2e2c29 2px, #000);
+		box-shadow: inset 0 -8px 6px 4px #161417;
 	}
 }
 .c,
