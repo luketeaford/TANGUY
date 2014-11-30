@@ -9,30 +9,27 @@
   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 </head>
 <body>
-
   <h1>Tanguy</h1>
-
+<!--
+  <div id="program">
+    84: The Last Voice
+  </div>
+-->
   <div id="osc1">
     <h2>Oscillator One</h2>
-
     <span class="kbd-tracking">Keyboard Tracking</span>
-
     <div data-program="osc1_kbd" id="osc1-kbd">
       <label><input id="osc1-off" name="osc1-kbd-tracking" type="radio" value="off">Off</label>
       <label><input id="osc1-on" name="osc1-kbd-tracking" type="radio" value="on">On</label>
     </div>
-
     <br>
-
     <div data-program="osc1_coarse" data-update="update_osc1_coarse" id="osc1-coarse">
       <label><input data-pos="1" id="osc1-32" name="osc1-coarse-tune" type="radio" value="0.5">32'</label>
       <label><input data-pos="2" id="osc1-16" name="osc1-coarse-tune" type="radio" value="1">16'</label>
       <label><input data-pos="3" id="osc1-8" name="osc1-coarse-tune" type="radio" value="2">8'</label>
       <label><input data-pos="4" id="osc1-4" name="osc1-coarse-tune" type="radio" value="4">4'</label>
     </div>
-
     <br>
-
     <label class="slider-label">
       <input class="vertical-slider" data-program="osc1_saw" data-update="update_osc1_saw" id="osc1-saw" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
       Saw
@@ -53,9 +50,7 @@
       <input class="vertical-slider" data-program="osc1_fm" data-update="update_osc1_fm" id="osc1-fm" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
       FM Amt.
     </label>
-
   </div>
-
   <div id="osc2">
     <h2>Oscillator Two</h2>
     <span class="kbd-tracking">Keyboard Tracking</span>
@@ -94,7 +89,6 @@
       FM Amt.
     </label>
   </div>
-
   <div id="noise">
     <h2>Noise</h2>
     <div data-program="noise_color" data-update="update_noise_color" id="noise-color">
@@ -105,7 +99,6 @@
       <label><input data-pos="5" id="purple-noise" name="noise-color" type="radio" value="purple">Purple</label>
     </div>
   </div>
-
   <div id="mixer">
     <h2>Mixer</h2>
     <label class="slider-label" for="osc1-mix">
@@ -121,9 +114,7 @@
       Noise
     </label>
   </div>
-
   <hr class="panel">
-
   <div id="filter">
     <h2>Filter</h2>
     <div data-program="filter_mode" data-update="update_filter_mode" id="filter-mode">
@@ -150,31 +141,25 @@
       Kbd.
     </label>
   </div>
-
   <div id="filter-eg">
     <h2>Filter Envelope Generator</h2>
     <label class="slider-label" for="filter-attack">
       <input class="vertical-slider" data-program="filter_attack" id="filter-attack" max="1" min="0.008" orient="vertical" step="0.0001" type="range" value="0.008">
       Attack
     </label>
-
     <label class="slider-label" for="filter-decay">
       <input class="vertical-slider" data-program="filter_decay" id="filter-decay" max="1" min="0.008" orient="vertical" step="0.0001" type="range" value="0.008">
       Decay
     </label>
-
     <label class="slider-label" for="filter-sustain">
       <input class="vertical-slider" data-program="filter_sustain" id="filter-sustain" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
       Sustain
     </label>
-
     <label class="slider-label" for="filter-release">
       <input class="vertical-slider" data-program="filter_release" id="filter-release" max="1" min="0.008" orient="vertical" step="0.0001" type="range" value="0.008">
       Release
     </label>
-
   </div>
-
   <div id="vca-eg">
     <h2>VCA Envelope Generator</h2>
     <label class="slider-label" for="vca-attack">
@@ -198,9 +183,7 @@
       VCA Gain
     </label>
   </div>
-
   <hr class="panel">
-
   <div id="lfo">
     <h2>LFO</h2>
     <div data-program="lfo_shape" data-update="update_lfo_shape" id="lfo-shape">
@@ -227,7 +210,6 @@
       Amp.
     </label>
   </div>
-
   <div id="delay">
     <h2>Delay</h2>
       <label class="slider-label" for="delay-rate">
@@ -240,7 +222,6 @@
       </label>
     </div>
   </div>
-
   <div id="keyboard-controls">
     <h2>Octave Shift</h2>
     <div id="octave-shift">
@@ -255,37 +236,30 @@
       <button id="octave-shift-up" data-octave-shift="1">+1</button>
     </div>
   </div>
-
   <div id="portamento">
     <h2>Portamento</h2>
       <label class="horizontal-slider-label">
         Amount
         <input class="horizontal-slider" data-program="portamento" id="portamento-amount" max="1" min="0.01" step="0.01" type="range" value="0.01">
       </label>
-
       <br>
-
     <div data-program="portamento_mode" id="portamento-mode">
-      <label><input data-pos="1" id="portamento-off" name="portamento" type="radio" value="no-portamento">Off</label>
-      <label><input data-pos="1" id="portamento-linear" name="portamento" type="radio" value="linear">Lin.</label>
-      <label><input data-pos="1" id="portamento-exponential" name="portamento" type="radio" value="exponential">Exp.</label>
+      <label><input data-pos="1" id="portamento-off" name="portamento" type="radio" value="off">Off</label>
+      <label><input data-pos="2" id="portamento-linear" name="portamento" type="radio" value="linear">Lin.</label>
+      <label><input data-pos="3" id="portamento-exponential" name="portamento" type="radio" value="exponential">Exp.</label>
     </div>
   </div>
-
   <div id="keyboard">
     <hr class="fake-shadow">
     <!--COULD BE A PROBLEM NESTING THESE INSIDE KEYBOARD... RENAME SO KEYBOARD ONLY CONTAINS KEYS-->
-
-
-<label id="pitch-wheel">
-  <input id="pitch-bend" max="12" min="-12" orient="vertical" step="0.0001" type="range" value="0">
-  Pitch
-</label>
-<label id="mod-wheel">
-  <input data-program="mod" data-update="calculate_lfo" id="mod-amount" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-  Mod.
-</label>
-
+    <label id="pitch-wheel">
+      <input id="pitch-bend" max="12" min="-12" orient="vertical" step="0.0001" type="range" value="0">
+      Pitch
+    </label>
+    <label id="mod-wheel">
+      <input data-program="mod" data-update="calculate_lfo" id="mod-amount" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+      Mod.
+    </label>
     <button class="c" data-keyboard-position="-1" data-note-value="-900" id="c1"></button>
     <button class="c-sharp" data-keyboard-position="-1" data-note-value="-800" id="cs1"></button>
     <button class="d" data-keyboard-position="-1" data-note-value="-700" id="d1"></button>
@@ -312,7 +286,6 @@
     <button class="b" data-keyboard-position="0" data-note-value="200"></button>
     <button class="c" data-keyboard-position="1" data-note-value="-900"></button>
   </div>
-
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="js/tanguy.js"></script>
 <!--  <script>

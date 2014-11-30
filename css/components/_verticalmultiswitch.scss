@@ -1,7 +1,7 @@
 %vertical-switch {
-    background: linear-gradient(#53515f, #363432) repeat-x, linear-gradient(#6c6956, #887);
+    background: linear-gradient(#53515f, #363432) repeat-x, linear-gradient(#6c6956, #887) fixed;
     background-position: 0 0;
-    background-size: 2rem 1.5rem, 100% 100%;
+    background-size: 2rem 1.5rem, auto;
     border: 1px solid #3c3926;
     border-radius: .2rem;
     display: inline-block;
@@ -9,19 +9,19 @@
     vertical-align: top;
     width: 3rem;
     &.pos1 {
-        background-position-y: 0;
+        background-position-y: 0, 0;
     }
     &.pos2 {
-        background-position-y: 1.5rem;
+        background-position-y: 1.5rem, 0;
     }
     &.pos3 {
-        background-position-y: 3rem;
+        background-position-y: 3rem, 0;
     }
     &.pos4 {
-        background-position-y: 4.5rem;
+        background-position-y: 4.5rem, 0;
     }
     &.pos5 {
-        background-position-y: 6rem;
+        background-position-y: 6rem, 0;
     }
     label {
         color: #000;

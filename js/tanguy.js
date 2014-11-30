@@ -79,7 +79,7 @@ var TANGUY = {
         "delay_rate": 0,
         "delay": 0,
 
-        "portamento_mode": "no-portamento",
+        "portamento_mode": "off",
         "portamento": 0.01,
 
         "mod": 0,
@@ -317,7 +317,6 @@ TANGUY.update_panel = function () {
     switch (TANGUY.program.portamento_mode) {
     case 'off':
         TANGUY.button.change($('#portamento-off'));
-        console.log('Still works');
         break;
     case 'linear':
         TANGUY.button.change($('#portamento-linear'));
@@ -401,9 +400,8 @@ TANGUY.calculate_pitch = function (pos, note_value) {
 
     //OSCILLATOR TRACKING
     switch (TANGUY.program.portamento_mode) {
-    case 'no-portamento':
+    case 'off':
         no_portamento();
-        console.log('Calculate pitch');
         break;
     case 'linear':
         linear_portamento();
@@ -1156,11 +1154,10 @@ TANGUY.button = {
         var button = e.currentTarget === undefined ? $(e) : $(e.currentTarget),
             pos = button.attr('data-pos'),
             bg_pos;
-            if (pos) {
-                bg_pos = 'pos' + pos;
-                button.parent().parent().removeClass().addClass(bg_pos);//remove all classes then add the proper one
-                console.log('Should be ' + button.attr('data-pos') + ' and ' + bg_pos);
-            }
+        if (pos) {
+            bg_pos = 'pos' + pos;
+            button.parent().parent().removeClass().addClass(bg_pos);//remove all classes then add the proper one
+        }
         return button.parent().addClass('selected').siblings().removeClass('selected');
     }
 };

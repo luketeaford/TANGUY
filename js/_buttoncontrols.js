@@ -13,11 +13,10 @@ TANGUY.button = {
         var button = e.currentTarget === undefined ? $(e) : $(e.currentTarget),
             pos = button.attr('data-pos'),
             bg_pos;
-            if (pos) {
-                bg_pos = 'pos' + pos;
-                button.parent().parent().removeClass().addClass(bg_pos);//remove all classes then add the proper one
-                console.log('Should be ' + button.attr('data-pos') + ' and ' + bg_pos);
-            }
+        if (pos) {
+            bg_pos = 'pos' + pos;
+            button.parent().parent().removeClass().addClass(bg_pos);//remove all classes then add the proper one
+        }
         return button.parent().addClass('selected').siblings().removeClass('selected');
     }
 };
