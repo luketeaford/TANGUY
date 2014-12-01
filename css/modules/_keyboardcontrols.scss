@@ -11,7 +11,7 @@
     border: 1px solid #2e2a0e;//darker?
     border-radius: 50%;
     box-sizing: content-box;
-    color: #fff6f3;//white?
+    color: $white;
     display: inline-block;
     font-size: .5rem;
     height: .6rem;
@@ -21,7 +21,6 @@
     transition: opacity .25s ease-out;
     width: .6rem;
     &.lit {
-        color: #fff6f3;
         opacity: 1 !important;
     }
 }

@@ -5,7 +5,7 @@
     margin: 1rem -1rem -1rem;
 }
 %darken-endcheeks {
-    background: rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.1);//WARNING ZERO
     bottom: 0;
     content: '';
     position: absolute;
@@ -25,9 +25,18 @@
 
 .fake-shadow {
     border: 0;
-    box-shadow: -1px 3px 4px 5px rgba(0,0,0,.66);//ok but unconvincing
+    box-shadow: -1px 3px 4px 5px rgba(0, 0, 0, .66);//ok but unconvincing
     margin: 0 auto;
     position: relative;
-    width: calc(100% - 12px);
+    width: calc(100% - 12px);//WARNING PIXELS
     z-index: 2;
+}
+
+
+//KEYS
+.c,.d,.e,.f,.g,.a,.b {
+    @extend %white-key;
+}
+.c-sharp,.d-sharp,.f-sharp,.g-sharp,.a-sharp {
+    @extend %black-key;
 }

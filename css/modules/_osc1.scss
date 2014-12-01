@@ -5,7 +5,7 @@
     padding: .5rem;
     vertical-align: top;
     > h2 {
-        background: linear-gradient(to right, #242423 5rem, transparent);
+        background: linear-gradient(to right, $body-bg 5rem, transparent);
         padding: 0 1rem 0 .25rem;
         position: relative;
         top: -1.1rem;
@@ -31,7 +31,7 @@
 }
 
 #osc1-coarse {
-    @extend %multi-switch;
+    @extend %horizontal-switch;
     margin: 1rem 0;
 }
 

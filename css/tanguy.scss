@@ -1,8 +1,9 @@
 @import 'config/_colors';
+@import 'config/_animation';
 @import 'config/_reset';
 @import 'components/_switches';
-@import 'components/_multiswitch';
-@import 'components/_verticalmultiswitch';
+@import 'components/_horizontalswitch';
+@import 'components/_verticalswitch';
 @import 'components/_sliders';
 @import 'components/_buttons';
 @import 'components/_wheels';

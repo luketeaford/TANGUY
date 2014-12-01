@@ -9,35 +9,35 @@ html {
 	background-image: url('../images/bg-too-big.jpg');
 	background-position-y: -2rem;
 	box-sizing: border-box;
-	color: #a3a394;
+	color: $body-text;
 	font-family: helvetica, arial, sans-serif;
 	font-size: 20px;
 	margin: 2rem 0;
 }
-body {
-	background: #242423;
-	margin: 0 auto;
-	padding: .5rem 1rem;
-	position: relative;
-	width: 54rem;
-}
-%endcheeks {
-	background: url('../images/wood-texture2.jpg');
+%endcheeks {//WARNING MOVE
+	background: url('../images/wood-texture2.jpg');//WARNING RENAME
 	bottom: 0;
 	content: '';
 	position: absolute;
 	top: 0;
 	width: 3rem;
 }
-body::before {
-	@extend %endcheeks;
-	background-position-x: -30px;
-	background-position-y: 121px;
-	left: -3rem;
-}
-body::after {
-	@extend %endcheeks;
-	right: -3rem;
+body {
+	background: $body-bg;
+	margin: 0 auto;
+	padding: .5rem 1rem;
+	position: relative;
+	width: 54rem;
+	&::before {
+		@extend %endcheeks;
+		background-position-x: -30px;//WARNING PIXELS
+		background-position-y: 121px;//WARNING PIXELS
+		left: -3rem;
+	}
+	&::after {
+		@extend %endcheeks;
+		right: -3rem;
+	}
 }
 
 h1 {
@@ -55,9 +55,8 @@ h2 {
 	text-transform: uppercase;
 }
 
-//WHERE DOES THIS BELONG?
-.panel {
-	background: radial-gradient(#131311, transparent);
+.panel {//WARNING MOVE
+	background: radial-gradient(#131311, transparent);//THIS COLOR USED ONLY ONCE!
 	background-position-y: -18px;
 	background-repeat: no-repeat;
 	background-size: 52rem 20px;
