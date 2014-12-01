@@ -1,6 +1,6 @@
 %wheel {
     border: 1px solid #1f1e1e;
-    box-shadow: inset 0px 0px 20px 2px #555;
+    box-shadow: inset 0 0 20px 2px #555;//WARNING PIXELS
     color: #000;
     display: inline-block;
     font-size: .5rem;
@@ -18,17 +18,4 @@
         width: 4rem;
         z-index: 0;
     }
-}
-
-//MOVE TO KEYBOARD CONTROLS
-#pitch-wheel {
-    @extend %wheel;
-    background: #827c7a;
-    margin: 0 1rem;
-}
-
-#mod-wheel {
-    @extend %wheel;
-    background: #999;
-    margin: 0 1rem 0 0;
 }

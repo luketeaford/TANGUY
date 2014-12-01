@@ -5,7 +5,7 @@
     margin: 1rem -1rem -1rem;
 }
 %darken-endcheeks {
-    background: rgba(0, 0, 0, 0.1);//WARNING ZERO
+    background: rgba(0, 0, 0, .1);
     bottom: 0;
     content: '';
     position: absolute;
@@ -16,13 +16,11 @@
     @extend %darken-endcheeks;
     left: -3rem;
 }
-
 #keyboard::after {
     @extend %darken-endcheeks;
     right: -3rem;
     z-index: 1;
 }
-
 .fake-shadow {
     border: 0;
     box-shadow: -1px 3px 4px 5px rgba(0, 0, 0, .66);//ok but unconvincing
@@ -31,7 +29,6 @@
     width: calc(100% - 12px);//WARNING PIXELS
     z-index: 2;
 }
-
 
 //KEYS
 .c,.d,.e,.f,.g,.a,.b {

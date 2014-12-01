@@ -39,7 +39,6 @@ body {
 		right: -3rem;
 	}
 }
-
 h1 {
 	font-size: 1rem;
 	font-weight: 100;
@@ -47,12 +46,15 @@ h1 {
 	margin: 0 0 2rem;
 	text-transform: uppercase;
 }
-
 h2 {
 	font-family: 'brandon-grotesque', sans-serif;
 	font-size: .8rem;
 	font-style: italic;
 	text-transform: uppercase;
+}
+button,
+input {
+	outline: none;
 }
 
 .panel {//WARNING MOVE
@@ -65,12 +67,4 @@ h2 {
 	height: 1rem;
 	margin: 1rem auto 0;
 	width: 54rem;
-}
-
-button {
-	outline: none;
-}
-
-input {
-	outline: none;
 }

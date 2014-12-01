@@ -1,20 +1,25 @@
+#osc1,
 #osc2 {
     @extend %module;
     > h2 {
         margin-bottom: -1rem;
     }
 }
-
+#osc1-kbd,
 #osc2-kbd {
     @extend %on-off-switch;
     margin-left: 4rem;
 }
-
+#osc1-coarse,
 #osc2-coarse {
     @extend %horizontal-switch;
     margin: 1rem 0;
 }
-
+.kbd-tracking {//CAN PROBABLY EXTEND SOMETHING
+    font-size: .5rem;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
 #osc2-waveform {
     @extend %vertical-switch;
 }
