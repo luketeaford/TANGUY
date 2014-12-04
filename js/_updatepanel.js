@@ -1,6 +1,10 @@
 TANGUY.update_panel = function () {
     'use strict';
 
+    //PROGRAM NAME
+    $('#program-name').text(TANGUY.program.name);
+
+
     //OSCILLATOR 1
     if (TANGUY.program.osc1_kbd) {
         TANGUY.button.change($('#osc1-on'));

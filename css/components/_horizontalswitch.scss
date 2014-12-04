@@ -29,7 +29,7 @@
         width: 4rem;
         &.selected {
             -webkit-animation: lag-label .25s;
-            animation: lag-label .25s;
+            //animation: lag-label .25s;
             color: #cfc6c3;
             text-shadow: -2px 0 1px #7f7673, 2px 0 1px #7f7673;
         }

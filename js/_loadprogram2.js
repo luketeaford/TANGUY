@@ -7,9 +7,18 @@ TANGUY.load_program = function (patch) {
     });
 };
 
-//LOAD PROGRAM CONTROLS
-$('#program-selector').change(function () {
+
+
+//LOAD PROGRAM CONTROLS - WORK IN PROGRESS
+$('#program').on('click', function () {
+    'use strict';
+    console.log('Program field clicked');
+    $('#program-select').toggle();//THIS SHOULD BE CACHED GLOBALLY?
+});
+
+//NEW LOAD PROGRAM CONTROLS (TO BE MADE A FREE FUNCTION!)
+$('#program-select').on('click', 'button', function () {
     'use strict';
     TANGUY.load_program(this.value);
-    $(this).blur();
 });
+
