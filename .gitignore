@@ -43,3 +43,5 @@ Icon
 .Trashes
 *.sublime-project
 *.sublime-workspace
+
+*.log

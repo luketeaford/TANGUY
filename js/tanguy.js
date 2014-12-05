@@ -101,22 +101,28 @@ TANGUY.load_program = function (patch) {
     });
 };
 
-
-
-//LOAD PROGRAM CONTROLS - WORK IN PROGRESS
-$('#program').on('click', function () {
+TANGUY.show_program = function () {
     'use strict';
-    console.log('Program field clicked');
-    $('#program-select').toggle();//THIS SHOULD BE CACHED GLOBALLY?
-});
+    $('#program-select').show();
+    $(document).one('click', TANGUY.hide_program);
+    return false;
+};
 
-//NEW LOAD PROGRAM CONTROLS (TO BE MADE A FREE FUNCTION!)
+TANGUY.hide_program = function () {
+    'use strict';
+    $('#program-select').hide();
+    $('body').one('click', '#program', TANGUY.show_program);
+    return false;
+};
+
+
+//SLOPPY EVENTS - PUT IN DOCUMENT READY...
+$('body').one('click', '#program', TANGUY.show_program);
+
 $('#program-select').on('click', 'button', function () {
     'use strict';
     TANGUY.load_program(this.value);
 });
-
-
 TANGUY.update_program = function () {
     'use strict';
 
