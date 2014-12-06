@@ -40,7 +40,7 @@
     "vca_release": 0.0001,
 
     "lfo_shape": "sine",
-    "lfo_rate": 0.1,
+    "lfo_rate": 0.0001,
     "lfo_pitch": 0,
     "lfo_filter": 0,
     "lfo_amp": 0,
