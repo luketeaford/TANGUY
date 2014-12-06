@@ -10,23 +10,32 @@
 }
 
 #program-select {
-    background: #f2db21;
+    background: inherit;
+    box-shadow: inherit;
+//    color: inherit;
     display: none;
     left: 0;
     height: 12rem;
-    margin: 0 auto;
+    margin: -.5rem auto;
+//    opacity: .9;
     overflow-y: scroll;
     position: absolute;
     right: 0;
     width: calc(100% - 2rem);
     z-index: 1;
     > button {
-        background: #f00;
-        border: none;
-        display: list-item;
+        background: none;
+        border: 1px solid transparent;
+        color: inherit;
+        cursor: pointer;//should be set on all buttons?
         padding: .5rem;
         font-family: 'ocr-b-std', serif;
+        text-align: left;
         text-transform: uppercase;
+        width: 12rem;
+        &:hover {
+            border: 1px solid;
+        }
     }
 }
 

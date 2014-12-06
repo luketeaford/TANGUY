@@ -115,6 +115,77 @@ TANGUY.hide_program = function () {
     return false;
 };
 
+//POPULATE PROGRAM BANK...
+TANGUY.populate_bank = function () {
+    'use strict';
+    var presets = [
+        'initialize',
+        'low bubble',
+        'fake sync',
+        'faux set',
+        'event deafener',
+        'chattering',
+        'camembert',
+        'salut detroit',
+        'plywood violin',
+        'black celebration',
+        'feedback drone',
+        'male voice',
+        'crawler',
+        'red river',
+        'dusty pipes',
+        'abominable bassman',
+        'architecture',
+        'bacon grease',
+        'beatnik bongos',
+        'beefy snare',
+        'bending branch',
+        'cheap snare',
+        'chhchhchhchh',
+        'cool wire',
+        'easy cure',
+        'eval',
+        'evening gardening',
+        'fisherman',
+        'former marine',
+        'fuzzy',
+        'galactic yawn',
+        'gogo horn',
+        'hum',
+        'jetlag',
+        'metal cello',
+        'ozone',
+        'papayawhip',
+        'perry on the beach',
+        'pulse demon',
+        'ragamuffin',
+        'round kick',
+        'rubberband',
+        'science fiction brains',
+        'shanty',
+        'slap bass',
+        'snarly bass',
+        'square wave bass',
+        'stomping mummy',
+        'stylish bass',
+        'swamp monster',
+        'synth king',
+        'synth strings',
+        'the last voice',
+        'wah wah',
+        'weedy rectangle',
+        'whompy bass',
+        'wistful pipes'
+    ],
+        i;
+    console.log('Populating the program bank...');
+    console.log('Presets length = ' + presets.length);
+    for (i = 0; i < presets.length; i += 1) {
+        $('#program-select').append('<button value="' + presets[i] + '">' + presets[i] + '</button>');
+    }
+};
+
+
 
 //SLOPPY EVENTS - PUT IN DOCUMENT READY...
 $('body').one('click', '#program', TANGUY.show_program);
@@ -830,6 +901,7 @@ $(document).ready(function () {
     'use strict';
     TANGUY.build_synth();
     TANGUY.load_program('initialize');
+    TANGUY.populate_bank();
 });
 TANGUY.update_osc1_coarse = function () {
     'use strict';
