@@ -92,6 +92,82 @@ TANGUY.save_program = function () {
     TANGUY.program.name = patch_name;
     console.log('SAVE PROGRAM: ' + JSON.stringify(TANGUY.program));
 };
+TANGUY.populate_programs = function () {
+    'use strict';
+    var programs = [
+        'initialize',
+        'ozone',
+        'direct peon',
+        'low bubble',
+        'fake sync',
+        'rhinoceros',
+        'faux set',
+        'stylish bass',
+        'cool wire',
+        'event deafener',
+        'bel homme',
+        'chattering',
+        'square wave bass',
+        'camembert',
+        'salut detroit',
+        'architecture',
+        'plywood violin',
+        'black celebration',
+        'feedback drone',
+        'male voice',
+        'crawler',
+        'red river',
+        'metal cello',
+        'papayawhip',
+        'ragamuffin',
+        'beatnik bongos',
+        'fuzzy',
+        'synth strings',
+        'headcleaner',
+        'easy cure',
+        'rubberband',
+        'jetlag',
+        'abominable bassman',
+        'science fiction brains',
+        'bacon grease',
+        'shanty',
+        'bending branch',
+        'snarly bass',
+        'evening gardening',
+        'weedy rectangle',
+        'disco pabulum',
+        'cheap snare',
+        'beefy snare',
+        'whompy bass',
+        'sloppy bass',
+        'chhchhchhchh',
+        'round kick',
+        'fisherman',
+        'the last voice',
+        'synth king',
+        'showering dalek',
+        'former marine',
+        'galactic yawn',
+        'pulse demon',
+        'perry on the beach',
+        'dolphin sighting',
+        'gamelan',
+        'hum',
+        'swamp monster',
+        'dusty pipes',
+        'wistful pipes',
+        'hihat',
+        'maracas',
+        'wah wah'
+    ],
+        urls = [],
+        i;
+    console.log('Number of programs = ' + programs.length);
+    for (i = 0; i < programs.length; i += 1) {
+        urls[i] = programs[i].replace(/\s+/g, '');
+        $('#program-select').append('<button value="' + urls[i] + '">' + programs[i] + '</button>');
+    }
+};
 TANGUY.load_program = function (patch) {
     'use strict';
     var patch_url = encodeURI('programs/') + patch + '.json';
@@ -114,78 +190,6 @@ TANGUY.hide_program = function () {
     $('body').one('click', '#program', TANGUY.show_program);
     return false;
 };
-
-//POPULATE PROGRAM BANK...
-TANGUY.populate_bank = function () {
-    'use strict';
-    var presets = [
-        'initialize',
-        'ozone',
-        'direct peon',
-        'low bubble',
-        'fake sync',
-        'rhinoceros',
-        'faux set',
-        'stylish bass',
-        'cool wire',
-        'event deafener',
-        'chattering',
-        'square wave bass',
-        'camembert',
-        'salut detroit',
-        'architecture',
-        'plywood violin',
-        'black celebration',
-        'feedback drone',
-        'male voice',
-        'crawler',
-        'red river',
-        'metal cello',
-        'papayawhip',
-        'ragamuffin',
-        'beatnik bongos',
-        'fuzzy',
-        'synth strings',
-        'easy cure',
-        'rubberband',
-        'jetlag',
-        'abominable bassman',
-        'science fiction brains',
-        'bacon grease',
-        'shanty',
-        'bending branch',
-        'snarly bass',
-        'evening gardening',
-        'weedy rectangle',
-        'cheap snare',
-        'beefy snare',
-        'whompy bass',
-        'sloppy bass',
-        'chhchhchhchh',
-        'round kick',
-        'fisherman',
-        'the last voice',
-        'synth king',
-        'showering dalek',
-        'former marine',
-        'galactic yawn',
-        'pulse demon',
-        'perry on the beach',
-        'hum',
-        'swamp monster',
-        'dusty pipes',
-        'wistful pipes',
-        'wah wah'
-    ],
-        i;
-    console.log('Populating the program bank...');
-    console.log('Presets length = ' + presets.length);
-    for (i = 0; i < presets.length; i += 1) {
-        $('#program-select').append('<button value="' + presets[i] + '">' + presets[i] + '</button>');
-    }
-};
-
-
 
 //SLOPPY EVENTS - PUT IN DOCUMENT READY...
 $('body').one('click', '#program', TANGUY.show_program);
@@ -901,7 +905,7 @@ $(document).ready(function () {
     'use strict';
     TANGUY.build_synth();
     TANGUY.load_program('initialize');
-    TANGUY.populate_bank();
+    TANGUY.populate_programs();
 });
 TANGUY.update_osc1_coarse = function () {
     'use strict';
