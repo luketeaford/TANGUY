@@ -39,10 +39,12 @@
     }
 }
 
-#program span::before {
-    content: '88888888888888888888888888888888888888888888888888888888888888888888888888888888';
-    opacity: .2;
-    overflow: hidden;
-    position: absolute;
-    width: 51rem;
+#program-name {
+    &::before {
+        content: '88888888888888888888888888888888888888888888888888888888888888888888888888888888';
+        opacity: .2;
+        overflow: hidden;
+        position: absolute;
+        width: 51rem;
+    }
 }

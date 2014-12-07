@@ -160,32 +160,22 @@ TANGUY.populate_bank = function () {
         'cheap snare',
         'beefy snare',
         'whompy bass',
-        'dusty pipes',
-
-
-
-
-
-
-
-
-
-
-
+        'sloppy bass',
         'chhchhchhchh',
         'round kick',
         'fisherman',
+        'the last voice',
+        'synth king',
+        'showering dalek',
         'former marine',
         'galactic yawn',
-        'hum',
-        'perry on the beach',
         'pulse demon',
-        'slap bass',
+        'perry on the beach',
+        'hum',
         'swamp monster',
-        'synth king',
-        'the last voice',
-        'wah wah',
-        'wistful pipes'
+        'dusty pipes',
+        'wistful pipes',
+        'wah wah'
     ],
         i;
     console.log('Populating the program bank...');

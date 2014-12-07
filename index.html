@@ -14,7 +14,7 @@
   <div id="program">
     <div id="program-select">
     </div>
-    <span id="program-name">INITIALIZE</span>
+    <span id="program-name">&nbsp;</span>
   </div>
 
   <div id="osc1">
@@ -224,6 +224,19 @@
       </label>
     </div>
   </div>
+  <div id="portamento">
+    <h2>Portamento</h2>
+      <label class="horizontal-slider-label">
+        Amount
+        <input class="horizontal-slider" data-program="portamento" id="portamento-amount" max="1" min="0.01" step="0.01" type="range" value="0.01">
+      </label>
+      <br>
+    <div data-program="portamento_mode" id="portamento-mode">
+      <label><input data-pos="1" id="portamento-off" name="portamento" type="radio" value="off">Off</label>
+      <label><input data-pos="2" id="portamento-linear" name="portamento" type="radio" value="linear">Lin.</label>
+      <label><input data-pos="3" id="portamento-exponential" name="portamento" type="radio" value="exponential">Exp.</label>
+    </div>
+  </div>
   <div id="keyboard-controls">
     <h2>Octave Shift</h2>
     <div id="octave-shift">
@@ -238,22 +251,8 @@
       <button id="octave-shift-up" data-octave-shift="1">+1</button>
     </div>
   </div>
-  <div id="portamento">
-    <h2>Portamento</h2>
-      <label class="horizontal-slider-label">
-        Amount
-        <input class="horizontal-slider" data-program="portamento" id="portamento-amount" max="1" min="0.01" step="0.01" type="range" value="0.01">
-      </label>
-      <br>
-    <div data-program="portamento_mode" id="portamento-mode">
-      <label><input data-pos="1" id="portamento-off" name="portamento" type="radio" value="off">Off</label>
-      <label><input data-pos="2" id="portamento-linear" name="portamento" type="radio" value="linear">Lin.</label>
-      <label><input data-pos="3" id="portamento-exponential" name="portamento" type="radio" value="exponential">Exp.</label>
-    </div>
-  </div>
   <div id="keyboard">
-    <hr class="fake-shadow">
-    <!--COULD BE A PROBLEM NESTING THESE INSIDE KEYBOARD... RENAME SO KEYBOARD ONLY CONTAINS KEYS-->
+    <hr class="fake-shadow"><!--but it is a shadow...-->
     <label id="pitch-wheel">
       <input id="pitch-bend" max="12" min="-12" orient="vertical" step="0.0001" type="range" value="0">
       Pitch
