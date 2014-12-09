@@ -58,13 +58,14 @@ input {
 }
 
 .panel {//WARNING MOVE
-	background: radial-gradient(#131311, rgba(36, 36, 36, 0));//LOOKS GOOD IN CHROME;
-	background-position-y: -18px;
+	background-image: radial-gradient(#131311, rgba(36, 36, 36, 0));//LOOKS GOOD IN CHROME;
+//	background: radial-gradient(#131311, rgba(36, 36, 36, 0), transparent);//LOOKS GOOD IN FIREFOX -- INVISIBLE IN CHROME
+	background-position: 0 -.9rem;
 	background-repeat: no-repeat;
-	background-size: 52rem 20px;
+	background-size: 52rem 1rem;
 	border: none;
 	display: block;
 	height: 1rem;
 	margin: 1rem auto 0;
-	width: 54rem;
+	width: 52rem;
 }
