@@ -161,12 +161,13 @@ TANGUY.populate_programs = function () {
         'wah wah'
     ],
         urls = [],
+        buttons = '',
         i;
-    console.log('Number of programs = ' + programs.length);
     for (i = 0; i < programs.length; i += 1) {
         urls[i] = programs[i].replace(/\s+/g, '');
-        $('#program-select').append('<button value="' + urls[i] + '">' + programs[i] + '</button>');
+        buttons += '<button value="' + urls[i] + '">' + programs[i] + '</button>';
     }
+    $('#program-select').append(buttons);
 };
 TANGUY.load_program = function (patch) {
     'use strict';

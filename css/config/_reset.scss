@@ -58,7 +58,7 @@ input {
 }
 
 .panel {//WARNING MOVE
-	background: radial-gradient(#131311, transparent);//THIS COLOR USED ONLY ONCE!
+	background: radial-gradient(#131311, rgba(36, 36, 36, 0));//LOOKS GOOD IN CHROME;
 	background-position-y: -18px;
 	background-repeat: no-repeat;
 	background-size: 52rem 20px;
