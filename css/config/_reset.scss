@@ -5,6 +5,7 @@
 	margin: 0;
 	padding: 0;
 }
+
 html {
 	background-image: url('../images/bg-too-big.jpg');
 	background-position: 0 -2rem;
@@ -14,6 +15,7 @@ html {
 	font-size: 20px;
 	margin: 2rem 0;
 }
+
 %endcheeks {//WARNING MOVE
 	background: url('../images/wood-texture2.jpg');//WARNING RENAME
 	bottom: 0;
@@ -22,6 +24,7 @@ html {
 	top: 0;
 	width: 3rem;
 }
+
 body {
 	background: $body-bg;
 	margin: 0 auto;
@@ -30,8 +33,6 @@ body {
 	width: 54rem;
 	&::before {
 		@extend %endcheeks;
-		//background-position-x: -30px;//WARNING PIXELS
-		//background-position-y: 121px;//WARNING PIXELS
 		background-position: -1.5rem 6.05rem;
 		left: -3rem;
 	}
@@ -40,6 +41,7 @@ body {
 		right: -3rem;
 	}
 }
+
 h1 {
 	font-size: 1rem;
 	font-weight: 100;
@@ -47,20 +49,25 @@ h1 {
 	margin: 0 0 2rem;
 	text-transform: uppercase;
 }
+
 h2 {
 	font-family: 'brandon-grotesque', sans-serif;
 	font-size: .8rem;
 	font-style: italic;
 	text-transform: uppercase;
 }
-button,
+
+button {
+	cursor: pointer;
+	outline: none;
+}
+
 input {
 	outline: none;
 }
 
 .panel {//WARNING MOVE
-	background-image: radial-gradient(#131311, rgba(36, 36, 36, 0));//LOOKS GOOD IN CHROME;
-//	background: radial-gradient(#131311, rgba(36, 36, 36, 0), transparent);//LOOKS GOOD IN FIREFOX -- INVISIBLE IN CHROME
+	background-image: radial-gradient(#131311, rgba(36, 36, 36, 0));//LOOKS GOOD IN CHROME and others?;
 	background-position: 0 -.9rem;
 	background-repeat: no-repeat;
 	background-size: 52rem 1rem;

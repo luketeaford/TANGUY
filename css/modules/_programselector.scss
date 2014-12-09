@@ -1,33 +1,33 @@
 #program {
     background: #600;
-    box-shadow: inset 0px 0px 24px -3px #900;
-    color: rgb(255, 50, 50);
+    box-shadow: inset 0 0 24px -3px #900;
+    color: rgb(255, 50, 50);//WHY THIS COLOR?
+    cursor: pointer;
     font-family: 'ocr-b-std', monospace;
     margin: -1.5rem auto 1rem;
     padding: .5rem;
     text-transform: uppercase;
-    text-shadow: 0px 2px 3px #c40000;
+    text-shadow: 0 2px 3px #c40000;
 }
 
 #program-select {
     background: inherit;
     box-shadow: inherit;
-//    color: inherit;
     display: none;
     left: 0;
-    height: 12rem;
+    height: 7.5rem;
     margin: -.5rem auto;
-//    opacity: .9;
+    opacity: .9;
     overflow-y: scroll;
     position: absolute;
     right: 0;
+    transition: opacity .25s;
     width: calc(100% - 2rem);
     z-index: 1;
     > button {
         background: none;
         border: 1px solid transparent;
         color: inherit;
-        cursor: pointer;//should be set on all buttons?
         padding: .5rem;
         font-family: 'ocr-b-std', serif;
         text-align: left;

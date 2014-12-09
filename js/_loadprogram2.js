@@ -21,7 +21,7 @@ TANGUY.hide_program = function () {
     return false;
 };
 
-//SLOPPY EVENTS - PUT IN DOCUMENT READY...
+//SLOPPY EVENTS - PUT IN DOCUMENT READY
 $('body').one('click', '#program', TANGUY.show_program);
 
 $('#program-select').on('click', 'button', function () {
