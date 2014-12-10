@@ -1,5 +1,8 @@
-#keyboard-controls {//RENAME TO SOMETHING SENSIBLE
+#keyboard-controls {//RENAME TO SOMETHING SENSIBLE (it's octave shift...)
     @extend %module;
+    > h2 {
+        @include blend-title;
+    }
 }
 
 #octave-shift {

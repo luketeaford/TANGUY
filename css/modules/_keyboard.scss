@@ -30,10 +30,34 @@
     z-index: 2;
 }
 
+//WHEELS
+#pitch-wheel {
+    @extend %wheel;
+    background: #827c7a;
+    margin: 0 1rem;
+}
+
+#mod-wheel {
+    @extend %wheel;
+    background: #999;
+    margin: 0 1rem 0 0;
+}
+
 //KEYS
-.c,.d,.e,.f,.g,.a,.b {
+.c,
+.d,
+.e,
+.f,
+.g,
+.a,
+.b {
     @extend %white-key;
 }
-.c-sharp,.d-sharp,.f-sharp,.g-sharp,.a-sharp {
+
+.c-sharp,
+.d-sharp,
+.f-sharp,
+.g-sharp,
+.a-sharp {
     @extend %black-key;
 }

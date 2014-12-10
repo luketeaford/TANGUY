@@ -11,8 +11,12 @@
 @import 'components/_keys';
 @import 'modules/_programselector';
 @import 'modules/_oscillators';
-@import 'modules/_modules';
 @import 'modules/_noise';
+@import 'modules/_mixer';
+@import 'modules/_filter';
+@import 'modules/_vca';
+@import 'modules/_lfo';
+@import 'modules/_delay';
+@import 'modules/_portamento';
 @import 'modules/_octaveshift';
 @import 'modules/_keyboard';
-@import 'modules/_keyboardcontrols';

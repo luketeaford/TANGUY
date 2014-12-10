@@ -1,0 +1,19 @@
+#filter {
+    @extend %module;
+    > h2 {
+        @include blend-title(2.5rem);
+    }
+}
+
+#filter-mode {
+    @extend %vertical-switch;
+    margin-top: -.8rem;
+}
+
+#filter-eg {
+    @extend %module;
+    > h2 {
+        @include blend-title(11rem);
+    }
+}
+

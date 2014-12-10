@@ -1,0 +1,6 @@
+#mixer {
+    @extend %module;
+    > h2 {
+        @include blend-title(2rem);
+    }
+}
