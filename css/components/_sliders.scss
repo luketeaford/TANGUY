@@ -7,7 +7,7 @@
   display: inline-block;
   font-size: .5rem;
   height: 6rem;
-  margin-bottom: .5rem;//FIXES SAFARI
+  //margin-bottom: .5rem;//FIXES SAFARI
   position: relative;
   text-align: center;
   text-transform: uppercase;
@@ -20,17 +20,6 @@
   height: 6rem;
   margin-bottom: .25rem;//seems inconsistent in Safari
   width: 3rem;
-  &::before {
-    background: linear-gradient(#6c6956, #887);
-    border: 1px solid #000;
-    content: '';
-    display: inline-block;
-    height: 8rem;
-    position: absolute;
-    top: -1rem;
-    width: 3rem;
-    z-index: -1;
-  }
 }
 
 .horizontal-slider-label {//GARBAGE?
