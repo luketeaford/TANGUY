@@ -4,8 +4,8 @@
     display: inline-block;
     padding: .5rem;
     vertical-align: top;
-    > h2 {//5 rem needs to be a mixin
-        background: linear-gradient(to right, $body-bg 5rem, transparent);
+    > h2 {//5 rem needs to be a mixin -- transparentize rgba
+        background: linear-gradient(to right, $body-bg 5rem, rgba(36, 36, 35, 0));
         padding: 0 1rem 0 .25rem;
         position: relative;
         top: -1.1rem;

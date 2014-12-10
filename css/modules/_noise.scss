@@ -1,7 +1,7 @@
 #noise {
     @extend %module;
     > h2 {
-        background: linear-gradient(to right, $body-bg 2.5rem, transparent);//BAD-- NEED MIXIN!
+        background: linear-gradient(to right, $body-bg 2.5rem, rgba(36, 36, 35, 0));//BAD-- NEED MIXIN!
     }
 }
 
