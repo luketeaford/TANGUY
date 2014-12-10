@@ -1,5 +1,5 @@
 %horizontal-switch {
-    background: linear-gradient(#53515f, $mid-grey) repeat-y, linear-gradient(#6c6956, #887) repeat-x;//#363432
+    background: linear-gradient(#53515f, $mid-grey) repeat-y, linear-gradient(#6c6956, #887) repeat-x;
     background-size: 4rem 1.4rem;
     border: 1px solid $mid-grey;
     border-radius: .2rem;
@@ -29,13 +29,13 @@
         width: 4rem;
         &.selected {
             -webkit-animation: lag-label .25s;
-            //animation: lag-label .25s;
+            animation: lag-label .25s;//seems slow
             color: #cfc6c3;
             text-shadow: -2px 0 1px #7f7673, 2px 0 1px #7f7673;
         }
         &:not(.selected):hover {//CAN BE COMBINED WITH SOMETHING ELSE...
             background-color: #696663;
-            box-shadow: inset 0 0 20px -3px $mid-grey;
+            box-shadow: inset 0 0 1rem -3px $mid-grey;
         }
     }
     input {

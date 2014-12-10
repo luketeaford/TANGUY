@@ -7,11 +7,11 @@
 }
 
 html {
-	background-image: url('../images/bg-too-big.jpg');
+	background-image: url('../images/bg-too-big.jpg');//WARNING RENAME
 	background-position: 0 -2rem;
 	box-sizing: border-box;
 	color: $body-text;
-	font-family: helvetica, arial, sans-serif;
+	font-family: helvetica, arial, sans-serif;//needs work
 	font-size: 20px;
 	margin: 2rem 0;
 }
@@ -67,13 +67,12 @@ input {
 }
 
 .panel {//WARNING MOVE
-	background-image: radial-gradient(#131311, rgba(36, 36, 36, 0));//LOOKS GOOD IN CHROME and others?;
+	//probably ok to shorthand all this
+	background-image: radial-gradient(#131311, rgba(36, 36, 36, 0));//body background color as transparent
 	background-position: 0 -.9rem;
 	background-repeat: no-repeat;
 	background-size: 52rem 1rem;
 	border: none;
-	display: block;
 	height: 1rem;
 	margin: 1rem auto 0;
-	width: 52rem;
 }

@@ -1,6 +1,6 @@
 #program {
     background: #600;
-    box-shadow: inset 0 0 24px -3px #900;
+    box-shadow: inset 0 0 1.2rem -3px #900;
     color: rgb(255, 50, 50);//WHY THIS COLOR?
     cursor: pointer;
     font-family: 'ocr-b-std', monospace;
@@ -17,11 +17,9 @@
     left: 0;
     height: 7.5rem;
     margin: -.5rem auto;
-    opacity: .9;
     overflow-y: scroll;
     position: absolute;
     right: 0;
-    transition: opacity .25s;
     width: calc(100% - 2rem);
     z-index: 1;
     > button {

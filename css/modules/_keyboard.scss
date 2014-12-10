@@ -26,7 +26,7 @@
     box-shadow: -1px 3px 4px 5px rgba(0, 0, 0, .66);//ok but unconvincing
     margin: 0 auto;
     position: relative;
-    width: calc(100% - 12px);//WARNING PIXELS
+    width: calc(100% - .6rem);//no longer have any idea what this represents
     z-index: 2;
 }
 

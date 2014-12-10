@@ -1,5 +1,5 @@
 .slider-label {
-  background: linear-gradient(#666 0, #666 1px, transparent 1px, transparent 20px, #444 20px, #444 21px, transparent 21px, transparent 40px);
+  background: linear-gradient(#666 0, #666 .05rem, transparent .05rem, transparent 1rem, #444 1rem, #444 1.05rem, transparent 1.05rem, transparent 2rem);
   background-position: center top;
   background-repeat: repeat-y;
   background-size: 2.3rem 2rem;
@@ -7,7 +7,7 @@
   display: inline-block;
   font-size: .5rem;
   height: 6rem;
-  //margin-bottom: .5rem;//FIXES SAFARI
+  margin-bottom: .5rem;//correct label alignment in Safari
   position: relative;
   text-align: center;
   text-transform: uppercase;
@@ -18,7 +18,7 @@
 .vertical-slider {
   -webkit-appearance: slider-vertical;
   height: 6rem;
-  margin-bottom: .25rem;//seems inconsistent in Safari
+  margin-bottom: .25rem;//this puts the label against border in Safari
   width: 3rem;
 }
 

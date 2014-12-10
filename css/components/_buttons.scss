@@ -1,15 +1,14 @@
 %button {
-    background: $mid-grey linear-gradient(#514e5d, #2e2c29);
+    background: $mid-grey linear-gradient(#514e5d, #2e2c29);//VARIABLE
     border: 1px solid $dark-grey;
     border-radius: .2rem;
-    box-shadow: inset 0 -1px 2px 1px #2e2c29, 0 2px 2px -2px $dark-grey;
+    box-shadow: inset 0 -1px 2px 1px #2e2c29, 0 2px 2px -2px $dark-grey;//VARIABLE
     color: $body-text;
-//    cursor: pointer;
     font-size: .6rem;
     height: 1.5rem;
     width: 3.5rem;
     &:hover {
-        background: $mid-grey linear-gradient(#43414f, #2e2c29);
+        background: $mid-grey linear-gradient(#43414f, #2e2c29);//VARIABLE
         box-shadow: inset 0 -1px 2px 1px #323130, 0 2px 4px -2px $dark-grey;
     }
 }
