@@ -31,25 +31,28 @@
 }
 
 %number-line {
-    color: #9f9693;
-    font-size: .6rem;
-    position: absolute;
-    top: -1rem;
-    z-index: 1;
-  }
+  color: #9f9693;
+  font-size: .6rem;
+  position: absolute;
+  top: -1rem;
+  z-index: 1;
+}
 
 .horizontal-slider {
   margin: -.1rem 0 0 1rem;
   position: relative;
   top: -.2rem;
   width: 8.5rem;
+
   &::before {
     @extend %number-line;
     content: '0';
   }
+
   &::after {
     @extend %number-line;
     content: '10';
     margin-left: -.6rem;
   }
+
 }

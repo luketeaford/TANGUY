@@ -1,54 +1,60 @@
 %vertical-switch {
-    background: linear-gradient(#53515f, $mid-grey) repeat-x, linear-gradient(#6c6956, #887) fixed;
-    background-position: 0 0;
-    background-size: 2rem 1.5rem, auto;
-    border: 1px solid $mid-grey;
-    border-radius: .2rem;
-    display: inline-block;
-    transition: background-position .25s;
-    vertical-align: top;
-    width: 3rem;
-    &.pos1 {
-//        background-position-y: 0, 0;
-        background-position: 0 0, 0 0;
+  background: linear-gradient(#53515f, $mid-grey) repeat-x, linear-gradient(#6c6956, #887) fixed;
+  background-position: 0 0;
+  background-size: 2rem 1.5rem, auto;
+  border: 1px solid $mid-grey;
+  border-radius: .2rem;
+  display: inline-block;
+  transition: background-position .25s;
+  vertical-align: top;
+  width: 3rem;
+
+  &.pos1 {
+    background-position: 0 0, 0 0;
+  }
+
+  &.pos2 {
+    background-position: 0 1.5rem, 0 0;
+  }
+
+  &.pos3 {
+    background-position: 0 3rem, 0 0;
+  }
+
+  &.pos4 {
+    background-position: 0 4.5rem, 0 0;
+  }
+
+  &.pos5 {
+    background-position: 0 6rem, 0 0;
+  }
+
+  label {
+    color: #000;
+    cursor: pointer;
+    display: block;
+    font-size: .5rem;
+    height: 1.5rem;
+    padding: .5rem 0;
+    text-align: center;
+    text-transform: uppercase;
+
+    &.selected {
+      -webkit-animation: lag-label .25s;
+      animation: lag-label .25s;//seems slow
+      color: #cfc6c3;
+      text-shadow: -2px 0 1px #7f7673, 2px 0 1px #7f7673;
     }
-    &.pos2 {
-        //background-position-y: 1.5rem, 0;
-        background-position: 0 1.5rem, 0 0;
+
+    &:not(.selected):hover {//CAN BE COMBINED WITH SOMETHING ELSE
+      background-color: #696663;
+      box-shadow: inset 0 0 1rem -3px $mid-grey;
     }
-    &.pos3 {
-//        background-position-y: 3rem, 0;
-        background-position: 0 3rem, 0 0;
-    }
-    &.pos4 {
-//        background-position-y: 4.5rem, 0;
-        background-position: 0 4.5rem, 0 0;
-    }
-    &.pos5 {
-//        background-position-y: 6rem, 0;
-        background-position: 0 6rem, 0 0;
-    }
-    label {
-        color: #000;
-        cursor: pointer;
-        display: block;
-        font-size: .5rem;
-        height: 1.5rem;
-        padding: .5rem 0;
-        text-align: center;
-        text-transform: uppercase;
-        &.selected {
-            -webkit-animation: lag-label .25s;
-            animation: lag-label .25s;//seems slow
-            color: #cfc6c3;
-            text-shadow: -2px 0 1px #7f7673, 2px 0 1px #7f7673;
-        }
-        &:not(.selected):hover {//CAN BE COMBINED WITH SOMETHING ELSE
-            background-color: #696663;
-            box-shadow: inset 0 0 1rem -3px $mid-grey;
-        }
-    }
-    input {
-        display: none;
-    }
+
+  }
+
+  input {
+    display: none;
+  }
+
 }

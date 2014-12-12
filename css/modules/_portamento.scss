@@ -1,10 +1,12 @@
 #portamento {
-    @extend %module;
-    > h2 {
-        @include blend-title;
-    }
+  @extend %module;
+
+  > h2 {
+    @include blend-title;
+  }
+
 }
 
 #portamento-mode {
-    @extend %horizontal-switch;
+  @extend %horizontal-switch;
 }

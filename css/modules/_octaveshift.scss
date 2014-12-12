@@ -1,74 +1,75 @@
 #keyboard-controls {//RENAME TO SOMETHING SENSIBLE (it's octave shift...)
-    @extend %module;
-    > h2 {
-        @include blend-title;
-    }
+  @extend %module;
+
+  > h2 {
+    @include blend-title;
+  }
+
 }
 
 #octave-shift {
-    display: inline-block;
-    position: relative;
-    text-align: center;
-    top: -.25rem;
-}
-%round-light {
-    border: 1px solid #2e2a0e;
-    border-radius: 50%;
-    box-sizing: content-box;
-    color: $white;
-    display: inline-block;
-    font-size: .5rem;
-    height: .6rem;
-    line-height: 4;
-    margin: 1rem .45rem;
-    opacity: .2;
-    transition: opacity .25s ease-out;
-    width: .6rem;
-    &.lit {
-        opacity: 1 !important;
-    }
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  top: -.25rem;
 }
 
-//MIXINS NEEDED!
+%round-light {
+  border: 1px solid #2e2a0e;
+  border-radius: 50%;
+  box-sizing: content-box;
+  color: $white;
+  display: inline-block;
+  font-size: .5rem;
+  height: .6rem;
+  line-height: 4;
+  margin: 1rem .45rem;
+  opacity: .2;
+  transition: opacity .25s ease-out;
+  width: .6rem;
+
+  &.lit {
+    opacity: 1 !important;
+  }
+
+}
+
+@mixin glow($color) {
+  @extend %round-light;
+  $dark-color: adjust-color($color, $lightness: -27%, $saturation: -23%);
+  background: radial-gradient($color, $dark-color);
+
+  &.lit {
+    box-shadow: 0 -.1rem .8rem $dark-color;
+  }
+
+}
+
 #octave-minus-2 {
-    @extend %round-light;
-    background: radial-gradient(#c00, #600);
-    &.lit {
-        box-shadow: 0 -.1rem .8rem #600;
-    }
+  @include glow(#f44);
 }
+
 #octave-minus-1 {
-    @extend %round-light;
-    background: radial-gradient(#f00, #900);
-    &.lit {
-        box-shadow: 0 -.1rem .8rem #900;
-    }
+  @include glow(#fa6);
 }
+
 #octave-plus-0 {
-    @extend %round-light;
-    background: radial-gradient(#9f9, #393);
-    &.lit {
-        box-shadow: 0 -.1rem .8rem #393;
-    }
+  @include glow(#3e3);
 }
+
 #octave-plus-1 {
-    @extend %round-light;
-    background: radial-gradient(#9c0, #360);
-    &.lit {
-        box-shadow: 0 -.1rem .8rem #9c0;
-    }
+  @include glow(#fa6);
 }
+
 #octave-plus-2 {
-    @extend %round-light;
-    background: radial-gradient(#f93, #960);
-    &.lit {
-        box-shadow: 0 -.1rem .8rem #f93;
-    }
+  @include glow(#e33);
 }
+
 #octave-shift-down {
-    @extend %button;
-    margin: 0 1rem 0 0;
+  @extend %button;
+  margin: 0 1rem 0 0;
 }
+
 #octave-shift-up {
-    @extend %button;
+  @extend %button;
 }

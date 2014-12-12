@@ -1,6 +1,8 @@
 #vca-eg {
-    @extend %module;
-    > h2 {
-        @include blend-title(10rem);
-    }
+  @extend %module;
+
+  > h2 {
+    @include blend-title(10rem);
+  }
+
 }

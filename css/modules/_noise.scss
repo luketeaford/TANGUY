@@ -1,12 +1,14 @@
 #noise {
-    @extend %module;
-    > h2 {
-        @include blend-title(2.5rem);
-    }
+  @extend %module;
+
+  > h2 {
+    @include blend-title(2.5rem);
+  }
+
 }
 
 #noise-color {
-    @extend %vertical-switch;
-    display: block;
-    margin: 0 auto;
+  @extend %vertical-switch;
+  display: block;
+  margin: 0 auto;
 }
