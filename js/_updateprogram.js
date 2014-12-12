@@ -36,7 +36,7 @@ TANGUY.update_program = function () {
     //LFO
     TANGUY.update_lfo_shape();
     TANGUY.update_lfo_rate();
-    TANGUY.calculate_lfo();//update lfo amount?
+    TANGUY.calculate_lfo();//update lfo amount? - what does this comment mean?
 
     //DELAY
     TANGUY.update_delay_rate();

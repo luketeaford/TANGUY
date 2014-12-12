@@ -237,7 +237,7 @@ TANGUY.update_program = function () {
     //LFO
     TANGUY.update_lfo_shape();
     TANGUY.update_lfo_rate();
-    TANGUY.calculate_lfo();//update lfo amount?
+    TANGUY.calculate_lfo();//update lfo amount? - what does this comment mean?
 
     //DELAY
     TANGUY.update_delay_rate();
@@ -250,7 +250,6 @@ TANGUY.update_panel = function () {
 
     //PROGRAM NAME
     $('#program-name').text(TANGUY.program.name);
-
 
     //OSCILLATOR 1
     if (TANGUY.program.osc1_kbd) {
@@ -1225,7 +1224,7 @@ TANGUY.slider = {
     }
 };
 
-//CLEAN THESE UP LATER, OBVIOUSLY
+//SLOPPY - CLEAN THESE UP LATER, OBVIOUSLY
 $('#delay').on('mousedown', 'input', TANGUY.slider.grab);
 $('#filter-eg').on('mousedown', 'input', TANGUY.slider.grab);
 $('#vca-eg').on('mousedown', 'input', TANGUY.slider.grab);
