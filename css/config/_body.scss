@@ -11,13 +11,13 @@ html {
   background-position: 0 -2rem;
   box-sizing: border-box;
   color: $body-text;
-  font-family: helvetica, arial, sans-serif;//needs work
+  font-family: helvetica, arial, sans-serif;
   font-size: 20px;
   margin: 2rem 0;
 }
 
-%endcheeks {//WARNING MOVE
-  background: url('../images/wood-texture2.jpg');//WARNING RENAME
+%endcheeks {
+  background: url('../images/wood.jpg');
   bottom: 0;
   content: '';
   position: absolute;
@@ -46,11 +46,17 @@ body {
 }
 
 h1 {
+  display: inline-block;
+  font-family: 'brandon-grotesque', sans-serif;
   font-size: 1rem;
   font-weight: 100;
-  letter-spacing: .25rem;
+  letter-spacing: .3rem;//.25
   margin: 0 0 2rem;
   text-transform: uppercase;
+}
+
+.version {
+  font-size: .5rem;
 }
 
 h2 {
@@ -69,13 +75,21 @@ input {
   outline: none;
 }
 
-.panel {//WARNING MOVE
-  //probably ok to shorthand all this
-  background-image: radial-gradient(#131311, rgba(36, 36, 36, 0));//body background color as transparent
-  background-position: 0 -.9rem;
-  background-repeat: no-repeat;
+.panel {
+  background: radial-gradient(#131311, transparentize($body-bg, 1)) 0 -.9rem no-repeat;
   background-size: 52rem 1rem;
   border: none;
   height: 1rem;
   margin: 1rem auto 0;
+}
+
+.copyright {//SLOPPY
+  display: inline-block;
+  clear: both;
+  color: #000;
+  float: left;
+  font-size: .7rem;
+  margin: 2rem 0 1rem;
+  position: absolute;
+  text-transform: uppercase;
 }

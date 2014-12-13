@@ -1,6 +1,6 @@
 #keyboard {
   background: linear-gradient(#1f1f17, #191911) repeat-x;
-  background-size: 1px 13rem;//FIND WHATEVER IS 13REM AND USE VARIABLE
+  background-size: 1px 13rem;
   font-size: 0;
   margin: 1rem -1rem -1rem;
 }
@@ -10,7 +10,7 @@
   bottom: 0;
   content: '';
   position: absolute;
-  top: calc(100% - 13rem);//USE VARIABLE
+  top: calc(100% - 13rem);
   width: 3rem;
 }
 
@@ -25,16 +25,15 @@
   z-index: 1;
 }
 
-.fake-shadow {
+.shadow {
   border: 0;
-  box-shadow: -1px 3px 4px 5px rgba(0, 0, 0, .66);//ok but unconvincing
+  box-shadow: -1px 3px 4px 5px rgba(0, 0, 0, .66);
   margin: 0 auto;
   position: relative;
-  width: calc(100% - .6rem);//no longer have any idea what this represents
+  width: calc(100% - .6rem);
   z-index: 2;
 }
 
-//WHEELS
 #pitch-wheel {
   @extend %wheel;
   background: #827c7a;
@@ -47,7 +46,6 @@
   margin: 0 1rem 0 0;
 }
 
-//KEYS
 .c,
 .d,
 .e,
