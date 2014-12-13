@@ -1,4 +1,18 @@
 //THERE MUST BE A WAY TO MIXIN THESE
+@-webkit-keyframes drop-down {
+
+  0% {
+    overflow: hidden;
+    transform: scaleY(0);
+  }
+
+  100% {
+    overflow: auto;
+    transform: scaleY(1);
+  }
+
+}
+
 @-webkit-keyframes switch-off {
 
   0% {

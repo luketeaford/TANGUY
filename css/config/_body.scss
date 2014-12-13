@@ -50,7 +50,7 @@ h1 {
   font-family: 'brandon-grotesque', sans-serif;
   font-size: 1rem;
   font-weight: 100;
-  letter-spacing: .3rem;//.25
+  letter-spacing: .3rem;
   margin: 0 0 2rem;
   text-transform: uppercase;
 }
@@ -83,13 +83,9 @@ input {
   margin: 1rem auto 0;
 }
 
-.copyright {//SLOPPY
-  display: inline-block;
-  clear: both;
-  color: #000;
-  float: left;
-  font-size: .7rem;
-  margin: 2rem 0 1rem;
+.copyright {
+  font-size: .5rem;
+  margin: 1.5rem 0 .5rem;
   position: absolute;
   text-transform: uppercase;
 }

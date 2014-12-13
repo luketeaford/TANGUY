@@ -11,6 +11,7 @@
 }
 
 #program-select {
+  -webkit-animation: drop-down .25s;
   background: inherit;
   box-shadow: inherit;
   display: none;
@@ -20,6 +21,7 @@
   overflow-y: scroll;
   position: absolute;
   right: 0;
+  transform-origin: top;
   width: calc(100% - 2rem);
   z-index: 1;
 
