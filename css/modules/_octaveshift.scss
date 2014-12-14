@@ -1,4 +1,4 @@
-#keyboard-controls {//RENAME TO SOMETHING SENSIBLE (it's octave shift...)
+#octave-shift {
   @extend %module;
 
   > h2 {
@@ -7,7 +7,7 @@
 
 }
 
-#octave-shift {
+.controls {
   display: inline-block;
   position: relative;
   text-align: center;
