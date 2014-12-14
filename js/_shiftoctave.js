@@ -18,8 +18,3 @@ TANGUY.shift_octave = function (direction) {
         lights[TANGUY.octave_shift + 3].removeClass('lit');
     }
 };
-
-$('#octave-shift').on('click', 'button', function () {
-    'use strict';
-    return TANGUY.shift_octave(this.getAttribute('data-octave-shift'));
-});
