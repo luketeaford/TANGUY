@@ -7,7 +7,7 @@
 }
 
 html {
-  background-image: url('../images/bg-too-big.jpg');//WARNING RENAME
+  background-image: url('../images/stone.jpg');
   background-position: 0 -2rem;
   box-sizing: border-box;
   color: $body-text;
@@ -55,8 +55,34 @@ h1 {
   text-transform: uppercase;
 }
 
-.version {
+.tagline {
   font-size: .5rem;
+  text-transform: uppercase;
+}
+
+.nav {
+  position: absolute;
+  right: 0;
+  text-align: right;
+  text-transform: uppercase;
+  top: .7rem;
+  li {
+    display: inline-block;
+    list-style-type: none;
+    margin: 0 1rem;
+  }
+}
+
+a {
+  font-size: .6rem;
+  text-decoration: none;
+  &:link,
+  &:visited {
+    color: inherit;
+  }
+  &:hover {
+    color: $white;
+  }
 }
 
 h2 {

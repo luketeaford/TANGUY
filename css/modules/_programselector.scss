@@ -1,24 +1,25 @@
 #program {
   background: #600;
-  box-shadow: inset 0 0 1.2rem -3px #900;
-  color: rgb(255, 50, 50);//WHY THIS COLOR?
+  box-shadow: inset 0 0 1.2rem -.15rem #900;
+  color: rgb(255, 50, 50);//#ff3232
   cursor: pointer;
   font-family: 'ocr-b-std', monospace;
   margin: -1.5rem auto 1rem;
   padding: .5rem;
   text-transform: uppercase;
-  text-shadow: 0 2px 3px #c40000;
+  text-shadow: 0 .1rem .15rem #c40000;
 }
 
 #program-select {
-  -webkit-animation: drop-down .25s;
+  -webkit-animation: drop-down .2s;
   background: inherit;
   box-shadow: inherit;
   display: none;
   left: 0;
-  height: 7.5rem;
+  height: 8.5rem;
   margin: -.5rem auto;
   overflow-y: scroll;
+  padding: .25rem 0;
   position: absolute;
   right: 0;
   transform-origin: top;
@@ -27,8 +28,9 @@
 
   > button {
     background: none;
-    border: 1px solid transparent;
+    border: .05rem solid transparent;
     color: inherit;
+    margin: .1rem;
     padding: .5rem;
     font-family: 'ocr-b-std', serif;
     text-align: left;
@@ -36,7 +38,7 @@
     width: 12rem;
 
     &:hover {
-      border: 1px solid;
+     border: .05rem solid;
     }
 
   }

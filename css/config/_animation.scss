@@ -2,12 +2,10 @@
 @-webkit-keyframes drop-down {
 
   0% {
-    overflow: hidden;
     transform: scaleY(0);
   }
 
   100% {
-    overflow: auto;
     transform: scaleY(1);
   }
 
@@ -54,6 +52,18 @@
 }
 
 //UNPREFIXED
+@keyframes drop-down {
+
+  0% {
+    transform: scaleY(0);
+  }
+
+  100% {
+    transform: scaleY(1);
+  }
+
+}
+
 @keyframes switch-off {
 
   0% {

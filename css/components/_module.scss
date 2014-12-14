@@ -1,5 +1,5 @@
 @mixin blend-title($size: 5rem) {
-  background: linear-gradient(to right, $body-bg $size, rgba(36, 36, 35, 0));//transparentize body-bg to get rgba
+  background: linear-gradient(to right, $body-bg $size, transparentize($body-bg, 1));
 }
 
 %module {
