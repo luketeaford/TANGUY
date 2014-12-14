@@ -372,16 +372,16 @@ TANGUY.update_panel = function () {
     $('#resonance').val(TANGUY.program.res);
     $('#filter-eg-amt').val(TANGUY.program.filter_eg);
     $('#filter-kbd').val(TANGUY.program.filter_kbd);
-    $('#filter-attack').val(TANGUY.program.filter_attack);
-    $('#filter-decay').val(TANGUY.program.filter_decay);
-    $('#filter-sustain').val(TANGUY.program.filter_sustain);
-    $('#filter-release').val(TANGUY.program.filter_release);
+    $('#filter-a').val(TANGUY.program.filter_attack);
+    $('#filter-d').val(TANGUY.program.filter_decay);
+    $('#filter-s').val(TANGUY.program.filter_sustain);
+    $('#filter-r').val(TANGUY.program.filter_release);
 
     //VCA
-    $('#vca-attack').val(TANGUY.program.vca_attack);
-    $('#vca-decay').val(TANGUY.program.vca_decay);
-    $('#vca-sustain').val(TANGUY.program.vca_sustain);
-    $('#vca-release').val(TANGUY.program.vca_release);
+    $('#vca-a').val(TANGUY.program.vca_attack);
+    $('#vca-d').val(TANGUY.program.vca_decay);
+    $('#vca-s').val(TANGUY.program.vca_sustain);
+    $('#vca-r').val(TANGUY.program.vca_release);
     $('#vca-gain').val(TANGUY.program.vca_gain);
 
     //LFO
@@ -410,7 +410,7 @@ TANGUY.update_panel = function () {
 
     //DELAY
     $('#delay-rate').val(TANGUY.program.delay_rate);
-    $('#delay-amount').val(TANGUY.program.delay);
+    $('#delay-amt').val(TANGUY.program.delay);
 
     //PORTAMENTO
     switch (TANGUY.program.portamento_mode) {
@@ -910,6 +910,7 @@ $(document).ready(function () {
     TANGUY.build_synth();
     TANGUY.load_program('initialize');
     TANGUY.populate_programs();
+    console.log('Update dammit');
 });
 TANGUY.update_osc1_coarse = function () {
     'use strict';
