@@ -1,0 +1,86 @@
+article {
+  background: $white;
+  box-shadow: 0 .25rem 2rem -.25rem $mid-grey;
+  color: $mid-grey;
+  font-size: .7rem;
+  left: -2rem;
+  padding: 2rem;
+  position: relative;
+  width: calc(100% + 4rem);
+  z-index: 2;
+
+  h1 {
+    display: block;
+    font-size: 1.5rem;
+    margin: 0 0 .2rem;
+    text-align: center;
+
+    &::after {
+      background: radial-gradient($body-text, $white) 0 -3px no-repeat;
+      content: '';
+      height: .2rem;
+      display: block;
+      margin: 0 auto;
+      width: calc(52rem / 2);
+    }
+
+  }
+
+  h2 {
+    @extend %manual-h2;
+    margin: 1rem 0;
+  }
+
+  a:hover {
+    color: $red;
+  }
+
+}
+
+%manual-h2 {
+  font-style: normal;
+}
+
+.subtitle {
+  color: $grey;
+  display: block;
+  font-size: .6rem;
+  letter-spacing: 2px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.fake-h2 {
+  @extend %manual-h2;
+  display: block;
+  font-size: 1rem;
+  margin: 3rem 0 1rem;
+}
+
+.toc {
+  line-height: 2;
+  margin: 0 0 0 1rem;
+
+  &::after {
+    content: '';
+    display: block;
+    height: 1rem;
+    width: 1rem;
+  }
+
+  a {
+    font-size: inherit;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
