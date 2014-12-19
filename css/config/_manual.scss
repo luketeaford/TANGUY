@@ -27,8 +27,15 @@ article {
   }
 
   h2 {
-    @extend %manual-h2;
+    @extend %manual-heading;
     margin: 1rem 0;
+  }
+
+  h3 {
+    @extend %manual-heading;
+    font-size: .8rem;
+    font-weight: normal;
+    margin: .4rem 0;
   }
 
   a:hover {
@@ -37,7 +44,7 @@ article {
 
 }
 
-%manual-h2 {
+%manual-heading {
   font-style: normal;
 }
 
@@ -51,7 +58,7 @@ article {
 }
 
 .fake-h2 {
-  @extend %manual-h2;
+  @extend %manual-heading;
   display: block;
   font-size: 1rem;
   margin: 3rem 0 1rem;
@@ -74,8 +81,17 @@ article {
 
 }
 
+p {
+  line-height: 1.7;
+  margin: 1rem 0;
+  max-width: 28rem;
+}
 
-
+i {
+  font-family: 'ocr-b-std', monospace;
+  font-style: normal;
+  text-transform: uppercase;
+}
 
 
 
