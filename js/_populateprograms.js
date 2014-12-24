@@ -67,6 +67,7 @@ TANGUY.populate_programs = function () {
         'swamp monster',
         'wistful pipes',
         'invisible hand',
+        'panhandler bass',
         'third member',
         'hihat',
         'maracas',
