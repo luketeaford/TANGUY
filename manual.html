@@ -33,16 +33,15 @@
   </ol>
 
   <h2>Introduction</h2>
-  <p>TANGUY creates sounds in real time from data input through the user interface ("the panel"). Skillful synthesizer programming can yield a wide variety of sounds including percussive metallic banging, electronic beeps, bizarre effects, emulations of acoustic instruments, and warm "analog" tones.</p>
+  <p>TANGUY creates sounds in real time from data input through the user interface ("the panel"). Skillful synthesizer programming can yield a wide variety of sounds including percussive metallic banging, electronic beeps, bizarre effects, emulations of acoustic instruments, and warm "analog" tones. This guide will teach you the basics of synthesizer programming and explain TANGUY's peculiarities.</p>
 
   <h2>System Requirements</h2>
-  <p>TANGUY sounds best in Google Chrome, Opera, or Apple Safari. Firefox has some known issues with frequency modulation that prevent Oscillator Two from making sounds. MIDI implementations will require Google Chrome.</p>
+  <p>TANGUY sounds best in Google Chrome, Opera, or Apple Safari. Firefox has some known issues with frequency modulation that prevent Oscillator Two from making sound at all. Planned MIDI implementations will require Google Chrome (unless other browsers join the fun and work on Web MIDI).</p>
 
   <h2>Controls</h2>
-  <p>The presets included in TANGUY will give you a quick impression of its capabilities.</p>
 
   <h3>Choosing a Preset</h3>
-  <p>Click on any part of the field that contains the text <i>INITIALIZE</i> to open the list of presets. Select any preset to load it or click outside of the list to cancel. Some presets have <i>VCA Gain</i> greater than 0, and will begin making sound automatically.</p>
+  <p>The presets included in TANGUY will give you a quick impression of its capabilities. Click on any part of the field that contains the text <i>INITIALIZE</i> to open the list of presets. Select any preset to load it or click outside of the list to cancel. Some presets have <i>VCA Gain</i> greater than 0, and will begin making sound automatically. One way to discover the purpose of each control is to work backwards from any preset to the <i>INITIALIZE</i> state.</p>
 
   <h3>Playing the Keyboard</h3>
   <p>TANGUY is a monosynth: only one note can be played from the keyboard at a time. Click the keys with your mouse or play TANGUY using your QWERTY keyboard. The home row represents the white keys, and the black keys are mapped to the corresponding keys in the row above.</p>
@@ -51,6 +50,23 @@
   <p>Dynamically change the amount of the LFO's effects by using the <i>Mod.</i> slider. If <i>Mod.</i> is set to 0, the LFO will have no effect. Since the <i>Mod.</i> wheel determines the amount of the LFO, it is considered part of the preset.</p>
 
   <h2>Programming Sounds</h2>
+
+  <h3>Oscillators</h3>
+  <p>Synthesizers use oscillators as primary sound sources. In the same way that acoustic instruments use vibrating strings or membranes to produce pitched sounds, a synthesizer uses an oscillator. The coarse tuning is usually measured in feet (apparently to appease organists). Each doubling of the length of footage lowers the pitch one octave. TANGUY's oscillators can be coarse tuned using the buttons labeled <i>32'</i>, <i>16'</i>, <i>8'</i>, and <i>4'</i>.
+  <p>Oscillator Two has additional controls for <i>Detune</i> and <i>Fine</i>. Use <i>Detune</i> to raise or lower Oscillator Two's pitch in steps (up or down an entire octave). <i>Fine</i> tuning allows you to tune Oscillator Two up and down in subtle ways that will affect the beating of TANGUY's oscillators against each other. This can range from a slow phasing effect to a dissonant warbling.</p>
+  <p>It is also possible to disable keyboard tracking for each oscillator independently. This is useful for creating unpitched sound effects, setting a static rate of modulation, or using one oscillator to drone on the root note while you play notes in that key on the tracked oscillator.</p>
+  <p>Oscillators also contribute to the timbre of the sound. Most synthesizers offer a few basic waveforms: sawtooth, square, triangle, and sine. Sawtooth and square waves are rich in harmonics. Triangles are slightly more harmonically interesting than sine waves (which are pure tones mostly suitable as a modulation source or for 1950s laboratory sounds).</p>
+  <p>TANGUY's oscillators are capable of complex timbres. Oscillator one can blend all the waveforms together. The sine wave is present within each wave form, so its inclusion here allows the user to emphasize the fundamental frequency as desired. Oscillator Two has waveshaping provided by the <i>Shaping</i> slider. Add a subtle edge or gritty distortion to its waveform.</p>
+  <p><i>FM AMT.</i> controls the amount of Frequency Modulation each oscillator receives from the other. Oscillator One is frequency modulated by Oscillator Two's currently selected waveform. Oscillator Two is frequency modulated only by the <i>Sine</i> wave output. This allows fine grained control of cross-modulation (when both oscillators are modulating each other's frequency).</p>
+
+  <h3>Noise</h3>
+  <p>Noise is useful for adding a slightly imperfect tone to the sound in subtle amounts, for wind/ocean sounds, and for percussive effects. TANGUY's <i>White</i> noise is an even "static" sound. All other Noise types are approximated with bad mathematical guess work. Unfortunately, these types of noise do not reflect the character of their color naming, but are useful as varieties of digital noise. I consider these unconvincing approximations to be the weakest aspect of TANGUY.</p> 
+
+  <h3>Mixer</h3>
+  <p>The mixer allows the user to control the relative volume of the possible sound sources. These are exponential so that nice smooth blending can be achieved by playing the mixer controls in real time (if desired).</p>
+
+    
+
   <h3>Delay</h3>
   <p>Reverb effects can be achieved by setting a very short delay with an amount at roughly 50%.</p>
   <p>An overdrive (not really overdrive) effect can be achieved by setting delay to the lowest possible setting and amount above 50% (probably happens at a lower percentage -- test).</p>
