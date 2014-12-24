@@ -122,10 +122,10 @@ TANGUY.populate_programs = function () {
         'papayawhip',
         'ragamuffin',
         'beatnik bongos',
+        'synth strings',
         'perry on the beach',
         'whompy bass',
         'fuzzy',
-        'synth strings',
         'easy cure',
         'rubberband',
         'jet lag',
@@ -154,12 +154,15 @@ TANGUY.populate_programs = function () {
         'former marine',
         'galactic yawn',
         'gamelan',
+        'razor view',
         'dolphin sighting',
         'pulse demon',
         'hum',
         'swamp monster',
         'wistful pipes',
         'invisible hand',
+        'panhandler bass',
+        'third member',
         'hihat',
         'maracas',
         'wah wah'
@@ -898,28 +901,18 @@ $(document).ready(function () {
     TANGUY.load_program('initialize');
     TANGUY.populate_programs();
 
-    //PROBABLY OK
     $('body').one('click', '#program', TANGUY.show_program);
-
-    //OK?
     $('#program-select').on('click', 'button', function () {
         TANGUY.load_program(this.value);
     });
-
-    //OK?
     $('#octave-shift').on('click', 'button', function () {
         return TANGUY.shift_octave(this.getAttribute('data-octave-shift'));
     });
-
-    //TIDIED UP, PERHAPS
     $('#osc1-kbd, #osc1-coarse, #osc2-kbd, #osc2-coarse, #osc2-waveform, #noise-color, #filter-mode, #lfo-shape, #portamento-mode').on('change', 'input', TANGUY.button.touch);
-
     $('#delay, #filter-eg, #vca-eg, #mixer, #filter, #mod-wheel').on('mousedown', 'input', TANGUY.slider.grab);
     $('#osc1, #osc2, #lfo').on('mousedown', 'input.vertical-slider', TANGUY.slider.grab);
-
     $('#portamento').on('mousedown', 'input.horizontal-slider', TANGUY.slider.grab);
 
-    console.log('That\'s what I call tidy!');
 });
 TANGUY.update_osc1_coarse = function () {
     'use strict';
