@@ -1,0 +1,27 @@
+{
+  "name": "TANGUY",
+  "version": "0.0.1",
+  "description": "Luke Teaford's Web Audio Synthesizer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/luketeaford/TANGUY.git"
+  },
+  "author": "Luke Teaford",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/luketeaford/TANGUY/issues"
+  },
+  "homepage": "https://github.com/luketeaford/TANGUY",
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-concat": "^2.4.3",
+    "gulp-jslint": "^0.2.1",
+    "gulp-livereload": "^3.0.2",
+    "gulp-ruby-sass": "^0.7.1",
+    "gulp-uglify": "^1.0.2"
+  }
+}

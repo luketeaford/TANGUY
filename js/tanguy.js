@@ -1,5 +1,5 @@
 // TANGUY Web Audio Synthesizer
-// Copyright 2014 Luke Teaford
+// Copyright 2014-2015 Luke Teaford
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -16,8 +16,10 @@
 //
 // luketeaford@gmail.com
 // 153 Illinois Avenue, Dayton OH 45410
+
 //BROWSER PREFIXING
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
+navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
 
 var TANGUY = {
 
@@ -86,6 +88,7 @@ var TANGUY = {
         "mod_direction": 1
     }
 };
+
 TANGUY.save_program = function () {
     'use strict';
     var patch_name = prompt('PATCH NAME');
@@ -728,11 +731,13 @@ TANGUY.build_synth = function () {
     TANGUY.osc1_vca = TANGUY.synth.createGain();
     TANGUY.osc2_vca = TANGUY.synth.createGain();
     TANGUY.noise_vca = TANGUY.synth.createGain();
+    TANGUY.ext_in_vca = TANGUY.synth.createGain();
     TANGUY.mixer.gain.value = 1;
     TANGUY.mixer.connect(TANGUY.lp_filter1);
     TANGUY.osc1_vca.connect(TANGUY.mixer);
     TANGUY.osc2_vca.connect(TANGUY.mixer);
     TANGUY.noise_vca.connect(TANGUY.mixer);
+    TANGUY.ext_in_vca.connect(TANGUY.mixer);
 
     //OSC 1 VCAS
     TANGUY.osc1_saw_vca = TANGUY.synth.createGain();
@@ -895,6 +900,20 @@ TANGUY.build_synth = function () {
     TANGUY.lfo.connect(TANGUY.lfo_filter_vca);
     TANGUY.lfo.connect(TANGUY.lfo_amp_vca);
 };
+
+TANGUY.route_external_input = function (input) {
+    'use strict';
+    TANGUY.ext_in = TANGUY.synth.createMediaStreamSource(input);
+    TANGUY.ext_in.connect(TANGUY.ext_in_vca);
+};
+
+TANGUY.external_input_error = function () {
+    'use strict';
+    console.log('External input denied or unavailable');
+};
+
+navigator.getUserMedia({audio: true}, TANGUY.route_external_input, TANGUY.external_input_error);
+
 $(document).ready(function () {
     'use strict';
     TANGUY.build_synth();
@@ -1101,6 +1120,12 @@ TANGUY.update_noise_mix = function () {
     'use strict';
     return TANGUY.noise_vca.gain.setValueAtTime(TANGUY.program.noise_mix * TANGUY.program.noise_mix, TANGUY.synth.currentTime);
 };
+
+TANGUY.update_ext_mix = function () {
+    'use strict';
+    return TANGUY.ext_in_vca.gain.setValueAtTime(TANGUY.program.ext_in_mix * TANGUY.program.ext_in_mix, TANGUY.synth.currentTime);
+};
+
 TANGUY.update_filter_mode = function () {
     'use strict';
     TANGUY.mixer.disconnect();

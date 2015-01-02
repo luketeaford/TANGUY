@@ -59,7 +59,7 @@
   <p><i>FM AMT.</i> controls the amount of Frequency Modulation each oscillator receives from the other. Oscillator One is frequency modulated by Oscillator Two's currently selected waveform. Oscillator Two is frequency modulated only by the <i>Sine</i> wave output. This allows fine grained control of cross-modulation (when both oscillators are modulating each other's frequency).</p>
 
   <h3>Noise</h3>
-  <p>Noise is useful for adding a slightly imperfect tone to the sound in subtle amounts, for wind/ocean sounds, and for percussive effects. TANGUY's <i>White</i> noise is an even "static" sound. All other Noise types are approximated with bad mathematical guess work. Unfortunately, these types of noise do not reflect the character of their color naming, but are useful as varieties of digital noise. I consider these unconvincing approximations to be the weakest aspect of TANGUY.</p> 
+  <p>Noise is useful for adding a slightly imperfect tone to the sound in subtle amounts, for wind/ocean sounds, and for percussive effects. TANGUY's <i>White</i> noise is an even "static" sound. All other Noise types are approximated with bad mathematical guess work. Unfortunately, these types of noise do not reflect the character of their color naming, but are useful as varieties of digital noise. I consider these unconvincing approximations to be the weakest aspect of TANGUY.</p>
 
   <h3>Mixer</h3>
   <p>The mixer allows the user to control the relative volume of the possible sound sources. These are exponential so that nice smooth blending can be achieved by playing the mixer controls in real time (if desired).</p>
@@ -95,18 +95,16 @@
   <p>Explain how to play some of the more unusual patches and what the patch in question is intended to demonstrate.</p>
 
   <h2>Troubleshooting</h2>
-  <p>If TANGUY is not producing sound, check filter cutoff, filter mode, mixer levels, and amp envelope settings.</p>
+  <p>If TANGUY is not producing sound, check filter cutoff, filter mode, mixer levels, and amp envelope settings. It's likely that the output from the mixer is being totally filtered out, or that the amp is never opening.</p>
 
   <h2>Planned Improvements</h2>
-  <p>I'd like to add user input before the filter so live instruments and voices can be processed in real time. This is part of the reason TANGUY has <i>VCA Gain</i> after all. MIDI support would make TANGUY much more playable as an instrument.</p>
+  <p>MIDI support would make TANGUY more enjoyable to play as an instrument.</p>
 
   <h2>Resources</h2>
   <p>Some links to GitHub and synthesizer websites and things of that nature.</p>
 
   </article>
-  <span class="copyright">Copyright © 2014 Luke Teaford.</span>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script src="js/tanguy.js"></script>
+  <span class="copyright">Copyright © 2014–2015 Luke Teaford.</span>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

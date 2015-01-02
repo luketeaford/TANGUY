@@ -30,7 +30,7 @@ body {
   margin: 0 auto;
   padding: .5rem 1rem;
   position: relative;
-  width: 54rem;
+  width: 57rem;
 
   &::before {
     @extend %endcheeks;
@@ -113,7 +113,7 @@ input {
 
 .panel {
   background: radial-gradient(#131311, transparentize($body-bg, 1)) 0 -.9rem no-repeat;
-  background-size: 52rem 1rem;
+  background-size: 55rem 1rem;
   border: none;
   height: 1rem;
   margin: 1rem auto 0;
