@@ -15,5 +15,5 @@ TANGUY.update_noise_mix = function () {
 
 TANGUY.update_ext_mix = function () {
     'use strict';
-    return TANGUY.ext_in_vca.gain.setValueAtTime(TANGUY.program.ext_in_mix * TANGUY.program.ext_in_mix, TANGUY.synth.currentTime);
+    return TANGUY.ext_in_vca.gain.setValueAtTime(TANGUY.program.ext_mix * TANGUY.program.ext_mix, TANGUY.synth.currentTime);
 };

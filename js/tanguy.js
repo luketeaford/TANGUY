@@ -55,6 +55,7 @@ var TANGUY = {
         "osc1_mix": 1,
         "osc2_mix": 1,
         "noise_mix": 0,
+        "ext_mix": 0,
 
         "filter_mode": "lp",
         "cutoff": 1,
@@ -909,7 +910,7 @@ TANGUY.route_external_input = function (input) {
 
 TANGUY.external_input_error = function () {
     'use strict';
-    console.log('External input denied or unavailable');
+    console.log('External input denied or unavailable.');
 };
 
 navigator.getUserMedia({audio: true}, TANGUY.route_external_input, TANGUY.external_input_error);
@@ -1123,7 +1124,7 @@ TANGUY.update_noise_mix = function () {
 
 TANGUY.update_ext_mix = function () {
     'use strict';
-    return TANGUY.ext_in_vca.gain.setValueAtTime(TANGUY.program.ext_in_mix * TANGUY.program.ext_in_mix, TANGUY.synth.currentTime);
+    return TANGUY.ext_in_vca.gain.setValueAtTime(TANGUY.program.ext_mix * TANGUY.program.ext_mix, TANGUY.synth.currentTime);
 };
 
 TANGUY.update_filter_mode = function () {

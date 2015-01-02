@@ -36,6 +36,7 @@ var TANGUY = {
         "osc1_mix": 1,
         "osc2_mix": 1,
         "noise_mix": 0,
+        "ext_mix": 0,
 
         "filter_mode": "lp",
         "cutoff": 1,

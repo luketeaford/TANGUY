@@ -6,7 +6,7 @@ TANGUY.route_external_input = function (input) {
 
 TANGUY.external_input_error = function () {
     'use strict';
-    console.log('External input denied or unavailable');
+    console.log('External input denied or unavailable.');
 };
 
 navigator.getUserMedia({audio: true}, TANGUY.route_external_input, TANGUY.external_input_error);
