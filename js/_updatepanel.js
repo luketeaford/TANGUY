@@ -97,6 +97,7 @@ TANGUY.update_panel = function () {
     $('#osc1-mix').val(TANGUY.program.osc1_mix);
     $('#osc2-mix').val(TANGUY.program.osc2_mix);
     $('#noise-mix').val(TANGUY.program.noise_mix);
+    $('#ext-mix').val(TANGUY.program.ext_mix);
 
     //FILTER
     switch (TANGUY.program.filter_mode) {

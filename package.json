@@ -20,7 +20,9 @@
     "gulp": "^3.8.10",
     "gulp-concat": "^2.4.3",
     "gulp-jslint": "^0.2.1",
+    "gulp-jsonminify": "0.0.2",
     "gulp-livereload": "^3.0.2",
+    "gulp-pretty-data": "^0.1.1",
     "gulp-ruby-sass": "^0.7.1",
     "gulp-uglify": "^1.0.2"
   }

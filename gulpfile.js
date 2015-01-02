@@ -1,7 +1,9 @@
 var gulp = require('gulp'),
-    jslint = require('gulp-jslint'),
     concat = require('gulp-concat'),
+    jslint = require('gulp-jslint'),
     uglify = require('gulp-uglify'),
+    prettydata = require('gulp-pretty-data'),
+    jsonminify = require('gulp-jsonminify'),
     sass = require('gulp-ruby-sass'),
     livereload = require('gulp-livereload'),
 
@@ -49,6 +51,14 @@ gulp.task('dev', function () {
     .pipe(gulp.dest('tanguy/js'))
 });
 
+gulp.task('presets', function () {
+    return gulp.src('programs/*.json')
+    .pipe(prettydata({type: 'prettify'}))
+    .pipe(gulp.dest('programs'))
+    .pipe(jsonminify())
+    .pipe(gulp.dest('tanguy/programs'))
+});
+
 gulp.task('sass', function () {
     return gulp.src('css/tanguy.scss')
     .pipe(sass({style: 'compressed'}))
@@ -61,6 +71,7 @@ gulp.task('sass', function () {
 gulp.task('watch', function () {
     var server = livereload();
     gulp.watch('js/*.js', ['dev']);
+    gulp.watch('programs/*.json', ['presets']);
     gulp.watch('css/**/*.scss', ['sass']);
 });
 
