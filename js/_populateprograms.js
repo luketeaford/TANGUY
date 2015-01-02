@@ -61,6 +61,7 @@ TANGUY.populate_programs = function () {
         'galactic yawn',
         'gamelan',
         'razor view',
+        'wah wah',
         'dolphin sighting',
         'pulse demon',
         'hum',
@@ -71,7 +72,12 @@ TANGUY.populate_programs = function () {
         'third member',
         'hihat',
         'maracas',
-        'wah wah'
+        'metallic vocals',
+        'systematic decline',
+        'central scrutinizer',
+        'boogie vocals',
+        'meltdown',
+        'external input'
     ],
         urls = [],
         buttons = '',
