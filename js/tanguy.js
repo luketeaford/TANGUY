@@ -454,59 +454,57 @@ TANGUY.shift_octave = function (direction) {
 };
 TANGUY.calculate_pitch = function (pos, note_value) {
     'use strict';
-    var note = ((TANGUY.octave_shift + pos) * 1200) + note_value,
-        osc2_note = ((TANGUY.octave_shift + pos) * 1200) + (note_value + TANGUY.program.osc2_detune),
-        kbd = (4800 - note) * TANGUY.program.filter_kbd,
-        osc1 = [TANGUY.osc1_saw, TANGUY.osc1_sqr, TANGUY.osc1_tri, TANGUY.osc1_sin],
-        i,
-        no_portamento = function () {
-            if (TANGUY.program.osc1_kbd === true) {
-                for (i = 0; i < 4; i += 1) {
-                    osc1[i].detune.setValueAtTime(note, TANGUY.synth.currentTime);
-                }
-            }
-            if (TANGUY.program.osc2_kbd === true) {
-                TANGUY.osc2.detune.setValueAtTime(osc2_note, TANGUY.synth.currentTime);
-            }
-        },
-        linear_portamento = function () {
-            if (TANGUY.program.osc1_kbd === true) {
-                for (i = 0; i < 4; i += 1) {
-                    osc1[i].detune.linearRampToValueAtTime(note, TANGUY.synth.currentTime + TANGUY.program.portamento);
-                }
-            }
-            if (TANGUY.program.osc2_kbd === true) {
-                TANGUY.osc2.detune.linearRampToValueAtTime(osc2_note, TANGUY.synth.currentTime + TANGUY.program.portamento);
-            }
-        },
-        exponential_portamento = function () {
-            if (TANGUY.program.osc1_kbd === true) {
-                for (i = 0; i < 4; i += 1) {
-                    osc1[i].detune.setTargetAtTime(note, TANGUY.synth.currentTime, TANGUY.program.portamento / 5);
-                }
-            }
-            if (TANGUY.program.osc2_kbd === true) {
-                TANGUY.osc2.detune.setTargetAtTime(osc2_note, TANGUY.synth.currentTime, TANGUY.program.portamento / 5);
-            }
-        };
+    TANGUY.osc1_pitch = ((TANGUY.octave_shift + pos) * 1200) + note_value;
+    TANGUY.osc2_pitch = TANGUY.osc1_pitch + TANGUY.program.osc2_detune;
 
-    TANGUY.osc1_pitch = note;
-    TANGUY.osc2_pitch = osc2_note;
+    return TANGUY.set_pitch();
+};
 
-    //OSCILLATOR TRACKING
+TANGUY.set_pitch = function () {
+    'use strict';
+    var osc1 = [TANGUY.osc1_saw, TANGUY.osc1_sqr, TANGUY.osc1_tri, TANGUY.osc1_sin],
+        i;
+
     switch (TANGUY.program.portamento_mode) {
     case 'off':
-        no_portamento();
+        if (TANGUY.program.osc1_kbd === true) {
+            for (i = 0; i < 4; i += 1) {
+                osc1[i].detune.setValueAtTime(TANGUY.osc1_pitch, TANGUY.synth.currentTime);
+            }
+        }
+        if (TANGUY.program.osc2_kbd === true) {
+            TANGUY.osc2.detune.setValueAtTime(TANGUY.osc2_pitch, TANGUY.synth.currentTime);
+        }
         break;
     case 'linear':
-        linear_portamento();
+        if (TANGUY.program.osc1_kbd === true) {
+            for (i = 0; i < 4; i += 1) {
+                osc1[i].detune.linearRampToValueAtTime(TANGUY.osc1_pitch, TANGUY.synth.currentTime + TANGUY.program.portamento);
+            }
+        }
+        if (TANGUY.program.osc2_kbd === true) {
+            TANGUY.osc2.detune.linearRampToValueAtTime(TANGUY.osc2_pitch, TANGUY.synth.currentTime + TANGUY.program.portamento);
+        }
         break;
     case 'exponential':
-        exponential_portamento();
+        if (TANGUY.program.osc1_kbd === true) {
+            for (i = 0; i < 4; i += 1) {
+                osc1[i].detune.setTargetAtTime(TANGUY.osc1_pitch, TANGUY.synth.currentTime, TANGUY.program.portamento / 5);
+            }
+        }
+        if (TANGUY.program.osc2_kbd === true) {
+            TANGUY.osc2.detune.setTargetAtTime(TANGUY.osc2_pitch, TANGUY.synth.currentTime, TANGUY.program.portamento / 5);
+        }
         break;
     }
 
-    //FILTER KEYBOARD TRACKING
+    return TANGUY.set_kbd();
+};
+
+TANGUY.set_kbd = function () {
+    'use strict';
+    var kbd = (4800 - TANGUY.osc1_pitch) * TANGUY.program.filter_kbd;
+
     switch (TANGUY.program.filter_mode) {
     case 'lp':
         TANGUY.lp_filter1.detune.setValueAtTime(kbd, TANGUY.synth.currentTime);
@@ -530,6 +528,7 @@ TANGUY.calculate_pitch = function (pos, note_value) {
         break;
     }
 };
+
 TANGUY.gate_on = function () {
     'use strict';
     var cutoff = TANGUY.program.cutoff * TANGUY.program.cutoff * 22030 + 20,
