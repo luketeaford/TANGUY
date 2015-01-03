@@ -24,13 +24,13 @@
   right: 0;
   transform-origin: top;
   width: calc(100% - 2rem);
-  z-index: 1;
+  z-index: 3;
 
   > button {
     background: none;
     border: .05rem solid transparent;
     color: inherit;
-    margin: .1rem;
+    margin: .1rem .75rem .1rem .1rem;
     padding: .5rem;
     font-family: 'ocr-b-std', serif;
     text-align: left;
