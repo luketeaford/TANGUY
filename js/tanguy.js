@@ -538,11 +538,17 @@ TANGUY.set_kbd = function () {
 
 TANGUY.gate_on = function () {
     'use strict';
+    TANGUY.calculate_pitch(parseFloat(this.getAttribute('data-keyboard-position')), parseFloat(this.getAttribute('data-note-value')));
+    TANGUY.filter_env_on();
+    return TANGUY.amp_env_on();
+};
+
+TANGUY.filter_env_on = function () {
+    'use strict';
     var cutoff = TANGUY.program.cutoff * TANGUY.program.cutoff * 22030 + 20,
         filter_eg = ((TANGUY.program.filter_eg * (22050 - cutoff)) * Math.abs(TANGUY.program.filter_eg)) + cutoff,
         filter_end_of_attack = TANGUY.synth.currentTime + TANGUY.program.filter_attack,
-        sustain = filter_eg * TANGUY.program.filter_sustain * TANGUY.program.filter_sustain + cutoff,
-        vca_end_of_attack = TANGUY.synth.currentTime + TANGUY.program.vca_attack;
+        sustain = filter_eg * TANGUY.program.filter_sustain * TANGUY.program.filter_sustain + cutoff;
 
     switch (TANGUY.program.filter_mode) {
     case 'lp':
@@ -584,22 +590,32 @@ TANGUY.gate_on = function () {
         TANGUY.notch3.frequency.setTargetAtTime(sustain * 1.1, filter_end_of_attack, TANGUY.program.filter_decay);
         break;
     }
+};
 
-    TANGUY.calculate_pitch(parseFloat(this.getAttribute('data-keyboard-position')), parseFloat(this.getAttribute('data-note-value')));
+TANGUY.amp_env_on = function () {
+    'use strict';
+    var vca_end_of_attack = TANGUY.synth.currentTime + TANGUY.program.vca_attack;
 
     TANGUY.vca.gain.setValueAtTime(TANGUY.program.vca_gain, TANGUY.synth.currentTime);
     TANGUY.vca.gain.linearRampToValueAtTime(1, TANGUY.synth.currentTime + TANGUY.program.vca_attack);
     TANGUY.vca.gain.setTargetAtTime(TANGUY.program.vca_sustain + TANGUY.program.vca_gain, vca_end_of_attack, TANGUY.program.vca_decay);
 };
+
 TANGUY.gate_off = function () {
     'use strict';
+    TANGUY.filter_env_off();
+    TANGUY.amp_env_off();
+};
+
+TANGUY.filter_env_off = function () {
+    'use strict';
     var cutoff = TANGUY.program.cutoff * TANGUY.program.cutoff * 22030 + 20,
-        filter_release_peak,
-        vca_release_peak = TANGUY.vca.gain.value;
+        filter_release_peak;
 
     switch (TANGUY.program.filter_mode) {
     case 'lp':
         filter_release_peak = TANGUY.lp_filter1.frequency.value;
+
         TANGUY.lp_filter1.frequency.cancelScheduledValues(TANGUY.synth.currentTime);
         TANGUY.lp_filter2.frequency.cancelScheduledValues(TANGUY.synth.currentTime);
         TANGUY.lp_filter1.frequency.setValueAtTime(filter_release_peak, TANGUY.synth.currentTime);
@@ -609,6 +625,7 @@ TANGUY.gate_off = function () {
         break;
     case 'bp':
         filter_release_peak = TANGUY.bp_filter1.frequency.value;
+
         TANGUY.bp_filter1.frequency.cancelScheduledValues(TANGUY.synth.currentTime);
         TANGUY.bp_filter2.frequency.cancelScheduledValues(TANGUY.synth.currentTime);
         TANGUY.bp_filter3.frequency.cancelScheduledValues(TANGUY.synth.currentTime);
@@ -621,6 +638,7 @@ TANGUY.gate_off = function () {
         break;
     case 'hp':
         filter_release_peak = TANGUY.hp_filter1.frequency.value;
+
         TANGUY.hp_filter1.frequency.cancelScheduledValues(TANGUY.synth.currentTime);
         TANGUY.hp_filter2.frequency.cancelScheduledValues(TANGUY.synth.currentTime);
         TANGUY.hp_filter1.frequency.setValueAtTime(filter_release_peak, TANGUY.synth.currentTime);
@@ -630,6 +648,7 @@ TANGUY.gate_off = function () {
         break;
     case 'notch':
         filter_release_peak = TANGUY.notch1.frequency.value;
+
         TANGUY.notch1.frequency.cancelScheduledValues(TANGUY.synth.currentTime);
         TANGUY.notch2.frequency.cancelScheduledValues(TANGUY.synth.currentTime);
         TANGUY.notch3.frequency.cancelScheduledValues(TANGUY.synth.currentTime);
@@ -641,11 +660,17 @@ TANGUY.gate_off = function () {
         TANGUY.notch3.frequency.setTargetAtTime(cutoff * 1.1, TANGUY.synth.currentTime, TANGUY.program.filter_release);
         break;
     }
+};
+
+TANGUY.amp_env_off = function () {
+    'use strict';
+    var vca_release_peak = TANGUY.vca.gain.value;
 
     TANGUY.vca.gain.cancelScheduledValues(TANGUY.synth.currentTime);
     TANGUY.vca.gain.setValueAtTime(vca_release_peak, TANGUY.synth.currentTime);
     TANGUY.vca.gain.setTargetAtTime(TANGUY.program.vca_gain, TANGUY.synth.currentTime, TANGUY.program.vca_release);
 };
+
 TANGUY.build_synth = function () {
     'use strict';
     var white_noise_data,

@@ -1,10 +1,16 @@
 TANGUY.gate_on = function () {
     'use strict';
+    TANGUY.calculate_pitch(parseFloat(this.getAttribute('data-keyboard-position')), parseFloat(this.getAttribute('data-note-value')));
+    TANGUY.filter_env_on();
+    return TANGUY.amp_env_on();
+};
+
+TANGUY.filter_env_on = function () {
+    'use strict';
     var cutoff = TANGUY.program.cutoff * TANGUY.program.cutoff * 22030 + 20,
         filter_eg = ((TANGUY.program.filter_eg * (22050 - cutoff)) * Math.abs(TANGUY.program.filter_eg)) + cutoff,
         filter_end_of_attack = TANGUY.synth.currentTime + TANGUY.program.filter_attack,
-        sustain = filter_eg * TANGUY.program.filter_sustain * TANGUY.program.filter_sustain + cutoff,
-        vca_end_of_attack = TANGUY.synth.currentTime + TANGUY.program.vca_attack;
+        sustain = filter_eg * TANGUY.program.filter_sustain * TANGUY.program.filter_sustain + cutoff;
 
     switch (TANGUY.program.filter_mode) {
     case 'lp':
@@ -46,8 +52,11 @@ TANGUY.gate_on = function () {
         TANGUY.notch3.frequency.setTargetAtTime(sustain * 1.1, filter_end_of_attack, TANGUY.program.filter_decay);
         break;
     }
+};
 
-    TANGUY.calculate_pitch(parseFloat(this.getAttribute('data-keyboard-position')), parseFloat(this.getAttribute('data-note-value')));
+TANGUY.amp_env_on = function () {
+    'use strict';
+    var vca_end_of_attack = TANGUY.synth.currentTime + TANGUY.program.vca_attack;
 
     TANGUY.vca.gain.setValueAtTime(TANGUY.program.vca_gain, TANGUY.synth.currentTime);
     TANGUY.vca.gain.linearRampToValueAtTime(1, TANGUY.synth.currentTime + TANGUY.program.vca_attack);
