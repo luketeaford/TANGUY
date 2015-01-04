@@ -19,6 +19,14 @@ TANGUY.update_lfo_shape = function () {
     return TANGUY.calculate_lfo();
 };
 
+TANGUY.calculate_lfo = function () {
+    'use strict';
+    TANGUY.update_lfo_pitch();
+    TANGUY.update_lfo_filter();
+    TANGUY.update_lfo_amp();
+    return;
+};
+
 TANGUY.update_lfo_rate = function () {
     'use strict';
     return TANGUY.lfo.frequency.setValueAtTime(TANGUY.program.lfo_rate * TANGUY.program.lfo_rate * 100, TANGUY.synth.currentTime);

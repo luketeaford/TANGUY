@@ -1129,6 +1129,14 @@ TANGUY.update_lfo_shape = function () {
     return TANGUY.calculate_lfo();
 };
 
+TANGUY.calculate_lfo = function () {
+    'use strict';
+    TANGUY.update_lfo_pitch();
+    TANGUY.update_lfo_filter();
+    TANGUY.update_lfo_amp();
+    return;
+};
+
 TANGUY.update_lfo_rate = function () {
     'use strict';
     return TANGUY.lfo.frequency.setValueAtTime(TANGUY.program.lfo_rate * TANGUY.program.lfo_rate * 100, TANGUY.synth.currentTime);
@@ -1148,6 +1156,7 @@ TANGUY.update_lfo_amp = function () {
     'use strict';
     return TANGUY.lfo_amp_vca.gain.setValueAtTime(TANGUY.program.lfo_amp * TANGUY.program.mod * TANGUY.program.mod_direction, TANGUY.synth.currentTime);
 };
+
 TANGUY.update_delay_rate = function () {
     'use strict';
     var delay = [TANGUY.delay1, TANGUY.delay2, TANGUY.delay3, TANGUY.delay4],
@@ -1290,17 +1299,6 @@ $('#pitch-bend').mousedown(function () {
         TANGUY.osc2.detune.setTargetAtTime(TANGUY.osc2_pitch + (this.value * 100), TANGUY.synth.currentTime, 0.2);
     });
 });
-//MODWHEEL CONTROLS
-TANGUY.calculate_lfo = function () {
-    'use strict';
-    var amt = TANGUY.program.mod * TANGUY.program.mod_direction;
-    //PROBABLY MAKES BETTER SENSE TO CALL THE UPDATE FUNCTIONS HERE...
-    TANGUY.lfo_pitch_vca.gain.setValueAtTime(TANGUY.program.lfo_pitch * amt, TANGUY.synth.currentTime);
-    TANGUY.lfo_filter_vca.gain.setValueAtTime(TANGUY.program.lfo_filter * amt, TANGUY.synth.currentTime);
-    TANGUY.lfo_amp_vca.gain.setValueAtTime(TANGUY.program.lfo_amp * amt, TANGUY.synth.currentTime);
-    return;
-};
-
 TANGUY.slider = {
     grab: function () {
         'use strict';
