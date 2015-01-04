@@ -134,6 +134,7 @@ TANGUY.populate_programs = function () {
         'plywood violin',
         'metal cello',
         'synth strings',
+        'slow motion sunrise',
 
         //GUITAR
         'fake sync',
@@ -165,6 +166,7 @@ TANGUY.populate_programs = function () {
         'bacon grease',
         'chhchhchhchh',
         'fisherman',
+        'r mutt',
         'showering dalek',
         'architecture',
         'bending branch',
@@ -173,6 +175,7 @@ TANGUY.populate_programs = function () {
         'swamp monster',
         'papayawhip',
         'science fiction brains',
+        'mimosa',
 
         //PERCUSSION
         'optic kick',
@@ -194,6 +197,7 @@ TANGUY.populate_programs = function () {
 
         //EXTERNAL PROCESSING
         'external input',
+        'slight delay',
         'metallic vocals',
         'systematic decline',
         'central scrutinizer',
