@@ -13,6 +13,7 @@ TANGUY.populate_programs = function () {
         'panhandler bass',
         'sloppy bass',
         'perry on the beach',
+        'teardrop bass',
 
         //LEADS
         'direct peon',
@@ -28,14 +29,17 @@ TANGUY.populate_programs = function () {
         'rhinoceros',
         'wah wah',
         'black celebration',
+        'porcupine',
         'banjo man',
 
         //STRINGS
         'digital fiddle',
+        'city at night',
         'camembert',
         'plywood violin',
         'metal cello',
         'synth strings',
+        'time capsule',
         'slow motion sunrise',
 
         //GUITAR
@@ -47,6 +51,7 @@ TANGUY.populate_programs = function () {
         'crawler',
         'razor view',
         'invisible hand',
+        'vector style',
 
         //VOCAL SOUNDS
         'dusty pipes',
@@ -59,6 +64,7 @@ TANGUY.populate_programs = function () {
 
         //BELLS
         'bel homme',
+        'copper pigeon',
         'gamelan',
 
         //FX
@@ -78,15 +84,25 @@ TANGUY.populate_programs = function () {
         'papayawhip',
         'science fiction brains',
         'mimosa',
+        'wave of shadows',
 
         //PERCUSSION
         'optic kick',
         'round kick',
+        'warm kick',
+        'rubber kick',
+        'gumshoe kick',
         'cheap snare',
         'beefy snare',
+        'peppy snare',
+        'glitch snare',
+        'trashy drum',
+        'stutter snare',
         'hihat',
+        'shiny hihat',
         'maracas',
         'beatnik bongos',
+        'metal flap',
 
         //DRONES
         'feedback drone',
@@ -114,4 +130,5 @@ TANGUY.populate_programs = function () {
         buttons += '<button value="' + urls[i] + '">' + programs[i] + '</button>';
     }
     $('#program-select').append(buttons);
+    console.log('Program length: ' + programs.length);
 };
