@@ -6,6 +6,8 @@ var gulp = require('gulp'),
     jsonminify = require('gulp-jsonminify'),
     sass = require('gulp-ruby-sass'),
     livereload = require('gulp-livereload'),
+    minifyhtml = require('gulp-minify-html'),
+    imagemin = require('gulp-imagemin'),
 
     scripts = [
         'js/_license.js',
@@ -67,11 +69,25 @@ gulp.task('sass', function () {
     .pipe(livereload())
 });
 
+gulp.task('html', function () {
+    return gulp.src('*.html')
+    .pipe(minifyhtml())
+    .pipe(gulp.dest('tanguy/'))
+});
+
+gulp.task('images', function () {
+    return gulp.src('images/*')
+    .pipe(imagemin())
+    .pipe(gulp.dest('tanguy/images'))
+});
+
 gulp.task('watch', function () {
     var server = livereload();
     gulp.watch('js/*.js', ['dev']);
     gulp.watch('programs/*.json', ['presets']);
     gulp.watch('css/**/*.scss', ['sass']);
+    gulp.watch('*.html', ['html']);
+    gulp.watch('images/*', ['images']);
 });
 
 gulp.task('default', ['watch']);
