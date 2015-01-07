@@ -88,14 +88,6 @@ gulp.task('images', function () {
     .pipe(gulp.dest('tanguy/images'))
 });
 
-gulp.task('watchSAFE', function () {
-    gulp.watch('js/*.js', ['js']);
-    gulp.watch('programs/*.json', ['presets']);
-    gulp.watch('css/**/*.scss', ['sass']);
-    gulp.watch('*.html', ['html']);
-    gulp.watch('images/*', ['images']);
-});
-
 gulp.task('watch', function () {
     gulp.watch("js/*.js", ['js', browsersync.reload]);
     gulp.watch('programs/*.json', ['presets', browsersync.reload]);
@@ -105,12 +97,3 @@ gulp.task('watch', function () {
 });
 
 gulp.task('default', ['browsersync', 'watch']);
-
-
-//gulp.task('default', ['browsersync'], function () {
-//    gulp.watch("js/*.js", ['js', browsersync.reload]);
-//    gulp.watch('programs/*.json', ['presets', browsersync.reload]);
-//    gulp.watch('css/**/*.scss', ['sass', browsersync.reload]);
-//    gulp.watch('*.html', ['html', browsersync.reload]);
-//    gulp.watch('images/*', ['images', browsersync.reload]);
-//});

@@ -23,7 +23,6 @@
     "gulp-imagemin": "^2.1.0",
     "gulp-jslint": "^0.2.1",
     "gulp-jsonminify": "0.0.2",
-    "gulp-livereload": "^3.0.2",
     "gulp-minify-html": "^0.1.8",
     "gulp-pretty-data": "^0.1.1",
     "gulp-ruby-sass": "^0.7.1",
