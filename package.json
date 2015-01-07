@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/luketeaford/TANGUY",
   "devDependencies": {
+    "browser-sync": "^1.8.3",
     "gulp": "^3.8.10",
     "gulp-concat": "^2.4.3",
     "gulp-imagemin": "^2.1.0",
