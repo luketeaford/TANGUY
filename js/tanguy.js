@@ -26,6 +26,7 @@ var TANGUY = {
     synth: new AudioContext(),
 
     //SENSIBLE DEFAULTS
+    program_number: 0,
     octave_shift: 0,
     osc1_master_pitch: 440,
     osc2_master_pitch: 444.18,
@@ -96,139 +97,150 @@ TANGUY.save_program = function () {
     TANGUY.program.name = patch_name;
     console.log('SAVE PROGRAM: ' + JSON.stringify(TANGUY.program));
 };
+TANGUY.order_programs = function () {
+	'use strict';
+	var programs = [
+	'initialize',
+
+	//BASSES
+	'eyeball bass',
+	'stylish bass',
+	'square wave bass',
+	'whompy bass',
+	'abominable bassman',
+	'snarly bass',
+	'panhandler bass',
+	'sloppy bass',
+	'perry on the beach',
+	'teardrop bass',
+
+	//LEADS
+	'direct peon',
+	'headcleaner',
+	'jet lag',
+	'ozone',
+	'disco pabulum',
+	'no pulse',
+	'former marine',
+	'lettuce in',
+	'cool wire',
+	'dolphin sighting',
+	'rhinoceros',
+	'wah wah',
+	'black celebration',
+	'porcupine',
+	'banjo man',
+
+	//STRINGS
+	'digital fiddle',
+	'city at night',
+	'camembert',
+	'plywood violin',
+	'metal cello',
+	'synth strings',
+	'time capsule',
+	'slow motion sunrise',
+
+	//GUITAR
+	'fake sync',
+	'event deafener',
+	'faux set',
+	'fuzzy',
+	'easy cure',
+	'crawler',
+	'razor view',
+	'invisible hand',
+	'vector style',
+
+	//VOCAL SOUNDS
+	'dusty pipes',
+	'wistful pipes',
+	'hum',
+	'shanty',
+	'galactic yawn',
+	'male voice',
+	'the last voice',
+
+	//BELLS
+	'bel homme',
+	'copper pigeon',
+	'gamelan',
+
+	//FX
+	'low bubble',
+	'chattering',
+	'salut detroit',
+	'bacon grease',
+	'chhchhchhchh',
+	'fisherman',
+	'r mutt',
+	'showering dalek',
+	'architecture',
+	'bending branch',
+	'weedy rectangle',
+	'red river',
+	'swamp monster',
+	'papayawhip',
+	'science fiction brains',
+	'mimosa',
+	'wave of shadows',
+
+	//PERCUSSION
+	'optic kick',
+	'round kick',
+	'warm kick',
+	'rubber kick',
+	'gumshoe kick',
+	'cheap snare',
+	'beefy snare',
+	'peppy snare',
+	'glitch snare',
+	'trashy drum',
+	'stutter snare',
+	'hihat',
+	'shiny hihat',
+	'maracas',
+	'beatnik bongos',
+	'metal flap',
+
+	//DRONES
+	'feedback drone',
+	'ragamuffin',
+	'evening gardening',
+	'pulse demon',
+	'rubberband',
+	'third member',
+	'synth king',
+
+	//EXTERNAL PROCESSING
+	'external input',
+	'slight delay',
+	'metallic vocals',
+	'systematic decline',
+	'central scrutinizer',
+	'boogie vocals',
+	'meltdown'
+	],
+	urls = [],
+	i;
+	for (i = 0; i < programs.length; i += 1) {
+		urls[i] = programs[i].replace(/\s+/g, '');
+	}
+	TANGUY.programs = programs;
+	TANGUY.urls = urls;
+	return TANGUY.populate_programs();
+};
+
 TANGUY.populate_programs = function () {
     'use strict';
-    var programs = [
-        'initialize',
-
-        //BASSES
-        'eyeball bass',
-        'stylish bass',
-        'square wave bass',
-        'whompy bass',
-        'abominable bassman',
-        'snarly bass',
-        'panhandler bass',
-        'sloppy bass',
-        'perry on the beach',
-        'teardrop bass',
-
-        //LEADS
-        'direct peon',
-        'headcleaner',
-        'jet lag',
-        'ozone',
-        'disco pabulum',
-        'no pulse',
-        'former marine',
-        'lettuce in',
-        'cool wire',
-        'dolphin sighting',
-        'rhinoceros',
-        'wah wah',
-        'black celebration',
-        'porcupine',
-        'banjo man',
-
-        //STRINGS
-        'digital fiddle',
-        'city at night',
-        'camembert',
-        'plywood violin',
-        'metal cello',
-        'synth strings',
-        'time capsule',
-        'slow motion sunrise',
-
-        //GUITAR
-        'fake sync',
-        'event deafener',
-        'faux set',
-        'fuzzy',
-        'easy cure',
-        'crawler',
-        'razor view',
-        'invisible hand',
-        'vector style',
-
-        //VOCAL SOUNDS
-        'dusty pipes',
-        'wistful pipes',
-        'hum',
-        'shanty',
-        'galactic yawn',
-        'male voice',
-        'the last voice',
-
-        //BELLS
-        'bel homme',
-        'copper pigeon',
-        'gamelan',
-
-        //FX
-        'low bubble',
-        'chattering',
-        'salut detroit',
-        'bacon grease',
-        'chhchhchhchh',
-        'fisherman',
-        'r mutt',
-        'showering dalek',
-        'architecture',
-        'bending branch',
-        'weedy rectangle',
-        'red river',
-        'swamp monster',
-        'papayawhip',
-        'science fiction brains',
-        'mimosa',
-        'wave of shadows',
-
-        //PERCUSSION
-        'optic kick',
-        'round kick',
-        'warm kick',
-        'rubber kick',
-        'gumshoe kick',
-        'cheap snare',
-        'beefy snare',
-        'peppy snare',
-        'glitch snare',
-        'trashy drum',
-        'stutter snare',
-        'hihat',
-        'shiny hihat',
-        'maracas',
-        'beatnik bongos',
-        'metal flap',
-
-        //DRONES
-        'feedback drone',
-        'ragamuffin',
-        'evening gardening',
-        'pulse demon',
-        'rubberband',
-        'third member',
-        'synth king',
-
-        //EXTERNAL PROCESSING
-        'external input',
-        'slight delay',
-        'metallic vocals',
-        'systematic decline',
-        'central scrutinizer',
-        'boogie vocals',
-        'meltdown'
-    ],
-        urls = [],
-        buttons = '',
+    console.log('NEW ONE WORKS');
+    var buttons = '',
         i;
-    for (i = 0; i < programs.length; i += 1) {
-        urls[i] = programs[i].replace(/\s+/g, '');
-        buttons += '<button value="' + urls[i] + '">' + programs[i] + '</button>';
+    for (i = 0; i < TANGUY.urls.length; i += 1) {
+        buttons += '<button value="' + TANGUY.urls[i] + '">' + TANGUY.programs[i] + '</button>';
     }
     $('#program-select').append(buttons);
-    console.log('Program length: ' + programs.length);
+    return TANGUY.load_program(TANGUY.urls[0]);
 };
 
 TANGUY.load_program = function (patch) {
@@ -236,6 +248,7 @@ TANGUY.load_program = function (patch) {
     var patch_url = encodeURI('programs/') + patch + '.json';
     $.getJSON(decodeURI(patch_url), function (loaded) {
         TANGUY.program = loaded;
+        TANGUY.program_number = TANGUY.urls.indexOf(patch);
         return TANGUY.update_program();
     });
 };
@@ -250,9 +263,18 @@ TANGUY.show_program = function () {
 TANGUY.hide_program = function () {
     'use strict';
     $('#program-select').hide();
-    $('body').one('click', '#program', TANGUY.show_program);
+    $('body').one('click', '#program-name', TANGUY.show_program);
     return false;
 };
+
+TANGUY.change_program = function (x) {
+    'use strict';
+    var y = TANGUY.program_number + x;
+    if (y >= 0 && y < TANGUY.urls.length) {
+        return TANGUY.load_program(TANGUY.urls[y]);
+    }
+};
+
 TANGUY.update_program = function () {
     'use strict';
 
@@ -291,7 +313,7 @@ TANGUY.update_program = function () {
     //LFO
     TANGUY.update_lfo_shape();
     TANGUY.update_lfo_rate();
-    TANGUY.calculate_lfo();//update lfo amount? - what does this comment mean?
+    TANGUY.calculate_lfo();
 
     //DELAY
     TANGUY.update_delay_rate();
@@ -299,6 +321,7 @@ TANGUY.update_program = function () {
 
     return TANGUY.update_panel();
 };
+
 TANGUY.update_panel = function () {
     'use strict';
 
@@ -995,13 +1018,18 @@ navigator.getUserMedia({audio: true}, TANGUY.route_external_input, TANGUY.extern
 $(document).ready(function () {
     'use strict';
     TANGUY.build_synth();
-    TANGUY.load_program('initialize');
-    TANGUY.populate_programs();
+    TANGUY.order_programs();
 
-    $('body').one('click', '#program', TANGUY.show_program);
+    $('body').one('click', '#program-name', TANGUY.show_program);
     $('#program-select').on('click', 'button', function () {
         TANGUY.load_program(this.value);
     });
+
+    //SLOPPY EVENTS
+    $('#prev, #next').on('click', function () {
+        console.log('Fix this!');
+    });
+
     $('#octave-shift').on('click', 'button', function () {
         return TANGUY.shift_octave(this.getAttribute('data-octave-shift'));
     });
@@ -1011,6 +1039,7 @@ $(document).ready(function () {
     $('#portamento').on('mousedown', 'input.horizontal-slider', TANGUY.slider.grab);
 
 });
+
 TANGUY.update_osc1_coarse = function () {
     'use strict';
     var osc1 = [TANGUY.osc1_saw, TANGUY.osc1_sqr, TANGUY.osc1_tri, TANGUY.osc1_sin],
@@ -1387,6 +1416,12 @@ $(document).keypress(function (key) {
     case 43:
     case 61:
         TANGUY.shift_octave(1);
+        break;
+    case 44:
+        TANGUY.change_program(-1);
+        break;
+    case 46:
+        TANGUY.change_program(1);
         break;
     case 42:
         TANGUY.save_program();

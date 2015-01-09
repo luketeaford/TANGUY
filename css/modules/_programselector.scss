@@ -24,7 +24,7 @@
   right: 0;
   transform-origin: top;
   width: calc(100% - 2rem);
-  z-index: 3;
+  z-index: 4;
 
   > button {
     background: none;
@@ -46,13 +46,54 @@
 }
 
 #program-name {
+    margin-left: 2rem;
 
-  &::before {
-    content: '88888888888888888888888888888888888888888888888888888888888888888888888888888888';
-    opacity: .2;
-    overflow: hidden;
+    &::before {
+        content: '88888888888888888888888888888888888888888888888888888888888888888888888888888888';
+        margin-left: -2rem;
+        margin-top: -.5rem;
+        opacity: .2;
+        overflow: hidden;
+        padding: .5rem 0;
+        position: absolute;
+        width: 54rem;
+    }
+
+}
+
+%program-button {
+    background: none;
+    border: none;
+    color: inherit;
+    font-family: inherit;
+    font-size: 2rem;
+    height: 2rem;
+    margin-top: -.45rem;
+    opacity: .8;
     position: absolute;
-    width: 54rem;
-  }
+    text-align: left;
+    width: 2rem;
+    z-index: 3;
+}
+
+#prev {
+    @extend %program-button;
+    left: 1rem;
+    text-indent: .1rem;
+
+    &:hover {
+        opacity: 1;
+    }
+
+}
+
+#next {
+    @extend %program-button;
+    right: 1rem;
+    text-indent: .5rem;
+
+    &:hover {
+        opacity: 1;
+    }
 
 }

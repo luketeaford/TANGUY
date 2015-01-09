@@ -1,13 +1,18 @@
 $(document).ready(function () {
     'use strict';
     TANGUY.build_synth();
-    TANGUY.load_program('initialize');
-    TANGUY.populate_programs();
+    TANGUY.order_programs();
 
-    $('body').one('click', '#program', TANGUY.show_program);
+    $('body').one('click', '#program-name', TANGUY.show_program);
     $('#program-select').on('click', 'button', function () {
         TANGUY.load_program(this.value);
     });
+
+    //SLOPPY EVENTS
+    $('#prev, #next').on('click', function () {
+        console.log('Fix this!');
+    });
+
     $('#octave-shift').on('click', 'button', function () {
         return TANGUY.shift_octave(this.getAttribute('data-octave-shift'));
     });

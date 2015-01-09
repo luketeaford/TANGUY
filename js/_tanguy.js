@@ -7,6 +7,7 @@ var TANGUY = {
     synth: new AudioContext(),
 
     //SENSIBLE DEFAULTS
+    program_number: 0,
     octave_shift: 0,
     osc1_master_pitch: 440,
     osc2_master_pitch: 444.18,

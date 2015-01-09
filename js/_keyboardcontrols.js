@@ -11,6 +11,12 @@ $(document).keypress(function (key) {
     case 61:
         TANGUY.shift_octave(1);
         break;
+    case 44:
+        TANGUY.change_program(-1);
+        break;
+    case 46:
+        TANGUY.change_program(1);
+        break;
     case 42:
         TANGUY.save_program();
         break;

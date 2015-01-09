@@ -1,18 +1,20 @@
 var gulp = require('gulp'),
+    browsersync = require('browser-sync'),
     concat = require('gulp-concat'),
     jslint = require('gulp-jslint'),
     uglify = require('gulp-uglify'),
     prettydata = require('gulp-pretty-data'),
     jsonminify = require('gulp-jsonminify'),
     sass = require('gulp-ruby-sass'),
-    livereload = require('gulp-livereload'),
     minifyhtml = require('gulp-minify-html'),
     imagemin = require('gulp-imagemin'),
+
 
     scripts = [
         'js/_license.js',
         'js/_tanguy.js',
         'js/_saveprogram.js',
+        'js/_orderprograms.js',
         'js/_populateprograms.js',
         'js/_loadprogram.js',
         'js/_updateprogram.js',
@@ -38,6 +40,14 @@ var gulp = require('gulp'),
         'js/_storeprogram.js',
         'js/_keyboardcontrols.js'
     ];
+
+gulp.task('browsersync', function() {
+    browsersync({
+        server: {
+            baseDir: "./"
+        }
+    });
+});
 
 gulp.task('dev', function () {
     return gulp.src(scripts)
@@ -66,7 +76,6 @@ gulp.task('sass', function () {
     .on('error', function (err) { console.log(err.message); })
     .pipe(gulp.dest('css'))
     .pipe(gulp.dest('tanguy/css'))
-    .pipe(livereload())
 });
 
 gulp.task('html', function () {
@@ -82,7 +91,6 @@ gulp.task('images', function () {
 });
 
 gulp.task('watch', function () {
-    var server = livereload();
     gulp.watch('js/*.js', ['dev']);
     gulp.watch('programs/*.json', ['presets']);
     gulp.watch('css/**/*.scss', ['sass']);
@@ -90,4 +98,4 @@ gulp.task('watch', function () {
     gulp.watch('images/*', ['images']);
 });
 
-gulp.task('default', ['watch']);
+gulp.task('default', ['watch', 'browsersync']);
