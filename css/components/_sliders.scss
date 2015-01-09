@@ -1,58 +1,58 @@
 .slider-label {
-  background: linear-gradient(#666 0, #666 .05rem, transparent .05rem, transparent 1rem, #444 1rem, #444 1.05rem, transparent 1.05rem, transparent 2rem);
-  background-position: center top;
-  background-repeat: repeat-y;
-  background-size: 2.3rem 2rem;
-  border-bottom: 1px solid #666;
-  display: inline-block;
-  font-size: .5rem;
-  height: 6rem;
-  margin-bottom: .5rem;//corrects label alignment in Safari
-  position: relative;
-  text-align: center;
-  text-transform: uppercase;
-  top: 0;
-  width: 3rem;
+    background: linear-gradient(#666 0, #666 .05rem, transparent .05rem, transparent 1rem, #444 1rem, #444 1.05rem, transparent 1.05rem, transparent 2rem);
+    background-position: center top;
+    background-repeat: repeat-y;
+    background-size: 2.3rem 2rem;
+    border-bottom: 1px solid #666;
+    display: inline-block;
+    font-size: .5rem;
+    height: 6rem;
+    margin-bottom: .5rem;//corrects label alignment in Safari
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    top: 0;
+    width: 3rem;
 }
 
 .vertical-slider {
-  -webkit-appearance: slider-vertical;
-  height: 6rem;
-  margin-bottom: .25rem;//this puts the label against border in Safari
-  width: 3rem;
+    -webkit-appearance: slider-vertical;
+    height: 6rem;
+    margin-bottom: .25rem;//this puts the label against border in Safari
+    width: 3rem;
 }
 
 .horizontal-slider-label {//GARBAGE?
-  display: inline-block;
-  font-size: .5rem;
-  margin: 1rem 0 .4rem;
-  text-transform: uppercase;
-  vertical-align: top;
+    display: inline-block;
+    font-size: .5rem;
+    margin: 1rem 0 .4rem;
+    text-transform: uppercase;
+    vertical-align: top;
 }
 
 %number-line {
-  color: #9f9693;
-  font-size: .6rem;
-  position: absolute;
-  top: -1rem;
-  z-index: 1;
+    color: #9f9693;
+    font-size: .6rem;
+    position: absolute;
+    top: -1rem;
+    z-index: 1;
 }
 
 .horizontal-slider {
-  margin: -.1rem 0 0 1rem;
-  position: relative;
-  top: -.2rem;
-  width: 8.5rem;
+    margin: -.1rem 0 0 1rem;
+    position: relative;
+    top: -.2rem;
+    width: 8.5rem;
 
-  &::before {
-    @extend %number-line;
-    content: '0';
-  }
+    &::before {
+        @extend %number-line;
+        content: '0';
+    }
 
-  &::after {
-    @extend %number-line;
-    content: '10';
-    margin-left: -.6rem;
-  }
+    &::after {
+        @extend %number-line;
+        content: '10';
+        margin-left: -.6rem;
+    }
 
 }

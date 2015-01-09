@@ -1,18 +1,18 @@
 @mixin blend-title($size: 5rem) {
-  background: linear-gradient(to right, $body-bg $size, transparentize($body-bg, 1));
+    background: linear-gradient(to right, $body-bg $size, transparentize($body-bg, 1));
 }
 
 %module {
-  border: 2px solid #555;
-  border-radius: .5rem;
-  display: inline-block;
-  padding: .5rem;
-  vertical-align: top;
+    border: 2px solid #555;
+    border-radius: .5rem;
+    display: inline-block;
+    padding: .5rem;
+    vertical-align: top;
 
-  > h2 {
-    padding: 0 1rem 0 .25rem;
-    position: relative;
-    top: -1.1rem;
-  }
+    > h2 {
+        padding: 0 1rem 0 .25rem;
+        position: relative;
+        top: -1.1rem;
+    }
 
 }
