@@ -1,19 +1,19 @@
 TANGUY.order_programs = function () {
 	'use strict';
 	var programs = [
-		'initialize',
+        'initialize',
 
-		//BASSES
-		'eyeball bass',
-		'stylish bass',
-		'square wave bass',
-		'whompy bass',
-		'abominable bassman',
-		'snarly bass',
-		'panhandler bass',
-		'sloppy bass',
-		'perry on the beach',
-		'teardrop bass',
+        //BASSES
+        'eyeball bass',
+        'stylish bass',
+        'square wave bass',
+        'whompy bass',
+        'abominable bassman',
+        'snarly bass',
+        'panhandler bass',
+        'sloppy bass',
+        'perry on the beach',
+        'teardrop bass',
 
 		//LEADS
 		'direct peon',

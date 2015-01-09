@@ -1,6 +1,5 @@
 TANGUY.populate_programs = function () {
     'use strict';
-    console.log('NEW ONE WORKS');
     var buttons = '',
         i;
     for (i = 0; i < TANGUY.urls.length; i += 1) {
