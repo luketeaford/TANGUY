@@ -1,6 +1,7 @@
 TANGUY.order_programs = function () {
-	'use strict';
-	var programs = [
+    'use strict';
+    var programs = [
+        //INITIALIZE
         'initialize',
 
         //BASSES
@@ -15,119 +16,120 @@ TANGUY.order_programs = function () {
         'perry on the beach',
         'teardrop bass',
 
-		//LEADS
-		'direct peon',
-		'headcleaner',
-		'jet lag',
-		'ozone',
-		'disco pabulum',
-		'no pulse',
-		'former marine',
-		'lettuce in',
-		'cool wire',
-		'dolphin sighting',
-		'rhinoceros',
-		'wah wah',
-		'black celebration',
-		'porcupine',
-		'banjo man',
+        //LEADS
+        'direct peon',
+        'headcleaner',
+        'jet lag',
+        'ozone',
+        'disco pabulum',
+        'no pulse',
+        'former marine',
+        'lettuce in',
+        'cool wire',
+        'dolphin sighting',
+        'rhinoceros',
+        'wah wah',
+        'black celebration',
+        'porcupine',
+        'banjo man',
 
-		//STRINGS
-		'digital fiddle',
-		'city at night',
-		'camembert',
-		'plywood violin',
-		'metal cello',
-		'synth strings',
-		'time capsule',
-		'slow motion sunrise',
+        //STRINGS
+        'digital fiddle',
+        'city at night',
+        'camembert',
+        'plywood violin',
+        'metal cello',
+        'synth strings',
+        'time capsule',
+        'slow motion sunrise',
 
-		//GUITAR
-		'fake sync',
-		'event deafener',
-		'faux set',
-		'fuzzy',
-		'easy cure',
-		'crawler',
-		'razor view',
-		'invisible hand',
-		'vector style',
+        //GUITAR
+        'fake sync',
+        'event deafener',
+        'faux set',
+        'fuzzy',
+        'easy cure',
+        'crawler',
+        'razor view',
+        'invisible hand',
+        'vector style',
 
-		//VOCAL SOUNDS
-		'dusty pipes',
-		'wistful pipes',
-		'hum',
-		'shanty',
-		'galactic yawn',
-		'male voice',
-		'the last voice',
+        //VOCAL SOUNDS
+        'dusty pipes',
+        'wistful pipes',
+        'hum',
+        'shanty',
+        'galactic yawn',
+        'male voice',
+        'the last voice',
 
-		//BELLS
-		'bel homme',
-		'copper pigeon',
-		'gamelan',
+        //BELLS
+        'bel homme',
+        'copper pigeon',
+        'gamelan',
 
-		//FX
-		'low bubble',
-		'chattering',
-		'salut detroit',
-		'bacon grease',
-		'chhchhchhchh',
-		'fisherman',
-		'r mutt',
-		'showering dalek',
-		'architecture',
-		'bending branch',
-		'weedy rectangle',
-		'red river',
-		'swamp monster',
-		'papayawhip',
-		'science fiction brains',
-		'mimosa',
-		'wave of shadows',
+        //FX
+        'low bubble',
+        'chattering',
+        'salut detroit',
+        'bacon grease',
+        'chhchhchhchh',
+        'fisherman',
+        'r mutt',
+        'showering dalek',
+        'architecture',
+        'bending branch',
+        'weedy rectangle',
+        //'underwater',
+        'red river',
+        'swamp monster',
+        'papayawhip',
+        'science fiction brains',
+        'mimosa',
+        'wave of shadows',
 
-		//PERCUSSION
-		'optic kick',
-		'round kick',
-		'warm kick',
-		'rubber kick',
-		'gumshoe kick',
-		'cheap snare',
-		'beefy snare',
-		'peppy snare',
-		'glitch snare',
-		'trashy drum',
-		'stutter snare',
-		'hihat',
-		'shiny hihat',
-		'maracas',
-		'beatnik bongos',
-		'metal flap',
+        //PERCUSSION
+        'optic kick',
+        'round kick',
+        'warm kick',
+        'rubber kick',
+        'gumshoe kick',
+        'cheap snare',
+        'beefy snare',
+        'peppy snare',
+        'glitch snare',
+        'trashy drum',
+        'stutter snare',
+        'hihat',
+        'shiny hihat',
+        'maracas',
+        'beatnik bongos',
+        'metal flap',
 
-		//DRONES
-		'feedback drone',
-		'ragamuffin',
-		'evening gardening',
-		'pulse demon',
-		'rubberband',
-		'third member',
-		'synth king',
+        //DRONES
+        'feedback drone',
+        'ragamuffin',
+        'evening gardening',
+        'pulse demon',
+        'rubberband',
+        'third member',
+        'synth king',
 
-		//EXTERNAL PROCESSING
-		'external input',
-		'slight delay',
-		'metallic vocals',
-		'systematic decline',
-		'central scrutinizer',
-		'boogie vocals',
-		'meltdown'
-	],
-		urls = [],
-		i;
-	for (i = 0; i < programs.length; i += 1) {
-		urls[i] = programs[i].replace(/\s+/g, '');
-	}
-	TANGUY.programs = programs;
-	TANGUY.urls = urls;
-	return TANGUY.populate_programs();
+        //EXTERNAL PROCESSING
+        'external input',
+        'slight delay',
+        'metallic vocals',
+        'systematic decline',
+        'central scrutinizer',
+        'boogie vocals',
+        'meltdown'
+    ],
+        urls = [],
+        i;
+    for (i = 0; i < programs.length; i += 1) {
+        urls[i] = programs[i].replace(/\s+/g, '');
+    }
+    TANGUY.programs = programs;
+    TANGUY.urls = urls;
+    return TANGUY.populate_programs();
 };

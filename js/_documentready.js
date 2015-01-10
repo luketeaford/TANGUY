@@ -7,12 +7,9 @@ $(document).ready(function () {
     $('#program-select').on('click', 'button', function () {
         TANGUY.load_program(this.value);
     });
-
-    //SLOPPY EVENTS
-    $('#prev, #next').on('click', function () {
-        console.log('Fix this!');
+    $('#program').on('click', '#prev, #next', function () {
+        return TANGUY.change_program(this.getAttribute('data-program-shift'));
     });
-
     $('#octave-shift').on('click', 'button', function () {
         return TANGUY.shift_octave(this.getAttribute('data-octave-shift'));
     });

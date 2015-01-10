@@ -24,7 +24,7 @@ TANGUY.hide_program = function () {
 
 TANGUY.change_program = function (x) {
     'use strict';
-    var y = TANGUY.program_number + x;
+    var y = TANGUY.program_number + parseInt(x, 10);
     if (y >= 0 && y < TANGUY.urls.length) {
         return TANGUY.load_program(TANGUY.urls[y]);
     }
