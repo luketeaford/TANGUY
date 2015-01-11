@@ -8,7 +8,7 @@ article {
     position: relative;
     width: calc(100% + 4rem);
     z-index: 2;
-    
+
     h1 {
         display: block;
         font-size: 1.5rem;
@@ -48,6 +48,8 @@ article {
     font-style: normal;
 }
 
+
+
 .subtitle {
     color: $grey;
     display: block;
@@ -55,6 +57,11 @@ article {
     letter-spacing: 2px;
     text-align: center;
     text-transform: uppercase;
+}
+
+nav {//make this a div!
+    display: inline-block;
+    width: 10rem;
 }
 
 .fake-h2 {
@@ -79,6 +86,12 @@ article {
         font-size: inherit;
     }
 
+}
+
+.wrapper {
+    display: inline-block;
+    margin: 2rem 0 0 4rem;
+    vertical-align: top;
 }
 
 p {

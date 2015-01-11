@@ -6,9 +6,7 @@ var gulp = require('gulp'),
     prettydata = require('gulp-pretty-data'),
     jsonminify = require('gulp-jsonminify'),
     sass = require('gulp-ruby-sass'),
-    minifyhtml = require('gulp-minify-html'),
     imagemin = require('gulp-imagemin'),
-
 
     scripts = [
         'js/_license.js',
@@ -80,7 +78,6 @@ gulp.task('sass', function () {
 
 gulp.task('html', function () {
     return gulp.src('*.html')
-    .pipe(minifyhtml())
     .pipe(gulp.dest('tanguy/'))
 });
 
