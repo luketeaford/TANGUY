@@ -582,7 +582,7 @@ TANGUY.set_pitch = function () {
 
 TANGUY.set_kbd = function () {
     'use strict';
-    var kbd = (4800 - TANGUY.osc1_pitch) * TANGUY.program.filter_kbd;
+    var kbd = (4800 - Math.abs(TANGUY.osc1_pitch)) * TANGUY.program.filter_kbd;
 
     switch (TANGUY.program.filter_mode) {
     case 'lp':
