@@ -19,7 +19,7 @@
 
 //BROWSER PREFIXING
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
-navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
+navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
 var TANGUY = {
 
@@ -306,6 +306,7 @@ TANGUY.update_program = function () {
     TANGUY.update_osc1_mix();
     TANGUY.update_osc2_mix();
     TANGUY.update_noise_mix();
+    TANGUY.update_ext_mix();
 
     //FILTER
     TANGUY.update_filter_mode();
@@ -1015,10 +1016,14 @@ TANGUY.route_external_input = function (input) {
 
 TANGUY.external_input_error = function () {
     'use strict';
-    console.log('External input denied or unavailable!');
+    console.log('External input denied');
 };
 
-navigator.getUserMedia({audio: true}, TANGUY.route_external_input, TANGUY.external_input_error);
+if (navigator.getUserMedia) {
+    navigator.getUserMedia({audio: true}, TANGUY.route_external_input, TANGUY.external_input_error);
+} else {
+    console.log('External input unavailable');
+}
 
 $(document).ready(function () {
     'use strict';
@@ -1329,7 +1334,6 @@ TANGUY.update_vca_gain = function () {
     'use strict';
     return TANGUY.vca.gain.setTargetAtTime(TANGUY.program.vca_gain * TANGUY.program.vca_gain, TANGUY.synth.currentTime, 0.01);
 };
-//PITCH WHEEL CONTROLS
 $('#pitch-bend').mousedown(function () {
     'use strict';
     var osc1 = [TANGUY.osc1_saw, TANGUY.osc1_sqr, TANGUY.osc1_tri, TANGUY.osc1_sin],
@@ -1347,6 +1351,7 @@ $('#pitch-bend').mousedown(function () {
         TANGUY.osc2.detune.setTargetAtTime(TANGUY.osc2_pitch + (this.value * 100), TANGUY.synth.currentTime, 0.2);
     });
 });
+
 TANGUY.slider = {
     grab: function () {
         'use strict';

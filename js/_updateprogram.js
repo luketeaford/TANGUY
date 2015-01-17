@@ -24,6 +24,7 @@ TANGUY.update_program = function () {
     TANGUY.update_osc1_mix();
     TANGUY.update_osc2_mix();
     TANGUY.update_noise_mix();
+    TANGUY.update_ext_mix();
 
     //FILTER
     TANGUY.update_filter_mode();

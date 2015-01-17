@@ -1,4 +1,3 @@
-//PITCH WHEEL CONTROLS
 $('#pitch-bend').mousedown(function () {
     'use strict';
     var osc1 = [TANGUY.osc1_saw, TANGUY.osc1_sqr, TANGUY.osc1_tri, TANGUY.osc1_sin],
