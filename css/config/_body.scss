@@ -1,127 +1,127 @@
 *,
 ::before,
 ::after {
-    box-sizing: inherit;
-    margin: 0;
-    padding: 0;
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
 }
 
 html {
-    background-image: url('../images/stone.jpg');
-    background-position: 0 -2rem;
-    box-sizing: border-box;
-    color: $body-text;
-    font-family: helvetica, arial, sans-serif;
-    font-size: 20px;
-    margin: 2rem 0;
+  background-image: url('../images/stone.jpg');
+  background-position: 0 -2rem;
+  box-sizing: border-box;
+  color: $body-text;
+  font-family: helvetica, arial, sans-serif;
+  font-size: 20px;
+  margin: 2rem 0;
 }
 
 %endcheeks {
-    background: url('../images/wood.jpg');
-    bottom: 0;
-    content: '';
-    position: absolute;
-    top: 0;
-    width: 3rem;
+  background: url('../images/wood.jpg');
+  bottom: 0;
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 3rem;
 }
 
 body {
-    background: $body-bg;
-    margin: 0 auto;
-    padding: .5rem 1rem;
-    position: relative;
-    width: 57rem;
+  background: $body-bg;
+  margin: 0 auto;
+  padding: .5rem 1rem;
+  position: relative;
+  width: 57rem;
 
-    &::before {
-        @extend %endcheeks;
-        background-position: -1.5rem 6.05rem;
-        left: -3rem;
-    }
+  &::before {
+    @extend %endcheeks;
+    background-position: -1.5rem 6.05rem;
+    left: -3rem;
+  }
 
-    &::after {
-        @extend %endcheeks;
-        right: -3rem;
-    }
+  &::after {
+    @extend %endcheeks;
+    right: -3rem;
+  }
 
 }
 
 h1 {
-    display: inline-block;
-    font-family: 'brandon-grotesque', sans-serif;
-    font-size: 1rem;
-    font-weight: 100;
-    letter-spacing: .3rem;
-    margin: 0 0 2rem;
-    text-transform: uppercase;
+  display: inline-block;
+  font-family: 'brandon-grotesque', sans-serif;
+  font-size: 1rem;
+  font-weight: 100;
+  letter-spacing: .3rem;
+  margin: 0 0 2rem;
+  text-transform: uppercase;
 
-    a {
-        font-size: 1rem;
-    }
+  a {
+    font-size: 1rem;
+  }
 
 }
 
 .tagline {
-    font-size: .5rem;
-    text-transform: uppercase;
+  font-size: .5rem;
+  text-transform: uppercase;
 }
 
 .nav {
-    position: absolute;
-    right: 0;
-    text-align: right;
-    text-transform: uppercase;
-    top: .7rem;
+  position: absolute;
+  right: 0;
+  text-align: right;
+  text-transform: uppercase;
+  top: .7rem;
 
-    li {
-        display: inline-block;
-        list-style-type: none;
-        margin: 0 1rem;
-    }
+  li {
+    display: inline-block;
+    list-style-type: none;
+    margin: 0 1rem;
+  }
 
 }
 
 a {
-    font-size: .6rem;
-    text-decoration: none;
+  font-size: .6rem;
+  text-decoration: none;
 
-    &:link,
-    &:visited {
-        color: inherit;
-    }
+  &:link,
+  &:visited {
+    color: inherit;
+  }
 
-    &:hover {
-        color: $white;
-    }
+  &:hover {
+    color: $white;
+  }
 
 }
 
 h2 {
-    font-family: 'brandon-grotesque', sans-serif;
-    font-size: .8rem;
-    font-style: italic;
-    text-transform: uppercase;
+  font-family: 'brandon-grotesque', sans-serif;
+  font-size: .8rem;
+  font-style: italic;
+  text-transform: uppercase;
 }
 
 button {
-    cursor: pointer;
-    outline: none;
+  cursor: pointer;
+  outline: none;
 }
 
 input {
-    outline: none;
+  outline: none;
 }
 
 .panel {
-    background: radial-gradient(#131311, transparentize($body-bg, 1)) 0 -.9rem no-repeat;
-    background-size: 55rem 1rem;
-    border: none;
-    height: 1rem;
-    margin: 1rem auto 0;
+  background: radial-gradient(#131311, transparentize($body-bg, 1)) 0 -.9rem no-repeat;
+  background-size: 55rem 1rem;
+  border: none;
+  height: 1rem;
+  margin: 1rem auto 0;
 }
 
 .copyright {
-    font-size: .5rem;
-    margin: 1.5rem 0 .5rem;
-    position: absolute;
-    text-transform: uppercase;
+  font-size: .5rem;
+  margin: 1.5rem 0 .5rem;
+  position: absolute;
+  text-transform: uppercase;
 }

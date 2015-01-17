@@ -1,55 +1,55 @@
 %horizontal-switch {
-    background: linear-gradient(#53515f, $mid-grey) repeat-y, linear-gradient(#6c6956, #887) repeat-x;
-    background-size: 4rem 1.4rem;
-    border: 1px solid $mid-grey;
-    border-radius: .2rem;
-    display: inline-block;
-    transition: background-position .25s;
-    will-change: background-position;//could be premature
+  background: linear-gradient(#53515f, $mid-grey) repeat-y, linear-gradient(#6c6956, #887) repeat-x;
+  background-size: 4rem 1.4rem;
+  border: 1px solid $mid-grey;
+  border-radius: .2rem;
+  display: inline-block;
+  transition: background-position .25s;
+  will-change: background-position;//could be premature
 
-    &.pos1 {
-        background-position: 0;
-    }
+  &.pos1 {
+    background-position: 0;
+  }
 
-    &.pos2 {
-        background-position: 4rem;
-    }
+  &.pos2 {
+    background-position: 4rem;
+  }
 
-    &.pos3 {
-        background-position: 8rem;
-    }
+  &.pos3 {
+    background-position: 8rem;
+  }
 
-    &.pos4 {
-        background-position: 12rem;
-    }
+  &.pos4 {
+    background-position: 12rem;
+  }
 
-    label {
-        color: #000;
-        cursor: pointer;
-        display: table-cell;
-        font-size: .5rem;
-        height: 1.4rem;
-        text-align: center;
-        text-transform: uppercase;
-        vertical-align: middle;
-        width: 4rem;
+  label {
+    color: #000;
+    cursor: pointer;
+    display: table-cell;
+    font-size: .5rem;
+    height: 1.4rem;
+    text-align: center;
+    text-transform: uppercase;
+    vertical-align: middle;
+    width: 4rem;
 
-        &.selected {
-            -webkit-animation: lag-label .25s;
-            animation: lag-label .25s;
-            color: #cfc6c3;
-            text-shadow: -2px 0 1px #7f7673, 2px 0 1px #7f7673;
-        }
+      &.selected {
+        -webkit-animation: lag-label .25s;
+        animation: lag-label .25s;
+        color: #cfc6c3;
+        text-shadow: -2px 0 1px #7f7673, 2px 0 1px #7f7673;
+      }
 
-        &:not(.selected):hover {
-            background-color: #696663;
-            box-shadow: inset 0 0 1rem -3px $mid-grey;
-        }
+      &:not(.selected):hover {
+        background-color: #696663;
+        box-shadow: inset 0 0 1rem -3px $mid-grey;
+      }
 
-    }
+  }
 
-    input {
-        display: none;
-    }
+  input {
+    display: none;
+  }
 
 }

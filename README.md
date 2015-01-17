@@ -1,10 +1,8 @@
 TANGUY
 ======
 
-A Web Audio Synthesizer by Luke Teaford. [Play it live!](http://luketeaford.com/apps/tanguy "Luke Teaford's Web Audio Synthesizer")
+Web Audio Synthesizer by Luke Teaford. [Play it live at http://luketeaford.com/apps/tanguy](http://luketeaford.com/apps/tanguy "Luke Teaford's Web Audio Synthesizer")
 
-Play with the QWERTY keyboard (homerow represents white keys). Shift Octaves with - and +.
-
-I created TANGUY because I'm passionate about Web Audio, and I wanted to bring my enthusiasm to anyone running Chrome (It sounds awful in Firefox). I'm trying to learn JavaScript, so I welcome and appreciate any advice-- especially concerning performance and avoiding repetition.
+TANGUY is a two oscillator monosynth built with Web Audio.
 
 Thank you, fellow synth geeks.
