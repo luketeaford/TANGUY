@@ -17,14 +17,18 @@ $(document).ready(function () {
         return TANGUY.shift_octave(this.getAttribute('data-octave-shift'));
     });
     $('#osc1-kbd, #osc1-coarse, #osc2-kbd, #osc2-coarse, #osc2-waveform, #noise-color, #filter-mode, #lfo-shape, #portamento-mode').on('change', 'input', TANGUY.button.touch);
-    $('#delay, #filter-eg, #vca-eg, #mixer, #filter, #mod-wheel').on('mousedown', 'input', TANGUY.slider.grab);
-    $('#osc1, #osc2, #lfo').on('mousedown', 'input.vertical-slider', TANGUY.slider.grab);
-    $('#portamento').on('mousedown', 'input.horizontal-slider', TANGUY.slider.grab);
+
+    // Sliders
+    $('#osc1, #osc2, #mixer, #filter, #filter-eg, #vca-eg, #lfo, #delay').on('mousedown touchstart', 'input.vertical-slider', TANGUY.slider.grab);
+
+    // Performance controls
+    $('#mod-wheel').on('mousedown touchstart', 'input', TANGUY.slider.grab);
+    $('#portamento').on('mousedown touchstart', 'input.horizontal-slider', TANGUY.slider.grab);
 
     // Start oscillators
     $('#keyboard').one('mousedown keydown', 'button', TANGUY.start_synth);
 
-    // Synthesizer keys
+    // Synth keys
     $('#keyboard').on('mousedown touchstart', 'button', TANGUY.gate_on)
                   .on('mouseup touchend', 'button', TANGUY.gate_off);
 

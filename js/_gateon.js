@@ -56,7 +56,6 @@ TANGUY.filter_env_on = function () {
 
 TANGUY.amp_env_on = function () {
     'use strict';
-
     // Set starting point - Exponential fade out
     TANGUY.vca.gain.setTargetAtTime(TANGUY.program.vca_gain, TANGUY.synth.currentTime, 0.05);
 

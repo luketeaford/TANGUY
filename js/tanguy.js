@@ -668,7 +668,6 @@ TANGUY.filter_env_on = function () {
 
 TANGUY.amp_env_on = function () {
     'use strict';
-
     // Set starting point - Exponential fade out
     TANGUY.vca.gain.setTargetAtTime(TANGUY.program.vca_gain, TANGUY.synth.currentTime, 0.05);
 
@@ -749,7 +748,7 @@ TANGUY.filter_env_off = function () {
 
 TANGUY.amp_env_off = function () {
     'use strict';
-    // Prevent decay from acting like second attack?
+    // Prevent decay from acting like second attack
     TANGUY.vca.gain.cancelScheduledValues(TANGUY.synth.currentTime);
 
     return TANGUY.amp_release();
@@ -1074,14 +1073,18 @@ $(document).ready(function () {
         return TANGUY.shift_octave(this.getAttribute('data-octave-shift'));
     });
     $('#osc1-kbd, #osc1-coarse, #osc2-kbd, #osc2-coarse, #osc2-waveform, #noise-color, #filter-mode, #lfo-shape, #portamento-mode').on('change', 'input', TANGUY.button.touch);
-    $('#delay, #filter-eg, #vca-eg, #mixer, #filter, #mod-wheel').on('mousedown', 'input', TANGUY.slider.grab);
-    $('#osc1, #osc2, #lfo').on('mousedown', 'input.vertical-slider', TANGUY.slider.grab);
-    $('#portamento').on('mousedown', 'input.horizontal-slider', TANGUY.slider.grab);
+
+    // Sliders
+    $('#osc1, #osc2, #mixer, #filter, #filter-eg, #vca-eg, #lfo, #delay').on('mousedown touchstart', 'input.vertical-slider', TANGUY.slider.grab);
+
+    // Performance controls
+    $('#mod-wheel').on('mousedown touchstart', 'input', TANGUY.slider.grab);
+    $('#portamento').on('mousedown touchstart', 'input.horizontal-slider', TANGUY.slider.grab);
 
     // Start oscillators
     $('#keyboard').one('mousedown keydown', 'button', TANGUY.start_synth);
 
-    // Synthesizer keys
+    // Synth keys
     $('#keyboard').on('mousedown touchstart', 'button', TANGUY.gate_on)
                   .on('mouseup touchend', 'button', TANGUY.gate_off);
 
@@ -1399,14 +1402,16 @@ TANGUY.slider = {
             program: this.getAttribute('data-program'),
             update: this.getAttribute('data-update')
         };
-        return $(this).mousemove(config, TANGUY.store_program).mouseup(TANGUY.slider.release);
+        return $(this).on('mousemove touchmove', config, TANGUY.store_program)
+                      .on('mouseup touchend', TANGUY.slider.release);
     },
 
     release: function () {
         'use strict';
-        return $(this).unbind('mousemove');
+        return $(this).unbind('mousemove touchmove');
     }
 };
+
 TANGUY.button = {
     touch: function () {
         'use strict';

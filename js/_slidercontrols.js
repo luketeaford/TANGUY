@@ -5,11 +5,12 @@ TANGUY.slider = {
             program: this.getAttribute('data-program'),
             update: this.getAttribute('data-update')
         };
-        return $(this).mousemove(config, TANGUY.store_program).mouseup(TANGUY.slider.release);
+        return $(this).on('mousemove touchmove', config, TANGUY.store_program)
+                      .on('mouseup touchend', TANGUY.slider.release);
     },
 
     release: function () {
         'use strict';
-        return $(this).unbind('mousemove');
+        return $(this).unbind('mousemove touchmove');
     }
 };

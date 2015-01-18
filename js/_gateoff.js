@@ -61,7 +61,7 @@ TANGUY.filter_env_off = function () {
 
 TANGUY.amp_env_off = function () {
     'use strict';
-    // Prevent decay from acting like second attack?
+    // Prevent decay from acting like second attack
     TANGUY.vca.gain.cancelScheduledValues(TANGUY.synth.currentTime);
 
     return TANGUY.amp_release();
