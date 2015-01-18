@@ -56,9 +56,20 @@ TANGUY.filter_env_on = function () {
 
 TANGUY.amp_env_on = function () {
     'use strict';
+
+    // Set starting point - Exponential fade out
+    TANGUY.vca.gain.setTargetAtTime(TANGUY.program.vca_gain, TANGUY.synth.currentTime, 0.05);
+
+    return TANGUY.amp_attack();
+};
+
+TANGUY.amp_attack = function () {
+    'use strict';
     var vca_end_of_attack = TANGUY.synth.currentTime + TANGUY.program.vca_attack;
 
-    TANGUY.vca.gain.setValueAtTime(TANGUY.program.vca_gain, TANGUY.synth.currentTime);
+    // Attack stage
     TANGUY.vca.gain.linearRampToValueAtTime(1, TANGUY.synth.currentTime + TANGUY.program.vca_attack);
-    TANGUY.vca.gain.setTargetAtTime(TANGUY.program.vca_sustain + TANGUY.program.vca_gain, vca_end_of_attack, TANGUY.program.vca_decay);
+
+    // Decay stage
+    return TANGUY.vca.gain.setTargetAtTime(TANGUY.program.vca_sustain + TANGUY.program.vca_gain, vca_end_of_attack, TANGUY.program.vca_decay);
 };

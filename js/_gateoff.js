@@ -61,9 +61,19 @@ TANGUY.filter_env_off = function () {
 
 TANGUY.amp_env_off = function () {
     'use strict';
+    // Prevent decay from acting like second attack?
+    TANGUY.vca.gain.cancelScheduledValues(TANGUY.synth.currentTime);
+
+    return TANGUY.amp_release();
+};
+
+TANGUY.amp_release = function () {
+    'use strict';
     var vca_release_peak = TANGUY.vca.gain.value;
 
-    TANGUY.vca.gain.cancelScheduledValues(TANGUY.synth.currentTime);
+    // Set staring point
     TANGUY.vca.gain.setValueAtTime(vca_release_peak, TANGUY.synth.currentTime);
-    TANGUY.vca.gain.setTargetAtTime(TANGUY.program.vca_gain, TANGUY.synth.currentTime, TANGUY.program.vca_release);
+
+    // Release stage
+    return TANGUY.vca.gain.setTargetAtTime(TANGUY.program.vca_gain, TANGUY.synth.currentTime, TANGUY.program.vca_release);
 };
