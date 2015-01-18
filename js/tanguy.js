@@ -17,7 +17,6 @@
 // luketeaford@gmail.com
 // 153 Illinois Avenue, Dayton OH 45410
 
-//BROWSER PREFIXING
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
@@ -25,70 +24,13 @@ var TANGUY = {
 
     synth: new AudioContext(),
 
-    //SENSIBLE DEFAULTS
+    // Defaults
     program_number: 0,
     octave_shift: 0,
     osc1_master_pitch: 440,
     osc2_master_pitch: 444.18,
-    key_down: false,
+    key_down: false
 
-    program: {
-        "name": "INITIALIZE",
-
-        "osc1_kbd": true,
-        "osc1_coarse": 1,
-        "osc1_saw": 1,
-        "osc1_sqr": 0,
-        "osc1_tri": 0,
-        "osc1_sin": 0,
-        "osc1_fm": 0,
-
-        "osc2_kbd": true,
-        "osc2_coarse": 1,
-        "osc2_waveform": "sawtooth",
-        "osc2_detune": 0,
-        "osc2_fine": 0,
-        "osc2_shape": 0,
-        "osc2_fm": 0,
-
-        "noise_color": "white",
-
-        "osc1_mix": 1,
-        "osc2_mix": 1,
-        "noise_mix": 0,
-        "ext_mix": 0,
-
-        "filter_mode": "lp",
-        "cutoff": 1,
-        "res": 0.0001,
-        "filter_eg": 0,
-        "filter_kbd": 0,
-        "filter_attack": 0.008,
-        "filter_decay": 0.008,
-        "filter_sustain": 0,
-        "filter_release": 0.008,
-
-        "vca_gain": 0,
-        "vca_attack": 0.0001,
-        "vca_decay": 0.0001,
-        "vca_sustain": 1,
-        "vca_release": 0.0001,
-
-        "lfo_shape": "sine",
-        "lfo_rate": 0.1,
-        "lfo_pitch": 0,
-        "lfo_filter": 0,
-        "lfo_amp": 0,
-
-        "delay_rate": 0,
-        "delay": 0,
-
-        "portamento_mode": "off",
-        "portamento": 0.01,
-
-        "mod": 0,
-        "mod_direction": 1
-    }
 };
 
 TANGUY.save_program = function () {
@@ -254,6 +196,65 @@ TANGUY.load_program = function (patch) {
     $.getJSON(decodeURI(patch_url), function (loaded) {
         TANGUY.program = loaded;
         TANGUY.program_number = TANGUY.urls.indexOf(patch);
+        return TANGUY.update_program();
+    }).fail(function () {
+        TANGUY.program = {
+            "name": "Error 404 //Initialize loaded instead :)",
+
+            "osc1_kbd": true,
+            "osc1_coarse": 1,
+            "osc1_saw": 1,
+            "osc1_sqr": 0,
+            "osc1_tri": 0,
+            "osc1_sin": 0,
+            "osc1_fm": 0,
+
+            "osc2_kbd": true,
+            "osc2_coarse": 1,
+            "osc2_waveform": "sawtooth",
+            "osc2_detune": 0,
+            "osc2_fine": 0,
+            "osc2_shape": 0,
+            "osc2_fm": 0,
+
+            "noise_color": "white",
+
+            "osc1_mix": 1,
+            "osc2_mix": 1,
+            "noise_mix": 0,
+            "ext_mix": 0,
+
+            "filter_mode": "lp",
+            "cutoff": 1,
+            "res": 0.0001,
+            "filter_eg": 0,
+            "filter_kbd": 0,
+            "filter_attack": 0.008,
+            "filter_decay": 0.008,
+            "filter_sustain": 0,
+            "filter_release": 0.008,
+
+            "vca_gain": 0,
+            "vca_attack": 0.0001,
+            "vca_decay": 0.0001,
+            "vca_sustain": 1,
+            "vca_release": 0.0001,
+
+            "lfo_shape": "sine",
+            "lfo_rate": 0.1,
+            "lfo_pitch": 0,
+            "lfo_filter": 0,
+            "lfo_amp": 0,
+
+            "delay_rate": 0,
+            "delay": 0,
+
+            "portamento_mode": "off",
+            "portamento": 0.01,
+
+            "mod": 0,
+            "mod_direction": 1
+        };
         return TANGUY.update_program();
     });
 };
@@ -865,10 +866,6 @@ TANGUY.build_synth = function () {
     TANGUY.osc1_sqr.type = 'square';
     TANGUY.osc1_tri.type = 'triangle';
     TANGUY.osc1_sin.type = 'sine';
-    TANGUY.osc1_saw.start(0);
-    TANGUY.osc1_sqr.start(0);
-    TANGUY.osc1_tri.start(0);
-    TANGUY.osc1_sin.start(0);
     TANGUY.osc1_saw.connect(TANGUY.osc1_saw_vca);
     TANGUY.osc1_sqr.connect(TANGUY.osc1_sqr_vca);
     TANGUY.osc1_tri.connect(TANGUY.osc1_tri_vca);
@@ -887,7 +884,6 @@ TANGUY.build_synth = function () {
 
     //OSC 2
     TANGUY.osc2 = TANGUY.synth.createOscillator();
-    TANGUY.osc2.start(0);
     TANGUY.osc2.connect(TANGUY.osc1_fm_vca);
     TANGUY.osc2.connect(TANGUY.waveshaper);
 
@@ -922,11 +918,6 @@ TANGUY.build_synth = function () {
     TANGUY.red_noise = TANGUY.synth.createBufferSource();
     TANGUY.blue_noise = TANGUY.synth.createBufferSource();
     TANGUY.purple_noise = TANGUY.synth.createBufferSource();
-    TANGUY.white_noise.start(0);
-    TANGUY.pink_noise.start(0);
-    TANGUY.red_noise.start(0);
-    TANGUY.blue_noise.start(0);
-    TANGUY.purple_noise.start(0);
     TANGUY.white_noise.loop = true;
     TANGUY.pink_noise.loop = true;
     TANGUY.red_noise.loop = true;
@@ -1002,10 +993,28 @@ TANGUY.build_synth = function () {
 
     //LFO
     TANGUY.lfo = TANGUY.synth.createOscillator();
-    TANGUY.lfo.start(0);
     TANGUY.lfo.connect(TANGUY.lfo_pitch_vca);
     TANGUY.lfo.connect(TANGUY.lfo_filter_vca);
     TANGUY.lfo.connect(TANGUY.lfo_amp_vca);
+};
+
+TANGUY.start_synth = function () {
+    'use strict';
+    TANGUY.osc1_saw.start(0);
+    TANGUY.osc1_sqr.start(0);
+    TANGUY.osc1_tri.start(0);
+    TANGUY.osc1_sin.start(0);
+    TANGUY.osc2.start(0);
+    TANGUY.white_noise.start(0);
+    TANGUY.pink_noise.start(0);
+    TANGUY.red_noise.start(0);
+    TANGUY.blue_noise.start(0);
+    TANGUY.purple_noise.start(0);
+    TANGUY.lfo.start(0);
+
+    // Prevent the other event from calling start_synth
+    $('#keyboard').off('mousedown keydown', 'button', TANGUY.start_synth);
+
 };
 
 TANGUY.route_external_input = function (input) {
@@ -1030,6 +1039,7 @@ $(document).ready(function () {
     TANGUY.build_synth();
     TANGUY.order_programs();
 
+    // Program selector bindings
     $('body').one('click', '#program-name', TANGUY.show_program);
     $('#program-select').on('click', 'button', function () {
         TANGUY.load_program(this.value);
@@ -1037,6 +1047,8 @@ $(document).ready(function () {
     $('#program').on('click', '#prev, #next', function () {
         return TANGUY.change_program(this.getAttribute('data-program-shift'));
     });
+
+    // Panel controls
     $('#octave-shift').on('click', 'button', function () {
         return TANGUY.shift_octave(this.getAttribute('data-octave-shift'));
     });
@@ -1044,7 +1056,14 @@ $(document).ready(function () {
     $('#delay, #filter-eg, #vca-eg, #mixer, #filter, #mod-wheel').on('mousedown', 'input', TANGUY.slider.grab);
     $('#osc1, #osc2, #lfo').on('mousedown', 'input.vertical-slider', TANGUY.slider.grab);
     $('#portamento').on('mousedown', 'input.horizontal-slider', TANGUY.slider.grab);
-    $('#keyboard').on('mousedown', 'button', TANGUY.gate_on).on('mouseup', 'button', TANGUY.gate_off);
+
+    // Start oscillators
+    $('#keyboard').one('mousedown keydown', 'button', TANGUY.start_synth);
+
+    // Synthesizer keys
+    $('#keyboard').on('mousedown touchstart', 'button', TANGUY.gate_on)
+                  .on('mouseup touchend', 'button', TANGUY.gate_off);
+
 });
 
 TANGUY.update_osc1_coarse = function () {

@@ -119,10 +119,6 @@ TANGUY.build_synth = function () {
     TANGUY.osc1_sqr.type = 'square';
     TANGUY.osc1_tri.type = 'triangle';
     TANGUY.osc1_sin.type = 'sine';
-    TANGUY.osc1_saw.start(0);
-    TANGUY.osc1_sqr.start(0);
-    TANGUY.osc1_tri.start(0);
-    TANGUY.osc1_sin.start(0);
     TANGUY.osc1_saw.connect(TANGUY.osc1_saw_vca);
     TANGUY.osc1_sqr.connect(TANGUY.osc1_sqr_vca);
     TANGUY.osc1_tri.connect(TANGUY.osc1_tri_vca);
@@ -141,7 +137,6 @@ TANGUY.build_synth = function () {
 
     //OSC 2
     TANGUY.osc2 = TANGUY.synth.createOscillator();
-    TANGUY.osc2.start(0);
     TANGUY.osc2.connect(TANGUY.osc1_fm_vca);
     TANGUY.osc2.connect(TANGUY.waveshaper);
 
@@ -176,11 +171,6 @@ TANGUY.build_synth = function () {
     TANGUY.red_noise = TANGUY.synth.createBufferSource();
     TANGUY.blue_noise = TANGUY.synth.createBufferSource();
     TANGUY.purple_noise = TANGUY.synth.createBufferSource();
-    TANGUY.white_noise.start(0);
-    TANGUY.pink_noise.start(0);
-    TANGUY.red_noise.start(0);
-    TANGUY.blue_noise.start(0);
-    TANGUY.purple_noise.start(0);
     TANGUY.white_noise.loop = true;
     TANGUY.pink_noise.loop = true;
     TANGUY.red_noise.loop = true;
@@ -256,7 +246,6 @@ TANGUY.build_synth = function () {
 
     //LFO
     TANGUY.lfo = TANGUY.synth.createOscillator();
-    TANGUY.lfo.start(0);
     TANGUY.lfo.connect(TANGUY.lfo_pitch_vca);
     TANGUY.lfo.connect(TANGUY.lfo_filter_vca);
     TANGUY.lfo.connect(TANGUY.lfo_amp_vca);
