@@ -22,8 +22,10 @@ $(document).ready(function () {
     $('#osc1, #osc2, #mixer, #filter, #filter-eg, #vca-eg, #lfo, #delay').on('mousedown touchstart', 'input.vertical-slider', TANGUY.slider.grab);
 
     // Performance controls
-    $('#mod-wheel').on('mousedown touchstart', 'input', TANGUY.slider.grab);
-    $('#portamento').on('mousedown touchstart', 'input.horizontal-slider', TANGUY.slider.grab);
+    $('#pitch-bend').on('mousedown touchstart', TANGUY.pitch_wheel)
+                    .on('mouseup touchend', TANGUY.pitch_release);
+    $('#mod-wheel').on('mousedown touchstart', 'input', TANGUY.slider.grab);//CLEAN UP
+    $('#portamento').on('mousedown touchstart', 'input.horizontal-slider', TANGUY.slider.grab);//CLEAN UP
 
     // Start oscillators
     $('#keyboard').one('mousedown keydown', 'button', TANGUY.start_synth);
