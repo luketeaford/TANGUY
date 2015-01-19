@@ -4,8 +4,8 @@
   border: 1px solid $mid-grey;
   border-radius: .2rem;
   display: inline-block;
-  transition: background-position .25s;
-  will-change: background-position;//could be premature
+//  transition: background-position .25s;
+//  will-change: background-position;//could be premature
 
   &.pos1 {
     background-position: 0;
@@ -35,8 +35,8 @@
     width: 4rem;
 
       &.selected {
-        -webkit-animation: lag-label .25s;
-        animation: lag-label .25s;
+        //-webkit-animation: lag-label .25s;
+        //animation: lag-label .25s;
         color: #cfc6c3;
         text-shadow: -2px 0 1px #7f7673, 2px 0 1px #7f7673;
       }

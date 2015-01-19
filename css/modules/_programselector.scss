@@ -16,26 +16,28 @@
   box-shadow: inherit;
   display: none;
   left: 0;
-  height: 8.5rem;
+  height: 8.5rem;//RESPONSIVE
   margin: -.5rem auto;
   overflow-y: scroll;
   padding: .25rem 0;
   position: absolute;
   right: 0;
   transform-origin: top;
-  width: calc(100% - 2rem);
+  width: calc(100% - 1rem);//RESPONSIVE(?) desktop -2rem
   z-index: 4;
 
   > button {
     background: none;
     border: .05rem solid transparent;
     color: inherit;
+    display: block;//RESPONSIVE - put back to inline block
     margin: .1rem .75rem .1rem .1rem;
     padding: .5rem;
     font-family: 'ocr-b-std', serif;
     text-align: left;
     text-transform: uppercase;
-    width: 12rem;
+    width: 12rem;//RESPONSIVE 12rem on desktop
+    width: 99%;
 
     &:hover {
      border: .05rem solid;
@@ -46,18 +48,20 @@
 }
 
 #program-name {
-    margin-left: 2rem;
+  margin-left: 2rem;
 
-    &::before {
-        content: '88888888888888888888888888888888888888888888888888888888888888888888888888888888';
-        margin-left: -2rem;
-        margin-top: -.5rem;
-        opacity: .2;
-        overflow: hidden;
-        padding: .5rem 0;
-        position: absolute;
-        width: 54rem;
-    }
+  &::before {
+    //WILL NEED TO CHANGE AT BREAKPOINTS
+    content: '88888888888888888888888888888888888888888888888888888888888888888888888888888888';
+    margin-left: -2rem;
+    margin-top: -.5rem;
+    opacity: .2;
+    overflow: hidden;
+    padding: .5rem 0;
+    position: absolute;
+    width: 54rem;//CALC NEEDED AND MAKE RESPONSIVE
+    width: calc(100% - 3rem);//GUESS AT REQUIRED CALC
+  }
 
 }
 

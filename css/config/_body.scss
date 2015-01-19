@@ -13,7 +13,8 @@ html {
   color: $body-text;
   font-family: helvetica, arial, sans-serif;
   font-size: 20px;
-  margin: 2rem 0;
+  //margin: 2rem 0;//RESPONSIVE - no t/b margin on mobile or ipad
+  overflow-x: hidden;//TEST
 }
 
 %endcheeks {
@@ -28,19 +29,21 @@ html {
 body {
   background: $body-bg;
   margin: 0 auto;
-  padding: .5rem 1rem;
+  //padding: .5rem 1rem;//DESKTOP PADDING
+  padding: .5rem;
   position: relative;
-  width: 57rem;
+  width: 18rem;//RESPONSIVE - 57 on desktop (could be a max-width?)
+  width: 100%;
 
-  &::before {
-    @extend %endcheeks;
-    background-position: -1.5rem 6.05rem;
-    left: -3rem;
+  &::before {//RESPONSIVE - IPAD AND UP
+    //@extend %endcheeks;
+    //background-position: -1.5rem 6.05rem;
+    //left: -3rem;
   }
 
-  &::after {
-    @extend %endcheeks;
-    right: -3rem;
+  &::after {//RESPONSIVE - IPAD AND UP
+    //@extend %endcheeks;
+    //right: -3rem;
   }
 
 }
@@ -66,16 +69,16 @@ h1 {
 }
 
 .nav {
-  position: absolute;
-  right: 0;
-  text-align: right;
+  position: relative;//absolute on ipad and desktop
+  //right: 0;//RESPONSIVE DESKTOP
+  //text-align: right;//RESPONSIVE DESKTOP
+  top: -2rem;//.7rem on desktop and ipad
   text-transform: uppercase;
-  top: .7rem;
 
   li {
-    display: inline-block;
+    display: block;//inline-block on ipad an desktop
     list-style-type: none;
-    margin: 0 1rem;
+    margin: 1rem 0;//0 1rem on ipad and desktop
   }
 
 }

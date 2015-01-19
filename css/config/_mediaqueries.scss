@@ -1,0 +1,19 @@
+@mixin bp($point) {
+
+  // Mobile landscape
+  @if $point == a {
+    @media (min-width: 320px) and (orientation: landscape) {
+      @content;
+    }
+  }
+
+  // Another size
+  @else if $point == b {
+    @media (min-width: 720px) {
+      @content;
+    }
+  }
+
+}
+
+// To use: @include bp(a) { [...] }

@@ -1,5 +1,6 @@
 #mixer {
   @extend %module;
+  padding: .5rem 0;//MOBILE ONLY
 
   > h2 {
     @include blend-title(2rem);

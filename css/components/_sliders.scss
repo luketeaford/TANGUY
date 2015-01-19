@@ -12,14 +12,14 @@
   text-align: center;
   text-transform: uppercase;
   top: 0;
-  width: 3rem;
+  width: 3rem;//RESPONSIVE link to vertical-slider 3rem on desktop
 }
 
 .vertical-slider {
   -webkit-appearance: slider-vertical;
-  height: 6rem;
+  height: 6rem;//RESPONSIVE
   margin-bottom: .25rem;//this puts the label against border in Safari
-  width: 3rem;
+  width: 3rem;//RESPONSIVE - 3rem on desktop
 }
 
 .horizontal-slider-label {//GARBAGE?
@@ -42,7 +42,7 @@
   margin: -.1rem 0 0 1rem;
   position: relative;
   top: -.2rem;
-  width: 8.5rem;
+  width: 8.5rem;//RESPONSIVE
 
   &::before {
     @extend %number-line;

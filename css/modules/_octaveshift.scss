@@ -1,8 +1,11 @@
 #octave-shift {
   @extend %module;
-
+  margin-top: 12rem;// Mobile portrait only
+  margin-left: -5rem;// Mobile portrait only
+  padding: 0;// Mobile portrait only
+  position: absolute;// Move down for mobile portrait
   > h2 {
-    @include blend-title;
+    //@include blend-title;//Only disable for mobile portrait
   }
 
 }

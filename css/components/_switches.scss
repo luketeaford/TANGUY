@@ -1,6 +1,6 @@
 %chosen-switch {
-  -webkit-animation: lag-label .25s;
-  animation: lag-label .25s;
+  //-webkit-animation: lag-label .25s;
+  //animation: lag-label .25s;
   background-position: 0;
 }
 
@@ -28,7 +28,7 @@
     text-transform: uppercase;
     transition: background-position .25s;
     vertical-align: middle;
-    width: 3rem;
+    width: 3rem;//RESPONSIVE
 
     &.selected {
       color: #cfc6c3;
@@ -46,8 +46,8 @@
 
       &.selected {
         @extend %chosen-switch;
-        -webkit-animation: switch-off .25s;
-        animation: switch-off .25s;
+        //-webkit-animation: switch-off .25s;
+        //animation: switch-off .25s;
       }
 
     }
@@ -58,8 +58,8 @@
 
       &.selected {
         @extend %chosen-switch;
-        -webkit-animation: switch-on .25s;
-        animation: switch-on .25s;
+        //-webkit-animation: switch-on .25s;
+        //animation: switch-on .25s;
       }
 
     }
