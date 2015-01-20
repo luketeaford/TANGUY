@@ -1,14 +1,21 @@
 @mixin bp($point) {
 
-  // Mobile landscape
+  // Mobile (iPhone 6)
   @if $point == a {
-    @media (min-width: 320px) and (orientation: landscape) {
+    @media (min-width: 321px) and (orientation: portrait) {
+      @content;
+    }
+  }
+
+  // Mobile (iPhone 6+)
+  @if $point == b {
+    @media (min-width: 400px) and (orientation: portrait) {
       @content;
     }
   }
 
   // Another size
-  @else if $point == b {
+  @else if $point == c {
     @media (min-width: 720px) {
       @content;
     }
