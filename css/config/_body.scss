@@ -12,8 +12,8 @@ html {
   box-sizing: border-box;
   color: $body-text;
   font-family: helvetica, arial, sans-serif;
-  font-size: 17px;// RESPONSIVE - 20px for iPhone 6 and up
-  //margin: 2rem 0;//RESPONSIVE - no t/b margin on mobile or ipad
+  font-size: 17px;
+  //margin: 2rem 0;//RESPONSIVE - no top/bottom margin on mobile or ipad
   overflow-x: hidden;
   @include bp(a) {
     font-size: 20px;

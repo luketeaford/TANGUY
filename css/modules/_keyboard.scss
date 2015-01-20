@@ -1,10 +1,13 @@
 #keyboard {
   background: linear-gradient(#1f1f17, #191911) repeat-x;
-  background-size: 1px 25rem;//13REM WHEN KEYBOARD AND WHEELS ARE ON SAME ROW
+  background-size: 1px 25rem;//13rem when keyboard and wheels are on same row
   font-size: 0;
   //margin: 1rem -1rem -1rem;//DESKTOP AND IPAD MARGINS
   margin: 1rem 0 -1rem -1rem;
-  overflow: hidden;//EXPERIMENTAL
+  overflow: hidden;
+  @include bp(ql) {
+    background-size: 1px 13rem;
+  }
 }
 
 %darken-endcheeks {
@@ -47,21 +50,35 @@
   background: #999;
   margin: 0 1rem 0 0;//DESKTOP SIZE!
   margin: 0 8rem 0 -1rem;
+  @include bp(al) {
+    margin: 0 23rem 0 -1.4rem;
+  }
   @include bp(a) {
-    background: #ff0;
     margin: 0 7rem 0 -1rem;
   }
   @include bp(b) {
-    margin: 0 9rem 0 -1rem;//iPhone 6+
+    margin: 0 9rem 0 -1rem;
+  }
+  @include bp(ql) {
+    margin: 0 0 0 -1rem;
   }
 }
 
 #c1 {
   margin-left: 1rem;//MOBILE ONLY
+  @include bp(al) {
+    margin-left: .9rem;
+  }
+  @include bp(ql) {
+    margin-left: 0;
+  }
 }
 
 .oct2 {
   display: none;//MOBILE ONLY
+  @include bp(al) {
+    display: inline-block;
+  }
 }
 
 .c,
