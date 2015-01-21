@@ -8,11 +8,19 @@
     padding: .5rem;
     position: static;
   }
+  @include bp(pl) {
+    margin: 0;
+    padding: .5rem;
+    position: static;
+  }
   > h2 {
     @include bp(ql) {
       @include blend-title;
     }
-    //@include blend-title;//Only disable for mobile portrait
+    @include bp(pl) {
+      @include blend-title;
+    }
+    //@include blend-title;//Include on everything but mobile portrait
   }
 
 }

@@ -28,6 +28,13 @@
     }
   }
 
+  // iPad portrait
+  @if $point == pl {
+    @media (min-width: 720px) and (orientation: portrait) {
+      @content;
+    }
+  }
+
   // Another size
   @else if $point == z {
     @media (min-width: 720px) {

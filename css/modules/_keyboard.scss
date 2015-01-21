@@ -8,6 +8,9 @@
   @include bp(ql) {
     background-size: 1px 13rem;
   }
+  @include bp(pl) {
+    background-size: 1px 13rem;
+  }
 }
 
 %darken-endcheeks {
@@ -62,21 +65,30 @@
   @include bp(ql) {
     margin: 0 0 0 -1rem;
   }
+  @include bp(pl) {
+    margin: 0 0 0 -1rem;
+  }
 }
 
 #c1 {
-  margin-left: 1rem;//MOBILE ONLY
+  margin-left: 1rem;
   @include bp(al) {
     margin-left: .9rem;
   }
   @include bp(ql) {
     margin-left: 0;
   }
+  @include bp(pl) {
+    margin-left: 0;
+  }
 }
 
 .oct2 {
-  display: none;//MOBILE ONLY
+  display: none;// Mobile portrait only
   @include bp(al) {
+    display: inline-block;
+  }
+  @include bp(pl) {
     display: inline-block;
   }
 }

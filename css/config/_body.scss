@@ -41,13 +41,13 @@ body {
     padding: .5rem;
   }
 
-  &::before {//RESPONSIVE - IPAD AND UP
+  &::before {//RESPONSIVE - IPAD LANDSCAPE AND UP
     //@extend %endcheeks;
     //background-position: -1.5rem 6.05rem;
     //left: -3rem;
   }
 
-  &::after {//RESPONSIVE - IPAD AND UP
+  &::after {//RESPONSIVE - IPAD LANDSCAPE AND UP
     //@extend %endcheeks;
     //right: -3rem;
   }
@@ -75,16 +75,24 @@ h1 {
 }
 
 .nav {
-  position: relative;//absolute on ipad and desktop
-  //right: 0;//RESPONSIVE DESKTOP
-  //text-align: right;//RESPONSIVE DESKTOP
-  top: -2rem;//.7rem on desktop and ipad
+  position: relative;
+  top: -2rem;
   text-transform: uppercase;
+  @include bp(pl) {
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: .6rem;//.7rem on DESKTOP?
+   }
 
   li {
-    display: block;//inline-block on ipad and desktop
+    display: block;
     list-style-type: none;
-    margin: 1rem 0;//0 1rem on ipad and desktop
+    margin: 1rem 0;
+    @include bp(pl) {
+      display: inline-block;
+      margin: 0 1rem;
+    }
   }
 
 }
