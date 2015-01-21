@@ -17,6 +17,10 @@
   @include bp(pl) {
     width: 2.2rem;
   }
+  @include bp(dt) {
+    margin: 0 0 0 1rem;//NEEDED?
+    width: 4rem;
+  }
 
   input {
     -webkit-appearance: slider-vertical;
@@ -28,6 +32,9 @@
     }
     @include bp(pl) {
       width: 2.2rem;
+    }
+    @include bp(dt) {
+      width: 4rem;
     }
   }
 

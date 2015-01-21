@@ -18,21 +18,25 @@ html {
   @include bp(a) {
     font-size: 20px;
   }
+  @include bp(dt) {
+    font-size: 20px;//OK but worked off of 17px measurement
+  }
 }
 
-%endcheeks {
-  background: url('../images/wood.jpg');
-  bottom: 0;
-  content: '';
-  position: absolute;
-  top: 0;
-  width: 3rem;
+@include bp(dt) {//endcheeks inside this bp?!
+  %endcheeks {
+    background: url('../images/wood.jpg');
+    bottom: 0;
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 3rem;//3rem originally
+  }
 }
 
 body {
   background: $body-bg;
   margin: 0 auto;
-  //padding: .5rem 1rem;//DESKTOP PADDING
   padding: .5rem .25rem;
   position: relative;
   width: 18rem;//RESPONSIVE - 57 on desktop (could be a max-width?)
@@ -40,16 +44,24 @@ body {
   @include bp(a) {
     padding: .5rem;
   }
-
-  &::before {//RESPONSIVE - IPAD LANDSCAPE AND UP
-    //@extend %endcheeks;
-    //background-position: -1.5rem 6.05rem;
-    //left: -3rem;
+  @include bp(dt) {
+    max-width: 57rem;
+    padding: .5rem 1rem;
   }
 
-  &::after {//RESPONSIVE - IPAD LANDSCAPE AND UP
-    //@extend %endcheeks;
-    //right: -3rem;
+  &::before {
+    @extend %endcheeks;
+    @include bp(dt) {
+      background-position: -1.5rem 6.05rem;
+      left: -3rem;//-3rem originally
+    }
+  }
+
+  &::after {
+    @extend %endcheeks;
+    @include bp(dt) {
+      right: -3rem;//-3rem originally
+    }
   }
 
 }
@@ -84,12 +96,22 @@ h1 {
     text-align: right;
     top: .6rem;//.7rem on DESKTOP?
    }
+   @include bp(dt) {
+     position: absolute;
+     right: 0;
+     text-align: right;
+     top: .6rem;
+   }
 
   li {
     display: block;
     list-style-type: none;
     margin: 1rem 0;
     @include bp(pl) {
+      display: inline-block;
+      margin: 0 1rem;
+    }
+    @include bp(dt) {
       display: inline-block;
       margin: 0 1rem;
     }

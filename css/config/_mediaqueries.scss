@@ -35,9 +35,9 @@
     }
   }
 
-  // Another size
-  @else if $point == z {
-    @media (min-width: 720px) {
+  // Desktop size
+  @if $point == dt {
+    @media (min-width: 960px) {
       @content;
     }
   }

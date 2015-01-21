@@ -11,26 +11,35 @@
   @include bp(pl) {
     background-size: 1px 13rem;
   }
+  @include bp(dt) {
+    margin: 1rem -1rem -1rem;//pretty good
+  }
 }
 
-%darken-endcheeks {
-  background: rgba(0, 0, 0, .1);
-  bottom: 0;
-  content: '';
-  position: absolute;
-  top: calc(100% - 13rem);
-  width: 3rem;//VARIABLE FOR ENDCHEEKS AND EVERYTHING BASED ON IT...
+@include bp(dt) {
+  %darken-endcheeks {
+    background: rgba(0, 0, 0, .1);
+    bottom: 0;
+    content: '';
+    position: absolute;
+    top: calc(100% - 13rem);
+    width: 3rem;//3rem originally
+  }
 }
 
 #keyboard::before {//RESPONSIVE IPAD+ MQ ON PLACEHOLDER
-//  @extend %darken-endcheeks;
-//  left: -3rem;
+  @extend %darken-endcheeks;
+  @include bp(dt) {
+    left: -3rem;//-3rem originally
+  }
 }
 
 #keyboard::after {//RESPONSIVE IPAD+ MQ ON PLACEHOLDER
-//  @extend %darken-endcheeks;
-//  right: -3rem;
-//  z-index: 1;
+  @extend %darken-endcheeks;
+  @include bp(dt) {
+    right: -3rem;//-3rem originally
+    z-index: 1;
+  }
 }
 
 .shadow {
@@ -67,6 +76,10 @@
   }
   @include bp(pl) {
     margin: 0 0 0 -1rem;
+  }
+  @include bp(dt) {
+    background: #09f;//TESTING
+    margin: 0 1rem 0 0;
   }
 }
 
