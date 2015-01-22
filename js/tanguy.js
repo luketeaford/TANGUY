@@ -263,6 +263,9 @@ TANGUY.show_program = function () {
     'use strict';
     $('#program-select').show();
     $(document).one('click', TANGUY.hide_program);
+    // Required for touch devices to be able scroll and 'click off'
+    // This would probably be better doing on and off instead of one
+    $('div').not('#program, #program-select').one('touchstart', TANGUY.hide_program);
     return false;
 };
 

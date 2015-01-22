@@ -9,13 +9,15 @@
   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 </head>
 <body>
-  <h1><a href="index.html">Tanguy</a></h1>
-  <span class="tagline"><a href="index.html">Web Audio Synthesizer</a></span>
-  <ul class="nav">
-    <li><a href="manual.html">Manual</a></li>
-    <li><a href="https://github.com/luketeaford/TANGUY">GitHub</a></li>
-    <li><a href="http://luketeaford.com">Luke Teaford - Artist/Developer</a></li>
-  </ul>
+  <div>
+    <h1><a href="index.html">Tanguy</a></h1>
+    <span class="tagline"><a href="index.html">Web Audio Synthesizer</a></span>
+    <ul class="nav">
+      <li><a href="manual.html">Manual</a></li>
+      <li><a href="https://github.com/luketeaford/TANGUY">GitHub</a></li>
+      <li><a href="http://luketeaford.com">Luke Teaford - Artist/Developer</a></li>
+    </ul>
+  </div>
   <div id="program">
     <button id="prev" data-program-shift="-1"><</button>
     <div id="program-select">
@@ -23,279 +25,281 @@
     <span id="program-name">&nbsp;</span>
     <button id="next" data-program-shift="1">></button>
   </div>
-  <div id="osc1">
-    <h2>Oscillator One</h2>
-    <span class="kbd-tracking">Keyboard Tracking</span>
-    <div data-program="osc1_kbd" id="osc1-kbd">
-      <label><input id="osc1-off" name="osc1-kbd-tracking" type="radio" value="off">Off</label>
-      <label><input id="osc1-on" name="osc1-kbd-tracking" type="radio" value="on">On</label>
+  <div>
+    <div id="osc1">
+      <h2>Oscillator One</h2>
+      <span class="kbd-tracking">Keyboard Tracking</span>
+      <div data-program="osc1_kbd" id="osc1-kbd">
+        <label><input id="osc1-off" name="osc1-kbd-tracking" type="radio" value="off">Off</label>
+        <label><input id="osc1-on" name="osc1-kbd-tracking" type="radio" value="on">On</label>
+      </div>
+      <br>
+      <div data-program="osc1_coarse" data-update="update_osc1_coarse" id="osc1-coarse">
+        <label><input data-pos="1" id="osc1-32" name="osc1-coarse-tune" type="radio" value="0.5">32'</label>
+        <label><input data-pos="2" id="osc1-16" name="osc1-coarse-tune" type="radio" value="1">16'</label>
+        <label><input data-pos="3" id="osc1-8" name="osc1-coarse-tune" type="radio" value="2">8'</label>
+        <label><input data-pos="4" id="osc1-4" name="osc1-coarse-tune" type="radio" value="4">4'</label>
+      </div>
+      <br>
+      <label class="slider-label">
+        <input class="vertical-slider" data-program="osc1_saw" data-update="update_osc1_saw" id="osc1-saw" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
+        Saw
+      </label>
+      <label class="slider-label">
+        <input class="vertical-slider" data-program="osc1_sqr" data-update="update_osc1_sqr" id="osc1-sqr" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        Square
+      </label>
+      <label class="slider-label">
+        <input class="vertical-slider" data-program="osc1_tri" data-update="update_osc1_tri" id="osc1-tri" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        Triangle
+      </label>
+      <label class="slider-label">
+        <input class="vertical-slider" data-program="osc1_sin" data-update="update_osc1_sin" id="osc1-sin" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        Sine
+      </label>
+      <label class="slider-label">
+        <input class="vertical-slider" data-program="osc1_fm" data-update="update_osc1_fm" id="osc1-fm" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        FM Amt.
+      </label>
     </div>
-    <br>
-    <div data-program="osc1_coarse" data-update="update_osc1_coarse" id="osc1-coarse">
-      <label><input data-pos="1" id="osc1-32" name="osc1-coarse-tune" type="radio" value="0.5">32'</label>
-      <label><input data-pos="2" id="osc1-16" name="osc1-coarse-tune" type="radio" value="1">16'</label>
-      <label><input data-pos="3" id="osc1-8" name="osc1-coarse-tune" type="radio" value="2">8'</label>
-      <label><input data-pos="4" id="osc1-4" name="osc1-coarse-tune" type="radio" value="4">4'</label>
+    <div id="osc2">
+      <h2>Oscillator Two</h2>
+      <span class="kbd-tracking">Keyboard Tracking</span>
+      <div data-program="osc2_kbd" id="osc2-kbd">
+        <label><input id="osc2-off" name="osc2-kbd-tracking" type="radio" value="off">Off</label>
+        <label><input id="osc2-on" name="osc2-kbd-tracking" type="radio" value="on">On</label>
+      </div>
+      <br>
+      <div data-program="osc2_coarse" data-update="update_osc2_coarse" id="osc2-coarse">
+        <label><input data-pos="1" id="osc2-32" name="osc2-coarse-tune" type="radio" value="0.5">32'</label>
+        <label><input data-pos="2" id="osc2-16" name="osc2-coarse-tune" type="radio" value="1">16'</label>
+        <label><input data-pos="3" id="osc2-8" name="osc2-coarse-tune" type="radio" value="2">8'</label>
+        <label><input data-pos="4" id="osc2-4" name="osc2-coarse-tune" type="radio" value="4">4'</label>
+      </div>
+      <br>
+      <div data-program="osc2_waveform" data-update="update_osc2_waveform" id="osc2-waveform">
+        <label><input data-pos="1" id="osc2-saw" name="osc2-wave" type="radio" value="sawtooth">Saw</label>
+        <label><input data-pos="2" id="osc2-sqr" name="osc2-wave" type="radio" value="square">Square</label>
+        <label><input data-pos="3" id="osc2-tri" name="osc2-wave" type="radio" value="triangle">Tri.</label>
+        <label><input data-pos="4" id="osc2-sin" name="osc2-wave" type="radio" value="sine">Sine</label>
+      </div>
+      <label class="slider-label" for="osc2-detune">
+        <input class="vertical-slider" data-program="osc2_detune" data-update="update_osc2_detune" id="osc2-detune" max="1200" min="-1200" orient="vertical" step="100" type="range" value="0">
+        Detune
+      </label>
+      <label class="slider-label" for="osc2-fine">
+        <input class="vertical-slider" data-program="osc2_fine" data-update="update_osc2_fine" id="osc2-fine" max="100" min="-100" orient="vertical" step="0.0001" type="range" value="0">
+        Fine
+      </label>
+      <label class="slider-label" for="osc2-waveshape">
+        <input class="vertical-slider" data-program="osc2_shape" data-update="update_osc2_shape" id="osc2-waveshape" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        Shaping
+      </label>
+      <label class="slider-label" for="osc2-fm">
+        <input class="vertical-slider" data-program="osc2_fm" data-update="update_osc2_fm" id="osc2-fm" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        FM Amt.
+      </label>
     </div>
-    <br>
-    <label class="slider-label">
-      <input class="vertical-slider" data-program="osc1_saw" data-update="update_osc1_saw" id="osc1-saw" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
-      Saw
-    </label>
-    <label class="slider-label">
-      <input class="vertical-slider" data-program="osc1_sqr" data-update="update_osc1_sqr" id="osc1-sqr" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-      Square
-    </label>
-    <label class="slider-label">
-      <input class="vertical-slider" data-program="osc1_tri" data-update="update_osc1_tri" id="osc1-tri" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-      Triangle
-    </label>
-    <label class="slider-label">
-      <input class="vertical-slider" data-program="osc1_sin" data-update="update_osc1_sin" id="osc1-sin" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-      Sine
-    </label>
-    <label class="slider-label">
-      <input class="vertical-slider" data-program="osc1_fm" data-update="update_osc1_fm" id="osc1-fm" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-      FM Amt.
-    </label>
-  </div>
-  <div id="osc2">
-    <h2>Oscillator Two</h2>
-    <span class="kbd-tracking">Keyboard Tracking</span>
-    <div data-program="osc2_kbd" id="osc2-kbd">
-      <label><input id="osc2-off" name="osc2-kbd-tracking" type="radio" value="off">Off</label>
-      <label><input id="osc2-on" name="osc2-kbd-tracking" type="radio" value="on">On</label>
+    <div id="noise">
+      <h2>Noise</h2>
+      <div data-program="noise_color" data-update="update_noise_color" id="noise-color">
+        <label><input data-pos="1" id="white-noise" name="noise-color" type="radio" value="white">White</label>
+        <label><input data-pos="2" id="pink-noise" name="noise-color" type="radio" value="pink">Pink</label>
+        <label><input data-pos="3" id="red-noise" name="noise-color" type="radio" value="red">Red</label>
+        <label><input data-pos="4" id="blue-noise" name="noise-color" type="radio" value="blue">Blue</label>
+        <label><input data-pos="5" id="purple-noise" name="noise-color" type="radio" value="purple">Purple</label>
+      </div>
     </div>
-    <br>
-    <div data-program="osc2_coarse" data-update="update_osc2_coarse" id="osc2-coarse">
-      <label><input data-pos="1" id="osc2-32" name="osc2-coarse-tune" type="radio" value="0.5">32'</label>
-      <label><input data-pos="2" id="osc2-16" name="osc2-coarse-tune" type="radio" value="1">16'</label>
-      <label><input data-pos="3" id="osc2-8" name="osc2-coarse-tune" type="radio" value="2">8'</label>
-      <label><input data-pos="4" id="osc2-4" name="osc2-coarse-tune" type="radio" value="4">4'</label>
+    <div id="mixer">
+      <h2>Mixer</h2>
+      <label class="slider-label" for="osc1-mix">
+        <input class="vertical-slider" data-program="osc1_mix" data-update="update_osc1_mix" id="osc1-mix" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
+        Osc. 1
+      </label>
+      <label class="slider-label" for="osc2-mix">
+        <input class="vertical-slider" data-program="osc2_mix" data-update="update_osc2_mix" id="osc2-mix" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
+        Osc. 2
+      </label>
+      <label class="slider-label" for="noise-mix">
+        <input class="vertical-slider" data-program="noise_mix" data-update="update_noise_mix" id="noise-mix" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        Noise
+      </label>
+      <label class="slider-label" for="ext-mix">
+        <input class="vertical-slider" data-program="ext_mix" data-update="update_ext_mix" id="ext-mix" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        Ext. In.
+      </label>
     </div>
-    <br>
-    <div data-program="osc2_waveform" data-update="update_osc2_waveform" id="osc2-waveform">
-      <label><input data-pos="1" id="osc2-saw" name="osc2-wave" type="radio" value="sawtooth">Saw</label>
-      <label><input data-pos="2" id="osc2-sqr" name="osc2-wave" type="radio" value="square">Square</label>
-      <label><input data-pos="3" id="osc2-tri" name="osc2-wave" type="radio" value="triangle">Tri.</label>
-      <label><input data-pos="4" id="osc2-sin" name="osc2-wave" type="radio" value="sine">Sine</label>
+    <hr class="panel">
+    <div id="filter">
+      <h2>Filter</h2>
+      <div data-program="filter_mode" data-update="update_filter_mode" id="filter-mode">
+        <label><input data-pos="1" id="filter-lp" name="filter-mode" type="radio" value="lp">LP</label>
+        <label><input data-pos="2" id="filter-bp" name="filter-mode" type="radio" value="bp">BP</label>
+        <label><input data-pos="3" id="filter-hp" name="filter-mode" type="radio" value="hp">HP</label>
+        <label><input data-pos="4" id="filter-notch" name="filter-mode" type="radio" value="notch">Notch</label>
+        <label><input data-pos="5" id="filter-off" name="filter-mode" type="radio" value="off">Off</label>
+      </div>
+      <label class="slider-label" for="cutoff">
+        <input class="vertical-slider" data-program="cutoff" data-update="update_cutoff" id="cutoff" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
+        Cutoff
+      </label>
+      <label class="slider-label" for="resonance">
+        <input class="vertical-slider" data-program="res" data-update="update_resonance" id="resonance" max="1" min="0.0001" orient="vertical" step="0.0001" type="range" value="0.0001">
+        Res.
+      </label>
+      <label class="slider-label" for="filter-eg-amt">
+        <input class="vertical-slider" data-program="filter_eg" id="filter-eg-amt" max="1" min="-1" orient="vertical" step="0.0001" type="range" value="0">
+        Env. Amt.
+      </label>
+      <label class="slider-label" for="filter-kbd">
+        <input class="vertical-slider" data-program="filter_kbd" id="filter-kbd" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        Kbd.
+      </label>
     </div>
-    <label class="slider-label" for="osc2-detune">
-      <input class="vertical-slider" data-program="osc2_detune" data-update="update_osc2_detune" id="osc2-detune" max="1200" min="-1200" orient="vertical" step="100" type="range" value="0">
-      Detune
-    </label>
-    <label class="slider-label" for="osc2-fine">
-      <input class="vertical-slider" data-program="osc2_fine" data-update="update_osc2_fine" id="osc2-fine" max="100" min="-100" orient="vertical" step="0.0001" type="range" value="0">
-      Fine
-    </label>
-    <label class="slider-label" for="osc2-waveshape">
-      <input class="vertical-slider" data-program="osc2_shape" data-update="update_osc2_shape" id="osc2-waveshape" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-      Shaping
-    </label>
-    <label class="slider-label" for="osc2-fm">
-      <input class="vertical-slider" data-program="osc2_fm" data-update="update_osc2_fm" id="osc2-fm" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-      FM Amt.
-    </label>
-  </div>
-  <div id="noise">
-    <h2>Noise</h2>
-    <div data-program="noise_color" data-update="update_noise_color" id="noise-color">
-      <label><input data-pos="1" id="white-noise" name="noise-color" type="radio" value="white">White</label>
-      <label><input data-pos="2" id="pink-noise" name="noise-color" type="radio" value="pink">Pink</label>
-      <label><input data-pos="3" id="red-noise" name="noise-color" type="radio" value="red">Red</label>
-      <label><input data-pos="4" id="blue-noise" name="noise-color" type="radio" value="blue">Blue</label>
-      <label><input data-pos="5" id="purple-noise" name="noise-color" type="radio" value="purple">Purple</label>
+    <div id="filter-eg">
+      <h2>Filter Envelope Generator</h2>
+      <label class="slider-label" for="filter-a">
+        <input class="vertical-slider" data-program="filter_attack" id="filter-a" max="1" min="0.008" orient="vertical" step="0.0001" type="range" value="0.008">
+        Attack
+      </label>
+      <label class="slider-label" for="filter-d">
+        <input class="vertical-slider" data-program="filter_decay" id="filter-d" max="1" min="0.008" orient="vertical" step="0.0001" type="range" value="0.008">
+        Decay
+      </label>
+      <label class="slider-label" for="filter-s">
+        <input class="vertical-slider" data-program="filter_sustain" id="filter-s" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        Sustain
+      </label>
+      <label class="slider-label" for="filter-r">
+        <input class="vertical-slider" data-program="filter_release" id="filter-r" max="1" min="0.008" orient="vertical" step="0.0001" type="range" value="0.008">
+        Release
+      </label>
     </div>
-  </div>
-  <div id="mixer">
-    <h2>Mixer</h2>
-    <label class="slider-label" for="osc1-mix">
-      <input class="vertical-slider" data-program="osc1_mix" data-update="update_osc1_mix" id="osc1-mix" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
-      Osc. 1
-    </label>
-    <label class="slider-label" for="osc2-mix">
-      <input class="vertical-slider" data-program="osc2_mix" data-update="update_osc2_mix" id="osc2-mix" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
-      Osc. 2
-    </label>
-    <label class="slider-label" for="noise-mix">
-      <input class="vertical-slider" data-program="noise_mix" data-update="update_noise_mix" id="noise-mix" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-      Noise
-    </label>
-    <label class="slider-label" for="ext-mix">
-      <input class="vertical-slider" data-program="ext_mix" data-update="update_ext_mix" id="ext-mix" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-      Ext. In.
-    </label>
-  </div>
-  <hr class="panel">
-  <div id="filter">
-    <h2>Filter</h2>
-    <div data-program="filter_mode" data-update="update_filter_mode" id="filter-mode">
-      <label><input data-pos="1" id="filter-lp" name="filter-mode" type="radio" value="lp">LP</label>
-      <label><input data-pos="2" id="filter-bp" name="filter-mode" type="radio" value="bp">BP</label>
-      <label><input data-pos="3" id="filter-hp" name="filter-mode" type="radio" value="hp">HP</label>
-      <label><input data-pos="4" id="filter-notch" name="filter-mode" type="radio" value="notch">Notch</label>
-      <label><input data-pos="5" id="filter-off" name="filter-mode" type="radio" value="off">Off</label>
+    <div id="vca-eg">
+      <h2>VCA Envelope Generator</h2>
+      <label class="slider-label" for="vca-a">
+        <input class="vertical-slider" data-program="vca_attack" id="vca-a" max="1" min="0.0008" orient="vertical" step="0.0001" type="range" value="0.0008">
+        Attack
+      </label>
+      <label class="slider-label" for="vca-d">
+        <input class="vertical-slider" data-program="vca_decay" id="vca-d" max="1" min="0.0008" orient="vertical" step="0.0001" type="range" value="0.0008">
+        Decay
+      </label>
+      <label class="slider-label" for="vca-s">
+        <input class="vertical-slider" data-program="vca_sustain" id="vca-s" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
+        Sustain
+      </label>
+      <label class="slider-label" for="vca-r">
+        <input class="vertical-slider" data-program="vca_release" id="vca-r" max="1" min="0.0008" orient="vertical" step="0.0001" type="range" value="0.0008">
+        Release
+      </label>
+      <label class="slider-label" for="vca-gain">
+        <input class="vertical-slider" data-program="vca_gain" data-update="update_vca_gain" id="vca-gain" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        VCA Gain
+      </label>
     </div>
-    <label class="slider-label" for="cutoff">
-      <input class="vertical-slider" data-program="cutoff" data-update="update_cutoff" id="cutoff" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
-      Cutoff
-    </label>
-    <label class="slider-label" for="resonance">
-      <input class="vertical-slider" data-program="res" data-update="update_resonance" id="resonance" max="1" min="0.0001" orient="vertical" step="0.0001" type="range" value="0.0001">
-      Res.
-    </label>
-    <label class="slider-label" for="filter-eg-amt">
-      <input class="vertical-slider" data-program="filter_eg" id="filter-eg-amt" max="1" min="-1" orient="vertical" step="0.0001" type="range" value="0">
-      Env. Amt.
-    </label>
-    <label class="slider-label" for="filter-kbd">
-      <input class="vertical-slider" data-program="filter_kbd" id="filter-kbd" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-      Kbd.
-    </label>
-  </div>
-  <div id="filter-eg">
-    <h2>Filter Envelope Generator</h2>
-    <label class="slider-label" for="filter-a">
-      <input class="vertical-slider" data-program="filter_attack" id="filter-a" max="1" min="0.008" orient="vertical" step="0.0001" type="range" value="0.008">
-      Attack
-    </label>
-    <label class="slider-label" for="filter-d">
-      <input class="vertical-slider" data-program="filter_decay" id="filter-d" max="1" min="0.008" orient="vertical" step="0.0001" type="range" value="0.008">
-      Decay
-    </label>
-    <label class="slider-label" for="filter-s">
-      <input class="vertical-slider" data-program="filter_sustain" id="filter-s" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-      Sustain
-    </label>
-    <label class="slider-label" for="filter-r">
-      <input class="vertical-slider" data-program="filter_release" id="filter-r" max="1" min="0.008" orient="vertical" step="0.0001" type="range" value="0.008">
-      Release
-    </label>
-  </div>
-  <div id="vca-eg">
-    <h2>VCA Envelope Generator</h2>
-    <label class="slider-label" for="vca-a">
-      <input class="vertical-slider" data-program="vca_attack" id="vca-a" max="1" min="0.0008" orient="vertical" step="0.0001" type="range" value="0.0008">
-      Attack
-    </label>
-    <label class="slider-label" for="vca-d">
-      <input class="vertical-slider" data-program="vca_decay" id="vca-d" max="1" min="0.0008" orient="vertical" step="0.0001" type="range" value="0.0008">
-      Decay
-    </label>
-    <label class="slider-label" for="vca-s">
-      <input class="vertical-slider" data-program="vca_sustain" id="vca-s" max="1" min="0" orient="vertical" step="0.0001" type="range" value="1">
-      Sustain
-    </label>
-    <label class="slider-label" for="vca-r">
-      <input class="vertical-slider" data-program="vca_release" id="vca-r" max="1" min="0.0008" orient="vertical" step="0.0001" type="range" value="0.0008">
-      Release
-    </label>
-    <label class="slider-label" for="vca-gain">
-      <input class="vertical-slider" data-program="vca_gain" data-update="update_vca_gain" id="vca-gain" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-      VCA Gain
-    </label>
-  </div>
-  <hr class="panel">
-  <div id="lfo">
-    <h2>LFO</h2>
-    <div data-program="lfo_shape" data-update="update_lfo_shape" id="lfo-shape">
-      <label><input data-pos="1" id="lfo-sin" name="lfo-shape" type="radio" value="sine">Sine</label>
-      <label><input data-pos="2" id="lfo-tri" name="lfo-shape" type="radio" value="triangle">Tri.</label>
-      <label><input data-pos="3" id="lfo-rmp" name="lfo-shape" type="radio" value="ramp">Ramp</label>
-      <label><input data-pos="4" id="lfo-saw" name="lfo-shape" type="radio" value="sawtooth">Saw</label>
-      <label><input data-pos="5" id="lfo-sqr" name="lfo-shape" type="radio" value="square">Square</label>
-    </div>
-    <label class="slider-label" for="lfo-rate">
-      <input class="vertical-slider" data-program="lfo_rate" data-update="update_lfo_rate" id="lfo-rate" max="1" min="0.0001" orient="vertical" step="0.0001" type="range" value="0.0001">
-      Rate
-    </label>
-    <label class="slider-label" for="lfo-pitch">
-      <input class="vertical-slider" data-program="lfo_pitch" data-update="update_lfo_pitch" id="lfo-pitch" max="50" min="0" orient="vertical" step="0.0001" type="range" value="0">
-      Pitch
-    </label>
-    <label class="slider-label" for="lfo-filter">
-      <input class="vertical-slider" data-program="lfo_filter" data-update="update_lfo_filter" id="lfo-filter" max="10000" min="0" orient="vertical" step="0.0001" type="range" value="0">
-      Filter
-    </label>
-    <label class="slider-label" for="lfo-amp">
-      <input class="vertical-slider" data-program="lfo_amp" data-update="update_lfo_amp" id="lfo-amp" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-      Amp.
-    </label>
-  </div>
-  <div id="delay">
-    <h2>Delay</h2>
-      <label class="slider-label" for="delay-rate">
-        <input class="vertical-slider" data-program="delay_rate" data-update="update_delay_rate" id="delay-rate" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+    <hr class="panel">
+    <div id="lfo">
+      <h2>LFO</h2>
+      <div data-program="lfo_shape" data-update="update_lfo_shape" id="lfo-shape">
+        <label><input data-pos="1" id="lfo-sin" name="lfo-shape" type="radio" value="sine">Sine</label>
+        <label><input data-pos="2" id="lfo-tri" name="lfo-shape" type="radio" value="triangle">Tri.</label>
+        <label><input data-pos="3" id="lfo-rmp" name="lfo-shape" type="radio" value="ramp">Ramp</label>
+        <label><input data-pos="4" id="lfo-saw" name="lfo-shape" type="radio" value="sawtooth">Saw</label>
+        <label><input data-pos="5" id="lfo-sqr" name="lfo-shape" type="radio" value="square">Square</label>
+      </div>
+      <label class="slider-label" for="lfo-rate">
+        <input class="vertical-slider" data-program="lfo_rate" data-update="update_lfo_rate" id="lfo-rate" max="1" min="0.0001" orient="vertical" step="0.0001" type="range" value="0.0001">
         Rate
       </label>
-      <label class="slider-label" for="delay-amt">
-        <input class="vertical-slider" data-program="delay" data-update="update_delay_amt" id="delay-amt" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-        Amount
+      <label class="slider-label" for="lfo-pitch">
+        <input class="vertical-slider" data-program="lfo_pitch" data-update="update_lfo_pitch" id="lfo-pitch" max="50" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        Pitch
+      </label>
+      <label class="slider-label" for="lfo-filter">
+        <input class="vertical-slider" data-program="lfo_filter" data-update="update_lfo_filter" id="lfo-filter" max="10000" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        Filter
+      </label>
+      <label class="slider-label" for="lfo-amp">
+        <input class="vertical-slider" data-program="lfo_amp" data-update="update_lfo_amp" id="lfo-amp" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        Amp.
       </label>
     </div>
-  </div>
-  <div id="portamento">
-    <h2>Portamento</h2>
-      <label class="horizontal-slider-label">
-        Amount
-        <input class="horizontal-slider" data-program="portamento" id="portamento-amount" max="1" min="0.01" step="0.01" type="range" value="0.01">
-      </label>
-      <br>
-    <div data-program="portamento_mode" id="portamento-mode">
-      <label><input data-pos="1" id="portamento-off" name="portamento" type="radio" value="off">Off</label>
-      <label><input data-pos="2" id="portamento-linear" name="portamento" type="radio" value="linear">Lin.</label>
-      <label><input data-pos="3" id="portamento-exponential" name="portamento" type="radio" value="exponential">Exp.</label>
-    </div>
-  </div>
-  <div id="octave-shift">
-    <h2>Octave Shift</h2>
-    <div class="controls">
-      <div class="octave-lights">
-        <span id="octave-minus-2">-2</span>
-        <span id="octave-minus-1">-1</span>
-        <span id="octave-plus-0" class="lit">0</span>
-        <span id="octave-plus-1">+1</span>
-        <span id="octave-plus-2">+2</span>
+    <div id="delay">
+      <h2>Delay</h2>
+        <label class="slider-label" for="delay-rate">
+          <input class="vertical-slider" data-program="delay_rate" data-update="update_delay_rate" id="delay-rate" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+          Rate
+        </label>
+        <label class="slider-label" for="delay-amt">
+          <input class="vertical-slider" data-program="delay" data-update="update_delay_amt" id="delay-amt" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+          Amount
+        </label>
       </div>
-      <button id="octave-shift-down" data-octave-shift="-1">-1</button>
-      <button id="octave-shift-up" data-octave-shift="1">+1</button>
     </div>
-  </div>
-  <div id="keyboard">
-    <hr class="shadow">
-    <label id="pitch-wheel">
-      <input id="pitch-bend" max="12" min="-12" orient="vertical" step="0.0001" type="range" value="0">
-      Pitch
-    </label>
-    <label id="mod-wheel">
-      <input data-program="mod" data-update="calculate_lfo" id="mod-amount" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
-      Mod.
-    </label>
-    <button class="c" data-keyboard-position="-1" data-note-value="-900" id="c1"></button>
-    <button class="c-sharp" data-keyboard-position="-1" data-note-value="-800" id="cs1"></button>
-    <button class="d" data-keyboard-position="-1" data-note-value="-700" id="d1"></button>
-    <button class="d-sharp" data-keyboard-position="-1" data-note-value="-600" id="ds1"></button>
-    <button class="e" data-keyboard-position="-1" data-note-value="-500" id="e1"></button>
-    <button class="f" data-keyboard-position="-1" data-note-value="-400" id="f1"></button>
-    <button class="f-sharp" data-keyboard-position="-1" data-note-value="-300" id="fs1"></button>
-    <button class="g" data-keyboard-position="-1" data-note-value="-200" id="g1"></button>
-    <button class="g-sharp" data-keyboard-position="-1" data-note-value="-100" id="gs1"></button>
-    <button class="a" data-keyboard-position="-1" data-note-value="0" id="a1"></button>
-    <button class="a-sharp" data-keyboard-position="-1" data-note-value="100" id="as1"></button>
-    <button class="b" data-keyboard-position="-1" data-note-value="200" id="b1"></button>
-    <button class="c" data-keyboard-position="0" data-note-value="-900" id="c2"></button>
-    <button class="c-sharp oct2" data-keyboard-position="0" data-note-value="-800" id="cs2"></button>
-    <button class="d oct2" data-keyboard-position="0" data-note-value="-700" id="d2"></button>
-    <button class="d-sharp oct2" data-keyboard-position="0" data-note-value="-600" id="ds2"></button>
-    <button class="e oct2" data-keyboard-position="0" data-note-value="-500" id="e2"></button>
-    <button class="f oct2" data-keyboard-position="0" data-note-value="-400" id="f2"></button>
-    <button class="f-sharp oct2" data-keyboard-position="0" data-note-value="-300" id="fs2"></button>
-    <button class="g oct2" data-keyboard-position="0" data-note-value="-200"></button>
-    <button class="g-sharp oct2" data-keyboard-position="0" data-note-value="-100"></button>
-    <button class="a oct2" data-keyboard-position="0" data-note-value="0"></button>
-    <button class="a-sharp oct2" data-keyboard-position="0" data-note-value="100"></button>
-    <button class="b oct2" data-keyboard-position="0" data-note-value="200"></button>
-    <button class="c oct2" data-keyboard-position="1" data-note-value="-900"></button>
+    <div id="portamento">
+      <h2>Portamento</h2>
+        <label class="horizontal-slider-label">
+          Amount
+          <input class="horizontal-slider" data-program="portamento" id="portamento-amount" max="1" min="0.01" step="0.01" type="range" value="0.01">
+        </label>
+        <br>
+      <div data-program="portamento_mode" id="portamento-mode">
+        <label><input data-pos="1" id="portamento-off" name="portamento" type="radio" value="off">Off</label>
+        <label><input data-pos="2" id="portamento-linear" name="portamento" type="radio" value="linear">Lin.</label>
+        <label><input data-pos="3" id="portamento-exponential" name="portamento" type="radio" value="exponential">Exp.</label>
+      </div>
+    </div>
+    <div id="octave-shift">
+      <h2>Octave Shift</h2>
+      <div class="controls">
+        <div class="octave-lights">
+          <span id="octave-minus-2">-2</span>
+          <span id="octave-minus-1">-1</span>
+          <span id="octave-plus-0" class="lit">0</span>
+          <span id="octave-plus-1">+1</span>
+          <span id="octave-plus-2">+2</span>
+        </div>
+        <button id="octave-shift-down" data-octave-shift="-1">-1</button>
+        <button id="octave-shift-up" data-octave-shift="1">+1</button>
+      </div>
+    </div>
+    <div id="keyboard">
+      <hr class="shadow">
+      <label id="pitch-wheel">
+        <input id="pitch-bend" max="12" min="-12" orient="vertical" step="0.0001" type="range" value="0">
+        Pitch
+      </label>
+      <label id="mod-wheel">
+        <input data-program="mod" data-update="calculate_lfo" id="mod-amount" max="1" min="0" orient="vertical" step="0.0001" type="range" value="0">
+        Mod.
+      </label>
+      <button class="c" data-keyboard-position="-1" data-note-value="-900" id="c1"></button>
+      <button class="c-sharp" data-keyboard-position="-1" data-note-value="-800" id="cs1"></button>
+      <button class="d" data-keyboard-position="-1" data-note-value="-700" id="d1"></button>
+      <button class="d-sharp" data-keyboard-position="-1" data-note-value="-600" id="ds1"></button>
+      <button class="e" data-keyboard-position="-1" data-note-value="-500" id="e1"></button>
+      <button class="f" data-keyboard-position="-1" data-note-value="-400" id="f1"></button>
+      <button class="f-sharp" data-keyboard-position="-1" data-note-value="-300" id="fs1"></button>
+      <button class="g" data-keyboard-position="-1" data-note-value="-200" id="g1"></button>
+      <button class="g-sharp" data-keyboard-position="-1" data-note-value="-100" id="gs1"></button>
+      <button class="a" data-keyboard-position="-1" data-note-value="0" id="a1"></button>
+      <button class="a-sharp" data-keyboard-position="-1" data-note-value="100" id="as1"></button>
+      <button class="b" data-keyboard-position="-1" data-note-value="200" id="b1"></button>
+      <button class="c" data-keyboard-position="0" data-note-value="-900" id="c2"></button>
+      <button class="c-sharp oct2" data-keyboard-position="0" data-note-value="-800" id="cs2"></button>
+      <button class="d oct2" data-keyboard-position="0" data-note-value="-700" id="d2"></button>
+      <button class="d-sharp oct2" data-keyboard-position="0" data-note-value="-600" id="ds2"></button>
+      <button class="e oct2" data-keyboard-position="0" data-note-value="-500" id="e2"></button>
+      <button class="f oct2" data-keyboard-position="0" data-note-value="-400" id="f2"></button>
+      <button class="f-sharp oct2" data-keyboard-position="0" data-note-value="-300" id="fs2"></button>
+      <button class="g oct2" data-keyboard-position="0" data-note-value="-200"></button>
+      <button class="g-sharp oct2" data-keyboard-position="0" data-note-value="-100"></button>
+      <button class="a oct2" data-keyboard-position="0" data-note-value="0"></button>
+      <button class="a-sharp oct2" data-keyboard-position="0" data-note-value="100"></button>
+      <button class="b oct2" data-keyboard-position="0" data-note-value="200"></button>
+      <button class="c oct2" data-keyboard-position="1" data-note-value="-900"></button>
+    </div>
   </div>
   <span class="copyright">Copyright © 2014–2015 Luke Teaford.</span>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
