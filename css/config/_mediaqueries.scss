@@ -35,9 +35,16 @@
     }
   }
 
-  // Desktop size
+  // Desktop size (and iPad in landscape)
   @if $point == dt {
     @media (min-width: 960px) {
+      @content;
+    }
+  }
+
+  // Desktop big size
+  @if $point == wc {
+    @media (min-width: 1080px) {
       @content;
     }
   }

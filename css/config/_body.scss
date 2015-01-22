@@ -23,7 +23,7 @@ html {
   }
 }
 
-@include bp(dt) {//endcheeks inside this bp?!
+@include bp(wc) {//endcheeks inside this bp?!
   %endcheeks {
     background: url('../images/wood.jpg');
     bottom: 0;
@@ -51,7 +51,7 @@ body {
 
   &::before {
     @extend %endcheeks;
-    @include bp(dt) {
+    @include bp(wc) {
       background-position: -1.5rem 6.05rem;
       left: -3rem;//-3rem originally
     }
@@ -59,7 +59,7 @@ body {
 
   &::after {
     @extend %endcheeks;
-    @include bp(dt) {
+    @include bp(wc) {
       right: -3rem;//-3rem originally
     }
   }
@@ -90,11 +90,17 @@ h1 {
   position: relative;
   top: -2rem;
   text-transform: uppercase;
-  @include bp(pl) {
+  @include bp(ql) {
     position: absolute;
     right: 0;
     text-align: right;
-    top: .6rem;//.7rem on DESKTOP?
+    top: .6rem;
+  }
+  @include bp(pl) {//NEED TO CLEAN UP
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: .6rem;
    }
    @include bp(dt) {
      position: absolute;
@@ -107,6 +113,10 @@ h1 {
     display: block;
     list-style-type: none;
     margin: 1rem 0;
+    @include bp(ql) {
+      display: inline-block;
+      margin: 0 1rem;
+    }
     @include bp(pl) {
       display: inline-block;
       margin: 0 1rem;

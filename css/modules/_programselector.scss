@@ -23,7 +23,7 @@
   position: absolute;
   right: 0;
   transform-origin: top;
-  width: calc(100% - 1rem);//RESPONSIVE(?) desktop -2rem
+  width: calc(100% - 1rem);
   z-index: 4;
 
   > button {
@@ -36,8 +36,21 @@
     font-family: 'ocr-b-std', serif;
     text-align: left;
     text-transform: uppercase;
-    width: 12rem;//RESPONSIVE 12rem on desktop
-    width: 99%;
+    width: 100%;//WHY NOT 100%? worked on iphone6+ with 99%
+    @include bp(a) {
+      display: inline-block;
+      //width: calc(50% - 1rem);//improvement over 45%
+      width: calc((100% / 2) - 1rem);
+    }
+    @include bp(ql) {
+      display: inline-block;
+      //width: calc(25% - 1rem);//28%
+      width: calc((100% / 3) - 1rem);
+    }
+    @include bp(dt) {
+      //width: 12rem;
+      width: calc((100% / 4) - 1rem);
+    }
 
     &:hover {
      border: .05rem solid;

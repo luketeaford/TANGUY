@@ -16,7 +16,7 @@
   }
 }
 
-@include bp(dt) {
+@include bp(wc) {
   %darken-endcheeks {
     background: rgba(0, 0, 0, .1);
     bottom: 0;
@@ -29,14 +29,14 @@
 
 #keyboard::before {//RESPONSIVE IPAD+ MQ ON PLACEHOLDER
   @extend %darken-endcheeks;
-  @include bp(dt) {
+  @include bp(wc) {
     left: -3rem;//-3rem originally
   }
 }
 
 #keyboard::after {//RESPONSIVE IPAD+ MQ ON PLACEHOLDER
   @extend %darken-endcheeks;
-  @include bp(dt) {
+  @include bp(wc) {
     right: -3rem;//-3rem originally
     z-index: 1;
   }
@@ -80,6 +80,9 @@
   @include bp(dt) {
     background: #09f;//TESTING
     margin: 0 1rem 0 0;
+  }
+  @include bp(wc) {
+    background: #c40000;//TESTING
   }
 }
 
