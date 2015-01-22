@@ -12,16 +12,20 @@ $(document).keypress(function (key) {
     'use strict';
     switch (key.which) {
     case 45:
+    case 122:
         TANGUY.shift_octave(-1);
         break;
     case 43:
     case 61:
+    case 120:
         TANGUY.shift_octave(1);
         break;
     case 44:
+    case 60:
         TANGUY.change_program(-1);
         break;
     case 46:
+    case 62:
         TANGUY.change_program(1);
         break;
     case 42:
