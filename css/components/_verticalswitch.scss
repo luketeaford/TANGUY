@@ -5,10 +5,12 @@
   border: 1px solid $mid-grey;
   border-radius: .2rem;
   display: inline-block;
-  //transition: background-position .25s;
   vertical-align: top;
-  width: 3rem;//RESPONSIVE
-  //will-change: background-position;//could be premature
+  width: 3rem;
+  @include bp(wc) {
+    transition: background-position .25s;
+    will-change: background-position;//could be premature
+  }
 
   &.pos1 {
     background-position: 0 0, 0 0;
@@ -35,16 +37,18 @@
     cursor: pointer;
     display: block;
     font-size: .5rem;
-    height: 1.5rem;//RESPONSIVE
+    height: 1.5rem;
     padding: .5rem 0;
     text-align: center;
     text-transform: uppercase;
 
     &.selected {
-      //-webkit-animation: lag-label .25s;
-      //animation: lag-label .25s;
       color: #cfc6c3;
       text-shadow: -2px 0 1px #7f7673, 2px 0 1px #7f7673;
+      @include bp(wc) {
+        -webkit-animation: lag-label .25s;
+        animation: lag-label .25s;
+      }
     }
 
     &:not(.selected):hover {

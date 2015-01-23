@@ -1,8 +1,7 @@
 #keyboard {
   background: linear-gradient(#1f1f17, #191911) repeat-x;
-  background-size: 1px 25rem;//13rem when keyboard and wheels are on same row
+  background-size: 1px 25rem;
   font-size: 0;
-  //margin: 1rem -1rem -1rem;//DESKTOP AND IPAD MARGINS
   margin: 1rem 0 -1rem -1rem;
   overflow: hidden;
   @include bp(ql) {
@@ -12,7 +11,7 @@
     background-size: 1px 13rem;
   }
   @include bp(dt) {
-    margin: 1rem -1rem -1rem;//pretty good
+    margin: 1rem -1rem -1rem;
   }
 }
 
@@ -23,21 +22,21 @@
     content: '';
     position: absolute;
     top: calc(100% - 13rem);
-    width: 3rem;//3rem originally
+    width: 3rem;
   }
 }
 
-#keyboard::before {//RESPONSIVE IPAD+ MQ ON PLACEHOLDER
+#keyboard::before {
   @extend %darken-endcheeks;
   @include bp(wc) {
-    left: -3rem;//-3rem originally
+    left: -3rem;
   }
 }
 
-#keyboard::after {//RESPONSIVE IPAD+ MQ ON PLACEHOLDER
+#keyboard::after {
   @extend %darken-endcheeks;
   @include bp(wc) {
-    right: -3rem;//-3rem originally
+    right: -3rem;
     z-index: 1;
   }
 }
@@ -60,7 +59,6 @@
 #mod-wheel {
   @extend %wheel;
   background: #999;
-  margin: 0 1rem 0 0;//DESKTOP SIZE!
   margin: 0 8rem 0 -1rem;
   @include bp(al) {
     margin: 0 23rem 0 -1.4rem;
@@ -78,11 +76,7 @@
     margin: 0 0 0 -1rem;
   }
   @include bp(dt) {
-    background: #09f;//TESTING
     margin: 0 1rem 0 0;
-  }
-  @include bp(wc) {
-    background: #c40000;//TESTING
   }
 }
 

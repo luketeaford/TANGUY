@@ -13,24 +13,23 @@ html {
   color: $body-text;
   font-family: helvetica, arial, sans-serif;
   font-size: 17px;
-  //margin: 2rem 0;//RESPONSIVE - no top/bottom margin on mobile or ipad
   overflow-x: hidden;
   @include bp(a) {
     font-size: 20px;
   }
   @include bp(dt) {
-    font-size: 20px;//OK but worked off of 17px measurement
+    font-size: 20px;
   }
 }
 
-@include bp(wc) {//endcheeks inside this bp?!
+@include bp(wc) {
   %endcheeks {
     background: url('../images/wood.jpg');
     bottom: 0;
     content: '';
     position: absolute;
     top: 0;
-    width: 3rem;//3rem originally
+    width: 3rem;
   }
 }
 
@@ -39,7 +38,6 @@ body {
   margin: 0 auto;
   padding: .5rem .25rem;
   position: relative;
-  width: 18rem;//RESPONSIVE - 57 on desktop (could be a max-width?)
   width: 100%;
   @include bp(a) {
     padding: .5rem;
@@ -53,14 +51,14 @@ body {
     @extend %endcheeks;
     @include bp(wc) {
       background-position: -1.5rem 6.05rem;
-      left: -3rem;//-3rem originally
+      left: -3rem;
     }
   }
 
   &::after {
     @extend %endcheeks;
     @include bp(wc) {
-      right: -3rem;//-3rem originally
+      right: -3rem;
     }
   }
 
@@ -162,7 +160,7 @@ input {
 
 .panel {
   background: radial-gradient(#131311, transparentize($body-bg, 1)) 0 -.9rem no-repeat;
-  background-size: 55rem 1rem;
+  background-size: calc(100% - 2rem) 1rem;
   border: none;
   height: 1rem;
   margin: 1rem auto 0;

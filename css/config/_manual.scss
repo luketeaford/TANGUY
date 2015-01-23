@@ -3,11 +3,14 @@ article {
   box-shadow: 0 .25rem 2rem -.25rem $mid-grey;
   color: $mid-grey;
   font-size: .7rem;
-  left: -2rem;
   padding: 2rem;
   position: relative;
-  width: calc(100% + 4rem);
+  width: 100%;
   z-index: 2;
+  @include bp(wc) {
+    left: -2rem;
+    width: calc(100% + 4rem);
+  }
 
   h1 {
     display: block;
@@ -21,7 +24,7 @@ article {
       height: .2rem;
       display: block;
       margin: 0 auto;
-      width: calc(52rem / 2);
+      width: 50%;
     }
 
   }
@@ -58,8 +61,10 @@ article {
 }
 
 nav {
-  display: inline-block;
   width: 10rem;
+  @include bp(wc) {
+    display: inline-block;
+  }
 }
 
 .fake-h2 {
@@ -71,7 +76,10 @@ nav {
 
 .toc {
   line-height: 2;
-  margin: 0 0 0 1rem;
+  margin: 0 0 0 2rem;
+  @include bp(wc) {
+    margin: 0 0 0 1rem;
+  }
 
   &::after {
     content: '';
@@ -88,8 +96,11 @@ nav {
 
 .wrapper {
   display: inline-block;
-  margin: 2rem 0 0 4rem;
+  margin: 2rem 0 4rem;
   vertical-align: top;
+  @include bp(wc) {
+    margin: 2rem 0 0 4rem;
+  }
 }
 
 p {

@@ -16,7 +16,7 @@
   box-shadow: inherit;
   display: none;
   left: 0;
-  height: 8.5rem;//RESPONSIVE
+  height: 8.5rem;
   margin: -.5rem auto;
   overflow-y: scroll;
   padding: .25rem 0;
@@ -30,25 +30,22 @@
     background: none;
     border: .05rem solid transparent;
     color: inherit;
-    display: block;//RESPONSIVE - put back to inline block
+    display: block;
     margin: .1rem .75rem .1rem .1rem;
     padding: .5rem;
     font-family: 'ocr-b-std', serif;
     text-align: left;
     text-transform: uppercase;
-    width: 100%;//WHY NOT 100%? worked on iphone6+ with 99%
+    width: 100%;
     @include bp(a) {
       display: inline-block;
-      //width: calc(50% - 1rem);//improvement over 45%
       width: calc((100% / 2) - 1rem);
     }
     @include bp(ql) {
       display: inline-block;
-      //width: calc(25% - 1rem);//28%
       width: calc((100% / 3) - 1rem);
     }
     @include bp(dt) {
-      //width: 12rem;
       width: calc((100% / 4) - 1rem);
     }
 
@@ -64,7 +61,6 @@
   margin-left: 2rem;
 
   &::before {
-    //WILL NEED TO CHANGE AT BREAKPOINTS
     content: '88888888888888888888888888888888888888888888888888888888888888888888888888888888';
     margin-left: -2rem;
     margin-top: -.5rem;
@@ -72,8 +68,7 @@
     overflow: hidden;
     padding: .5rem 0;
     position: absolute;
-    width: 54rem;//CALC NEEDED AND MAKE RESPONSIVE
-    width: calc(100% - 3rem);//GUESS AT REQUIRED CALC
+    width: calc(100% - 3rem);
   }
 
 }
