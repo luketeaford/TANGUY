@@ -42,11 +42,11 @@
         <h2 id="controls">Controls</h2>
 
         <h3>Choosing a Preset</h3>
-        <p>The presets included in TANGUY will give you a quick impression of its capabilities. Click on any part of the field that contains the text <i>INITIALIZE</i> to open the list of presets. Select any preset to load it or click outside of the list to cancel. Some presets have <i>VCA Gain</i> greater than 0, and will begin making sound automatically. One way to discover the purpose of each control is to work backwards from any preset to the <i>INITIALIZE</i> state.</p>
-
+        <p>The 100+ presets included in TANGUY will give you a quick impression of its capabilities. Click on any part of the field that contains the text <i>INITIALIZE</i> to open the list of presets. Select any preset to load it or click outside of the list to cancel. Some presets have <i>VCA Gain</i> greater than 0, and will begin making sound automatically. One way to discover the purpose of each control is to work backwards from any preset to the <i>INITIALIZE</i> state.</p>
+        <p>You can cycle through the available presets using keyboard shortcuts backwards using <i>&lt;</i> (or <i>,</i>) and forward by pressing <i>&gt;</i> (or <i>.</i>). The cycling always stops at position zero because it is useful to have a way to get back to <i>INITIALIZE</i> quickly.</p>
         <h3>Playing the Keyboard</h3>
         <p>TANGUY is a monosynth: only one note can be played from the keyboard at a time. Click the keys with your mouse or play TANGUY using your QWERTY keyboard. The home row represents the white keys, and the black keys are mapped to the corresponding keys in the row above.</p>
-        <p>The Octave Shift allows a player to quickly shift the range of the keyboard up or down using the buttons <i>-1</i> and <i>+1</i> buttons or the keyboard shortcuts: <i>-</i> and <i>=</i> .</p>
+        <p>The Octave Shift allows a player to quickly shift the range of the keyboard up or down using the buttons <i>-1</i> and <i>+1</i> buttons or the keyboard shortcuts: Shift Octave Down: <i>-</i> (or <i>z</i>) and Shift Octave Up <i>=</i> (or <i>x</i>).</p>
         <p>The <i>Pitch</i> slider offers real time performance opportunities for bending the pitch. Move the slider to shift the pitch of all tracked oscillators simultaneously. Release to allow the pitch to snap back to its original value. Pitch bend and snapping do not work in Firefox.</p>
         <p>Dynamically change the amount of the LFO's effects by using the <i>Mod.</i> slider. If <i>Mod.</i> is set to 0, the LFO will have no effect. Since the <i>Mod.</i> wheel determines the amount of the LFO, it is considered part of the preset.</p>
 
@@ -101,6 +101,9 @@
 
         <h2 id="updates">Planned Improvements</h2>
         <p>MIDI support would make TANGUY more enjoyable to play as an instrument.</p>
+        <p>I would like much better support in Firefox. There is a problem with the envelopes, FM feedback, and too small click targets on buttons.</p>
+        <p>I want to fix the responsive versions for Android devices to avoid the high C key from dangling onto the next row (without causing problems on iOS), so I won't have a chance to fix this before my demonstration at the Web Audio Conference.</p>
+        <p>The Sass still needs cleaning up, and there are probably performance enhancements to made to jQuery selectors and event bindings.</p>
 
   </article>
   <span class="copyright">Copyright © 2014–2015 Luke Teaford.</span>
