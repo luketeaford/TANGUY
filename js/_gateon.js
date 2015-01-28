@@ -1,6 +1,16 @@
-TANGUY.gate_on = function () {
+TANGUY.gate_on = function (event) {
     'use strict';
-    TANGUY.calculate_pitch(parseFloat(this.getAttribute('data-keyboard-position')), parseFloat(this.getAttribute('data-note-value')));
+    var pos,
+        note_value;
+
+    if (this.getAttribute) {
+        pos = parseFloat(this.getAttribute('data-keyboard-position'));
+        note_value = parseFloat(this.getAttribute('data-note-value'));
+    } else {
+        pos = Math.floor(event.data[1] / 12) - 5;
+        note_value = 100 * (event.data[1] % 12) - 900;
+    }
+    TANGUY.calculate_pitch(pos, note_value);
     TANGUY.filter_env_on();
     return TANGUY.amp_env_on();
 };
