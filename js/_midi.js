@@ -30,17 +30,27 @@ TANGUY.MIDI = {
     }
 };
 
+TANGUY.MIDI.events = function (event) {
+    'use strict';
+    switch (event.data[0]) {
+    case TANGUY.MIDI.messages.NOTE_ON:
+        TANGUY.gate_on(event);
+        break;
+    case TANGUY.MIDI.messages.NOTE_OFF: 
+        TANGUY.key_release('#c1');
+        break;
+    }
+};
+
 TANGUY.MIDI.getDevices().then(function(devices){
     'use strict';
 
     TANGUY.MIDI.devices = devices;
 
-    var i = 0,
-        MIDIlog = function(message) {
-            console.log(message.data);
-        };
+    var i = 0;
 
     for (i; i < devices.length; i+=1) {
-        TANGUY.MIDI.devices[i].onmidimessage = MIDIlog;
+        TANGUY.MIDI.devices[i].onmidimessage = TANGUY.MIDI.events;
     }
 });
+
