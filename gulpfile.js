@@ -24,6 +24,7 @@ var gulp = require('gulp'),
         'js/_buildsynth.js',
         'js/_startsynth.js',
         'js/_externalinput.js',
+        'js/_midi.js',
         'js/_documentready.js',
         'js/_oscillator1controls.js',
         'js/_oscillator2controls.js',
@@ -55,7 +56,9 @@ gulp.task('dev', function () {
     .pipe(jslint({
         browser: true,
         devel: true,
-        predef: ['$', 'AudioContext', 'Float32Array']
+        sloppy: true,
+        white: true,
+        predef: ['$', 'AudioContext', 'Float32Array', 'debugger']
     }))
     .pipe(uglify())
     .pipe(gulp.dest('tanguy/js'))
