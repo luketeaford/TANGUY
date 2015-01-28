@@ -613,9 +613,19 @@ TANGUY.set_kbd = function () {
     }
 };
 
-TANGUY.gate_on = function () {
+TANGUY.gate_on = function (event) {
     'use strict';
-    TANGUY.calculate_pitch(parseFloat(this.getAttribute('data-keyboard-position')), parseFloat(this.getAttribute('data-note-value')));
+    var pos,
+        note_value;
+
+    if (this.getAttribute) {
+        pos = parseFloat(this.getAttribute('data-keyboard-position'));
+        note_value = parseFloat(this.getAttribute('data-note-value'));
+    } else {
+        pos = Math.floor(event.data[1] / 12) - 5;
+        note_value = 100 * (event.data[1] % 12) - 900;
+    }
+    TANGUY.calculate_pitch(pos, note_value);
     TANGUY.filter_env_on();
     return TANGUY.amp_env_on();
 };
@@ -1089,20 +1099,31 @@ TANGUY.MIDI = {
     }
 };
 
+TANGUY.MIDI.events = function (event) {
+    'use strict';
+    switch (event.data[0]) {
+    case TANGUY.MIDI.messages.NOTE_ON:
+        TANGUY.gate_on(event);
+        break;
+    case TANGUY.MIDI.messages.NOTE_OFF: 
+        TANGUY.key_release('#c1');
+        break;
+    }
+};
+
 TANGUY.MIDI.getDevices().then(function(devices){
     'use strict';
 
     TANGUY.MIDI.devices = devices;
 
-    var i = 0,
-        MIDIlog = function(message) {
-            console.log(message.data);
-        };
+    var i = 0;
 
     for (i; i < devices.length; i+=1) {
-        TANGUY.MIDI.devices[i].onmidimessage = MIDIlog;
+        TANGUY.MIDI.devices[i].onmidimessage = TANGUY.MIDI.events;
     }
 });
+
+
 $(document).ready(function () {
     'use strict';
     TANGUY.build_synth();
