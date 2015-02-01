@@ -56,9 +56,7 @@ gulp.task('dev', function () {
     .pipe(jslint({
         browser: true,
         devel: true,
-        sloppy: true,
-        white: true,
-        predef: ['$', 'AudioContext', 'Float32Array', 'debugger']
+        predef: ['$', 'AudioContext', 'Float32Array']
     }))
     .pipe(uglify())
     .pipe(gulp.dest('tanguy/js'))
