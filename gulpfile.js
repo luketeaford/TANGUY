@@ -97,4 +97,4 @@ gulp.task('watch', function () {
     gulp.watch('images/*', ['images']);
 });
 
-gulp.task('default', ['watch', 'browsersync']);
+gulp.task('default', ['dev', 'watch', 'browsersync']);

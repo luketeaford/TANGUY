@@ -28,7 +28,7 @@ $(document).ready(function () {
     $('#portamento').on('mousedown touchstart', 'input.horizontal-slider', TANGUY.slider.grab);//CLEAN UP
 
     // Start oscillators
-    $('#keyboard').one('mousedown keydown', 'button', TANGUY.start_synth);
+    $('#keyboard').one('mousedown keydown touchstart', 'button', TANGUY.start_synth);
 
     // Synth keys
     $('#keyboard').on('mousedown touchstart', 'button', TANGUY.gate_on)
