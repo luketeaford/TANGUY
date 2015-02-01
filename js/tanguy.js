@@ -1045,7 +1045,7 @@ TANGUY.start_synth = function () {
     TANGUY.purple_noise.start(0);
     TANGUY.lfo.start(0);
 
-    // Prevent the other event from calling start_synth
+    // Prevent any future events from calling start_synth
     $('#keyboard').off('mousedown keydown touchstart', 'button', TANGUY.start_synth);
 };
 
@@ -1123,7 +1123,7 @@ if (navigator.requestMIDIAccess) {
             TANGUY.midi_pitch_bend();
             break;
         case TANGUY.midi.messages.mod:
-            console.log('Modwheel midi');
+            TANGUY.midi_mod_wheel();
             break;
         case TANGUY.midi.messages.atouch:
             console.log('Aftertouch!', event.data);
@@ -1346,6 +1346,15 @@ TANGUY.update_lfo_filter = function () {
 TANGUY.update_lfo_amp = function () {
     'use strict';
     return TANGUY.lfo_amp_vca.gain.setValueAtTime(TANGUY.program.lfo_amp * TANGUY.program.mod * TANGUY.program.mod_direction, TANGUY.synth.currentTime);
+};
+
+TANGUY.midi_mod_wheel = function () {
+    'use strict';
+    TANGUY.program.mod = event.data[2] / 127;
+    TANGUY.calculate_lfo();
+    if (event.data[1] === 1) {
+        return $('#mod-amount').val(TANGUY.program.mod);
+    }
 };
 
 TANGUY.update_delay_rate = function () {

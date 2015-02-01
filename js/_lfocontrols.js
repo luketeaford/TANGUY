@@ -46,3 +46,12 @@ TANGUY.update_lfo_amp = function () {
     'use strict';
     return TANGUY.lfo_amp_vca.gain.setValueAtTime(TANGUY.program.lfo_amp * TANGUY.program.mod * TANGUY.program.mod_direction, TANGUY.synth.currentTime);
 };
+
+TANGUY.midi_mod_wheel = function () {
+    'use strict';
+    TANGUY.program.mod = event.data[2] / 127;
+    TANGUY.calculate_lfo();
+    if (event.data[1] === 1) {
+        return $('#mod-amount').val(TANGUY.program.mod);
+    }
+};

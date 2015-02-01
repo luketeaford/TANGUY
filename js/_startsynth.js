@@ -12,6 +12,6 @@ TANGUY.start_synth = function () {
     TANGUY.purple_noise.start(0);
     TANGUY.lfo.start(0);
 
-    // Prevent the other event from calling start_synth
+    // Prevent any future events from calling start_synth
     $('#keyboard').off('mousedown keydown touchstart', 'button', TANGUY.start_synth);
 };

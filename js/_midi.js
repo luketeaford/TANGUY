@@ -55,7 +55,7 @@ if (navigator.requestMIDIAccess) {
             TANGUY.midi_pitch_bend();
             break;
         case TANGUY.midi.messages.mod:
-            console.log('Modwheel midi');
+            TANGUY.midi_mod_wheel();
             break;
         case TANGUY.midi.messages.atouch:
             console.log('Aftertouch!', event.data);
