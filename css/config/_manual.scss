@@ -107,6 +107,11 @@ p {
   line-height: 1.7;
   margin: 1rem 0;
   max-width: 28rem;
+
+  a {
+    font-size: inherit;
+  }
+
 }
 
 i {
