@@ -14,6 +14,7 @@ TANGUY.order_programs = function () {
         'panhandler bass',
         'sloppy bass',
         'perry on the beach',
+        //'stress test',
         'teardrop bass',
 
         //LEADS

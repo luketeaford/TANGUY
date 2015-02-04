@@ -29,7 +29,8 @@ var TANGUY = {
     octave_shift: 0,
     osc1_master_pitch: 440,
     osc2_master_pitch: 444.18,
-    key_down: false
+    key_down: false,
+    playing: []
 
 };
 
@@ -55,6 +56,7 @@ TANGUY.order_programs = function () {
         'panhandler bass',
         'sloppy bass',
         'perry on the beach',
+        //'stress test',
         'teardrop bass',
 
         //LEADS
@@ -1120,19 +1122,42 @@ if (navigator.requestMIDIAccess) {
 
     TANGUY.midi.events = function (event) {
         'use strict';
+        var n = event.data[1],
+            // Sloppy way to enable legato (reappears in gate_on)...
+            pos = Math.floor(n / 12) - 5,
+            note_value = 100 * (n % 12) - 900;
+
         switch (event.data[0]) {
         case TANGUY.midi.messages.listen:
             break;
         case TANGUY.midi.messages.note_on:
             // Some MIDI controllers send 0 velocity intead of note_off
             if (event.data[2] >= 1) {
-                TANGUY.gate_on(event);
+                if (TANGUY.playing.length === 0) {
+                    TANGUY.gate_on(event);
+                    TANGUY.playing.push(n);
+                } else {
+                    TANGUY.calculate_pitch(pos, note_value);
+                    TANGUY.playing.push(n);
+                }
             } else {
+                // Cheap MIDI controller sends 0 velocity
                 TANGUY.gate_off(event);
             }
             break;
         case TANGUY.midi.messages.note_off:
-            TANGUY.gate_off(event);
+            TANGUY.playing.pop();
+            if (TANGUY.playing.length) {
+                // Sloppy way to do this...
+                (function () {
+                    n = TANGUY.playing[TANGUY.playing.length - 1];// Set to lowest key
+                    pos = Math.floor(n / 12) - 5;
+                    note_value = 100 * (n % 12) - 900;
+                    TANGUY.calculate_pitch(pos, note_value);
+                }());
+            } else {
+                TANGUY.gate_off(event);
+            }
             break;
         case TANGUY.midi.messages.pitch:
             TANGUY.midi_pitch_bend();
@@ -1159,7 +1184,7 @@ if (navigator.requestMIDIAccess) {
         }
     });
 } else {
-    console.log('Your browser does not support Web MIDI');
+    console.log('Your browser does not support Web MIDI.');
 }
 
 $(document).ready(function () {
