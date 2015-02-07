@@ -6,7 +6,8 @@ if (navigator.requestMIDIAccess) {
             note_off: 128,
             pitch: 224,
             mod: 176,
-            atouch: 208
+            atouch: 208,
+            program: 192
         },
 
         devices: [],
@@ -56,20 +57,27 @@ if (navigator.requestMIDIAccess) {
                     TANGUY.playing.push(n);
                 }
             } else {
-                // Cheap MIDI controller sends 0 velocity
-                TANGUY.gate_off(event);
+                TANGUY.playing.pop();
+                if (TANGUY.playing.length) {
+                    // Sloppy way to do this...
+                    n = TANGUY.playing.sort()[TANGUY.playing.length - 1];// Set to highest key
+                    pos = Math.floor(n / 12) - 5;
+                    note_value = 100 * (n % 12) - 900;
+                    TANGUY.calculate_pitch(pos, note_value);
+                } else {
+                    // Cheap MIDI controller sends 0 velocity
+                    TANGUY.gate_off(event);
+                }
             }
             break;
         case TANGUY.midi.messages.note_off:
             TANGUY.playing.pop();
             if (TANGUY.playing.length) {
                 // Sloppy way to do this...
-                (function () {
-                    n = TANGUY.playing[TANGUY.playing.length - 1];// Set to lowest key
-                    pos = Math.floor(n / 12) - 5;
-                    note_value = 100 * (n % 12) - 900;
-                    TANGUY.calculate_pitch(pos, note_value);
-                }());
+                n = TANGUY.playing.sort()[TANGUY.playing.length - 1];// Set to highest key
+                pos = Math.floor(n / 12) - 5;
+                note_value = 100 * (n % 12) - 900;
+                TANGUY.calculate_pitch(pos, note_value);
             } else {
                 TANGUY.gate_off(event);
             }
@@ -83,8 +91,12 @@ if (navigator.requestMIDIAccess) {
         case TANGUY.midi.messages.atouch:
             TANGUY.aftertouch();
             break;
+        case TANGUY.midi.messages.program:
+            n = (event.data[1] > 0) ? 1 : -1;
+            TANGUY.change_program(n);
+            break;
         default:
-            console.log(event);
+            console.log('Unrecognized MIDI event', event);
             break;
         }
     };
