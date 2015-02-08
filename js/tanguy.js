@@ -29,7 +29,6 @@ var TANGUY = {
     octave_shift: 0,
     osc1_master_pitch: 440,
     osc2_master_pitch: 444.18,
-    key_down: false,
     playing: []
 
 };
@@ -1629,14 +1628,16 @@ TANGUY.store_program = function (e) {
     }
     return;
 };
-TANGUY.key_press = function (x) {
+TANGUY.key_press = function (x, key) {
     'use strict';
-    return $(x).trigger('mousedown').addClass('playing');
+    TANGUY.recent = key;
+    return $(x).trigger('touchstart').addClass('playing');
 };
 
 TANGUY.key_release = function (x) {
     'use strict';
-    return $(x).trigger('mouseup').removeClass('playing');
+    TANGUY.recent = 0;
+    return $(x).trigger('touchend').removeClass('playing');
 };
 
 $(document).keypress(function (key) {
@@ -1665,131 +1666,126 @@ $(document).keypress(function (key) {
     }
 }).keydown(function (key) {
     'use strict';
-    if (TANGUY.key_down === false) {
-        TANGUY.key_active = key.which;
-        TANGUY.key_down = true;
+    if (TANGUY.recent !== key.which) {
         switch (key.which) {
         case 65:
-            TANGUY.key_press('#c1');
+            TANGUY.key_press('#c1', key.which);
             break;
         case 83:
-            TANGUY.key_press('#d1');
+            TANGUY.key_press('#d1', key.which);
             break;
         case 68:
-            TANGUY.key_press('#e1');
+            TANGUY.key_press('#e1', key.which);
             break;
         case 70:
-            TANGUY.key_press('#f1');
+            TANGUY.key_press('#f1', key.which);
             break;
         case 71:
-            TANGUY.key_press('#g1');
+            TANGUY.key_press('#g1', key.which);
             break;
         case 72:
-            TANGUY.key_press('#a1');
+            TANGUY.key_press('#a1', key.which);
             break;
         case 74:
-            TANGUY.key_press('#b1');
+            TANGUY.key_press('#b1', key.which);
             break;
         case 75:
-            TANGUY.key_press('#c2');
+            TANGUY.key_press('#c2', key.which);
             break;
         case 76:
-            TANGUY.key_press('#d2');
+            TANGUY.key_press('#d2', key.which);
             break;
         case 186:
-            TANGUY.key_press('#e2');
+            TANGUY.key_press('#e2', key.which);
             break;
         case 222:
-            TANGUY.key_press('#f2');
+            TANGUY.key_press('#f2', key.which);
             break;
         case 87:
-            TANGUY.key_press('#cs1');
+            TANGUY.key_press('#cs1', key.which);
             break;
         case 69:
-            TANGUY.key_press('#ds1');
+            TANGUY.key_press('#ds1', key.which);
             break;
         case 84:
-            TANGUY.key_press('#fs1');
+            TANGUY.key_press('#fs1', key.which);
             break;
         case 89:
-            TANGUY.key_press('#gs1');
+            TANGUY.key_press('#gs1', key.which);
             break;
         case 85:
-            TANGUY.key_press('#as1');
+            TANGUY.key_press('#as1', key.which);
             break;
         case 79:
-            TANGUY.key_press('#cs2');
+            TANGUY.key_press('#cs2', key.which);
             break;
         case 80:
-            TANGUY.key_press('#ds2');
+            TANGUY.key_press('#ds2', key.which);
             break;
         case 221:
-            TANGUY.key_press('#fs2');
+            TANGUY.key_press('#fs2', key.which);
             break;
         }
     }
 }).keyup(function (key) {
     'use strict';
-    if (key.which === TANGUY.key_active) {
-        TANGUY.key_down = false;
-        switch (key.which) {
-        case 65:
-            TANGUY.key_release('#c1');
-            break;
-        case 83:
-            TANGUY.key_release('#d1');
-            break;
-        case 68:
-            TANGUY.key_release('#e1');
-            break;
-        case 70:
-            TANGUY.key_release('#f1');
-            break;
-        case 71:
-            TANGUY.key_release('#g1');
-            break;
-        case 72:
-            TANGUY.key_release('#a1');
-            break;
-        case 74:
-            TANGUY.key_release('#b1');
-            break;
-        case 75:
-            TANGUY.key_release('#c2');
-            break;
-        case 76:
-            TANGUY.key_release('#d2');
-            break;
-        case 186:
-            TANGUY.key_release('#e2');
-            break;
-        case 222:
-            TANGUY.key_release('#f2');
-            break;
-        case 87:
-            TANGUY.key_release('#cs1');
-            break;
-        case 69:
-            TANGUY.key_release('#ds1');
-            break;
-        case 84:
-            TANGUY.key_release('#fs1');
-            break;
-        case 89:
-            TANGUY.key_release('#gs1');
-            break;
-        case 85:
-            TANGUY.key_release('#as1');
-            break;
-        case 79:
-            TANGUY.key_release('#cs2');
-            break;
-        case 80:
-            TANGUY.key_release('#ds2');
-            break;
-        case 221:
-            TANGUY.key_release('#fs2');
-            break;
-        }
+    switch (key.which) {
+    case 65:
+        TANGUY.key_release('#c1');
+        break;
+    case 83:
+        TANGUY.key_release('#d1');
+        break;
+    case 68:
+        TANGUY.key_release('#e1');
+        break;
+    case 70:
+        TANGUY.key_release('#f1');
+        break;
+    case 71:
+        TANGUY.key_release('#g1');
+        break;
+    case 72:
+        TANGUY.key_release('#a1');
+        break;
+    case 74:
+        TANGUY.key_release('#b1');
+        break;
+    case 75:
+        TANGUY.key_release('#c2');
+        break;
+    case 76:
+        TANGUY.key_release('#d2');
+        break;
+    case 186:
+        TANGUY.key_release('#e2');
+        break;
+    case 222:
+        TANGUY.key_release('#f2');
+        break;
+    case 87:
+        TANGUY.key_release('#cs1');
+        break;
+    case 69:
+        TANGUY.key_release('#ds1');
+        break;
+    case 84:
+        TANGUY.key_release('#fs1');
+        break;
+    case 89:
+        TANGUY.key_release('#gs1');
+        break;
+    case 85:
+        TANGUY.key_release('#as1');
+        break;
+    case 79:
+        TANGUY.key_release('#cs2');
+        break;
+    case 80:
+        TANGUY.key_release('#ds2');
+        break;
+    case 221:
+        TANGUY.key_release('#fs2');
+        break;
     }
 });

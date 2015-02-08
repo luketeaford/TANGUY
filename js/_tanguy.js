@@ -10,7 +10,6 @@ var TANGUY = {
     octave_shift: 0,
     osc1_master_pitch: 440,
     osc2_master_pitch: 444.18,
-    key_down: false,
     playing: []
 
 };
