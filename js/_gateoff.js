@@ -1,7 +1,15 @@
 TANGUY.gate_off = function () {
     'use strict';
-    TANGUY.filter_env_off();
-    TANGUY.amp_env_off();
+    TANGUY.playing.pop();
+    if (TANGUY.playing.length) {
+        var n = TANGUY.playing.sort()[TANGUY.playing.length - 1],
+            pos = Math.floor(n / 12) - 5,
+            note_value = 100 * (n % 12) - 900;
+        TANGUY.calculate_pitch(pos, note_value);
+    } else {
+        TANGUY.filter_env_off();
+        TANGUY.amp_env_off();
+    }
 };
 
 TANGUY.filter_env_off = function () {

@@ -1,18 +1,27 @@
 TANGUY.gate_on = function (event) {
     'use strict';
-    var pos,
+    var n,
+        pos,
         note_value;
 
+    if (TANGUY.playing.length === 0) {
+        TANGUY.filter_env_on();
+        TANGUY.amp_env_on();
+    }
+
     if (this.getAttribute) {
+        // Notes coming from qwerty or touch
         pos = parseFloat(this.getAttribute('data-keyboard-position'));
         note_value = parseFloat(this.getAttribute('data-note-value'));
+        n = ((note_value + 900) / 100) + 48 + ((pos + 1) * 12);
     } else {
-        pos = Math.floor(event.data[1] / 12) - 5;
-        note_value = 100 * (event.data[1] % 12) - 900;
+        // Notes coming from MIDI
+        n = event.data[1];
+        pos = Math.floor(n / 12) - 5;
+        note_value = 100 * (n % 12) - 900;
     }
+    TANGUY.playing.push(n);
     TANGUY.calculate_pitch(pos, note_value);
-    TANGUY.filter_env_on();
-    return TANGUY.amp_env_on();
 };
 
 TANGUY.filter_env_on = function () {

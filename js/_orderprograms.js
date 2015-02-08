@@ -27,6 +27,7 @@ TANGUY.order_programs = function () {
         'former marine',
         'lettuce in',
         'cool wire',
+        //'sonic surrealism',
         'dolphin sighting',
         'rhinoceros',
         'wah wah',

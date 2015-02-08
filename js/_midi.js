@@ -38,10 +38,7 @@ if (navigator.requestMIDIAccess) {
 
     TANGUY.midi.events = function (event) {
         'use strict';
-        var n = event.data[1],
-            // Sloppy way to enable legato (reappears in gate_on)...
-            pos = Math.floor(n / 12) - 5,
-            note_value = 100 * (n % 12) - 900;
+        var n = event.data[1];
 
         switch (event.data[0]) {
         case TANGUY.midi.messages.listen:
@@ -49,38 +46,14 @@ if (navigator.requestMIDIAccess) {
         case TANGUY.midi.messages.note_on:
             // Some MIDI controllers send 0 velocity intead of note_off
             if (event.data[2] >= 1) {
-                if (TANGUY.playing.length === 0) {
-                    TANGUY.gate_on(event);
-                    TANGUY.playing.push(n);
-                } else {
-                    TANGUY.calculate_pitch(pos, note_value);
-                    TANGUY.playing.push(n);
-                }
+                TANGUY.gate_on(event);
             } else {
-                TANGUY.playing.pop();
-                if (TANGUY.playing.length) {
-                    // Sloppy way to do this...
-                    n = TANGUY.playing.sort()[TANGUY.playing.length - 1];// Set to highest key
-                    pos = Math.floor(n / 12) - 5;
-                    note_value = 100 * (n % 12) - 900;
-                    TANGUY.calculate_pitch(pos, note_value);
-                } else {
-                    // Cheap MIDI controller sends 0 velocity
-                    TANGUY.gate_off(event);
-                }
+                // Cheap MIDI controller note_off
+                TANGUY.gate_off(event);
             }
             break;
         case TANGUY.midi.messages.note_off:
-            TANGUY.playing.pop();
-            if (TANGUY.playing.length) {
-                // Sloppy way to do this...
-                n = TANGUY.playing.sort()[TANGUY.playing.length - 1];// Set to highest key
-                pos = Math.floor(n / 12) - 5;
-                note_value = 100 * (n % 12) - 900;
-                TANGUY.calculate_pitch(pos, note_value);
-            } else {
-                TANGUY.gate_off(event);
-            }
+            TANGUY.gate_off(event);
             break;
         case TANGUY.midi.messages.pitch:
             TANGUY.midi_pitch_bend();
