@@ -55,7 +55,7 @@ TANGUY.order_programs = function () {
         'panhandler bass',
         'sloppy bass',
         'perry on the beach',
-        //'stress test',
+        'stress test',
         'teardrop bass',
 
         //LEADS
@@ -68,11 +68,11 @@ TANGUY.order_programs = function () {
         'former marine',
         'lettuce in',
         'cool wire',
-        //'sonic surrealism',
+        'sonic surrealism',
         'dolphin sighting',
         'rhinoceros',
         'wah wah',
-        //'tuba',
+        'tuba',
         'sundog',
         'black celebration',
         'ponytail',
@@ -637,7 +637,13 @@ TANGUY.gate_on = function (event) {
         pos = Math.floor(n / 12) - 5;
         note_value = 100 * (n % 12) - 900;
     }
-    TANGUY.playing.push(n);
+
+    if (TANGUY.playing.indexOf(n) === -1) {
+        TANGUY.playing.push(n);
+    } else {
+        console.log('Double caught:', n);
+    }
+
     TANGUY.calculate_pitch(pos, note_value);
 };
 

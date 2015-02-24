@@ -14,7 +14,7 @@ TANGUY.order_programs = function () {
         'panhandler bass',
         'sloppy bass',
         'perry on the beach',
-        //'stress test',
+        'stress test',
         'teardrop bass',
 
         //LEADS
@@ -27,11 +27,11 @@ TANGUY.order_programs = function () {
         'former marine',
         'lettuce in',
         'cool wire',
-        //'sonic surrealism',
+        'sonic surrealism',
         'dolphin sighting',
         'rhinoceros',
         'wah wah',
-        //'tuba',
+        'tuba',
         'sundog',
         'black celebration',
         'ponytail',
