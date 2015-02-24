@@ -638,10 +638,9 @@ TANGUY.gate_on = function (event) {
         note_value = 100 * (n % 12) - 900;
     }
 
+    // Prevent duplicate notes
     if (TANGUY.playing.indexOf(n) === -1) {
         TANGUY.playing.push(n);
-    } else {
-        console.log('Double caught:', n);
     }
 
     TANGUY.calculate_pitch(pos, note_value);
