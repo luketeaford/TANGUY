@@ -10,7 +10,7 @@ TANGUY.key_release = function (x) {
     return $(x).trigger('touchend').removeClass('playing');
 };
 
-$(document).keypress(function (key) {
+TANGUY.qwerty_press = function (key) {
     'use strict';
     switch (key.which) {
     case 45:
@@ -34,7 +34,9 @@ $(document).keypress(function (key) {
         TANGUY.save_program();
         break;
     }
-}).keydown(function (key) {
+};
+
+TANGUY.qwerty_down = function (key) {
     'use strict';
     if (TANGUY.recent !== key.which) {
         switch (key.which) {
@@ -97,7 +99,9 @@ $(document).keypress(function (key) {
             break;
         }
     }
-}).keyup(function (key) {
+};
+
+TANGUY.qwerty_up = function (key) {
     'use strict';
     switch (key.which) {
     case 65:
@@ -158,4 +162,4 @@ $(document).keypress(function (key) {
         TANGUY.key_release('#fs2');
         break;
     }
-});
+};

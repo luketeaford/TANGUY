@@ -24,7 +24,6 @@ if (navigator.requestMIDIAccess) {
                     console.log('There are no MIDI devices');
                 } else {
                     TANGUY.start_synth();
-                    console.dir(devices);
                 }
 
                 for (input = inputs.next(); input && !input.done; input = inputs.next()) {

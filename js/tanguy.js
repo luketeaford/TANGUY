@@ -1131,7 +1131,6 @@ if (navigator.requestMIDIAccess) {
                     console.log('There are no MIDI devices');
                 } else {
                     TANGUY.start_synth();
-                    console.dir(devices);
                 }
 
                 for (input = inputs.next(); input && !input.done; input = inputs.next()) {
@@ -1212,24 +1211,33 @@ $(document).ready(function () {
     $('#octave-shift').on('click', 'button', function () {
         return TANGUY.shift_octave(this.getAttribute('data-octave-shift'));
     });
-    $('#osc1-kbd, #osc1-coarse, #osc2-kbd, #osc2-coarse, #osc2-waveform, #noise-color, #filter-mode, #lfo-shape, #portamento-mode').on('change', 'input', TANGUY.button.touch);
+    $('#osc1-kbd, #osc1-coarse, #osc2-kbd, #osc2-coarse, #osc2-waveform, #noise-color, #filter-mode, #lfo-shape, #portamento-mode')
+        .on('change', 'input', TANGUY.button.touch);
 
     // Sliders
-    $('#osc1, #osc2, #mixer, #filter, #filter-eg, #vca-eg, #lfo, #delay').on('mousedown touchstart', 'input.vertical-slider', TANGUY.slider.grab);
+    $('#osc1, #osc2, #mixer, #filter, #filter-eg, #vca-eg, #lfo, #delay')
+        .on('mousedown touchstart', 'input.vertical-slider', TANGUY.slider.grab);
 
     // Performance controls
-    $('#pitch-bend').on('mousedown touchstart', TANGUY.pitch_wheel)
-                    .on('mouseup touchend', TANGUY.pitch_release);
-    $('#mod-wheel').on('mousedown touchstart', 'input', TANGUY.slider.grab);//CLEAN UP
-    $('#portamento').on('mousedown touchstart', 'input.horizontal-slider', TANGUY.slider.grab);//CLEAN UP
+    $('#pitch-bend')
+        .on('mousedown touchstart', TANGUY.pitch_wheel)
+        .on('mouseup touchend', TANGUY.pitch_release);
+    $('#mod-wheel').on('mousedown touchstart', 'input', TANGUY.slider.grab);
+    $('#portamento').on('mousedown touchstart', '.horizontal-slider', TANGUY.slider.grab);
 
-    // Start oscillators
-    $('#keyboard').one('mousedown keydown touchstart', 'button', TANGUY.start_synth);
+    $('#keyboard')
+        // Start oscillators
+        .one('mousedown keydown touchstart', 'button', TANGUY.start_synth)
+        // Synth keys
+        .on('mousedown touchstart', 'button', TANGUY.gate_on)
+        .on('mouseup touchend', 'button', TANGUY.gate_off);
 
-    // Synth keys
-    $('#keyboard').on('mousedown touchstart', 'button', TANGUY.gate_on)
-                  .on('mouseup touchend', 'button', TANGUY.gate_off);
-
+    // Qwerty keyboard
+    $(document).on({
+        keypress: TANGUY.qwerty_press,
+        keydown: TANGUY.qwerty_down,
+        keyup: TANGUY.qwerty_up
+    });
 });
 
 TANGUY.update_osc1_coarse = function () {
@@ -1645,7 +1653,7 @@ TANGUY.key_release = function (x) {
     return $(x).trigger('touchend').removeClass('playing');
 };
 
-$(document).keypress(function (key) {
+TANGUY.qwerty_press = function (key) {
     'use strict';
     switch (key.which) {
     case 45:
@@ -1669,7 +1677,9 @@ $(document).keypress(function (key) {
         TANGUY.save_program();
         break;
     }
-}).keydown(function (key) {
+};
+
+TANGUY.qwerty_down = function (key) {
     'use strict';
     if (TANGUY.recent !== key.which) {
         switch (key.which) {
@@ -1732,7 +1742,9 @@ $(document).keypress(function (key) {
             break;
         }
     }
-}).keyup(function (key) {
+};
+
+TANGUY.qwerty_up = function (key) {
     'use strict';
     switch (key.which) {
     case 65:
@@ -1793,4 +1805,4 @@ $(document).keypress(function (key) {
         TANGUY.key_release('#fs2');
         break;
     }
-});
+};
