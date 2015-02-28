@@ -8,6 +8,7 @@ TANGUY.order_programs = function () {
         'eyeball bass',
         'stylish bass',
         'square wave bass',
+        'basic acid',
         'whompy bass',
         'abominable bassman',
         'snarly bass',

@@ -9,41 +9,42 @@ TANGUY.calculate_pitch = function (pos, note_value) {
 TANGUY.set_pitch = function () {
     'use strict';
     var osc1 = [TANGUY.osc1_saw, TANGUY.osc1_sqr, TANGUY.osc1_tri, TANGUY.osc1_sin],
+        osc1_pitch = TANGUY.osc1_pitch + TANGUY.bend,
+        osc2_pitch = TANGUY.osc2_pitch + TANGUY.bend,
         i;
 
     switch (TANGUY.program.portamento_mode) {
     case 'off':
         if (TANGUY.program.osc1_kbd === true) {
             for (i = 0; i < 4; i += 1) {
-                osc1[i].detune.setValueAtTime(TANGUY.osc1_pitch, TANGUY.synth.currentTime);
+                osc1[i].detune.setValueAtTime(osc1_pitch, TANGUY.synth.currentTime);
             }
         }
         if (TANGUY.program.osc2_kbd === true) {
-            TANGUY.osc2.detune.setValueAtTime(TANGUY.osc2_pitch, TANGUY.synth.currentTime);
+            TANGUY.osc2.detune.setValueAtTime(osc2_pitch, TANGUY.synth.currentTime);
         }
         break;
     case 'linear':
         if (TANGUY.program.osc1_kbd === true) {
             for (i = 0; i < 4; i += 1) {
-                osc1[i].detune.linearRampToValueAtTime(TANGUY.osc1_pitch, TANGUY.synth.currentTime + TANGUY.program.portamento);
+                osc1[i].detune.linearRampToValueAtTime(osc1_pitch, TANGUY.synth.currentTime + TANGUY.program.portamento);
             }
         }
         if (TANGUY.program.osc2_kbd === true) {
-            TANGUY.osc2.detune.linearRampToValueAtTime(TANGUY.osc2_pitch, TANGUY.synth.currentTime + TANGUY.program.portamento);
+            TANGUY.osc2.detune.linearRampToValueAtTime(osc2_pitch, TANGUY.synth.currentTime + TANGUY.program.portamento);
         }
         break;
     case 'exponential':
         if (TANGUY.program.osc1_kbd === true) {
             for (i = 0; i < 4; i += 1) {
-                osc1[i].detune.setTargetAtTime(TANGUY.osc1_pitch, TANGUY.synth.currentTime, TANGUY.program.portamento / 5);
+                osc1[i].detune.setTargetAtTime(osc1_pitch, TANGUY.synth.currentTime, TANGUY.program.portamento / 5);
             }
         }
         if (TANGUY.program.osc2_kbd === true) {
-            TANGUY.osc2.detune.setTargetAtTime(TANGUY.osc2_pitch, TANGUY.synth.currentTime, TANGUY.program.portamento / 5);
+            TANGUY.osc2.detune.setTargetAtTime(osc2_pitch, TANGUY.synth.currentTime, TANGUY.program.portamento / 5);
         }
         break;
     }
-
     return TANGUY.set_kbd();
 };
 

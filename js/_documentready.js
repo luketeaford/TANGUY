@@ -13,6 +13,10 @@ $(document).ready(function () {
     });
 
     // Panel controls
+    $('#legato').on('click', 'input', function () {
+        //return TANGUY.change_legato(this.getAttribute('value'));
+        return TANGUY.change_legato(this);
+    });
     $('#octave-shift').on('click', 'button', function () {
         return TANGUY.shift_octave(this.getAttribute('data-octave-shift'));
     });

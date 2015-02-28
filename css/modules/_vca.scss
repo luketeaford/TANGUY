@@ -6,3 +6,8 @@
   }
 
 }
+
+#legato {
+  @extend %vertical-switch;
+  margin-top: -.8rem;
+}

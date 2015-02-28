@@ -3,14 +3,24 @@ TANGUY.pitch_wheel = function () {
     return $(this).on('mousemove touchmove', TANGUY.pitch_bend);
 };
 
-TANGUY.pitch_bend = function () {
+TANGUY.pitch_bend = function (semitones) {
     'use strict';
-    var osc1 = [TANGUY.osc1_saw, TANGUY.osc1_sqr, TANGUY.osc1_tri, TANGUY.osc1_sin],
+    var st,
+        osc1 = [TANGUY.osc1_saw, TANGUY.osc1_sqr, TANGUY.osc1_tri, TANGUY.osc1_sin],
         i;
+
+    st = this.value ? (this.value * 100) : semitones;
+
     for (i = 0; i < 4; i += 1) {
-        osc1[i].detune.setTargetAtTime(TANGUY.osc1_pitch + (this.value * 100), TANGUY.synth.currentTime, 0.2);
+        osc1[i].detune.setTargetAtTime(TANGUY.osc1_pitch + st, TANGUY.synth.currentTime, 0.2);
     }
-    TANGUY.osc2.detune.setTargetAtTime(TANGUY.osc2_pitch + (this.value * 100), TANGUY.synth.currentTime, 0.2);
+    TANGUY.osc2.detune.setTargetAtTime(TANGUY.osc2_pitch + st, TANGUY.synth.currentTime, 0.2);
+
+    TANGUY.bend = st;
+
+    if (!this.value) {
+        return $('#pitch-bend').val(st);
+    }
 };
 
 TANGUY.pitch_release = function () {
@@ -24,6 +34,8 @@ TANGUY.pitch_release = function () {
         osc1[i].detune.setTargetAtTime(TANGUY.osc1_pitch + (this.value * 100), TANGUY.synth.currentTime, 0.2);
     }
     TANGUY.osc2.detune.setTargetAtTime(TANGUY.osc2_pitch + (this.value * 100), TANGUY.synth.currentTime, 0.2);
+
+    TANGUY.bend = 0;
 };
 
 TANGUY.midi_pitch_bend = function () {
@@ -39,5 +51,8 @@ TANGUY.midi_pitch_bend = function () {
         osc1[i].detune.setTargetAtTime(TANGUY.osc1_pitch + cents, TANGUY.synth.currentTime, 0.2);
         TANGUY.osc2.detune.setTargetAtTime(TANGUY.osc2_pitch + cents, TANGUY.synth.currentTime, 0.2);
     }
+
+    TANGUY.bend = cents;
+
     return $('#pitch-bend').val(cents / 100);
 };

@@ -6,8 +6,7 @@ TANGUY is a two oscillator monosynth built with Web Audio. Various techniques ar
 
 ##Browser Support:
 * Best in Chrome, Opera, and Safari on desktop browsers.
-* Works on iPhone5 in Chrome (not Safari)
-* Works on iPhone6 and 6+ in Chrome and Safari
-* Works on Android devices (but there's a hanging key problem I didn't have time to fix before the WAC)
+* Works on iPhone5/6/6+ in Chrome and Safari
+* Works on Android devices (but you have to deal with a hanging key for now)
 
 Thank you, fellow synth geeks!

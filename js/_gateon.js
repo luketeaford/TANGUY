@@ -4,7 +4,7 @@ TANGUY.gate_on = function (event) {
         pos,
         note_value;
 
-    if (TANGUY.playing.length === 0) {
+    if (TANGUY.playing.length === 0 || TANGUY.legato === false) {
         TANGUY.filter_env_on();
         TANGUY.amp_env_on();
     }

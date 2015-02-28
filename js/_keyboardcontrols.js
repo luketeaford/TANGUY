@@ -33,6 +33,11 @@ TANGUY.qwerty_press = function (key) {
     case 42:
         TANGUY.save_program();
         break;
+    case 32:
+        TANGUY.toggle_legato();
+        break;
+    default:
+        console.log(key.which);
     }
 };
 
@@ -40,6 +45,7 @@ TANGUY.qwerty_down = function (key) {
     'use strict';
     if (TANGUY.recent !== key.which) {
         switch (key.which) {
+        // Qwerty keyboard control
         case 65:
             TANGUY.key_press('#c1', key.which);
             break;
@@ -97,6 +103,10 @@ TANGUY.qwerty_down = function (key) {
         case 221:
             TANGUY.key_press('#fs2', key.which);
             break;
+        // Shift pitch bend
+        case 16:
+            TANGUY.pitch_bend(1200);
+            break;
         }
     }
 };
@@ -104,6 +114,7 @@ TANGUY.qwerty_down = function (key) {
 TANGUY.qwerty_up = function (key) {
     'use strict';
     switch (key.which) {
+    // Qwerty keyboard control
     case 65:
         TANGUY.key_release('#c1');
         break;
@@ -160,6 +171,10 @@ TANGUY.qwerty_up = function (key) {
         break;
     case 221:
         TANGUY.key_release('#fs2');
+        break;
+    // Shift pitch bend
+    case 16:
+        TANGUY.pitch_bend(0);
         break;
     }
 };

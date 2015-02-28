@@ -29,6 +29,8 @@ var TANGUY = {
     octave_shift: 0,
     osc1_master_pitch: 440,
     osc2_master_pitch: 444.18,
+    bend: 0,
+    legato: false,
     playing: []
 
 };
@@ -49,6 +51,7 @@ TANGUY.order_programs = function () {
         'eyeball bass',
         'stylish bass',
         'square wave bass',
+        'basic acid',
         'whompy bass',
         'abominable bassman',
         'snarly bass',
@@ -549,41 +552,42 @@ TANGUY.calculate_pitch = function (pos, note_value) {
 TANGUY.set_pitch = function () {
     'use strict';
     var osc1 = [TANGUY.osc1_saw, TANGUY.osc1_sqr, TANGUY.osc1_tri, TANGUY.osc1_sin],
+        osc1_pitch = TANGUY.osc1_pitch + TANGUY.bend,
+        osc2_pitch = TANGUY.osc2_pitch + TANGUY.bend,
         i;
 
     switch (TANGUY.program.portamento_mode) {
     case 'off':
         if (TANGUY.program.osc1_kbd === true) {
             for (i = 0; i < 4; i += 1) {
-                osc1[i].detune.setValueAtTime(TANGUY.osc1_pitch, TANGUY.synth.currentTime);
+                osc1[i].detune.setValueAtTime(osc1_pitch, TANGUY.synth.currentTime);
             }
         }
         if (TANGUY.program.osc2_kbd === true) {
-            TANGUY.osc2.detune.setValueAtTime(TANGUY.osc2_pitch, TANGUY.synth.currentTime);
+            TANGUY.osc2.detune.setValueAtTime(osc2_pitch, TANGUY.synth.currentTime);
         }
         break;
     case 'linear':
         if (TANGUY.program.osc1_kbd === true) {
             for (i = 0; i < 4; i += 1) {
-                osc1[i].detune.linearRampToValueAtTime(TANGUY.osc1_pitch, TANGUY.synth.currentTime + TANGUY.program.portamento);
+                osc1[i].detune.linearRampToValueAtTime(osc1_pitch, TANGUY.synth.currentTime + TANGUY.program.portamento);
             }
         }
         if (TANGUY.program.osc2_kbd === true) {
-            TANGUY.osc2.detune.linearRampToValueAtTime(TANGUY.osc2_pitch, TANGUY.synth.currentTime + TANGUY.program.portamento);
+            TANGUY.osc2.detune.linearRampToValueAtTime(osc2_pitch, TANGUY.synth.currentTime + TANGUY.program.portamento);
         }
         break;
     case 'exponential':
         if (TANGUY.program.osc1_kbd === true) {
             for (i = 0; i < 4; i += 1) {
-                osc1[i].detune.setTargetAtTime(TANGUY.osc1_pitch, TANGUY.synth.currentTime, TANGUY.program.portamento / 5);
+                osc1[i].detune.setTargetAtTime(osc1_pitch, TANGUY.synth.currentTime, TANGUY.program.portamento / 5);
             }
         }
         if (TANGUY.program.osc2_kbd === true) {
-            TANGUY.osc2.detune.setTargetAtTime(TANGUY.osc2_pitch, TANGUY.synth.currentTime, TANGUY.program.portamento / 5);
+            TANGUY.osc2.detune.setTargetAtTime(osc2_pitch, TANGUY.synth.currentTime, TANGUY.program.portamento / 5);
         }
         break;
     }
-
     return TANGUY.set_kbd();
 };
 
@@ -621,7 +625,7 @@ TANGUY.gate_on = function (event) {
         pos,
         note_value;
 
-    if (TANGUY.playing.length === 0) {
+    if (TANGUY.playing.length === 0 || TANGUY.legato === false) {
         TANGUY.filter_env_on();
         TANGUY.amp_env_on();
     }
@@ -1208,6 +1212,10 @@ $(document).ready(function () {
     });
 
     // Panel controls
+    $('#legato').on('click', 'input', function () {
+        //return TANGUY.change_legato(this.getAttribute('value'));
+        return TANGUY.change_legato(this);
+    });
     $('#octave-shift').on('click', 'button', function () {
         return TANGUY.shift_octave(this.getAttribute('data-octave-shift'));
     });
@@ -1536,19 +1544,46 @@ TANGUY.update_vca_gain = function () {
     'use strict';
     return TANGUY.vca.gain.setTargetAtTime(TANGUY.program.vca_gain * TANGUY.program.vca_gain, TANGUY.synth.currentTime, 0.01);
 };
+
+TANGUY.toggle_legato = function () {
+    'use strict';
+    TANGUY.legato = TANGUY.legato ? false : true;
+    if (TANGUY.legato) {
+        TANGUY.button.change($('#legato-on'));
+    } else {
+        TANGUY.button.change($('#legato-off'));
+    }
+};
+
+TANGUY.change_legato = function (e) {
+    'use strict';
+    TANGUY.legato = e.value === 'legato' ? true : false;
+    return TANGUY.button.change($(e));
+};
+
 TANGUY.pitch_wheel = function () {
     'use strict';
     return $(this).on('mousemove touchmove', TANGUY.pitch_bend);
 };
 
-TANGUY.pitch_bend = function () {
+TANGUY.pitch_bend = function (semitones) {
     'use strict';
-    var osc1 = [TANGUY.osc1_saw, TANGUY.osc1_sqr, TANGUY.osc1_tri, TANGUY.osc1_sin],
+    var st,
+        osc1 = [TANGUY.osc1_saw, TANGUY.osc1_sqr, TANGUY.osc1_tri, TANGUY.osc1_sin],
         i;
+
+    st = this.value ? (this.value * 100) : semitones;
+
     for (i = 0; i < 4; i += 1) {
-        osc1[i].detune.setTargetAtTime(TANGUY.osc1_pitch + (this.value * 100), TANGUY.synth.currentTime, 0.2);
+        osc1[i].detune.setTargetAtTime(TANGUY.osc1_pitch + st, TANGUY.synth.currentTime, 0.2);
     }
-    TANGUY.osc2.detune.setTargetAtTime(TANGUY.osc2_pitch + (this.value * 100), TANGUY.synth.currentTime, 0.2);
+    TANGUY.osc2.detune.setTargetAtTime(TANGUY.osc2_pitch + st, TANGUY.synth.currentTime, 0.2);
+
+    TANGUY.bend = st;
+
+    if (!this.value) {
+        return $('#pitch-bend').val(st);
+    }
 };
 
 TANGUY.pitch_release = function () {
@@ -1562,6 +1597,8 @@ TANGUY.pitch_release = function () {
         osc1[i].detune.setTargetAtTime(TANGUY.osc1_pitch + (this.value * 100), TANGUY.synth.currentTime, 0.2);
     }
     TANGUY.osc2.detune.setTargetAtTime(TANGUY.osc2_pitch + (this.value * 100), TANGUY.synth.currentTime, 0.2);
+
+    TANGUY.bend = 0;
 };
 
 TANGUY.midi_pitch_bend = function () {
@@ -1577,6 +1614,9 @@ TANGUY.midi_pitch_bend = function () {
         osc1[i].detune.setTargetAtTime(TANGUY.osc1_pitch + cents, TANGUY.synth.currentTime, 0.2);
         TANGUY.osc2.detune.setTargetAtTime(TANGUY.osc2_pitch + cents, TANGUY.synth.currentTime, 0.2);
     }
+
+    TANGUY.bend = cents;
+
     return $('#pitch-bend').val(cents / 100);
 };
 
@@ -1676,6 +1716,11 @@ TANGUY.qwerty_press = function (key) {
     case 42:
         TANGUY.save_program();
         break;
+    case 32:
+        TANGUY.toggle_legato();
+        break;
+    default:
+        console.log(key.which);
     }
 };
 
@@ -1683,6 +1728,7 @@ TANGUY.qwerty_down = function (key) {
     'use strict';
     if (TANGUY.recent !== key.which) {
         switch (key.which) {
+        // Qwerty keyboard control
         case 65:
             TANGUY.key_press('#c1', key.which);
             break;
@@ -1740,6 +1786,10 @@ TANGUY.qwerty_down = function (key) {
         case 221:
             TANGUY.key_press('#fs2', key.which);
             break;
+        // Shift pitch bend
+        case 16:
+            TANGUY.pitch_bend(1200);
+            break;
         }
     }
 };
@@ -1747,6 +1797,7 @@ TANGUY.qwerty_down = function (key) {
 TANGUY.qwerty_up = function (key) {
     'use strict';
     switch (key.which) {
+    // Qwerty keyboard control
     case 65:
         TANGUY.key_release('#c1');
         break;
@@ -1803,6 +1854,10 @@ TANGUY.qwerty_up = function (key) {
         break;
     case 221:
         TANGUY.key_release('#fs2');
+        break;
+    // Shift pitch bend
+    case 16:
+        TANGUY.pitch_bend(0);
         break;
     }
 };
