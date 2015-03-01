@@ -1716,11 +1716,10 @@ TANGUY.qwerty_press = function (key) {
     case 42:
         TANGUY.save_program();
         break;
-    case 32:
+    case 96:
+    case 126:
         TANGUY.toggle_legato();
         break;
-    default:
-        console.log(key.which);
     }
 };
 
