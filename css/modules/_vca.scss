@@ -9,5 +9,8 @@
 
 #legato {
   @extend %vertical-switch;
-  margin-top: -.8rem;
+  margin-top: .5rem;
+  @include bp(ql) {
+    margin-top: -.8rem;
+  }
 }
