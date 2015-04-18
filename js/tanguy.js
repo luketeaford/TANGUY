@@ -103,6 +103,7 @@ TANGUY.order_programs = function () {
         'razor view',
         'invisible hand',
         'vector style',
+        'hokey guitar',
 
         //VOCAL SOUNDS
         'dusty pipes',
@@ -136,6 +137,7 @@ TANGUY.order_programs = function () {
         'papayawhip',
         'science fiction brains',
         'mimosa',
+        'harmonic pulse',
         'wave of shadows',
 
         //PERCUSSION
@@ -154,6 +156,8 @@ TANGUY.order_programs = function () {
         'shiny hihat',
         'maracas',
         'beatnik bongos',
+        'high rimshot',
+        'less cowbell',
         'metal flap',
 
         //DRONES
@@ -181,7 +185,12 @@ TANGUY.order_programs = function () {
     }
     TANGUY.programs = programs;
     TANGUY.urls = urls;
-    return TANGUY.populate_programs();
+
+    TANGUY.populate_programs();
+
+    TANGUY.order_programs = function () {
+        return true;
+    };
 };
 
 TANGUY.populate_programs = function () {
@@ -192,6 +201,11 @@ TANGUY.populate_programs = function () {
         buttons += '<button value="' + TANGUY.urls[i] + '">' + TANGUY.programs[i] + '</button>';
     }
     $('#program-select').append(buttons);
+
+    TANGUY.populate_programs = function () {
+        return true;
+    };
+
     return TANGUY.load_program(TANGUY.urls[0]);
 };
 
@@ -1057,6 +1071,10 @@ TANGUY.build_synth = function () {
     TANGUY.lfo.connect(TANGUY.lfo_pitch_vca);
     TANGUY.lfo.connect(TANGUY.lfo_filter_vca);
     TANGUY.lfo.connect(TANGUY.lfo_amp_vca);
+
+    TANGUY.build_synth = function () {
+        return true;
+    };
 };
 
 TANGUY.start_synth = function () {
@@ -1075,11 +1093,21 @@ TANGUY.start_synth = function () {
 
     // Prevent any future events from calling start_synth
     $('#keyboard').off('mousedown keydown touchstart', 'button', TANGUY.start_synth);
+
+    TANGUY.start_synth = function () {
+        return true;
+    };
 };
 
+// Possibly improved by passing event.data to this function directly
 TANGUY.aftertouch = function () {
     'use strict';
-    var delay = [TANGUY.delay1_vca, TANGUY.delay2_vca, TANGUY.delay3_vca, TANGUY.delay4_vca],
+    var delay = [
+            TANGUY.delay1_vca,
+            TANGUY.delay2_vca,
+            TANGUY.delay3_vca,
+            TANGUY.delay4_vca
+        ],
         x = 1 - TANGUY.program.delay,
         y = event.data[1] / 100,
         z = TANGUY.program.delay + (x * y),
@@ -1208,16 +1236,16 @@ $(document).ready(function () {
         TANGUY.load_program(this.value);
     });
     $('#program').on('click', '#prev, #next', function () {
-        return TANGUY.change_program(this.getAttribute('data-program-shift'));
+        return TANGUY.change_program(this.dataset.programShift);
     });
 
     // Panel controls
     $('#legato').on('click', 'input', function () {
-        //return TANGUY.change_legato(this.getAttribute('value'));
         return TANGUY.change_legato(this);
     });
     $('#octave-shift').on('click', 'button', function () {
-        return TANGUY.shift_octave(this.getAttribute('data-octave-shift'));
+        console.log('Working like a charm!');
+        return TANGUY.shift_octave(this.dataset.octaveShift);
     });
     $('#osc1-kbd, #osc1-coarse, #osc2-kbd, #osc2-coarse, #osc2-waveform, #noise-color, #filter-mode, #lfo-shape, #portamento-mode')
         .on('change', 'input', TANGUY.button.touch);
@@ -1641,8 +1669,8 @@ TANGUY.button = {
     touch: function () {
         'use strict';
         var config = {
-            program: this.parentNode.parentNode.getAttribute('data-program'),
-            update: this.parentNode.parentNode.getAttribute('data-update')
+            program: this.parentNode.parentNode.dataset.program,
+            update: this.parentNode.parentNode.dataset.update
         };
         TANGUY.button.change($(this));
         return $(this).one('click', config, TANGUY.store_program);
@@ -1659,6 +1687,7 @@ TANGUY.button = {
         return button.parent().addClass('selected').siblings().removeClass('selected');
     }
 };
+
 TANGUY.store_program = function (e) {
     'use strict';
     switch (e.data.program) {

@@ -2,8 +2,8 @@ TANGUY.button = {
     touch: function () {
         'use strict';
         var config = {
-            program: this.parentNode.parentNode.getAttribute('data-program'),
-            update: this.parentNode.parentNode.getAttribute('data-update')
+            program: this.parentNode.parentNode.dataset.program,
+            update: this.parentNode.parentNode.dataset.update
         };
         TANGUY.button.change($(this));
         return $(this).one('click', config, TANGUY.store_program);

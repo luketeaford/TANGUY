@@ -60,6 +60,7 @@ TANGUY.order_programs = function () {
         'razor view',
         'invisible hand',
         'vector style',
+        'hokey guitar',
 
         //VOCAL SOUNDS
         'dusty pipes',
@@ -93,6 +94,7 @@ TANGUY.order_programs = function () {
         'papayawhip',
         'science fiction brains',
         'mimosa',
+        'harmonic pulse',
         'wave of shadows',
 
         //PERCUSSION
@@ -111,6 +113,8 @@ TANGUY.order_programs = function () {
         'shiny hihat',
         'maracas',
         'beatnik bongos',
+        'high rimshot',
+        'less cowbell',
         'metal flap',
 
         //DRONES
@@ -138,5 +142,10 @@ TANGUY.order_programs = function () {
     }
     TANGUY.programs = programs;
     TANGUY.urls = urls;
-    return TANGUY.populate_programs();
+
+    TANGUY.populate_programs();
+
+    TANGUY.order_programs = function () {
+        return true;
+    };
 };

@@ -9,16 +9,16 @@ $(document).ready(function () {
         TANGUY.load_program(this.value);
     });
     $('#program').on('click', '#prev, #next', function () {
-        return TANGUY.change_program(this.getAttribute('data-program-shift'));
+        return TANGUY.change_program(this.dataset.programShift);
     });
 
     // Panel controls
     $('#legato').on('click', 'input', function () {
-        //return TANGUY.change_legato(this.getAttribute('value'));
         return TANGUY.change_legato(this);
     });
     $('#octave-shift').on('click', 'button', function () {
-        return TANGUY.shift_octave(this.getAttribute('data-octave-shift'));
+        console.log('Working like a charm!');
+        return TANGUY.shift_octave(this.dataset.octaveShift);
     });
     $('#osc1-kbd, #osc1-coarse, #osc2-kbd, #osc2-coarse, #osc2-waveform, #noise-color, #filter-mode, #lfo-shape, #portamento-mode')
         .on('change', 'input', TANGUY.button.touch);

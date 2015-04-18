@@ -249,4 +249,8 @@ TANGUY.build_synth = function () {
     TANGUY.lfo.connect(TANGUY.lfo_pitch_vca);
     TANGUY.lfo.connect(TANGUY.lfo_filter_vca);
     TANGUY.lfo.connect(TANGUY.lfo_amp_vca);
+
+    TANGUY.build_synth = function () {
+        return true;
+    };
 };

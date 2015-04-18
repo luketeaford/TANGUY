@@ -14,4 +14,8 @@ TANGUY.start_synth = function () {
 
     // Prevent any future events from calling start_synth
     $('#keyboard').off('mousedown keydown touchstart', 'button', TANGUY.start_synth);
+
+    TANGUY.start_synth = function () {
+        return true;
+    };
 };
