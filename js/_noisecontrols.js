@@ -2,39 +2,39 @@ TANGUY.update_noise_color = function () {
     'use strict';
     switch (TANGUY.program.noise_color) {
     case 'white':
-        TANGUY.white_noise.buffer = TANGUY.white_noise_buffer;
-        TANGUY.pink_noise.buffer = TANGUY.empty_pink_noise_buffer;
-        TANGUY.red_noise.buffer = TANGUY.empty_red_noise_buffer;
-        TANGUY.blue_noise.buffer = TANGUY.empty_blue_noise_buffer;
-        TANGUY.purple_noise.buffer = TANGUY.empty_purple_noise_buffer;
+        TANGUY.white_noise.connect(TANGUY.noise_vca);
+        TANGUY.pink_noise.disconnect();
+        TANGUY.red_noise.disconnect();
+        TANGUY.blue_noise.disconnect();
+        TANGUY.purple_noise.disconnect();
         break;
     case 'pink':
-        TANGUY.pink_noise.buffer = TANGUY.pink_noise_buffer;
-        TANGUY.white_noise.buffer = TANGUY.empty_white_noise_buffer;
-        TANGUY.red_noise.buffer = TANGUY.empty_red_noise_buffer;
-        TANGUY.blue_noise.buffer = TANGUY.empty_blue_noise_buffer;
-        TANGUY.purple_noise.buffer = TANGUY.empty_purple_noise_buffer;
+        TANGUY.white_noise.disconnect();
+        TANGUY.pink_noise.connect(TANGUY.pink_noise_filter1);
+        TANGUY.red_noise.disconnect();
+        TANGUY.blue_noise.disconnect();
+        TANGUY.purple_noise.disconnect();
         break;
     case 'red':
-        TANGUY.red_noise.buffer = TANGUY.red_noise_buffer;
-        TANGUY.white_noise.buffer = TANGUY.empty_white_noise_buffer;
-        TANGUY.pink_noise.buffer = TANGUY.empty_pink_noise_buffer;
-        TANGUY.blue_noise.buffer = TANGUY.empty_blue_noise_buffer;
-        TANGUY.purple_noise.buffer = TANGUY.empty_purple_noise_buffer;
+        TANGUY.white_noise.disconnect();
+        TANGUY.pink_noise.disconnect();
+        TANGUY.red_noise.connect(TANGUY.noise_vca);
+        TANGUY.blue_noise.disconnect();
+        TANGUY.purple_noise.disconnect();
         break;
     case 'blue':
-        TANGUY.blue_noise.buffer = TANGUY.blue_noise_buffer;
-        TANGUY.white_noise.buffer = TANGUY.empty_white_noise_buffer;
-        TANGUY.pink_noise.buffer = TANGUY.empty_pink_noise_buffer;
-        TANGUY.red_noise.buffer = TANGUY.empty_red_noise_buffer;
-        TANGUY.purple_noise.buffer = TANGUY.empty_purple_noise_buffer;
+        TANGUY.white_noise.disconnect();
+        TANGUY.pink_noise.disconnect();
+        TANGUY.red_noise.disconnect();
+        TANGUY.blue_noise.connect(TANGUY.noise_vca);
+        TANGUY.purple_noise.disconnect();
         break;
     case 'purple':
-        TANGUY.purple_noise.buffer = TANGUY.purple_noise_buffer;
-        TANGUY.white_noise.buffer = TANGUY.empty_white_noise_buffer;
-        TANGUY.pink_noise.buffer = TANGUY.empty_pink_noise_buffer;
-        TANGUY.red_noise.buffer = TANGUY.empty_red_noise_buffer;
-        TANGUY.blue_noise.buffer = TANGUY.empty_blue_noise_buffer;
+        TANGUY.white_noise.disconnect();
+        TANGUY.pink_noise.disconnect();
+        TANGUY.red_noise.disconnect();
+        TANGUY.blue_noise.disconnect();
+        TANGUY.purple_noise.connect(TANGUY.noise_vca);
         break;
     }
     return;

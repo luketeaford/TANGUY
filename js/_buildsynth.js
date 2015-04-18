@@ -156,11 +156,6 @@ TANGUY.build_synth = function () {
     TANGUY.pink_noise_filter2.Q.value = 1;
     TANGUY.pink_noise_filter1.connect(TANGUY.pink_noise_filter2);
     TANGUY.pink_noise_filter2.connect(TANGUY.noise_vca);
-    TANGUY.empty_white_noise_buffer = TANGUY.synth.createBuffer(1, 1, TANGUY.synth.sampleRate);
-    TANGUY.empty_pink_noise_buffer = TANGUY.synth.createBuffer(1, 1, TANGUY.synth.sampleRate);
-    TANGUY.empty_red_noise_buffer = TANGUY.synth.createBuffer(1, 1, TANGUY.synth.sampleRate);
-    TANGUY.empty_blue_noise_buffer = TANGUY.synth.createBuffer(1, 1, TANGUY.synth.sampleRate);
-    TANGUY.empty_purple_noise_buffer = TANGUY.synth.createBuffer(1, 1, TANGUY.synth.sampleRate);
     TANGUY.white_noise_buffer = TANGUY.synth.createBuffer(1, 88200, TANGUY.synth.sampleRate);
     TANGUY.pink_noise_buffer = TANGUY.synth.createBuffer(1, 44100, TANGUY.synth.sampleRate);
     TANGUY.red_noise_buffer = TANGUY.synth.createBuffer(1, 44100, TANGUY.synth.sampleRate);
@@ -177,10 +172,10 @@ TANGUY.build_synth = function () {
     TANGUY.blue_noise.loop = true;
     TANGUY.purple_noise.loop = true;
     TANGUY.white_noise.buffer = TANGUY.white_noise_buffer;
-    TANGUY.pink_noise.buffer = TANGUY.empty_pink_noise_buffer;
-    TANGUY.red_noise.buffer = TANGUY.empty_red_noise_buffer;
-    TANGUY.blue_noise.buffer = TANGUY.empty_blue_noise_buffer;
-    TANGUY.purple_noise.buffer = TANGUY.empty_purple_noise_buffer;
+    TANGUY.pink_noise.buffer = TANGUY.pink_noise_buffer;
+    TANGUY.red_noise.buffer = TANGUY.red_noise_buffer;
+    TANGUY.blue_noise.buffer = TANGUY.blue_noise_buffer;
+    TANGUY.purple_noise.buffer = TANGUY.purple_noise_buffer;
     TANGUY.white_noise.connect(TANGUY.noise_vca);
     TANGUY.pink_noise.connect(TANGUY.pink_noise_filter1);
     TANGUY.red_noise.connect(TANGUY.noise_vca);
