@@ -38,7 +38,7 @@
 
         <h2 id="req">System Requirements</h2>
         <p>TANGUY sounds best in Google Chrome, Opera, or Apple Safari. Firefox has some known issues with frequency modulation that prevent Oscillator Two from making sound at all. TANGUY works on iOS with Chrome (on iPhone 5 and later) and Safari (on iPhone 6 or later). It works on Android devices running Google Chrome (and even some default Android browsers).</p>
-        <p>TANGUY can be played by a MIDI keyboard in Chrome. You must enable this in Chrome's hidden settings: <a href="chrome://flags/#enable-web-midi">chrome://flags/#enable-web-midi</a> and then restart Chrome with your MIDI device connected. Currently, only the keyboard and pitch bend are supported. I'm working on mod wheel and aftertouch.</p>
+        <p>TANGUY can be played by a MIDI keyboard in Chrome 43+. Turn your MIDI controller on, reload, and start playing.</p>
 
         <h2 id="controls">Controls</h2>
 
@@ -100,12 +100,7 @@
         <h2 id="trouble">Troubleshooting</h2>
         <p>If TANGUY is not producing sound, check filter cutoff, filter mode, mixer levels, and amp envelope settings. It's likely that the output from the mixer is being totally filtered out, or that the amp is never opening.</p>
 
-        <h2 id="updates">Planned Improvements</h2>
-        <p>I'm working on much better support in Firefox. There are problems with the envelopes, FM feedback, and too small click targets on buttons.</p>
-        <p>I want to fix the responsive versions for Android devices to avoid the high C key from dangling onto the next row (without causing problems on iOS).</p>
-        <p>The Sass still needs cleaning up, and there are probably performance enhancements to made to jQuery selectors and event bindings.</p>
-
   </article>
-  <span class="copyright">Copyright © 2014–2015 Luke Teaford.</span>
+  <span class="copyright">Copyright © 2014–2016 Luke Teaford.</span>
 </body>
 </html>
