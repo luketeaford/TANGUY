@@ -1,28 +1,16 @@
 {
   "name": "tanguy",
-  "version": "0.0.1",
-  "description": "TANGUY Web Audio Synthesizer",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/luketeaford/TANGUY.git"
-  },
-  "author": "Luke Teaford",
-  "license": "UNLICENSED",
-  "bugs": {
-    "url": "https://github.com/luketeaford/TANGUY/issues"
-  },
-  "homepage": "https://github.com/luketeaford/TANGUY#readme",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
     "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react-dom": "^16.0.0",
+    "react-scripts": "1.0.14"
   },
-  "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "webpack": "^3.6.0"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   }
 }
