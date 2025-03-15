@@ -1,8 +1,0 @@
-#delay {
-  @extend %module;
-
-  > h2 {
-    @include blend-title(2.5rem);
-  }
-
-}
