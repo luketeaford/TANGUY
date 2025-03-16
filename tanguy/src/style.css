@@ -1,0 +1,141 @@
+:root {
+  --document-background-color: light-dark(#999, #243445);
+  --document-link-color: light-dark(#000, #f33);
+  --document-text-color: light-dark(#000, #fff);
+  --key-natural-background-color: light-dark(#fff, #999);
+  --key-sharp-background-color: light-dark(#333, #333);
+
+  --space-m: 1rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: var(--document-link-color);
+}
+
+html {
+  background-color: var(--document-background-color);
+  color: var(--document-text-color);
+  color-scheme: light dark;
+  font-family: sans-serif;
+}
+
+body {
+  display: grid;
+  gap: var(--space-m);
+  grid-template-rows: auto 1fr auto;
+  min-height: 100dvh;
+  overflow: hidden;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+footer {
+  padding-block: var(--space-m);
+}
+
+.tanguy-logo {
+  display: grid;
+}
+
+.tanguy-name {
+  font-size: 3rem;
+  font-weight: 900;
+  letter-spacing: 0.0625em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.tanguy-tagline {
+  font-size: 0.825rem;
+  font-weight: 900;
+  letter-spacing: 0.125em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.keyboard {
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  grid-template-rows: 12fr 8fr;
+  height: 20rem;
+  position: relative;
+  touch-action: none;
+}
+
+.keyboard-naturals {
+  display: grid;
+  grid-column: 1 / span 15;
+  grid-row: 1 / span 2;
+  grid-template-columns: subgrid;
+}
+
+.keyboard-sharps {
+  display: grid;
+  grid-row: 1 / span 2;
+  grid-column: 1 / span 15;
+  grid-template-columns: repeat(45, 1fr);
+  grid-template-rows: subgrid;
+  pointer-events: none;
+}
+
+.keyboard-key {
+  border: 1px solid #000;
+  border-radius: 0 0 0.5rem 0.5rem;
+  cursor: pointer;
+}
+
+.key-natural {
+  background: var(--key-natural-background-color);
+}
+
+.key-sharp {
+  background: var(--key-sharp-background-color);
+  grid-column-end: span 2;
+  pointer-events: all;
+}
+
+#c0-sharp {
+  grid-column-start: 3;
+}
+
+#d0-sharp {
+  grid-column-start: 6;
+}
+
+#f0-sharp {
+  grid-column-start: 12;
+}
+
+#g0-sharp {
+  grid-column-start: 15;
+}
+
+#a0-sharp {
+  grid-column-start: 18;
+}
+
+#c1-sharp {
+  grid-column-start: 24;
+}
+
+#d1-sharp {
+  grid-column-start: 27;
+}
+
+#f1-sharp {
+  grid-column-start: 33;
+}
+
+#g1-sharp {
+  grid-column-start: 36;
+}
+
+#a1-sharp {
+  grid-column-start: 39;
+}
